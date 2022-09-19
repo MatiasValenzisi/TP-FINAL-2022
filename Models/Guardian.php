@@ -1,9 +1,16 @@
-<?php
-    namespace Model;
+<?php namespace Model;
+    //use Models\Person as Person;
 
-    class Guardian {
+    class Guardian extends Person{
         private $cuil;
         private $experience;
+
+        public function __construct($cuil = null, $experience = null, )
+        {
+            parent::__construct();
+            $this->$cuil = $cuil;
+            $this->$experience = $experience;
+        }
 
         public function getCuil() {return "23" . $this->cuil . "9"; }
 

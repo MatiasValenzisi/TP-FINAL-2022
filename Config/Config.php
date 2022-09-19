@@ -5,7 +5,7 @@ define("ROOT", dirname(__DIR__) . "/");
 define("ROOT_VIEWS", ROOT . "/Views");
 
 /* URL del proyecto (Ruta del cliente) */
-define("FRONT_ROOT", "http://localhost/TP-FINAL");
+define("FRONT_ROOT", "http://localhost/Github/TP-FINAL-2022");
 define("VIEWS_PATH", FRONT_ROOT."/Views");
 
 /* Constantes para la conexion de la base de datos */ 

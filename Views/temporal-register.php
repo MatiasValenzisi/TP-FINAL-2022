@@ -41,8 +41,7 @@
                 <br />
 
                 <div class="login_content ">
-                    <h1 class="text-center"><i class="fa fa-paw"></i> Company Name</h1>
-                    <p>©2022 All Rights Reserved.</p>
+                    <p><i class="fa fa-paw"></i>©2022 All Rights Reserved.<i class="fa fa-paw"></i></p>
                 </div>
 
 

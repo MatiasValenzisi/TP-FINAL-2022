@@ -31,8 +31,19 @@
 
                   <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                           class="fa fa-facebook"></i> Facebook</button>
+
+
               </form>
-              <h5><a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a></h5>
+              <div class="d-flex justify-center items-center">
+                  <span>
+                      <a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a>
+                  </span>
+                  <span>
+                      <a href="password.html" class="forgot-password text-right">registrarse</a>
+                  </span>
+              </div>
+
+
 
               <div>
 
@@ -41,7 +52,7 @@
                   <br />
 
                   <div class="login_content ">
-                      <p><i class="fa fa-paw"></i>©2022 todos los derechos reservados.<i class="fa fa-paw"></i></p>
+                      <p><i class="fa fa-paw"></i> ©2022 todos los derechos reservados. <i class="fa fa-paw"></i></p>
                   </div>
 
 

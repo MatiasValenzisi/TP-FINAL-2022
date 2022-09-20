@@ -41,7 +41,7 @@
                 <br />
 
                 <div class="login_content ">
-                    <p><i class="fa fa-paw"></i>©2022 All Rights Reserved.<i class="fa fa-paw"></i></p>
+                    <p><i class="fa fa-paw"></i>©2022 todos los derechos reservados.<i class="fa fa-paw"></i></p>
                 </div>
 
 

@@ -23,16 +23,17 @@
                     <input id="login-password" type="password" class="form-control" name="login-password"
                         placeholder="Contraseña">
                 </div>
+                <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
+                        class="fa fa-user"></i> Iniciar sesión</button>
 
-                <div class="input-group" style="margin-bottom: 25px">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="login-password" type="password" class="form-control" name="login-password"
-                        placeholder="Confirmar contraseña">
-                </div>
+                <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px"><i
+                        class="fa fa-google"></i> Google</button>
 
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
-                        class="fa fa-user-plus"></i> Create Account</button>
+                <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
+                        class="fa fa-facebook"></i> Facebook</button>
             </form>
+            <h5><a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a></h5>
+
             <div>
 
 

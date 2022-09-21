@@ -1,13 +1,35 @@
 <?php namespace Models;
-    class Pet {
+    
+    abstract class Pet {
         private $name;
         private $race;
         private $size;
         private $observations;
         private $vaccinationPlan;
+        private $photo;
 
+        public function __construct($name = null, $race = null, $size = null, $observations = null, $vaccinationPlan = null, $photo = null)
+        {
+                $this->name = $name;
+                $this->race = $race;
+                $this->size = $size;
+                $this->observations = $observations;
+                $this->vaccinationPlan = $vaccinationPlan;
+                $this->photo = $photo;
+        }
         
-        public function getName(){return $this->name;}
+
+        /**
+         * Get the value of name
+         */
+        public function getName()
+        {
+                return $this->name;
+        }
+
+        /**
+         * Set the value of name
+         */
         public function setName($name): self
         {
                 $this->name = $name;
@@ -15,8 +37,17 @@
                 return $this;
         }
 
-        public function getRace(){return $this->race;}
+        /**
+         * Get the value of race
+         */
+        public function getRace()
+        {
+                return $this->race;
+        }
 
+        /**
+         * Set the value of race
+         */
         public function setRace($race): self
         {
                 $this->race = $race;
@@ -24,8 +55,17 @@
                 return $this;
         }
 
-        public function getSize(){return $this->size;}
+        /**
+         * Get the value of size
+         */
+        public function getSize()
+        {
+                return $this->size;
+        }
 
+        /**
+         * Set the value of size
+         */
         public function setSize($size): self
         {
                 $this->size = $size;
@@ -33,8 +73,17 @@
                 return $this;
         }
 
-        public function getObservations(){return $this->observations;}
+        /**
+         * Get the value of observations
+         */
+        public function getObservations()
+        {
+                return $this->observations;
+        }
 
+        /**
+         * Set the value of observations
+         */
         public function setObservations($observations): self
         {
                 $this->observations = $observations;
@@ -42,11 +91,38 @@
                 return $this;
         }
 
-        public function getVaccinationPlan(){return $this->vaccinationPlan;}
+        /**
+         * Get the value of vaccinationPlan
+         */
+        public function getVaccinationPlan()
+        {
+                return $this->vaccinationPlan;
+        }
 
+        /**
+         * Set the value of vaccinationPlan
+         */
         public function setVaccinationPlan($vaccinationPlan): self
         {
                 $this->vaccinationPlan = $vaccinationPlan;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of photo
+         */
+        public function getPhoto()
+        {
+                return $this->photo;
+        }
+
+        /**
+         * Set the value of photo
+         */
+        public function setPhoto($photo): self
+        {
+                $this->photo = $photo;
 
                 return $this;
         }

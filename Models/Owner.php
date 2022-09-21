@@ -1,27 +1,53 @@
-<?php namespace Model;
+<?php namespace Models;
 
-    class Owner extends Person {
-        private $petList = array();
-        private $bookingsList = array();
-        private $paymentsList = array();
+use Models\Person as Person;
+
+class Owner extends Person {
+        private $dni;
+        private $bookingsList ;
+        private $petList;
+        private $paymentsList ;
         
-        public function getPetList()
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
+        $firtsName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null)
         {
-                return $this->petList;
+                parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firtsName, $lastName, $birthDate);
+                $this->dni = $dni;
+                $this->bookingsList = $bookingsList;
+                $this->petList = $petList;
+                $this->paymentsList = $paymentsList;
+                
         }
 
-        public function setPetList($petList): self
+        /**
+         * Get the value of dni
+         */
+        public function getDni()
         {
-                $this->petList = $petList;
+                return $this->dni;
+        }
+
+        /**
+         * Set the value of dni
+         */
+        public function setDni($dni): self
+        {
+                $this->dni = $dni;
 
                 return $this;
         }
 
+        /**
+         * Get the value of bookingsList
+         */
         public function getBookingsList()
         {
                 return $this->bookingsList;
         }
 
+        /**
+         * Set the value of bookingsList
+         */
         public function setBookingsList($bookingsList): self
         {
                 $this->bookingsList = $bookingsList;
@@ -29,17 +55,41 @@
                 return $this;
         }
 
+        /**
+         * Get the value of petList
+         */
+        public function getPetList()
+        {
+                return $this->petList;
+        }
+
+        /**
+         * Set the value of petList
+         */
+        public function setPetList($petList): self
+        {
+                $this->petList = $petList;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of paymentsList
+         */
         public function getPaymentsList()
         {
                 return $this->paymentsList;
         }
 
+        /**
+         * Set the value of paymentsList
+         */
         public function setPaymentsList($paymentsList): self
         {
                 $this->paymentsList = $paymentsList;
 
                 return $this;
         }
-    }
+}
 
 ?>

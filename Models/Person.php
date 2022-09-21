@@ -1,41 +1,45 @@
-<?php namespace Model;
+<?php namespace Models;
+    use Models\User as User;
 
-    abstract class Person {
-        private $user;
-        private $password;
-        private $name;
+    abstract class Person extends User{
+        private $firtsName;
         private $lastName;
-        private $dni;
-        private $age;
+        private $birthDate;
 
-        public function __construct($user = null, $password = null, $name = null, $lastName = null, $dni = null, $age = null)
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
+        $firtsName = null, $lastName = null, $birthDate = null)
         {
-            $this->$user = $user;
-            $this->$password = $password;
-            $this->$name = $name;
-            $this->$lastName = $lastName;
-            $this->$dni = $dni;
-            $this->$age = $age;
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate);
+            $this->firtsName = $firtsName;
+            $this->lastName = $lastName;
+            $this->birthDate = $birthDate;
         }
 
-        public function getUser(){return $this->user;}
-        public function setUser($user): self
+        public function getFirtsName() { return $this->firtsName; }
+
+        public function setFirtsName($firtsName): self
         {
-                $this->user = $user;
+                $this->firtsName = $firtsName;
 
                 return $this;
         }
-        public function getPassword(){return $this->password;}
-        public function setPassword($password): self
+
+        public function getLastName() { return $this->lastName; }
+
+        public function setLastName($lastName): self
         {
-                $this->password = $password;
+                $this->lastName = $lastName;
 
                 return $this;
         }
-        
-        public function getName(){return $this->name;}
-        public function getLastname(){return $this->lastName;}
-        public function getAge(){return $this->age;}
-        public function getDni(){return $this->dni;}
+
+        public function getBirthDate() { return $this->birthDate; }
+
+        public function setBirthDate($birthDate): self
+        {
+                $this->birthDate = $birthDate;
+
+                return $this;
+        }
     }
 ?>

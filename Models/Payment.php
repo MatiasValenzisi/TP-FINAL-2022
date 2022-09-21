@@ -1,14 +1,16 @@
-<?php namespace Model;
+<?php namespace Models;
 
     class Payment {
         private $amount;
         private $date;
-        private $paymentMethod;
+        private $paymentMethod; //tipo
+        private $booking; //reserva
 
-        public function __construct($amount=null, $date=null, $paymentMethod=null) {
-            $this->$amount = $amount;
-            $this->$date = $date;
-            $this->$paymentMethod = $paymentMethod;
+        public function __construct($amount=null, $date=null, $paymentMethod=null, $booking = null) {
+            $this->amount = $amount;
+            $this->date = $date;
+            $this->paymentMethod = $paymentMethod;
+            $this->booking = $booking;
         }
 
         public function getAmount()
@@ -43,6 +45,24 @@
         public function setPaymentMethod($paymentMethod): self
         {
                 $this->paymentMethod = $paymentMethod;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of booking
+         */
+        public function getBooking()
+        {
+                return $this->booking;
+        }
+
+        /**
+         * Set the value of booking
+         */
+        public function setBooking($booking): self
+        {
+                $this->booking = $booking;
 
                 return $this;
         }

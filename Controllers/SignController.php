@@ -16,7 +16,7 @@
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */
 
-        public function login($username = null, $pass = null){  
+        public function login($username = null, $password = null){  
              
         }
 

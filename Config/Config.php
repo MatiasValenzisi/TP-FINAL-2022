@@ -10,7 +10,7 @@ define("VIEWS_PATH", FRONT_ROOT."/Views");
 
 /* Constantes para la conexion de la base de datos */ 
 define("DB_HOST", "localhost:3306"); 
-define("DB_NAME", "TP2022");
+define("DB_NAME", "pet-hero");
 define("DB_USER", "root");
 define("DB_PASS", "");
 

@@ -7,7 +7,7 @@
         private $fileName;
 
         public function __construct(){
-            $this->fileName = ROOT."/Data/JsonDao/Guardian.json";
+            $this->fileName = ROOT."JsonDAO/Data/JsonDao/Guardian.json";
         }
 
         public function addDAO($guardian) {
@@ -86,10 +86,6 @@
                     array_push($this->guardianList, $guardian);
                 }
             }
-
-            
-
         }
-
     }
 ?>

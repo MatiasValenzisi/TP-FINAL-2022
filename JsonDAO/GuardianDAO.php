@@ -2,26 +2,38 @@
 
     use Models\Guardian as Guardian;
 
-    class GuardianDAO {
+    class GuardianDAO implements IJsonDAO{
         private $guardianList;
         private $fileName;
 
         public function __construct(){
-            $this->fileName = dirname(ROOT)."/Data/JsonDao/Guardian.json";
+            $this->fileName = ROOT."/Data/JsonDao/Guardian.json";
         }
 
-        public function Add(Guardian $guardian) {
-            $this->RetrieveData();
+        public function addDAO($guardian) {
+            $this->retrieveData();
             array_push($this->guardianList, $guardian);
-            $this->SaveDate();
+            $this->SaveData();
         }
 
-        public function GetAll() { 
-            $this->RetrieveData();
+        public function getAllDAO() { 
+            $this->retrieveData();
             return $this->guardianList;
         }
 
-        public function SaveDate() {
+        public function deleteDAO($value)
+        {
+            $this->retrieveData();
+            
+            foreach($this->guardianList as $guardian) {
+                if($guardian->getToken() == $value) {
+                    unset($guardian);
+                }
+            }
+            $this->saveData();
+        }
+
+        public function saveData() {
             $arrayToEncode = array();
 
             foreach($this->guardianList as $guardian) {
@@ -30,7 +42,7 @@
                 $arrayValues["password"] = $guardian->getPassword();
                 $arrayValues["dischargeDate"] = $guardian->getDischargeDate();
                 $arrayValues["downDate"] = $guardian->getDownDate();
-                $arrayValues["firtsName"] = $guardian->getFirtsName();
+                $arrayValues["firstName"] = $guardian->getFirstName();
                 $arrayValues["lastName"] = $guardian->getLastName();
                 $arrayValues["birthDate"] = $guardian->getBirthDate();
                 $arrayValues["cuil"] = $guardian->getCuil();
@@ -45,7 +57,7 @@
             file_put_contents($this->fileName, $jsonContent);
         }
 
-        public function RetrieveData() {
+        public function retrieveData() {
             $this->guardianList = array();
 
             if(file_exists($this->fileName)) {
@@ -63,7 +75,7 @@
                     $guardian->setPassword($values["password"]);
                     $guardian->setDischargeDate($values["dischargeDate"]);
                     $guardian->setDownDate($values["downDate"]);
-                    $guardian->setFirtsName($values["firtsName"]);
+                    $guardian->setFirstName($values["firstName"]);
                     $guardian->setLastName($values["lastName"]);
                     $guardian->setBirthDate($values["birthDate"]);
                     $guardian->setCuil($values["cuil"]);

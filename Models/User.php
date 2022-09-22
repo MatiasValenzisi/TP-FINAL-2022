@@ -6,18 +6,18 @@
         private $password;
         private $dischargeDate; //Fecha de alta
         private $downDate; //Fecha de baja
-        private $firtsName;
+        private $firstName;
         private $lastName;
         private $birthDate;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firtsName = null, $lastName = null, $birthDate = null) {
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null) {
         
             $this->token = $token;
             $this->userName = $userName;
             $this->password = $password;
             $this->dischargeDate = $dischargeDate;
             $this->downDate = $downDate;
-            $this->firtsName = $firtsName;
+            $this->firstName = $firstName;
             $this->lastName = $lastName;
             $this->birthDate = $birthDate;
         }
@@ -82,11 +82,11 @@
                 return $this;
         }
 
-        public function getFirtsName() { return $this->firtsName; }
+        public function getFirstName() { return $this->firstName; }
 
-        public function setFirtsName($firtsName): self
+        public function setFirstName($firstName): self
         {
-                $this->firtsName = $firtsName;
+                $this->firstName = $firstName;
 
                 return $this;
         }

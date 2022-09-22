@@ -9,9 +9,9 @@
         private $serviceList;
 
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
-        $firtsName = null, $lastName = null, $birthDate = null, $cuil = null, $experience = null, $bookingList = null, $reviewList = null)
+        $firstName = null, $lastName = null, $birthDate = null, $cuil = null, $experience = null, $bookingList = null, $reviewList = null)
         {
-            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firtsName, $lastName, $birthDate);
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
             $this->cuil = $cuil;
             $this->experience = $experience;
             $this->bookingList = $bookingList;

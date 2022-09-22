@@ -9,9 +9,9 @@ class Owner extends User {
         private $paymentsList ;
         
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
-        $firtsName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null)
+        $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null)
         {
-                parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firtsName, $lastName, $birthDate);
+                parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
                 $this->dni = $dni;
                 $this->bookingsList = $bookingsList;
                 $this->petList = $petList;

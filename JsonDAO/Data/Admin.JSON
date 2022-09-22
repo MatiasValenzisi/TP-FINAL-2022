@@ -1,0 +1,13 @@
+[
+    {
+        "token": "000001",
+        "userName": "admin",
+        "password": "123456",
+        "dischargeDate": "2022-09-22",
+        "downDate": null,
+        "firstName": "Administrador",
+        "lastName": "Principal",
+        "birthDate": "2001-01-01",
+        "dni": "30000123"
+    }
+]

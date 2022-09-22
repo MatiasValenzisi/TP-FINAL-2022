@@ -1,14 +1,29 @@
 ﻿<?php  
-	require 'Config/Config.php';
 
-	require_once 'Views/main-header.php';
-	require_once 'Views/temporal-login.php';
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
 
-	function debug_to_console($data) {
-	    $output = $data;
-	    if (is_array($output))
-	        $output = implode(',', $output);
-	    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+	session_start();
+	
+	require "Config/Autoload.php";	
+	require "Config/Config.php";
+
+	use Config\Autoload as Autoload;
+	use Config\Router as Router;
+	use Config\Request as Request;
+	
+	use Controllers\SignController as SignController;
+
+	error_reporting (E_ERROR | E_WARNING | E_PARSE);
+
+	Autoload::start();	
+
+	if (isset($_SESSION['userPH'])){			
+		$signController = new SignController();
+		$signController->checkSession();
 	}
+
+	Router::Route(new Request());	
 ?>
  

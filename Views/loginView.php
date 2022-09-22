@@ -32,7 +32,6 @@
                   <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                           class="fa fa-facebook"></i> Facebook</button>
 
-
               </form>
               <div class="d-flex justify-center items-center">
                   <span>

@@ -5,7 +5,7 @@
           <div class="left_col scroll-view">
             <!-- site title -->
             <div class="navbar nav_title" style="border: 0;">
-              <a class="site_title"><i class="fa fa-tasks" style="border:none"></i><span> <b><?php echo PROJECT_NAME ?></b> </span></a>
+              <a class="site_title"><i class="fa fa-paw" style="border:none"></i><span> <b><?php echo PROJECT_NAME ?></b> </span></a>
             </div>
             <!-- /site title -->
             <div class="clearfix"></div>
@@ -49,4 +49,7 @@
             </nav>
           </div>
         </div>
-        <!-- /top navigation -->       
+        <!-- /top navigation -->     
+
+        <!-- page content -->
+        <div class="right_col bg-white" role="main">    

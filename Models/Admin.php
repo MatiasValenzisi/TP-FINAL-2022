@@ -1,7 +1,7 @@
 <?php namespace Models;
-    use Models\Person as Person;
+    use Models\User as User;
 
-    class Admin extends Person{
+    class Admin extends User{
         private $dni;
 
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 

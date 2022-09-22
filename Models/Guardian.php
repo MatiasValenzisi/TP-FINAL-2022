@@ -1,7 +1,7 @@
 <?php namespace Models;
-    use Models\Person as Person;
+    use Models\User as User;
 
-    class Guardian extends Person {
+    class Guardian extends User {
         private $cuil;
         private $experience;
         private $bookingList;

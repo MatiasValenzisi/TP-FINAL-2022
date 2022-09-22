@@ -1,8 +1,8 @@
 <?php namespace Models;
 
-use Models\Person as Person;
+use Models\User as User;
 
-class Owner extends Person {
+class Owner extends User {
         private $dni;
         private $bookingsList ;
         private $petList;

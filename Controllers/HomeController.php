@@ -8,16 +8,16 @@
 
         public function index() {
           
-            //if (!isset($_SESSION['userPH'])){
+            if (!isset($_SESSION['userPH'])){
 
-			    //require_once ROOT_VIEWS."/mainHeader.php";
-                //require_once ROOT_VIEWS."/loginView.php";
+			    require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/loginView.php";
 
-    		//} else { 
+    		} else { 
 
                 header("Location: ".FRONT_ROOT."/home/administration");
 
-    		//}            
+    		}            
         }
 
         /* Metodo que muestra la vista home de la pagina */ 

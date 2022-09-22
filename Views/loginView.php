@@ -4,7 +4,6 @@
               <div class="login_content">
                   <h1 class="text-center"><i class="fa fa-paw"></i> Company Name</h1>
               </div>
-
               <br>
               <div class="text-center" style="margin-bottom: 25px">
                   <img class="profile-img-card img-circle" src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
@@ -31,8 +30,8 @@
 
                   <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                           class="fa fa-facebook"></i> Facebook</button>
-
               </form>
+
               <div class="d-flex justify-center items-center">
                   <span>
                       <a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a>
@@ -42,20 +41,14 @@
                   </span>
               </div>
 
-
-
               <div>
-
-
                   <div class="clearfix"></div>
-                  <br />
-
+                  <br>
                   <div class="login_content ">
                       <p><i class="fa fa-paw"></i> ©2022 todos los derechos reservados. <i class="fa fa-paw"></i></p>
                   </div>
-
-
               </div>
+              
           </div>
       </div>
   </body>

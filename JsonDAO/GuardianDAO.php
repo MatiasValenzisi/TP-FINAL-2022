@@ -2,74 +2,91 @@
 
     use Models\Guardian as Guardian;
 
-    class GuardianDAO implements IJsonDAO{
+    class GuardianDAO implements IJsonDAO {
+
         private $guardianList;
-        private $fileName;
+        private $fileName = ROOT."JsonDAO/Data/JsonDao/Guardian.json";
 
-        public function __construct(){
-            $this->fileName = ROOT."JsonDAO/Data/JsonDao/Guardian.json";
-        }
+        public function addDAO($guardian){  
 
-        public function addDAO($guardian) {
             $this->retrieveData();
+
             array_push($this->guardianList, $guardian);
+
             $this->SaveData();
         }
 
-        public function getAllDAO() { 
+        public function getAllDAO(){ 
+
             $this->retrieveData();
+
             return $this->guardianList;
         }
 
-        public function deleteDAO($value)
-        {
-            $this->retrieveData();
-            
-            foreach($this->guardianList as $guardian) {
-                if($guardian->getToken() == $value) {
+        public function deleteDAO($value){
+
+            $this->retrieveData();    
+
+            foreach($this->guardianList as $guardian){
+
+                if($guardian->getToken() == $value){
+
                     unset($guardian);
                 }
             }
+
             $this->saveData();
         }
 
-        public function saveData() {
+        public function saveData(){
+
             $arrayToEncode = array();
 
             foreach($this->guardianList as $guardian) {
-                $arrayValues["token"] = $guardian->getToken();
-                $arrayValues["userName"] = $guardian->getUserName();
-                $arrayValues["password"] = $guardian->getPassword();
+
+                $arrayValues["token"]         = $guardian->getToken();
+                $arrayValues["userName"]      = $guardian->getUserName();
+                $arrayValues["password"]      = $guardian->getPassword();
                 $arrayValues["dischargeDate"] = $guardian->getDischargeDate();
-                $arrayValues["downDate"] = $guardian->getDownDate();
-                $arrayValues["firstName"] = $guardian->getFirstName();
-                $arrayValues["lastName"] = $guardian->getLastName();
-                $arrayValues["birthDate"] = $guardian->getBirthDate();
-                $arrayValues["cuil"] = $guardian->getCuil();
-                $arrayValues["experience"] = $guardian->getExperience();
-                $arrayValues["bookingList"] = $guardian->getBookingList();
-                $arrayValues["reviewList"] = $guardian->getReviewList();
-                $arrayValues["serviceList"] = $guardian->getServiceList();
+                $arrayValues["downDate"]      = $guardian->getDownDate();
+                $arrayValues["firstName"]     = $guardian->getFirstName();
+                $arrayValues["lastName"]      = $guardian->getLastName();
+                $arrayValues["birthDate"]     = $guardian->getBirthDate();
+                $arrayValues["cuil"]          = $guardian->getCuil();
+                $arrayValues["experience"]    = $guardian->getExperience();
+                $arrayValues["bookingList"]   = $guardian->getBookingList();
+                $arrayValues["reviewList"]    = $guardian->getReviewList();
+                $arrayValues["serviceList"]   = $guardian->getServiceList();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
+
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+
             file_put_contents($this->fileName, $jsonContent);
         }
 
-        public function retrieveData() {
+        public function retrieveData(){
+
             $this->guardianList = array();
 
-            if(file_exists($this->fileName)) {
+            if(file_exists($this->fileName)){
+
                 $jsonContent = file_get_contents($this->fileName);
-                if($jsonContent) {
+
+                if($jsonContent){
+
                     $arrayToDecode = json_decode($jsonContent, true);
-                } else{
+
+                } else {
+
                     $arrayToDecode = array();
                 }
                 
                 foreach($arrayToDecode as $values) {
+
                     $guardian = new Guardian();
+
                     $guardian->setToken($values["token"]);
                     $guardian->setUserName($values["userName"]);
                     $guardian->setPassword($values["password"]);
@@ -83,6 +100,7 @@
                     $guardian->setBookingList($values["bookingList"]);
                     $guardian->setReviewList($values["reviewList"]);
                     $guardian->setServiceList($values["serviceList"]);
+                    
                     array_push($this->guardianList, $guardian);
                 }
             }

@@ -6,6 +6,4 @@ interface IJsonDAO {
     function getAllDAO();
     function deleteDAO($value);
 
-}
-
-?>
+} ?>

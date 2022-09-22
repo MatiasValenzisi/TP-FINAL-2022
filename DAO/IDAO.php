@@ -2,12 +2,10 @@
 
    use DAO\Connection as Connection;
 
-    interface IDAO
-    {
-        function addDAO($value);
+   interface IDAO {
 
-        function getAllDAO();
-
-        function deleteDAO($value);
-    }
-?>
+      function addDAO($value);
+      function getAllDAO();
+      function deleteDAO($value);
+    
+   } ?>

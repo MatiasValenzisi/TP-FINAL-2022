@@ -20,18 +20,11 @@
 
             if ($username != null && $password != null){
 
-                $verify = false;
-
                 $userController = new UserController();
 
                 $userLogin = $userController->getUserName($username);
 
                 if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
-
-                    $verify = true;
-                }
-
-                if ($verify){
 
                     $_SESSION["userPH"] = $userLogin;
 
@@ -40,7 +33,6 @@
                 } else {
 
                     header("Location: ".FRONT_ROOT);
-
                 }
 
             } else {

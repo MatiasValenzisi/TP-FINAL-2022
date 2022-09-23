@@ -184,7 +184,7 @@
 
        /* Retorna un número aleatorio de una cantidad dada */
    		
-   	  public function generateNumber($cant){ 
+   	  public function generateNumber($cant){ /* BUSCAR OTRA OPCION.
 
    			  $key = '';
  			    $pattern = '1234567890';
@@ -192,7 +192,7 @@
  			    for($i=0; $i<$cant; $i++) {
               $key .= $pattern{mt_rand(0,$max)};
           } 				     
- 			    return $key; 
+ 			    return $key; */
    		}
 
       /* Retorna el AdminDAO cargado en la controladora */

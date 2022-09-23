@@ -10,8 +10,9 @@
         private $firstName;
         private $lastName;
         private $birthDate;
+        private $dni;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null) {
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null) {
         
             $this->token         = $token;
             $this->userName      = $userName;
@@ -21,6 +22,7 @@
             $this->firstName     = $firstName;
             $this->lastName      = $lastName;
             $this->birthDate     = $birthDate;
+            $this->dni           = $dni;
         }
 
         public function getToken(){
@@ -101,6 +103,18 @@
         public function setBirthDate($birthDate){
 
             $this->birthDate = $birthDate;
+        }
+
+        public function getDni()
+        {
+                return $this->dni;
+        }
+        
+        public function setDni($dni): self
+        {
+                $this->dni = $dni;
+
+                return $this;
         }
     }
 ?>

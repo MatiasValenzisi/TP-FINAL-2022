@@ -2,30 +2,18 @@
 
     class Guardian extends User {
 
-        private $cuil;
         private $experience;
         private $bookingList;
         private $reviewList;
         private $serviceList;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $cuil = null, $experience = null, $bookingList = null, $reviewList = null){
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $experience = null, $bookingList = null, $reviewList = null){
 
-            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
 
-            $this->cuil        = $cuil;
             $this->experience  = $experience;
             $this->bookingList = $bookingList;
             $this->reviewList  = $reviewList;
-        }
-
-        public function getCuil(){
-
-            return $this->cuil;
-        }
-
-        public function setCuil($cuil){
-            
-            $this->cuil = $cuil;
         }
 
         public function getExperience(){

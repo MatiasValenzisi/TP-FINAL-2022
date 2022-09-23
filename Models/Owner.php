@@ -2,7 +2,6 @@
 
     class Owner extends User {
 
-        private $dni;
         private $bookingsList ;
         private $petList;
         private $paymentsList ;
@@ -10,22 +9,11 @@
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
         $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null){
 
-            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
 
-            $this->dni          = $dni;
             $this->bookingsList = $bookingsList;
             $this->petList      = $petList;
             $this->paymentsList = $paymentsList;                
-        }
-
-        public function getDni(){
-            
-            return $this->dni;
-        }
-
-        public function setDni($dni){
-            
-            $this->dni = $dni;
         }
 
         public function getBookingsList(){

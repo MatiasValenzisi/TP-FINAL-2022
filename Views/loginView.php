@@ -10,7 +10,7 @@
                       style="height: 40%; width: 40%">
               </div>
 
-              <form class="form-signin" action="<?php echo FRONT_ROOT ?>/sign/login" method="POST">
+              <form class="form-signin" action="<?php echo FRONT_ROOT ?>/sign/login" method="GET">
                   <span id="reauth-email" class="reauth-email"></span>
                   <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

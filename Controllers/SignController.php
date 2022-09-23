@@ -46,7 +46,7 @@
                     header("Location: ".FRONT_ROOT."/home/administration");
 
                 }               
-            }             
+            }           
         }
 
         /* Metodo que llama al formulario para crear un usuario */ 

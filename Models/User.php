@@ -105,16 +105,14 @@
             $this->birthDate = $birthDate;
         }
 
-        public function getDni()
-        {
-                return $this->dni;
+        public function getDni(){
+            
+            return $this->dni;
         }
         
-        public function setDni($dni): self
-        {
-                $this->dni = $dni;
-
-                return $this;
+        public function setDni($dni){
+            
+            $this->dni = $dni;
         }
     }
 ?>

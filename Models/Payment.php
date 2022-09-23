@@ -7,65 +7,52 @@
         private $paymentMethod;  // Metodo de pago.
         private $booking;        // Reserva.
 
-        public function __construct($amount=null, $date=null, $paymentMethod=null, $booking = null) {
+        public function __construct($amount = null, $date = null, $paymentMethod = null, $booking = null) {
+
             $this->amount = $amount;
             $this->date = $date;
             $this->paymentMethod = $paymentMethod;
             $this->booking = $booking;
         }
 
-        public function getAmount()
-        {
-                return $this->amount;
+        public function getAmount(){
+
+            return $this->amount;
         }
 
-        public function setAmount($amount): self
-        {
-                $this->amount = $amount;
+        public function setAmount($amount){
 
-                return $this;
+            $this->amount = $amount;
         }
 
-        public function getDate()
-        {
-                return $this->date;
+        public function getDate(){
+
+            return $this->date;
         }
 
-        public function setDate($date): self
-        {
-                $this->date = $date;
-
-                return $this;
+        public function setDate($date){
+            
+             $this->date = $date;
         }
 
-        public function getPaymentMethod()
-        {
-                return $this->paymentMethod;
+        public function getPaymentMethod(){
+            
+            return $this->paymentMethod;
         }
 
-        public function setPaymentMethod($paymentMethod): self
-        {
-                $this->paymentMethod = $paymentMethod;
-
-                return $this;
+        public function setPaymentMethod($paymentMethod){
+            
+             $this->paymentMethod = $paymentMethod;
         }
 
-        /**
-         * Get the value of booking
-         */
-        public function getBooking()
-        {
-                return $this->booking;
+        public function getBooking(){
+             
+             return $this->booking;
         }
 
-        /**
-         * Set the value of booking
-         */
-        public function setBooking($booking): self
-        {
-                $this->booking = $booking;
-
-                return $this;
+        public function setBooking($booking){
+            
+            $this->booking = $booking;
         }
     }
 ?>

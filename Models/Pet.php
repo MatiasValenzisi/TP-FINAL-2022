@@ -10,7 +10,7 @@
         private $vaccinationPlan;
         private $photo;
 
-        public function __construct($name = null, $race = null, $size = null,$weight=null, $observations = null, $vaccinationPlan = null, $photo = null){
+        public function __construct($name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null){
 
             $this->name            = $name;
             $this->race            = $race;

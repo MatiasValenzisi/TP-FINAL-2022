@@ -5,7 +5,7 @@
     class OwnerDAO implements IJsonDAO {
 
         private $ownerList;
-        private $fileName = ROOT."JsonDAO/Data/JsonDao/Owner.json";
+        private $fileName = ROOT."JsonDAO/Data/Owner.json";
 
         public function addDAO($owner){  
 
@@ -25,17 +25,7 @@
 
         public function deleteDAO($value){
 
-            $this->retrieveData();    
-
-            foreach($this->ownerList as $owner){
-
-                if($owner->getToken() == $value){
-
-                    unset($owner);
-                }
-            }
-
-            $this->saveData();
+            // Dar de baja con downDate = fecha actual.
         }
 
         public function saveData(){

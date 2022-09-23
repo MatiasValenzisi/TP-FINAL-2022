@@ -1,6 +1,10 @@
 <?php namespace Controllers;
 
-    use Models\User as User;
+    use Models\Admin as Admin;
+    use Models\Guardian as Guardian;
+    use Models\Owner as Owner;
+
+    use JsonDAO\AdminDAO as AdminDAO; // Temporal.
 
     class HomeController {
 
@@ -8,16 +12,16 @@
 
         public function index() {
           
-            /*if (!isset($_SESSION['userPH'])){
+            //if (!isset($_SESSION['userPH'])){
 
-			    require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/loginView.php";
+			    //require_once ROOT_VIEWS."/mainHeader.php";
+                //require_once ROOT_VIEWS."/loginView.php";
 
-    		} else { */
+    		//} else { 
 
                 header("Location: ".FRONT_ROOT."/home/administration");
 
-    		/*}  */          
+    		//}        
         }
 
         /* Metodo que muestra la vista home de la pagina */ 

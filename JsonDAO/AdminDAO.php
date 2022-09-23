@@ -5,7 +5,7 @@
     class AdminDAO implements IJsonDAO {
 
         private $adminList;
-        private $fileName = ROOT."JsonDAO/Data/JsonDao/Admin.json";
+        private $fileName = ROOT."JsonDAO/Data/Admin.json";
 
         public function addDAO($admin){  
 
@@ -25,17 +25,7 @@
 
         public function deleteDAO($value){
 
-            $this->retrieveData();    
-
-            foreach($this->adminList as $admin){
-
-                if($admin->getToken() == $value){
-
-                    unset($admin);
-                }
-            }
-
-            $this->saveData();
+            // Dar de baja con downDate = fecha actual.
         }
 
         public function saveData(){
@@ -92,9 +82,6 @@
                     $admin->setLastName($values["lastName"]);
                     $admin->setBirthDate($values["birthDate"]);
                     $admin->setDni($values["dni"]);
-                    $admin->setBookingList($values["bookingList"]);
-                    $admin->setPetList($values["petList"]);
-                    $admin->setPaymentsList($values["paymentsList"]);
                     
                     array_push($this->adminList, $admin);
                 }

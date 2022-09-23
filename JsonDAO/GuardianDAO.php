@@ -5,7 +5,7 @@
     class GuardianDAO implements IJsonDAO {
 
         private $guardianList;
-        private $fileName = ROOT."JsonDAO/Data/JsonDao/Guardian.json";
+        private $fileName = ROOT."JsonDAO/Data/Guardian.json";
 
         public function addDAO($guardian){  
 
@@ -25,17 +25,7 @@
 
         public function deleteDAO($value){
 
-            $this->retrieveData();    
-
-            foreach($this->guardianList as $guardian){
-
-                if($guardian->getToken() == $value){
-
-                    unset($guardian);
-                }
-            }
-
-            $this->saveData();
+            // Dar de baja con downDate = fecha actual.
         }
 
         public function saveData(){

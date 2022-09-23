@@ -1,10 +1,11 @@
 <?php namespace Models;
 
     class Payment {
+
         private $amount;
         private $date;
-        private $paymentMethod; //tipo
-        private $booking; //reserva
+        private $paymentMethod;  // Metodo de pago.
+        private $booking;        // Reserva.
 
         public function __construct($amount=null, $date=null, $paymentMethod=null, $booking = null) {
             $this->amount = $amount;

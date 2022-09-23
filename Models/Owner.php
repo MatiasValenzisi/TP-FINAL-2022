@@ -1,95 +1,61 @@
 <?php namespace Models;
 
-use Models\User as User;
+    class Owner extends User {
 
-class Owner extends User {
         private $dni;
         private $bookingsList ;
         private $petList;
         private $paymentsList ;
         
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
-        $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null)
-        {
-                parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
-                $this->dni = $dni;
-                $this->bookingsList = $bookingsList;
-                $this->petList = $petList;
-                $this->paymentsList = $paymentsList;
-                
+        $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null){
+
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate);
+
+            $this->dni          = $dni;
+            $this->bookingsList = $bookingsList;
+            $this->petList      = $petList;
+            $this->paymentsList = $paymentsList;                
         }
 
-        /**
-         * Get the value of dni
-         */
-        public function getDni()
-        {
-                return $this->dni;
+        public function getDni(){
+            
+            return $this->dni;
         }
 
-        /**
-         * Set the value of dni
-         */
-        public function setDni($dni): self
-        {
-                $this->dni = $dni;
-
-                return $this;
+        public function setDni($dni){
+            
+            $this->dni = $dni;
         }
 
-        /**
-         * Get the value of bookingsList
-         */
-        public function getBookingsList()
-        {
-                return $this->bookingsList;
+        public function getBookingsList(){
+
+            return $this->bookingsList;
         }
 
-        /**
-         * Set the value of bookingsList
-         */
-        public function setBookingsList($bookingsList): self
-        {
-                $this->bookingsList = $bookingsList;
-
-                return $this;
+        public function setBookingsList($bookingsList){
+            
+            $this->bookingsList = $bookingsList;
         }
 
-        /**
-         * Get the value of petList
-         */
-        public function getPetList()
-        {
-                return $this->petList;
+        public function getPetList(){
+            
+            return $this->petList;
         }
 
-        /**
-         * Set the value of petList
-         */
-        public function setPetList($petList): self
-        {
-                $this->petList = $petList;
-
-                return $this;
+        public function setPetList($petList){
+            
+            $this->petList = $petList;
         }
 
-        /**
-         * Get the value of paymentsList
-         */
-        public function getPaymentsList()
-        {
-                return $this->paymentsList;
+        public function getPaymentsList(){
+            
+            return $this->paymentsList;
         }
 
-        /**
-         * Set the value of paymentsList
-         */
-        public function setPaymentsList($paymentsList): self
-        {
-                $this->paymentsList = $paymentsList;
-
-                return $this;
+        public function setPaymentsList($paymentsList){
+            
+            $this->paymentsList = $paymentsList;
         }
-}
-
+    }
 ?>

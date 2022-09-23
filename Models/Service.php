@@ -1,94 +1,69 @@
 <?php namespace Models;
 
-use Models\Guardian as Guardian;
-    class Service extends Guardian{
+    class Service {
+
         private $typeOfPet;
         private $size;
         private $day;
         private $price;
+        private $guardian;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
-        $firtsName = null, $lastName = null, $birthDate = null, $cuil = null, $experience = null, $bookingList = null, $reviewList = null, 
-        $typeOfPet = null, $size = null, $day = null, $price = null)
-        {
-                parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firtsName, $lastName, $birthDate, $cuil, $experience, 
-                $bookingList, $reviewList);
-                $this->typeOfPet = $typeOfPet;
-                $this->size = $size;
-                $this->dat = $day;
-                $this->price = $price;
+        public function __construct($typeOfPet = null, $size = null, $day = null, $price = null, $guardian = null){
+
+            $this->typeOfPet = $typeOfPet;
+            $this->size      = $size;
+            $this->dat       = $day;
+            $this->price     = $price;
+            $this->guardian  = $guardian;
         }
 
-        /**
-         * Get the value of typeOfPet
-         */
-        public function getTypeOfPet()
-        {
-                return $this->typeOfPet;
+        public function getTypeOfPet(){
+            return $this->typeOfPet;
         }
 
-        /**
-         * Set the value of typeOfPet
-         */
-        public function setTypeOfPet($typeOfPet): self
-        {
-                $this->typeOfPet = $typeOfPet;
-
-                return $this;
+        public function setTypeOfPet($typeOfPet){
+            
+            $this->typeOfPet = $typeOfPet;
         }
 
-        /**
-         * Get the value of size
-         */
-        public function getSize()
-        {
-                return $this->size;
+        public function getSize(){
+            
+            return $this->size;
         }
 
-        /**
-         * Set the value of size
-         */
-        public function setSize($size): self
-        {
-                $this->size = $size;
-
-                return $this;
+        public function setSize($size){
+            
+            $this->size = $size;
         }
 
-        /**
-         * Get the value of day
-         */
-        public function getDay()
-        {
-                return $this->day;
+        public function getDay(){
+            
+            return $this->day;
         }
 
-        /**
-         * Set the value of day
-         */
-        public function setDay($day): self
-        {
-                $this->day = $day;
-
-                return $this;
+        public function setDay($day){
+            
+            $this->day = $day;
         }
 
-        /**
-         * Get the value of price
-         */
-        public function getPrice()
-        {
-                return $this->price;
+        public function getPrice(){
+            
+            return $this->price;
         }
 
-        /**
-         * Set the value of price
-         */
-        public function setPrice($price): self
-        {
-                $this->price = $price;
-
-                return $this;
+        public function setPrice($price){
+            
+            $this->price = $price;
         }
+
+        public function getGuardian() { 
+
+            return $this->guardian; 
+        } 
+
+        public function setGuardian($guardian) { 
+
+            $this->guardian = $guardian; 
+        } 
     }
 ?>

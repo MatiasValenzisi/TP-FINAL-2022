@@ -2,9 +2,9 @@
 
     use Controllers\UserController as UserController;
 
+    use Models\Admin as Admin;
     use Models\Guardian as Guardian; 
     use Models\Owner as Owner;
-    use Models\Admin as Admin;
 
     class SignController {   
 

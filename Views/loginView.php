@@ -37,7 +37,7 @@
                       <a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a>
                   </span>
                   <span>
-                      <a href="password.html" class="forgot-password text-right">registrarse</a>
+                      <a href="<?php echo FRONT_ROOT ?>/user/register" class="forgot-password text-right">registrarse</a>
                   </span>
               </div>
 

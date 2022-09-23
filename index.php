@@ -2,7 +2,7 @@
 
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
+	error_reporting (E_ERROR | E_WARNING | E_PARSE);
 
 	session_start();
 	
@@ -14,9 +14,7 @@
 	use Config\Request as Request;
 	
 	use Controllers\SignController as SignController;
-
-	error_reporting (E_ERROR | E_WARNING | E_PARSE);
-
+	
 	Autoload::start();	
 
 	if (isset($_SESSION['userPH'])){			

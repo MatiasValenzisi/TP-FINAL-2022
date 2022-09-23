@@ -87,5 +87,39 @@
                 }
             }
         }
+
+        public function getUserNameDAO($userName){ 
+
+            $this->retrieveData();
+
+            $user = null;
+
+            foreach ($this->adminList as $value) {
+
+                if(strcmp($value->getUserName(), $userName) == 0){
+
+                    $user = $value;
+                }
+            }
+
+            return $user;
+        }
+
+        public function getUserTokenDAO($token){ 
+
+            $this->retrieveData();
+
+            $user = null;
+
+            foreach ($this->adminList as $value) {
+
+                if(strcmp($value->getToken(), $token) == 0){
+
+                    $user = $value;
+                }
+            }
+
+            return $user;
+        }
     }
 ?>

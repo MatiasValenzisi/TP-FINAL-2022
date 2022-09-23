@@ -17,7 +17,44 @@
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */
 
         public function login($username = null, $password = null){  
-             
+
+            if ($username != null && $password != null){
+
+                $verify = false;
+
+                $userController = new UserController();
+
+                $userLogin = $userController->getUserName($username);
+
+                if (!is_null($userLogin) && strcmp($userLogin->getPassword(), $password) == 0){
+
+                    $verify = true;
+                }
+
+                if ($verify){
+
+                    $_SESSION["userPH"] = $userLogin;
+
+                    header("Location: ".FRONT_ROOT."/home/administration");
+
+                } else {
+
+                    header("Location: ".FRONT_ROOT);
+
+                }
+
+            } else {
+
+                if (!isset($_SESSION['userPH'])){
+
+                    header("Location: ".FRONT_ROOT);
+
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/home/administration");
+
+                }               
+            }             
         }
 
         /* Metodo que llama al formulario para crear un usuario */ 
@@ -30,7 +67,16 @@
 
         public function registerAction(){
 
-        }          
+        }
+
+        /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
+
+        public function logout(){
+
+            unset($_SESSION['userPH']); 
+
+            header("Location: ".FRONT_ROOT."/");
+        }   
     } 
 
 ?>

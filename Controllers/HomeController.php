@@ -31,13 +31,7 @@
             require_once ROOT_VIEWS."/temporal-listado.php";            
             require_once ROOT_VIEWS."/mainFooter.php"; 
                 
-        }
-
-        /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
-
-        public function logout(){
-
-        }       
+        } 
     }
 ?>
 

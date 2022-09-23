@@ -45,7 +45,7 @@
                                           <li><a href="usuario2.html"> Dueños dados de baja</a></li>
                                       </ul>
                                   </li>
-                                  <li><a href="salir.html"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
+                                  <li><a href="<?php echo FRONT_ROOT ?>/sign/logout"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
                                   </li>
                               </ul>
                           </div>

@@ -26,7 +26,7 @@
 
                 $userLogin = $userController->getUserName($username);
 
-                if (!is_null($userLogin) && strcmp($userLogin->getPassword(), $password) == 0){
+                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
 
                     $verify = true;
                 }

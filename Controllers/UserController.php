@@ -10,11 +10,11 @@
 
     class UserController{
 
-        private $adminDAO;
-        private $guardianDAO;
-        private $ownerDAO;
-        private $user;
-        private $token;
+      private $adminDAO;
+      private $guardianDAO;
+      private $ownerDAO;
+      private $user;
+      private $token;
     	private $userList;
 
       public function __construct(){
@@ -186,15 +186,17 @@
 
        /* Retorna un número aleatorio de una cantidad dada */
    		
-   	  public function generateNumber($cant){ /* BUSCAR OTRA OPCION.
+   	  public function generateNumber($cant){ 
 
-            $key = '';
-            $pattern = '1234567890';
-            $max = strlen($pattern)-1;
-            for($i=0; $i<$cant; $i++) {
+          $key = '';
+          $pattern = '1234567890';
+          $max = strlen($pattern)-1;
+
+          for($i=0; $i<$cant; $i++) {
                 $key .= $pattern{mt_rand(0,$max)};
-            } 				     
- 			return $key; */
+          } 			
+          	     
+ 			    return $key; 
    		}
 
       /* Retorna el AdminDAO cargado en la controladora */

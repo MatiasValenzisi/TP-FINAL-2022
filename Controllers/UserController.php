@@ -10,11 +10,11 @@
 
     class UserController{
 
-    	private $adminDAO;
-      private $guardianDAO;
-      private $ownerDAO;
-      private $user;
-      private $token;
+        private $adminDAO;
+        private $guardianDAO;
+        private $ownerDAO;
+        private $user;
+        private $token;
     	private $userList;
 
       public function __construct(){
@@ -62,7 +62,6 @@
           
           return false;
       }
-
 
       // Controlar si hay aunque sea un número. 
 
@@ -168,7 +167,7 @@
 
    			do {
 
-   			  $controller = false;
+   			    $controller = false;
    				$newToken = $this->generateNumber(6);
 
    				foreach($userListToken  as $key => $value) {
@@ -186,13 +185,13 @@
    		
    	  public function generateNumber($cant){ /* BUSCAR OTRA OPCION.
 
-   			  $key = '';
- 			    $pattern = '1234567890';
- 			    $max = strlen($pattern)-1;
- 			    for($i=0; $i<$cant; $i++) {
-              $key .= $pattern{mt_rand(0,$max)};
-          } 				     
- 			    return $key; */
+            $key = '';
+            $pattern = '1234567890';
+            $max = strlen($pattern)-1;
+            for($i=0; $i<$cant; $i++) {
+                $key .= $pattern{mt_rand(0,$max)};
+            } 				     
+ 			return $key; */
    		}
 
       /* Retorna el AdminDAO cargado en la controladora */

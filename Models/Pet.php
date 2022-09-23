@@ -4,15 +4,17 @@
         private $name;
         private $race;
         private $size;
+        private $weight;
         private $observations;
         private $vaccinationPlan;
         private $photo;
 
-        public function __construct($name = null, $race = null, $size = null, $observations = null, $vaccinationPlan = null, $photo = null)
+        public function __construct($name = null, $race = null, $size = null,$weight=null, $observations = null, $vaccinationPlan = null, $photo = null)
         {
                 $this->name = $name;
                 $this->race = $race;
                 $this->size = $size;
+                $this->weight = $weight;
                 $this->observations = $observations;
                 $this->vaccinationPlan = $vaccinationPlan;
                 $this->photo = $photo;
@@ -123,6 +125,24 @@
         public function setPhoto($photo): self
         {
                 $this->photo = $photo;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of weight
+         */
+        public function getWeight()
+        {
+                return $this->weight;
+        }
+
+        /**
+         * Set the value of weight
+         */
+        public function setWeight($weight): self
+        {
+                $this->weight = $weight;
 
                 return $this;
         }

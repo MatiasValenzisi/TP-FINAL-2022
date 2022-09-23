@@ -15,6 +15,7 @@
                             <th>Nombre</th>
                             <th>Raza</th>
                             <th>Tamaño</th>
+                            <th>Peso</th>
                             <th>Observations</th>
                             <th>Plan de vacunacion</th>
                             <th>Foto</th>
@@ -27,6 +28,7 @@
                             <td>Juan</td>
                             <td>Galgo</td>
                             <td>80cm</td>
+                            <td>80kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -36,6 +38,7 @@
                             <td>Juana</td>
                             <td>Caniche</td>
                             <td>20cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -45,6 +48,7 @@
                             <td>Jun</td>
                             <td>Galgo</td>
                             <td>90cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -55,6 +59,7 @@
                             <td>luan</td>
                             <td>Fosterrier</td>
                             <td>230cm</td>
+                            <td>60kg</td>
                             <td>Mas fuerte que un roble</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -65,6 +70,7 @@
                             <td>Jun</td>
                             <td>Galgo</td>
                             <td>20cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -75,6 +81,7 @@
                             <td>Jan</td>
                             <td>Galgo</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -84,6 +91,7 @@
                             <td>Pedro</td>
                             <td>Galgo</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -94,6 +102,7 @@
                             <td>Pero</td>
                             <td>Galgo</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -104,6 +113,7 @@
                             <td>Tiene</td>
                             <td>Galgo</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -112,6 +122,7 @@
                             <td>Posee</td>
                             <td>Chiguaga</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -121,6 +132,7 @@
                             <td>Contiene</td>
                             <td>Dalmata</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>
@@ -131,6 +143,7 @@
                             <td>Utiliza</td>
                             <td>Caniche Toy</td>
                             <td>80cm</td>
+                            <td>60kg</td>
                             <td>Es muy energico</td>
                             <td>Al dia</td>
                             <td>(foto)</td>

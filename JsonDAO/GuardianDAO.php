@@ -42,7 +42,7 @@
                 $arrayValues["firstName"]     = $guardian->getFirstName();
                 $arrayValues["lastName"]      = $guardian->getLastName();
                 $arrayValues["birthDate"]     = $guardian->getBirthDate();
-                $arrayValues["cuil"]          = $guardian->getCuil();
+                $arrayValues["dni"]           = $guardian->getDni();
                 $arrayValues["experience"]    = $guardian->getExperience();
                 $arrayValues["bookingList"]   = $guardian->getBookingList();
                 $arrayValues["reviewList"]    = $guardian->getReviewList();
@@ -85,7 +85,7 @@
                     $guardian->setFirstName($values["firstName"]);
                     $guardian->setLastName($values["lastName"]);
                     $guardian->setBirthDate($values["birthDate"]);
-                    $guardian->setCuil($values["cuil"]);
+                    $guardian->setDni($values["dni"]);
                     $guardian->setExperience($values["experience"]);
                     $guardian->setBookingList($values["bookingList"]);
                     $guardian->setReviewList($values["reviewList"]);

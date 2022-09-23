@@ -43,7 +43,7 @@
                 $arrayValues["lastName"]      = $owner->getLastName();
                 $arrayValues["birthDate"]     = $owner->getBirthDate();
                 $arrayValues["dni"]           = $owner->getDni();
-                $arrayValues["bookingsList"]   = $owner->getBookingList();
+                $arrayValues["bookingsList"]   = $owner->getBookingsList();
                 $arrayValues["petList"]       = $owner->getPetList();
                 $arrayValues["paymentsList"]  = $owner->getPaymentsList();
                 

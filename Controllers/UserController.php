@@ -10,11 +10,11 @@
 
     class UserController{
 
-        private $adminDAO;
-        private $guardianDAO;
-        private $ownerDAO;
-        private $user;
-        private $token;
+      private $adminDAO;
+      private $guardianDAO;
+      private $ownerDAO;
+      private $user;
+      private $token;
     	private $userList;
 
       public function __construct(){

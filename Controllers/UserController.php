@@ -163,7 +163,7 @@
 
       /* Retorna un nuevo número de token que no haya sido utilizado antes */
 
-      public function createToken($userListToken){ 
+      /*public function createToken($userListToken){ 
 
    		 $newToken = null;
 
@@ -181,11 +181,11 @@
    				}  }  } while($controller);
 
    	   	   return $newToken; 
-   	   }
+   	   }*/
 
        /* Retorna un número aleatorio de una cantidad dada */
    		
-   	  public function generateNumber($cant){ 
+   	  /*public function generateNumber($cant){ 
 
           $key = '';
           $pattern = '1234567890';
@@ -196,7 +196,7 @@
           } 			
           	     
  			    return $key; 
-   		}
+   		}*/
 
       /* Retorna el AdminDAO cargado en la controladora */
      

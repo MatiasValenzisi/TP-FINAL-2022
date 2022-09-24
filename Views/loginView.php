@@ -1,4 +1,4 @@
-  <body class="login ">
+  <body class="login">
       <div class="login_wrapper " id="login" style="padding:12px;">
           <div class="card card-container ">
               <div class="login_content">
@@ -10,17 +10,15 @@
                       style="height: 40%; width: 40%">
               </div>
 
-              <form class="form-signin" action="<?php echo FRONT_ROOT ?>/sign/login" method="POST">
+              <form class="form-signin" action="<?php echo FRONT_ROOT ?>/sign/login" method="GET">
                   <span id="reauth-email" class="reauth-email"></span>
                   <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input id="login-username" type="text" class="form-control" name="login-username" value=""
-                          placeholder="Usuario">
+                      <input type=" text" class="form-control" name="usernamePH" value="" placeholder="Usuario">
                   </div>
                   <div class="input-group" style="margin-bottom: 25px">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                      <input id="login-password" type="password" class="form-control" name="login-password"
-                          placeholder="Contraseña">
+                      <input type="password" class="form-control" name="passwordPH" placeholder="Contraseña">
                   </div>
                   <button class="btn btn-lg btn-success btn-block btn-signin" type="submit"
                       style="margin-bottom: 10px"><i class="fa fa-user"></i> Iniciar sesión</button>
@@ -48,7 +46,7 @@
                       <p><i class="fa fa-paw"></i> ©2022 todos los derechos reservados. <i class="fa fa-paw"></i></p>
                   </div>
               </div>
-              
+
           </div>
       </div>
   </body>

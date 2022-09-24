@@ -18,6 +18,7 @@
 
         public function login($username = null, $password = null){  
 
+
             if ($username != null && $password != null){
 
                 $verify = false;
@@ -54,7 +55,8 @@
                     header("Location: ".FRONT_ROOT."/home/administration");
 
                 }               
-            }             
+            }          
+      
         }
 
         /* Metodo que llama al formulario para crear un usuario */ 

@@ -52,7 +52,11 @@
                                           <li><a href="usuario.html"> Listado de mis mascotas</a></li>
                                       </ul>
                                   </li>
-                                  <li><a href="<?php echo FRONT_ROOT ?>/sign/logout"><i
+
+                                  <li><a><i class="fa fa-user-secret text-center"></i> Perfil</a>
+                                  </li>
+
+                                  <li><a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
                                               class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
                                   </li>
                               </ul>

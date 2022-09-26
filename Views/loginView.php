@@ -6,8 +6,8 @@
               </div>
               <br>
               <div class="text-center" style="margin-bottom: 25px">
-                  <img class="profile-img-card img-circle" src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
-                      style="height: 40%; width: 40%">
+                  <img class="profile-img-card img-circle" src="<?php echo VIEWS_PATH ?>/images/user.png" alt="user"
+                      style="height: 150px; width: 150px">
               </div>
 
               <form class="form-signin" action="<?php echo FRONT_ROOT ?>/sign/login" method="GET">

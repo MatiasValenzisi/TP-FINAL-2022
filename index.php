@@ -1,4 +1,18 @@
-﻿<?php  
+﻿<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <?php
+		/*
+		echo '<script type="text/javascript">sweetAlert("Congratulations !","Successfully booked for a vehicle, email has been sent to approver","success")</script>';
+
+		echo '<script type="text/javascript">sweetAlert("Error !","Try again !","error")</script>';
+		*/ 
+	?>
+
+</head>
+
+
+<?php  
 
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);

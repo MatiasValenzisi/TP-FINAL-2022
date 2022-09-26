@@ -47,7 +47,7 @@ use JsonDAO\AdminDAO as AdminDAO;
 
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
-      private function createUser($type = null){  
+      public function createUser($type = null){  
 
             $parameters = $_GET;
             $tokenList = array();
@@ -73,7 +73,7 @@ use JsonDAO\AdminDAO as AdminDAO;
 
             } else if(strcmp($type, "guardian")) {
                 $newGuardian = new Guardian($this->createToken($tokenList),$parameters['email'],$parameters['password'],date("Y-m-d"),null,$parameters['firstName'],$parameters['lastName'],$parameters['birthDate'],$parameters['dni'],$parameters['experience'],null,null);
-                if($this->checkPassword($newGuardian->getPassword()) && $this->checkAge($newGuardian->getBirthDate())) {
+                if($this->checkPassword($newGuardian->getPassword())) {
                     $guardianDao = $this->getGuardianDAO();
                     $guardianDao->addDAO($newGuardian);
                     header("Location: ".FRONT_ROOT);
@@ -93,7 +93,7 @@ use JsonDAO\AdminDAO as AdminDAO;
       }
 
       // Controla si es mayor de edad
-
+      /*
       private function checkAge($birthday) {
         $nacimiento = new DateTime($birthday);
         $fechaActual = new DateTime(date("Y-m-d"));
@@ -103,7 +103,7 @@ use JsonDAO\AdminDAO as AdminDAO;
             return true;
         } 
         return false;
-      }
+      }*/
 
       // Controla que la password tengo al menos 1 letra y 1 numero
 

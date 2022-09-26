@@ -15,7 +15,7 @@
             $user = $_SESSION['userPH'];
 
             $userController = new UserController();
-            $userLogin = $userController->getUserName($username);
+            $userLogin = $userController->getUserName($user->getUserName());
 
             if ($user->getPassword() != $userLogin->getPassword()){
 

@@ -15,7 +15,7 @@ define("DB_USER", "root");
 define("DB_PASS", "");
 
 /* Constantes adicionales */
-define("PROJECT_NAME", "TP Final 2022");
+define("PROJECT_NAME", "Pet Hero");
 define("PROJECT_DESCRIPTION", "TP Final Laboratorio IV - Metodologia de Sistemas | UTN - Mar del Plata | 2022.");
 
 ?>

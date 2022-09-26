@@ -25,7 +25,8 @@
 
         public function deleteDAO($value){
 
-            // Dar de baja con downDate = fecha actual. VER
+            // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 
+            // (En caso de ser eliminar, creariamos otro metodo igual a dar de baja).
         }
 
         public function saveData(){

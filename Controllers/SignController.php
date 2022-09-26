@@ -12,6 +12,24 @@
 
         public function checkSession(){
 
+            $user = $_SESSION['userPH'];
+
+            $userController = new UserController();
+            $userLogin = $userController->getUserName($user->getUserName());
+
+            if ($user->getPassword() != $userLogin->getPassword()){
+
+                unset($_SESSION['userRD']);
+                 
+                header("Location: ".FRONT_ROOT."/");                
+
+            } else {
+
+                if ($_SESSION['userPH'] != $userLogin){
+
+                    $_SESSION['userPH'] = $userLogin;
+                }
+            }
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */
@@ -21,18 +39,11 @@
 
             if ($username != null && $password != null){
 
-                $verify = false;
-
                 $userController = new UserController();
 
                 $userLogin = $userController->getUserName($username);
 
                 if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
-
-                    $verify = true;
-                }
-
-                if ($verify){
 
                     $_SESSION["userPH"] = $userLogin;
 
@@ -41,7 +52,6 @@
                 } else {
 
                     header("Location: ".FRONT_ROOT);
-
                 }
 
             } else {
@@ -55,8 +65,7 @@
                     header("Location: ".FRONT_ROOT."/home/administration");
 
                 }               
-            }          
-      
+            }           
         }
 
         /* Metodo que llama al formulario para crear un usuario */ 

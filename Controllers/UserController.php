@@ -1,5 +1,6 @@
 <?php namespace Controllers;
 
+    use DateTime;
     use JsonDAO\AdminDAO as AdminDAO;
     use JsonDAO\GuardianDAO as GuardianDAO;
     use JsonDAO\OwnerDAO as OwnerDAO;
@@ -10,12 +11,12 @@
 
     class UserController{
 
-    	private $adminDAO;
+      private $adminDAO;
       private $guardianDAO;
       private $ownerDAO;
       private $user;
       private $token;
-    	private $userList;
+      private $userList;
 
       public function __construct(){
           
@@ -35,21 +36,75 @@
 
       /* Metodo que trae los datos requeridos para el registro de usuarios con su respectiva vista */
 
-      public function register($type = null){ 
+      public function register($type = null){
 
+        require_once ROOT_VIEWS."/mainHeader.php";
+        require_once ROOT_VIEWS."/temporal-register.php";
       }
 
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
-      public function createUser($type = null){  
+      public function createUser($type = null){
 
+           $parameters     = $_GET;
+           $token          = $this->createToken($this->getTokenUserList());
+           $dischargeDate  = date("Y-m-d");
+           $downDate       = null;
+
+        if(strcmp($type, "guardian") == 0) {  
+                
+            if($this->checkPassword($parameters['password_new'])){
+
+                $newGuardian = new Guardian(
+                    $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
+                    $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                );
+
+                $this->guardianDAO->addDAO($newGuardian);
+
+                header("Location: ".FRONT_ROOT."/");
+
+            } else {
+
+                header("Location: ".FRONT_ROOT."/user/register/guardian/error");
+            }
+
+        } else {
+
+            if($this->checkPassword($parameters['password_new'])){
+
+                $newOwner = new Owner(
+                    $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
+                    $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new']);
+                
+                $this->ownerDAO->addDAO($newOwner);
+
+                header("Location: ".FRONT_ROOT."/");
+            
+            } else {
+                
+                header("Location: ".FRONT_ROOT."/user/register/owner/error");
+            }
+        }
+      }
+
+      // Controla que la password tengo al menos 1 letra y 1 numero.
+
+      private function checkPassword($password) {
+
+        if($this->controllerLetters($password) && $this->controllerNumber($password)) {
+
+            return true;
+        }
+
+        return false;
       }
 
       // Controlar si hay aunque sea una letra. 
 
       private function controllerLetters($string){
 
-          $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          $letters = "abcdefghijklmnopqrs/**//tuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
 
@@ -62,7 +117,6 @@
           
           return false;
       }
-
 
       // Controlar si hay aunque sea un número. 
 
@@ -168,7 +222,7 @@
 
    			do {
 
-   			  $controller = false;
+   			    $controller = false;
    				$newToken = $this->generateNumber(6);
 
    				foreach($userListToken  as $key => $value) {
@@ -186,15 +240,15 @@
    		
    	  public function generateNumber($cant){ 
 
-        
-   			  $key = '';
- 			    $pattern = '1234567890';
- 			    $max = strlen($pattern)-1;
- 			    for($i=0; $i<$cant; $i++) {
-              $key .= $pattern{mt_rand(0,$max)};
-                 } 				     
- 			    return $key; 
-   		}
+        $key = '';
+
+        for($i=0; $i<$cant; $i++) {
+            
+            $key .= rand(0,9);
+        } 		
+          	     
+ 		return $key; 
+   	  }
 
       /* Retorna el AdminDAO cargado en la controladora */
      
@@ -232,10 +286,85 @@
       }
 
       /* Retorna la lista de usuarios cargada en la controladora */
-
+      
       public function getUserList(){ 
 
-          return $this->userList; 
-      }    
+        $adminDao = $this->getAdminDAO();
+        $adminList = $adminDao->getAllDAO();
+
+        if($adminList != null) {
+
+            foreach($adminList as $admin) {
+
+                array_push($this->userList, $admin);
+            }
+        }
+
+        $guardianDao = $this->getGuardianDAO();
+        $guardianList = $guardianDao->getAllDAO();
+
+        if($guardianList != null) {
+
+            foreach($guardianList as $guardian) {
+
+                array_push($this->userList, $guardian);
+            }
+        }
+
+        $ownerDao = $this->getOwnerDAO();
+        $ownerList = $ownerDao->getAllDAO();
+
+        if($ownerList != null) {
+
+            foreach($ownerList as $owner) {
+
+                array_push($this->userList, $owner);
+            }
+        }
+        
+        return $this->userList; 
+    }
+
+    /* Retorna la lista de token de usuarios cargada en la controladora */
+       
+      public function getTokenUserList(){ 
+
+        $tokenList = array();
+
+        $adminDao = $this->getAdminDAO();
+        $adminList = $adminDao->getAllDAO();
+
+        if($adminList != null) {
+
+            foreach($adminList as $admin) {
+
+                array_push($tokenList, $admin->getToken());
+            }
+        }
+
+        $guardianDao = $this->getGuardianDAO();
+        $guardianList = $guardianDao->getAllDAO();
+
+        if($guardianList != null) {
+
+            foreach($guardianList as $guardian) {
+
+                array_push($tokenList, $guardian->getToken());
+            }
+        }
+
+        $ownerDao = $this->getOwnerDAO();
+        $ownerList = $ownerDao->getAllDAO();
+
+        if($ownerList != null) {
+
+            foreach($ownerList as $owner) {
+
+                array_push($tokenList, $owner->getToken());
+            }
+        }
+        
+        return $tokenList; 
+    }
    		 
     } ?>

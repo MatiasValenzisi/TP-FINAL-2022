@@ -2,7 +2,7 @@
       <div class="login_wrapper " id="login" style="padding:12px;">
           <div class="card card-container ">
               <div class="login_content">
-                  <h1 class="text-center"><i class="fa fa-paw"></i> Company Name</h1>
+                  <h1 class="text-center"><i class="fa fa-paw"></i> <?php echo PROJECT_NAME ?> </h1>
               </div>
               <br>
               <div class="text-center" style="margin-bottom: 25px">
@@ -32,10 +32,11 @@
 
               <div class="d-flex justify-center items-center">
                   <span>
-                      <a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a>
+                      <a href="<?php echo FRONT_ROOT ?>/user/register" class="forgot-password text-right">Registrarse en
+                          <?php echo PROJECT_NAME ?>.</a>
                   </span>
                   <span>
-                      <a href="password.html" class="forgot-password text-right">registrarse</a>
+                      <a href="password.html" class="forgot-password">¿Olvidaste la contraseña?</a>
                   </span>
               </div>
 

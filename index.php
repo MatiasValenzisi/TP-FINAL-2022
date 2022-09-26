@@ -31,7 +31,8 @@
 	
 	Autoload::start();	
 
-	if (isset($_SESSION['userPH'])){			
+	if (isset($_SESSION['userPH'])){	
+			
 		$signController = new SignController();
 		$signController->checkSession();
 	}

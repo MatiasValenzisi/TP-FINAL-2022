@@ -45,37 +45,50 @@ use JsonDAO\AdminDAO as AdminDAO;
         require_once ROOT_VIEWS."/temporal-register.php";
       }
 
-      /* Metodo de verificacion a la hora de crear un guardian */
-
-      public function validateGuardianRegister() {
-        $parameters = $_GET;
-        $tokenList = array();
-        $userArrays = $this->getUserList();
-
-        if($userArrays != null) {
-            foreach($userArrays as $user){
-                array_push($tokenList, $user);
-            } 
-        } else{
-            $tokenList = null;
-        }
-
-        $guardian = new Guardian($this->createToken($tokenList),$parameters['email'],$parameters['password'],date("Y-m-d"),null,$parameters['firstName'],$parameters['lastName'],$parameters['birthDate'],$parameters['dni'],$parameters['experience'],null,null);
-
-        if($this->checkPassword($guardian->getPassword()) && $this->checkAge($guardian->getBirthDate())) {
-            $this->createUser($guardian);
-            header("Location: ".FRONT_ROOT."/Views/loginView.php");
-        } else {
-            header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
-        }
-      }
-
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
-      private function createUser($user = null){  
-            if($user instanceof Guardian) {
-                $guardianDao = $this->getGuardianDAO();
-                $guardianDao->addDAO($user);
+      private function createUser($type = null){  
+
+            $parameters = $_GET;
+            $tokenList = array();
+            $userArrays = $this->getUserList();
+
+            if($userArrays != null) {
+                foreach($userArrays as $user){
+                    array_push($tokenList, $user);
+                } 
+            } else{
+                $tokenList = null;
+            }
+
+            if(strcmp($type, "admin")){
+                $newADmin = new Admin($this->createToken($tokenList), $parameters['email'], $parameters['password'], date("Y-m-d"), null, $parameters['firstName'], $parameters['lastName'],  $parameters['birthDate'], $parameters['dni']);
+                if($this->checkPassword($newADmin->getPassword())){
+                    $adminDao = $this->getAdminDAO();
+                    $adminDao->addDAO($newADmin);
+                    header("Location: ".FRONT_ROOT);
+                } else {
+                    header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
+                }
+
+            } else if(strcmp($type, "guardian")) {
+                $newGuardian = new Guardian($this->createToken($tokenList),$parameters['email'],$parameters['password'],date("Y-m-d"),null,$parameters['firstName'],$parameters['lastName'],$parameters['birthDate'],$parameters['dni'],$parameters['experience'],null,null);
+                if($this->checkPassword($newGuardian->getPassword()) && $this->checkAge($newGuardian->getBirthDate())) {
+                    $guardianDao = $this->getGuardianDAO();
+                    $guardianDao->addDAO($newGuardian);
+                    header("Location: ".FRONT_ROOT);
+                } else {
+                    header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
+                }
+            } else{
+                $newOwner = new Owner($this->createToken($tokenList), $parameters['email'], $parameters['password'], date("Y-m-d"), null, $parameters['firstName'], $parameters['lastName'], $parameters['birthDate'], $parameters['dni'], null, null, null);
+                if($this->checkPassword($newOwner->getPassword())){
+                    $adminDao = $this->getAdminDAO();
+                    $adminDao->addDAO($newOwner);
+                    header("Location: ".FRONT_ROOT);
+                } else {
+                    header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
+                }
             }
       }
 

@@ -19,7 +19,7 @@
 
             if ($user->getPassword() != $userLogin->getPassword()){
 
-                unset($_SESSION['userRD']);
+                unset($_SESSION['userPH']);
                  
                 header("Location: ".FRONT_ROOT."/");                
 

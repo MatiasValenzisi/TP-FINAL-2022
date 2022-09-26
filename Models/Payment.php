@@ -2,10 +2,10 @@
 
     class Payment {
 
-        private $amount;
-        private $date;
-        private $paymentMethod;  // Metodo de pago.
-        private $booking;        // Reserva.
+        protected $amount;
+        protected $date;
+        protected $paymentMethod;  // Metodo de pago.
+        protected $booking;        // Reserva.
 
         public function __construct($amount = null, $date = null, $paymentMethod = null, $booking = null) {
 

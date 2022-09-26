@@ -2,16 +2,20 @@
     
     abstract class Pet {
 
-        private $name;
-        private $race;
-        private $size;
-        private $weight;
-        private $observations;
-        private $vaccinationPlan;
-        private $photo;
+        protected $token;
+        protected $tokenOwner;
+        protected $name;
+        protected $race;
+        protected $size;
+        protected $weight;
+        protected $observations;
+        protected $vaccinationPlan;
+        protected $photo;
 
-        public function __construct($name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null){
+        public function __construct($token = null, $tokenOwner = null, $name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null){
 
+            $this->$token          = $token;
+            $this->$tokenOwner     = $tokenOwner;
             $this->name            = $name;
             $this->race            = $race;
             $this->size            = $size;
@@ -19,6 +23,26 @@
             $this->observations    = $observations;
             $this->vaccinationPlan = $vaccinationPlan;
             $this->photo           = $photo;
+        }
+
+        public function getToken(){
+
+            return $this->token;
+        }
+
+        public function setToken($token){
+
+            $this->token = $token;
+        }
+
+        public function getTokenOwner(){
+
+            return $this->tokenOwner;
+        }
+
+        public function setTokenOwner($tokenOwner){
+
+            $this->tokenOwner = $tokenOwner;
         }
         
         public function getName(){

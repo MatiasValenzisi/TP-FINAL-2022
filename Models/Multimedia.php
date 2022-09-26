@@ -2,10 +2,10 @@
 
     abstract class Multimedia {
 
-        private $format;
-        private $size;        // Peso.
-        private $extension;
-        private $url;
+        protected $format;
+        protected $size;        // Peso.
+        protected $extension;
+        protected $url;
 
         public function __construct($format = null, $size = null, $extension = null, $url = null){
 

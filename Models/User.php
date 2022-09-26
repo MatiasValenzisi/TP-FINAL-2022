@@ -2,15 +2,15 @@
 
     abstract class User {
 
-        private $token;
-        private $userName;      // Correo electronico.
-        private $password;
-        private $dischargeDate; // Fecha de alta.
-        private $downDate;      // Fecha de baja.
-        private $firstName;
-        private $lastName;
-        private $birthDate;
-        private $dni;
+        protected $token;
+        protected $userName;      // Correo electronico.
+        protected $password;
+        protected $dischargeDate; // Fecha de alta.
+        protected $downDate;      // Fecha de baja.
+        protected $firstName;
+        protected $lastName;
+        protected $birthDate;
+        protected $dni;
 
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null) {
         

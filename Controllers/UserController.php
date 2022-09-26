@@ -1,7 +1,7 @@
 <?php namespace Controllers;
 
-use DateTime;
-use JsonDAO\AdminDAO as AdminDAO;
+    use DateTime;
+    use JsonDAO\AdminDAO as AdminDAO;
     use JsonDAO\GuardianDAO as GuardianDAO;
     use JsonDAO\OwnerDAO as OwnerDAO;
 
@@ -27,9 +27,6 @@ use JsonDAO\AdminDAO as AdminDAO;
           $this->token       = null;
           $this->userList    = array();
       }
-
-      
-
 
       /* Metodo que llama a los usuarios no dado de baja con su respectiva vista */
       
@@ -61,7 +58,7 @@ use JsonDAO\AdminDAO as AdminDAO;
                 $tokenList = null;
             }
 
-            if(strcmp($type, "admin")){
+            if(strcmp($type, "admin") == 0){
                 $newADmin = new Admin($this->createToken($tokenList), $parameters['email'], $parameters['password'], date("Y-m-d"), null, $parameters['firstName'], $parameters['lastName'],  $parameters['birthDate'], $parameters['dni']);
                 if($this->checkPassword($newADmin->getPassword())){
                     $adminDao = $this->getAdminDAO();
@@ -71,7 +68,7 @@ use JsonDAO\AdminDAO as AdminDAO;
                     header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
                 }
 
-            } else if(strcmp($type, "guardian")) {
+            } else if(strcmp($type, "guardian") == 0) {
                 $newGuardian = new Guardian($this->createToken($tokenList),$parameters['email'],$parameters['password'],date("Y-m-d"),null,$parameters['firstName'],$parameters['lastName'],$parameters['birthDate'],$parameters['dni'],$parameters['experience'],null,null);
                 if($this->checkPassword($newGuardian->getPassword())) {
                     $guardianDao = $this->getGuardianDAO();

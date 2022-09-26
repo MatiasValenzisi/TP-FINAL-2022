@@ -16,7 +16,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">                  
                   <div class="x_content">
-                    <form class="form-horizontal form-label-left" action="<?php FRONT_ROOT ?>" method="GET">
+                    <form class="form-horizontal form-label-left" action="<?php FRONT_ROOT?>/user/" method="GET">
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName">Nombre <span class="required">*</span>
                         </label>

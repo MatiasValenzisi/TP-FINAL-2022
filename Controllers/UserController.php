@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
-    use JsonDAO\AdminDAO as AdminDAO;
+use DateTime;
+use JsonDAO\AdminDAO as AdminDAO;
     use JsonDAO\GuardianDAO as GuardianDAO;
     use JsonDAO\OwnerDAO as OwnerDAO;
 
@@ -15,7 +16,7 @@
       private $ownerDAO;
       private $user;
       private $token;
-    	private $userList;
+      private $userList;
 
       public function __construct(){
           
@@ -26,6 +27,9 @@
           $this->token       = null;
           $this->userList    = array();
       }
+
+      
+
 
       /* Metodo que llama a los usuarios no dado de baja con su respectiva vista */
       
@@ -41,17 +45,67 @@
         require_once ROOT_VIEWS."/temporal-register.php";
       }
 
+      /* Metodo de verificacion a la hora de crear un guardian */
+
+      public function validateGuardianRegister() {
+        $parameters = $_GET;
+        $tokenList = array();
+        $userArrays = $this->getUserList();
+
+        if($userArrays != null) {
+            foreach($userArrays as $user){
+                array_push($tokenList, $user);
+            } 
+        } else{
+            $tokenList = null;
+        }
+
+        $guardian = new Guardian($this->createToken($tokenList),$parameters['email'],$parameters['password'],date("Y-m-d"),null,$parameters['firstName'],$parameters['lastName'],$parameters['birthDate'],$parameters['dni'],$parameters['experience'],null,null);
+
+        if($this->checkPassword($guardian->getPassword()) && $this->checkAge($guardian->getBirthDate())) {
+            $this->createUser($guardian);
+            header("Location: ".FRONT_ROOT."/Views/loginView.php");
+        } else {
+            header("Location: ".FRONT_ROOT."/Views/temporal-register.php");
+        }
+      }
+
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
-      public function createUser($type = null){  
+      private function createUser($user = null){  
+            if($user instanceof Guardian) {
+                $guardianDao = $this->getGuardianDAO();
+                $guardianDao->addDAO($user);
+            }
+      }
 
+      // Controla si es mayor de edad
+
+      private function checkAge($birthday) {
+        $nacimiento = new DateTime($birthday);
+        $fechaActual = new DateTime(date("Y-m-d"));
+        $diferencia = $fechaActual->diff($nacimiento);
+        $age = $diferencia->format("%y");
+        if($age >= 18){
+            return true;
+        } 
+        return false;
+      }
+
+      // Controla que la password tengo al menos 1 letra y 1 numero
+
+      private function checkPassword($password) {
+        if($this->controllerLetters($password) && $this->controllerNumber($password)) {
+            return true;
+        }
+        return false;
       }
 
       // Controlar si hay aunque sea una letra. 
 
       private function controllerLetters($string){
 
-          $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          $letters = "abcdefghijklmnopqrs/**//tuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
 
@@ -163,7 +217,7 @@
 
       /* Retorna un nuevo número de token que no haya sido utilizado antes */
 
-      /*public function createToken($userListToken){ 
+      public function createToken($userListToken){ 
 
    		 $newToken = null;
 
@@ -181,22 +235,23 @@
    				}  }  } while($controller);
 
    	   	   return $newToken; 
-   	   }*/
+   	   }
 
        /* Retorna un número aleatorio de una cantidad dada */
    		
-   	  /*public function generateNumber($cant){ 
+   	  public function generateNumber($cant){ 
 
           $key = '';
-          $pattern = '1234567890';
-          $max = strlen($pattern)-1;
+          //$pattern = '1234567890';
+          //$max = strlen($pattern)-1;
 
           for($i=0; $i<$cant; $i++) {
-                $key .= $pattern{mt_rand(0,$max)};
+                $key .= rand(0,9);
+                //$key .= $pattern{mt_rand(0,$max)};
           } 			
           	     
  			    return $key; 
-   		}*/
+   		}
 
       /* Retorna el AdminDAO cargado en la controladora */
      
@@ -234,11 +289,35 @@
       }
 
       /* Retorna la lista de usuarios cargada en la controladora */
-
+      
       public function getUserList(){ 
+        $adminDao = $this->getAdminDAO();
+        $adminList = $adminDao->getAllDAO();
+        if($adminList != null) {
+            foreach($adminList as $admin) {
+                array_push($this->userList, $admin);
+            }
+        }
 
-          return $this->userList; 
-      }    
+        $guardianDao = $this->getGuardianDAO();
+        $guardianList = $guardianDao->getAllDAO();
+        if($guardianList != null) {
+            foreach($guardianList as $guardian) {
+                array_push($this->userList, $guardian);
+            }
+        }
+
+        $ownerDao = $this->getOwnerDAO();
+        $ownerList = $ownerDao->getAllDAO();
+        if($ownerList != null) {
+            foreach($ownerList as $owner) {
+                array_push($this->userList, $owner);
+            }
+        }
+        
+        return $this->userList; 
+    }
+         
    		 
     } ?>
       

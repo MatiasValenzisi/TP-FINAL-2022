@@ -51,8 +51,9 @@
            $dischargeDate  = date("d-m-Y");
            $downDate       = null;
 
+        var_dump($this->controllerLetters($parameters['password_new']));
+        var_dump($this->controllerNumber($parameters['password_new']));
         if(strcmp($type, "guardian") == 0) {  
-                
             if($this->checkPassword($parameters['password_new'])){
 
                 $newGuardian = new Guardian(
@@ -65,7 +66,6 @@
                 header("Location: ".FRONT_ROOT."/");
 
             } else {
-
                 //header("Location: ".FRONT_ROOT."/user/register/guardian/error");
             }
 
@@ -93,7 +93,7 @@
       private function checkPassword($password) {
 
         if($this->controllerLetters($password) && $this->controllerNumber($password)) {
-
+            
             return true;
         }
 
@@ -104,11 +104,11 @@
 
       private function controllerLetters($string){
 
-          $letters = "abcdefghijklmnopqrs/**//tuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
-
-              if (strpos($letters, substr($string[$i],0)) == true){
+            echo "<BR>".$string[$i];
+              if (strpos($letters, $string[$i]) != false){
 
                 return true;
 

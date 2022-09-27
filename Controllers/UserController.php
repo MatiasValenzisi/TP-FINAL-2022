@@ -45,10 +45,10 @@
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
       public function createUser($type = null){
-
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
            $parameters     = $_GET;
            $token          = $this->createToken($this->getTokenUserList());
-           $dischargeDate  = date("Y-m-d");
+           $dischargeDate  = date("d-m-Y");
            $downDate       = null;
 
         if(strcmp($type, "guardian") == 0) {  
@@ -66,7 +66,7 @@
 
             } else {
 
-                header("Location: ".FRONT_ROOT."/user/register/guardian/error");
+                //header("Location: ".FRONT_ROOT."/user/register/guardian/error");
             }
 
         } else {
@@ -83,7 +83,7 @@
             
             } else {
                 
-                header("Location: ".FRONT_ROOT."/user/register/owner/error");
+                //header("Location: ".FRONT_ROOT."/user/register/owner/error");
             }
         }
       }

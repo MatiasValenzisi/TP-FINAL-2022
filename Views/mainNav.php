@@ -29,8 +29,8 @@
                               <ul class="nav side-menu">
                                   <li><a href="home.html"><i class="fa fa-home text-center"></i> Pagina principal</a>
                                   </li>
-                                  <li><a><i class="fa fa-user text-center"></i> Guardianes<span
-                                              class="fa fa-chevron-down"></span></a>
+                                  <li><a><i class="fa fa-briefcase text-center"></i>
+                                          Guardianes<span class="fa fa-chevron-down"></span></a>
                                       <ul class="nav child_menu">
                                           <li><a href="usuario.html"> Listado de guardianes activos</a></li>
                                           <li><a href="usuario2.html"> Guardianes dados de baja</a></li>
@@ -45,7 +45,19 @@
                                           <li><a href="usuario2.html"> Dueños dados de baja</a></li>
                                       </ul>
                                   </li>
-                                  <li><a href="<?php echo FRONT_ROOT ?>/sign/logout"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
+
+                                  <li><a><i class="fa fa-paw text-center"></i> Mascotas<span
+                                              class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                          <li><a href="usuario.html"> Listado de mis mascotas</a></li>
+                                      </ul>
+                                  </li>
+
+                                  <li><a><i class="fa fa-user-secret text-center"></i> Perfil</a>
+                                  </li>
+
+                                  <li><a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
+                                              class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
                                   </li>
                               </ul>
                           </div>

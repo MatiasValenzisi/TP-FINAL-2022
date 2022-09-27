@@ -9,9 +9,9 @@
     class SignController {   
 
         /* Metodo que controla la sesión del usuario en caso que hayan modificaciones en la base de datos o el json */
-
+        
         public function checkSession(){
-
+            /*
             $user = $_SESSION['userPH'];
 
             $userController = new UserController();
@@ -30,6 +30,7 @@
                     $_SESSION['userPH'] = $userLogin;
                 }
             }
+            */
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */

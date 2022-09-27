@@ -6,10 +6,10 @@
 
     class HomeController {
 
-        /* Metodo inicial de la pagina que te envia al home de la pagina o al inicio de sesión en el caso de ser correspondiente */
+        /*Metodo inicial de la pagina que te envia al home de la pagina o al inicio de sesión en el caso de ser correspondiente */
 
         public function index() {
-          
+  
             if (!isset($_SESSION['userPH'])){
 
 			    require_once ROOT_VIEWS."/mainHeader.php";
@@ -26,6 +26,7 @@
 
         public function administration(){ 
             
+            $array=["assd"];
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/temporal-listado.php";            
@@ -34,5 +35,3 @@
         } 
     }
 ?>
-
- 

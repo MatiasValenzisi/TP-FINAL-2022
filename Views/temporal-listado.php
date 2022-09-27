@@ -1,5 +1,7 @@
-<div class="clearfix"></div>
+<div class="clearfix">
+</div>
 <div class="row">
+    <?php echo($array[0]) ?>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
@@ -25,7 +27,7 @@
 
                     <tbody>
                         <tr>
-                            <td>Juan</td>
+                            <td><?php echo($array[0])?></td>
                             <td>Galgo</td>
                             <td>80cm</td>
                             <td>80kg</td>

@@ -39,7 +39,7 @@
       public function register($type = null){
 
         require_once ROOT_VIEWS."/mainHeader.php";
-        require_once ROOT_VIEWS."/temporal-register.php";
+        require_once ROOT_VIEWS."/registerView.php";
       }
 
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
@@ -368,6 +368,3 @@
     }
    		 
     } ?>
-      
-
-  

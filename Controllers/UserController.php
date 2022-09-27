@@ -39,7 +39,11 @@
       public function register($type = null){
 
         require_once ROOT_VIEWS."/mainHeader.php";
-        require_once ROOT_VIEWS."/registerView.php";
+        if(strcmp($type, "guardian") == 0){
+            require_once ROOT_VIEWS."/registerGuardianView.php";
+        } else{
+            require_once ROOT_VIEWS."/registerOwnerView.php";
+        }
       }
 
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
@@ -48,11 +52,10 @@
         date_default_timezone_set('America/Argentina/Buenos_Aires');
            $parameters     = $_GET;
            $token          = $this->createToken($this->getTokenUserList());
-           $dischargeDate  = date("d-m-Y");
+           $dischargeDate  = date("Y-m-d");
            $downDate       = null;
+           $msj            ="";
 
-        var_dump($this->controllerLetters($parameters['password_new']));
-        var_dump($this->controllerNumber($parameters['password_new']));
         if(strcmp($type, "guardian") == 0) {  
             if($this->checkPassword($parameters['password_new'])){
 
@@ -66,7 +69,8 @@
                 header("Location: ".FRONT_ROOT."/");
 
             } else {
-                //header("Location: ".FRONT_ROOT."/user/register/guardian/error");
+                $msj = "password invalida";
+                header("Location: ".FRONT_ROOT."/user/register/guardian/error");
             }
 
         } else {
@@ -82,8 +86,8 @@
                 header("Location: ".FRONT_ROOT."/");
             
             } else {
-                
-                //header("Location: ".FRONT_ROOT."/user/register/owner/error");
+                $msj = "password invalida";
+                header("Location: ".FRONT_ROOT."/user/register/owner/error");
             }
         }
       }
@@ -104,11 +108,11 @@
 
       private function controllerLetters($string){
 
+        //la primera letra de letters no la toma
           $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
-            echo "<BR>".$string[$i];
-              if (strpos($letters, $string[$i]) != false){
+              if (strstr($letters, $string[$i]) != false){
 
                 return true;
 

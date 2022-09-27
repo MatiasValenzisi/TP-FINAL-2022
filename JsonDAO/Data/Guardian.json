@@ -1,0 +1,32 @@
+[
+    {
+        "token": "823905",
+        "userName": "nicolas_brun@gmail.com",
+        "password": "visrualCode2022",
+        "dischargeDate": "2022-09-27",
+        "downDate": null,
+        "firstName": "nicolas",
+        "lastName": "brun",
+        "birthDate": "2000-05-08",
+        "dni": "42775807",
+        "experience": "0",
+        "bookingList": null,
+        "reviewList": null,
+        "serviceList": null
+    },
+    {
+        "token": "795557",
+        "userName": "mati@gmail.com",
+        "password": "juegoallol1",
+        "dischargeDate": "2022-09-27",
+        "downDate": null,
+        "firstName": "matias",
+        "lastName": "lolero",
+        "birthDate": "1999-05-05",
+        "dni": "42665502",
+        "experience": "2",
+        "bookingList": null,
+        "reviewList": null,
+        "serviceList": null
+    }
+]

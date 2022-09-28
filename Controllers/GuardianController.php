@@ -21,13 +21,13 @@
         // Muestra el perfil del guardian en sessión.
 
         public function profile(){
-
+            echo "perfil guardian";
         }
         
         // Muestra un listado de guardianes activos.
 
         public function list(){
-            
+            echo "lista de guardianes activos";
         }
     } 
 ?>

@@ -21,13 +21,7 @@
         // Muestra el perfil del admin en sessión.
 
         public function profile(){
-
-        }
-        
-        // Muestra un listado de administradores activos.
-
-        public function list(){
-            
+            echo "perfil administrador";
         }
     } 
 ?>

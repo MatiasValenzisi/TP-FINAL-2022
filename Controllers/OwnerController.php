@@ -21,13 +21,13 @@
         // Muestra el perfil del dueño en sessión.
 
         public function profile(){
-
+            echo "perfil dueño";
         }
         
-        // Muestra un listado de dueños activos.
+        // Muestra un listado de dueños.
 
         public function list(){
-            
+            echo "listado de dueños";
         }
     } 
 ?>

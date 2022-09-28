@@ -27,7 +27,20 @@
         // Muestra un listado de dueños.
 
         public function list(){
-            echo "listado de dueños";
+            $this->updateOwnerList();
+
+            require_once ROOT_VIEWS."/temporal-listado-owner.php";
+        }
+
+        // Retorna la lista de owners
+
+        private function updateOwnerList() {
+            $ownerDao = $this->getOwnerDAO();
+            $this->ownerList = $ownerDao->getAllDAO();
+        }
+
+        public function getOwnerDAO() {
+            return $this->ownerDAO;
         }
     } 
 ?>

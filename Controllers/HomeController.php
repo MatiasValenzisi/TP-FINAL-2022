@@ -26,7 +26,6 @@
 
         public function administration(){ 
             
-            $array=["assd"];
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/temporal-listado.php";            

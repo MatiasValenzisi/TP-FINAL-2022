@@ -6,7 +6,14 @@
     use Models\Guardian as Guardian; 
     use Models\Owner as Owner;
 
-    class SignController {   
+    class SignController {  
+
+        private $userController;
+        
+        public function __construct(){
+          
+            $this->userController = new UserController();
+        }
 
         /* Metodo que controla la sesión del usuario en caso que hayan modificaciones en la base de datos o el json */
         
@@ -14,14 +21,13 @@
 
             $user = $_SESSION['userPH'];
 
-            $userController = new UserController();
-            $userLogin = $userController->getUserName($user->getUserName());
+            $userLogin = $this->userController->getUserName($user->getUserName());
 
             if ($user->getPassword() != $userLogin->getPassword()){
 
                 unset($_SESSION['userPH']);
                  
-                header("Location: ".FRONT_ROOT."/");                
+                header("Location: ".FRONT_ROOT."/home/index/error/check/user");                
 
             } else {
 
@@ -39,9 +45,7 @@
 
             if ($username != null && $password != null){
 
-                $userController = new UserController();
-
-                $userLogin = $userController->getUserName($username);
+                $userLogin = $this->userController->getUserName($username);
 
                 if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
 
@@ -50,6 +54,10 @@
                     header("Location: ".FRONT_ROOT."/home/administration");
 
                 } else {
+
+                    if (!is_null($userLogin)){
+
+                    }
 
                     header("Location: ".FRONT_ROOT);
                 }
@@ -70,14 +78,69 @@
 
         /* Metodo que llama al formulario para crear un usuario */ 
 
-        public function register($msj = ''){
+        public function register($type = null){
 
+            require_once ROOT_VIEWS."/mainHeader.php";
+
+            if(strcmp($type, "guardian") == 0){
+
+                require_once ROOT_VIEWS."/registerGuardianView.php";
+
+            } else{
+
+                require_once ROOT_VIEWS."/registerOwnerView.php";
+            }
         }
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function registerAction(){
+        public function createUser($type = null){
 
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+            $parameters     = $_GET;
+            $token          = $this->userController->createToken($this->userController->getTokenUserList());
+            $dischargeDate  = date("Y-m-d");
+            $downDate       = null;
+            $msj            = "";
+ 
+            if(strcmp($type, "guardian") == 0) {  
+
+                if($this->checkPassword($parameters['password_new'])){
+    
+                    $newGuardian = new Guardian(
+                        $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
+                        $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                    );
+    
+                    $this->guardianDAO->addDAO($newGuardian);
+    
+                    header("Location: ".FRONT_ROOT."/");
+    
+                } else {
+
+                    $msj = "password invalida";
+                    header("Location: ".FRONT_ROOT."/user/register/guardian/error");
+                }
+    
+            } else {
+    
+                if($this->checkPassword($parameters['password_new'])){
+    
+                    $newOwner = new Owner(
+                        $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
+                        $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new']);
+                    
+                    $this->ownerDAO->addDAO($newOwner);
+    
+                    header("Location: ".FRONT_ROOT."/");
+                
+                } else {
+                    
+                    $msj = "password invalida";
+                    header("Location: ".FRONT_ROOT."/user/register/owner/error");
+                }
+            }
         }
 
         /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */

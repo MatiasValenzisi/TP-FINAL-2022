@@ -1,14 +1,29 @@
-        
-  <body class="login">
+<body class="login">
     <div style="position: relative; width:auto; padding-left: 35%; padding-right: 35%">
       <div class="form text">
         <section class="login_content">
 
           <form action="<?php echo FRONT_ROOT?>/user/createUser" method="GET">
-            
+            <input type="hidden" name="type" value="owner">
             <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
-              <h2>Registrarse como guardian</h2>
+              <h2>Registrarse como dueño</h2>
             </div> 
+            <br>
+            
+            <div class="form-outline text-left">
+            <label class="form-label" for="type_new">Tipo de usuario:</label>
+            <select class="form-control" id="type_new" name="type_new" onchange="location='<?php echo FRONT_ROOT ?>/user/register/'+this.value">
+                <?php
+                    if(strcmp($type, "guardian") == 0){?>
+                        <option value="guardian" selected>Guardian</option>
+                        <option value="owner">Dueño</option> 
+                    <?php } else { ?>
+                                    <option value="guardian">Guardian</option>
+                                    <option value="owner" selected>Dueño</option> 
+                    <?php }
+                ?>
+              </select>
+            </div>
 
             <br>
 
@@ -40,14 +55,7 @@
             <div class="form-outline text-left">
               <label class="form-label" for="birthDate_new">Fecha de nacimiento:</label>
               <input type="date" class="form-control" name="birthDate_new" required />
-            </div>
-
-            <br>  
-
-            <div class="form-outline text-left">
-              <label class="form-label" for="experience_new">Años de experiencia:</label>
-              <input type="number" class="form-control" placeholder="Años de experiencia" name="experience_new" min="0" max="99" required />
-            </div>              
+            </div>        
 
             <br><br>
 

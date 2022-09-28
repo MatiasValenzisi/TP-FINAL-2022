@@ -39,20 +39,24 @@
       public function register($type = null){
 
         require_once ROOT_VIEWS."/mainHeader.php";
-        require_once ROOT_VIEWS."/registerView.php";
+        if(strcmp($type, "guardian") == 0){
+            require_once ROOT_VIEWS."/registerGuardianView.php";
+        } else{
+            require_once ROOT_VIEWS."/registerOwnerView.php";
+        }
       }
 
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
       public function createUser($type = null){
-
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
            $parameters     = $_GET;
            $token          = $this->createToken($this->getTokenUserList());
            $dischargeDate  = date("Y-m-d");
            $downDate       = null;
+           $msj            ="";
 
         if(strcmp($type, "guardian") == 0) {  
-                
             if($this->checkPassword($parameters['password_new'])){
 
                 $newGuardian = new Guardian(
@@ -65,7 +69,7 @@
                 header("Location: ".FRONT_ROOT."/");
 
             } else {
-
+                $msj = "password invalida";
                 header("Location: ".FRONT_ROOT."/user/register/guardian/error");
             }
 
@@ -82,7 +86,7 @@
                 header("Location: ".FRONT_ROOT."/");
             
             } else {
-                
+                $msj = "password invalida";
                 header("Location: ".FRONT_ROOT."/user/register/owner/error");
             }
         }
@@ -93,7 +97,7 @@
       private function checkPassword($password) {
 
         if($this->controllerLetters($password) && $this->controllerNumber($password)) {
-
+            
             return true;
         }
 
@@ -104,11 +108,11 @@
 
       private function controllerLetters($string){
 
-          $letters = "abcdefghijklmnopqrs/**//tuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //la primera letra de letters no la toma
+          $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
-
-              if (strpos($letters, substr($string[$i],0)) == true){
+              if (strstr($letters, $string[$i]) != false){
 
                 return true;
 

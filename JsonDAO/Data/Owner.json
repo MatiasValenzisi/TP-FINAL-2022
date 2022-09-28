@@ -1,0 +1,30 @@
+[
+    {
+        "token": "010890",
+        "userName": "duenionotengoenie@gmail.com",
+        "password": "tecladoingles86",
+        "dischargeDate": "2022-09-27",
+        "downDate": null,
+        "firstName": "phillips",
+        "lastName": "jhons",
+        "birthDate": "1989-12-31",
+        "dni": "23232323",
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    },
+    {
+        "token": "947396",
+        "userName": "luciaZarate@mail.com",
+        "password": "akali2021",
+        "dischargeDate": "2022-09-27",
+        "downDate": null,
+        "firstName": "lucia",
+        "lastName": "zarate",
+        "birthDate": "2000-05-05",
+        "dni": "42222253",
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    }
+]

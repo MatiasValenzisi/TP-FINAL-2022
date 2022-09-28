@@ -108,10 +108,8 @@
 
       // Emprolija el nombre/apellido
 
-      public function textNameFormat($string) {
-        strtolower($string);
-        ucwords($string);
-        return $string;
+      public function textNameFormat($aCambiar) {
+        return ucwords(strtolower($aCambiar));
       }
 
       /* Metodo que trae los datos requeridos para mostrar un usuario y poder editarlo con su respectiva vista */

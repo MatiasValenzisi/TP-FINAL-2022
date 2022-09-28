@@ -100,7 +100,7 @@
 
             $parameters     = $_GET;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($parameters['firstName-new']);
+            $firstName      = $this->userController->textNameFormat($parameters['firstName_new']);
             $lastName       = $this->userController->textNameFormat($parameters['lastName_new']);
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;

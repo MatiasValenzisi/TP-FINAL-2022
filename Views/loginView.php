@@ -32,7 +32,7 @@
 
             <div class="d-flex justify-center items-center">
                 <span>
-                    <a href="<?php echo FRONT_ROOT ?>/user/register" class="forgot-password text-right">Registrarse en
+                    <a href="<?php echo FRONT_ROOT ?>/sign/register" class="forgot-password text-right">Registrarse en
                         <?php echo PROJECT_NAME ?>.</a>
                 </span>
                 <span>

@@ -100,45 +100,54 @@
 
             $parameters     = $_GET;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
+            $firstName      = $this->userController->textNameFormat($parameters['firstName-new']);
+            $lastName       = $this->userController->textNameFormat($parameters['lastName_new']);
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
-            $msj            = "";
  
             if(strcmp($type, "guardian") == 0) {  
+                if($this->userController->checkPassword($parameters['password_new'])){
+                    
+                    if($this->userController->controllerDNI($parameters['dni'])){
 
-                if($this->checkPassword($parameters['password_new'])){
-    
-                    $newGuardian = new Guardian(
-                        $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
-                        $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
-                    );
-    
-                    $this->guardianDAO->addDAO($newGuardian);
-    
-                    header("Location: ".FRONT_ROOT."/");
+                        $newGuardian = new Guardian(
+                            $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
+                            $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                        );
+                        
+                        $this->userController->getGuardianDAO()->addDAO($newGuardian);
+
+                        header("Location: ".FRONT_ROOT."/");
+                    } else {
+                        header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/dni");
+                    }
     
                 } else {
-
-                    $msj = "password invalida";
-                    header("Location: ".FRONT_ROOT."/user/register/guardian/error");
+                    header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/password");
                 }
     
             } else {
     
-                if($this->checkPassword($parameters['password_new'])){
+                if($this->userController->checkPassword($parameters['password_new'])){
     
-                    $newOwner = new Owner(
-                        $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
-                        $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new']);
-                    
-                    $this->ownerDAO->addDAO($newOwner);
-    
-                    header("Location: ".FRONT_ROOT."/");
+                    if($this->userController->controllerDNI($parameters['dni'])){
+
+                        $newOwner = new Owner(
+                            $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
+                            $lastName, $parameters['birthDate_new'], $parameters['dni_new']
+                        );
+                        
+                        $this->userController->getOwnerDAO()->addDAO($newOwner);
+
+                        header("Location: ".FRONT_ROOT."/");
+                    } else {
+                        header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/dni");
+                    }
                 
                 } else {
                     
                     $msj = "password invalida";
-                    header("Location: ".FRONT_ROOT."/user/register/owner/error");
+                    header("Location: ".FRONT_ROOT."/sing/register/owner/error");
                 }
             }
         }

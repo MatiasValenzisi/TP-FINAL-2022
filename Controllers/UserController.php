@@ -49,52 +49,11 @@
       /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
 
       public function createUser($type = null){
-        date_default_timezone_set('America/Argentina/Buenos_Aires');
-           $parameters     = $_GET;
-           $token          = $this->createToken($this->getTokenUserList());
-           $dischargeDate  = date("Y-m-d");
-           $downDate       = null;
-           $msj            ="";
-
-        if(strcmp($type, "guardian") == 0) {  
-            if($this->checkPassword($parameters['password_new'])){
-
-                $newGuardian = new Guardian(
-                    $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
-                    $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
-                );
-
-                $this->guardianDAO->addDAO($newGuardian);
-
-                header("Location: ".FRONT_ROOT."/");
-
-            } else {
-                $msj = "password invalida";
-                header("Location: ".FRONT_ROOT."/user/register/guardian/error");
-            }
-
-        } else {
-
-            if($this->checkPassword($parameters['password_new'])){
-
-                $newOwner = new Owner(
-                    $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $parameters['firstName_new'],
-                    $parameters['lastName_new'], $parameters['birthDate_new'], $parameters['dni_new']);
-                
-                $this->ownerDAO->addDAO($newOwner);
-
-                header("Location: ".FRONT_ROOT."/");
-            
-            } else {
-                $msj = "password invalida";
-                header("Location: ".FRONT_ROOT."/user/register/owner/error");
-            }
-        }
       }
 
       // Controla que la password tengo al menos 1 letra y 1 numero.
 
-      private function checkPassword($password) {
+      public function checkPassword($password) {
 
         if($this->controllerLetters($password) && $this->controllerNumber($password)) {
             
@@ -125,7 +84,6 @@
       // Controlar si hay aunque sea un número. 
 
       private function controllerNumber($string){
-
           for ($i=0; $i < strlen($string); $i++) { 
               
               if (is_numeric($string[$i])) {
@@ -136,6 +94,24 @@
 
           return false; 
 
+      }
+
+      // Controlar que no haya letras en el DNI
+
+      public function controllerDNI($string){
+            // Si no detecta una letra devuelve true
+            if(!$this->controllerLetters($string)) {
+                return true;
+            }
+            return false;
+      }
+
+      // Emprolija el nombre/apellido
+
+      public function textNameFormat($string) {
+        strtolower($string);
+        ucwords($string);
+        return $string;
       }
 
       /* Metodo que trae los datos requeridos para mostrar un usuario y poder editarlo con su respectiva vista */

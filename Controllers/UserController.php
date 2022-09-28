@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
     use DateTime;
+    
     use JsonDAO\AdminDAO as AdminDAO;
     use JsonDAO\GuardianDAO as GuardianDAO;
     use JsonDAO\OwnerDAO as OwnerDAO;
@@ -26,29 +27,6 @@
           $this->user        = null;
           $this->token       = null;
           $this->userList    = array();
-      }
-
-      /* Metodo que llama a los usuarios no dado de baja con su respectiva vista */
-      
-      public function administration(){ 
-
-      }
-
-      /* Metodo que trae los datos requeridos para el registro de usuarios con su respectiva vista */
-
-      public function register($type = null){
-
-        require_once ROOT_VIEWS."/mainHeader.php";
-        if(strcmp($type, "guardian") == 0){
-            require_once ROOT_VIEWS."/registerGuardianView.php";
-        } else{
-            require_once ROOT_VIEWS."/registerOwnerView.php";
-        }
-      }
-
-      /* Metodo de registro de un usuario a partir de los datos mandandos por el metodo POST en caso de cumplir con los requisitos de control */
-
-      public function createUser($type = null){
       }
 
       // Controla que la password tengo al menos 1 letra y 1 numero.
@@ -121,30 +99,6 @@
         } 
         return false;
       }
-
-      /* Metodo que trae los datos requeridos para mostrar un usuario y poder editarlo con su respectiva vista */
-
-      public function edit($token = null, $msj = "", $type = "", $div = ""){ 
-
-      }
-
-      /* Metodo que evalua los cambios realizados en un usuario mediante el metodo POST, para en caso de ser posible actualizarlos */
-
-      public function editUser(){ 
-
-      }
-
-      /* Metodo que trae los datos requeridos para dar de baja un usuario con su respectiva vista */
-
-      public function deregister($token = null){ 
-
-      }
-
-      /* Metodo de dada de baja de un usuario a partir de su token por el metodo POST */
-
-      public function deregisterUser(){ 
-
-      } 
 
       /* Busca un usuario por su userName entre los diferentes tipos y lo retorna si existe */
 

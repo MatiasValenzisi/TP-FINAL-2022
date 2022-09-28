@@ -3,13 +3,16 @@
           <div class="main_container">
               <div class="col-md-3 left_col">
                   <div class="left_col scroll-view">
+
                       <!-- site title -->
                       <div class="navbar nav_title" style="border: 0;">
                           <a class="site_title"><i class="fa fa-paw" style="border:none"></i><span>
-                                  <b><?php echo PROJECT_NAME ?></b> </span></a>
+                          <b><?php echo PROJECT_NAME ?></b> </span></a>
                       </div>
+
                       <!-- /site title -->
                       <div class="clearfix"></div>
+
                       <!-- menu profile quick info -->
                       <div class="profile clearfix">
                           <div class="profile_pic">
@@ -18,46 +21,71 @@
                           </div>
                           <div class="profile_info">
                               <span>Bienvenido</span>
-                              <h2><b>Matias Valenzisi</b></h2>
+                              <h2><b><?php echo $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName() ?></b></h2>
                           </div>
                       </div>
                       <!-- /menu profile quick info -->
+
                       <br>
+
                       <!-- sidebar menu -->
                       <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                           <div class="menu_section">
                               <ul class="nav side-menu">
-                                  <li><a href="home.html"><i class="fa fa-home text-center"></i> Pagina principal</a>
-                                  </li>
-                                  <li><a><i class="fa fa-briefcase text-center"></i>
-                                          Guardianes<span class="fa fa-chevron-down"></span></a>
-                                      <ul class="nav child_menu">
-                                          <li><a href="usuario.html"> Listado de guardianes activos</a></li>
-                                          <li><a href="usuario2.html"> Guardianes dados de baja</a></li>
-                                      </ul>
+
+                                  <li>
+                                    <a href="<?php echo FRONT_ROOT?>/home/administration"><i class="fa fa-home text-center"></i> Pagina principal</a>
                                   </li>
 
+                                  <li>
 
-                                  <li><a><i class="fa fa-user text-center"></i> Dueños<span
-                                              class="fa fa-chevron-down"></span></a>
-                                      <ul class="nav child_menu">
-                                          <li><a href="usuario.html"> Listado de dueños activos</a></li>
-                                          <li><a href="usuario2.html"> Dueños dados de baja</a></li>
-                                      </ul>
+                                    <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+
+                                      <a href=" <?php echo FRONT_ROOT ?>/admin/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+
+                                    <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0){ ?>
+
+                                      <a href=" <?php echo FRONT_ROOT ?>/guardian/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+
+                                    <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
+                                      <a href=" <?php echo FRONT_ROOT ?>/owner/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+
+                                    <?php } ?>
+
+
+
                                   </li>
 
-                                  <li><a><i class="fa fa-paw text-center"></i> Mascotas<span
-                                              class="fa fa-chevron-down"></span></a>
-                                      <ul class="nav child_menu">
-                                          <li><a href="usuario.html"> Listado de mis mascotas</a></li>
-                                      </ul>
+                                  <li>
+                                    <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a></li>
+                                        <?php /* ?>
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/discharged"> Guardianes dados de baja</a></li>
+                                        */ ?>
+                                    </ul>                                    
                                   </li>
 
-                                  <li><a><i class="fa fa-user-secret text-center"></i> Perfil</a>
+                                  <li>
+                                    <a><i class="fa fa-user text-center"></i> Dueños<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">                                        
+                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de dueños</a></li>
+                                        <?php /* ?>
+                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list/discharged"> Dueños dados de baja</a></li>
+                                        */ ?>
+                                    </ul>
                                   </li>
 
-                                  <li><a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
-                                              class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
+                                  <li>
+                                    <a><i class="fa fa-paw text-center"></i> Mascotas<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                      <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de mascotas</a></li>
+                                    </ul>
+                                  </li>
+
+                                  <li>
+                                    <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
                                   </li>
                               </ul>
                           </div>

@@ -110,14 +110,19 @@
                     
                     if($this->userController->controllerDNI($parameters['dni'])){
 
-                        $newGuardian = new Guardian(
-                            $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                            $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
-                        );
+                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                            $newGuardian = new Guardian(
+                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
+                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                            );
+                            
+                            $this->userController->getGuardianDAO()->addDAO($newGuardian);
+    
+                            header("Location: ".FRONT_ROOT."/");
+                        } else {
+                            header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/birthDate");
+                        }
                         
-                        $this->userController->getGuardianDAO()->addDAO($newGuardian);
-
-                        header("Location: ".FRONT_ROOT."/");
                     } else {
                         header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/dni");
                     }
@@ -132,14 +137,18 @@
     
                     if($this->userController->controllerDNI($parameters['dni'])){
 
-                        $newOwner = new Owner(
-                            $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                            $lastName, $parameters['birthDate_new'], $parameters['dni_new']
-                        );
-                        
-                        $this->userController->getOwnerDAO()->addDAO($newOwner);
+                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                            $newOwner = new Owner(
+                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
+                                $lastName, $parameters['birthDate_new'], $parameters['dni_new']
+                            );
+                            
+                            $this->userController->getOwnerDAO()->addDAO($newOwner);
 
-                        header("Location: ".FRONT_ROOT."/");
+                            header("Location: ".FRONT_ROOT."/");
+                        } else {
+                            header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/birthDate");
+                        }
                     } else {
                         header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/dni");
                     }

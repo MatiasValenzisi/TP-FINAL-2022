@@ -112,6 +112,16 @@
         return ucwords(strtolower($aCambiar));
       }
 
+      // Revisa que la fecha de nacimiento no sea mayor a la actual
+
+      public function birthDateCheck($birthDate){
+        $now  = date("Y-m-d");
+        if($birthDate <= $now) {
+            return true;
+        } 
+        return false;
+      }
+
       /* Metodo que trae los datos requeridos para mostrar un usuario y poder editarlo con su respectiva vista */
 
       public function edit($token = null, $msj = "", $type = "", $div = ""){ 

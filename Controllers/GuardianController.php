@@ -21,7 +21,15 @@
         // Muestra el perfil del guardian en sessión.
 
         public function profile(){
-            echo "perfil guardian";
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/profileGuardianView.php";        
+            require_once ROOT_VIEWS."/mainFooter.php"; 
+        }
+
+        public function profileEdit(){
+            var_dump($_GET);
         }
         
         // Muestra un listado de guardianes activos.

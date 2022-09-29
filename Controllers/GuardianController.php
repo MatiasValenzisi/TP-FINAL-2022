@@ -9,18 +9,30 @@
         private $guardian;
         private $token;
         private $guardianList;
+        private $userController;
         
         public function __construct(){
           
-            $this->guardianDAO  = new GuardianDAO();
-            $this->guardian     = null;
-            $this->token        = null;
-            $this->guardianList = array();
+            $this->guardianDAO    = new GuardianDAO();
+            $this->guardian       = null;
+            $this->token          = null;
+            $this->guardianList   = array();
+            $this->userController = new UserController();
         }
 
         // Muestra el perfil del guardian en sessión.
 
-        public function profile(){
+        public function profile($type = null, $action = null){
+
+            $serviceArray = array();
+
+            if (!is_null($_SESSION['userPH']->getServiceList())){
+
+                foreach ($_SESSION['userPH']->getServiceList() as $key => $value) {
+               
+                    $serviceArray[$value] = $value;
+                }
+            }
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -36,11 +48,18 @@
             $guardian->setExperience($_GET['experience_edit']);
             $guardian->setServiceList($_GET['disp_edit']);
 
-            $this->guardianDAO->updateDAO($guardian);
+            if($this->userController->checkPassword($guardian->getPassword())){
 
-            echo "- FALTA VERIFICAR CONTRASEÑA. <br>";
-            echo "- FALTA REENVIO EN CASO DE ERROR. <br>";
-            echo "- FALTA ADAPTAR LOS DIAS DE SERVICIOS CARGADOS A LA VISTA.";
+                $this->guardianDAO->updateDAO($guardian);
+
+                $_SESSION['userPH'] = $guardian;
+
+                header("Location: ".FRONT_ROOT."/guardian/profile/success/edit/save");
+
+            } else {
+
+                header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
+            }            
         }
         
         // Muestra un listado de guardianes activos.

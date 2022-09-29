@@ -20,7 +20,7 @@
     {
         "token": "795557",
         "userName": "mati@gmail.com",
-        "password": "123456",
+        "password": "123456m",
         "dischargeDate": "2022-09-27",
         "downDate": null,
         "firstName": "Matias",
@@ -31,9 +31,13 @@
         "bookingList": null,
         "reviewList": null,
         "serviceList": [
+            "Monday",
             "Tuesday",
             "Wednesday",
-            "Thursday"
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
         ]
     }
 ]

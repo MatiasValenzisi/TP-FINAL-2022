@@ -28,8 +28,12 @@
 
         public function list(){
             $this->updateOwnerList();
-
-            require_once ROOT_VIEWS."/temporal-listado-owner.php";
+            
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/temporal-listado-owner.php";            
+            require_once ROOT_VIEWS."/mainFooter.php"; 
+            
         }
 
         // Retorna la lista de owners

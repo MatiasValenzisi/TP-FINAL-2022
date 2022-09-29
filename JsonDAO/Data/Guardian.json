@@ -12,7 +12,10 @@
         "experience": "0",
         "bookingList": null,
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Tuesday",
+            "Wednesday"
+        ]
     },
     {
         "token": "795557",

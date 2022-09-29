@@ -4,6 +4,16 @@
               <div class="col-md-3 left_col">
                   <div class="left_col scroll-view">
 
+                      <?php   
+
+                      // Evita el ingreso sin estar logueado.
+
+                      if (!isset($_SESSION['userPH'])){  
+                          
+                        header("Location: ".FRONT_ROOT);
+
+                      } ?>
+
                       <!-- site title -->
                       <div class="navbar nav_title" style="border: 0;">
                           <a class="site_title"><i class="fa fa-paw" style="border:none"></i><span>

@@ -74,13 +74,13 @@
                         <div class="col-md-9 col-sm-9 col-xs-12">
 
                         <div class="checkbox">
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Lunes">&nbsp; Lunes</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Martes">&nbsp; Martes</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Miércoles">&nbsp; Miércoles</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Jueves">&nbsp; Jueves</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Viernes">&nbsp; Viernes</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Sábado">&nbsp; Sábado</label>
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Domingo">&nbsp; Domingo</label>   
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Monday">&nbsp; Lunes</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Tuesday">&nbsp; Martes</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Wednesday">&nbsp; Miércoles</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Thursday">&nbsp; Jueves</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Friday">&nbsp; Viernes</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Saturday">&nbsp; Sábado</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Sunday">&nbsp; Domingo</label>   
                           </div>
                         </div>
                       </div>

@@ -29,6 +29,25 @@
             // (En caso de ser eliminar, creariamos otro metodo igual a dar de baja).
         }
 
+        public function updateDAO($value){
+
+            $this->retrieveData();
+
+            foreach ($this->guardianList as $key => $guardian) {
+
+                if (strcmp($guardian->getToken(), $value->getToken()) == 0){
+
+                     $guardian->setPassword($value->getPassword()); 
+                     $guardian->setExperience($value->getExperience()); 
+                     $guardian->setBookingList($value->getBookingList()); 
+                     $guardian->setReviewList($value->getReviewList()); 
+                     $guardian->setServiceList($value->getServiceList());                     
+                }               
+            }
+
+            $this->SaveData();
+        }
+
         public function saveData(){
 
             $arrayToEncode = array();

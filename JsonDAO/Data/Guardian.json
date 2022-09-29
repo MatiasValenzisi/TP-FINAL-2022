@@ -24,9 +24,13 @@
         "lastName": "Lolero",
         "birthDate": "1999-05-05",
         "dni": "42665502",
-        "experience": "2",
+        "experience": "3",
         "bookingList": null,
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday"
+        ]
     }
 ]

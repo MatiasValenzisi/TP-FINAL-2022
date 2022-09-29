@@ -29,7 +29,18 @@
         }
 
         public function profileEdit(){
-            var_dump($_GET);
+
+            $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+
+            $guardian->setPassword($_GET['password_edit']);
+            $guardian->setExperience($_GET['experience_edit']);
+            $guardian->setServiceList($_GET['disp_edit']);
+
+            $this->guardianDAO->updateDAO($guardian);
+
+            echo "- FALTA VERIFICAR CONTRASEÑA. <br>";
+            echo "- FALTA REENVIO EN CASO DE ERROR. <br>";
+            echo "- FALTA ADAPTAR LOS DIAS DE SERVICIOS CARGADOS A LA VISTA.";
         }
         
         // Muestra un listado de guardianes activos.

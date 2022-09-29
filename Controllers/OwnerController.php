@@ -39,15 +39,12 @@
         // Actualiza la lista de dueños
 
         private function updateOwnerList() {
-            $this->setOwnerList($this->getOwnerDAO());
+            $ownerListDao = $this->getOwnerDAO();
+            $this->ownerList = $ownerListDao->getAllDAO();
         }
 
         public function getOwnerDAO() {
             return $this->ownerDAO;
-        }
-
-        public function setOwnerList($list){
-            $this->ownerList = $list;
         }
     } 
 ?>

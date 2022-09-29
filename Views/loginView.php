@@ -1,8 +1,10 @@
 <body class="login">
     <?php 
    require_once("alert.php");
+    echo "<script>sweet('TESDT','TWWET','error')</script>"
     ?>
     <div class="login_wrapper " id="login" style="padding:12px;">
+
         <div class="card card-container ">
             <div class="login_content">
                 <h1 class="text-center"><i class="fa fa-paw"></i> <?php echo PROJECT_NAME ?> </h1>

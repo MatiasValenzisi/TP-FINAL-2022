@@ -154,9 +154,7 @@
                     }
                 
                 } else {
-                    
-                    $msj = "password invalida";
-                    header("Location: ".FRONT_ROOT."/sing/register/owner/error");
+                    header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/password");
                 }
             }
         }

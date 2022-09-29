@@ -1,4 +1,7 @@
 <body class="login">
+    <?php 
+   require_once("alert.php");
+    ?>
     <div class="login_wrapper " id="login" style="padding:12px;">
         <div class="card card-container ">
             <div class="login_content">
@@ -24,7 +27,7 @@
                     class="fa fa-user"></i> Iniciar sesión</button>
 
                 <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"
-                    onclick="sweet()"><i class="fa fa-google"></i> Google</button>
+                    onclick="sweet('TESDT','TWWET','error')"><i class="fa fa-google"></i> Google</button>
 
                 <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                         class="fa fa-facebook"></i> Facebook</button>
@@ -51,15 +54,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script type="text/javascript">
-    function sweet() {
-        swal("Good job!", "You clicked the button!", "success");
-    }
 
-    function normal() {
-        alert('Normal Alert');
-    }
     </script>
 </body>
 

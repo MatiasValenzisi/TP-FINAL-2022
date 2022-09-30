@@ -92,7 +92,7 @@
            
             if(is_null(strcmp($dateType, "dischargedate"))) {
                 foreach($guardianListDao as $guardian) {
-                    if(is_null($guardian['downDate'])) {
+                    if($guardian->getDownDate()) {
                         array_push($temporalList, $guardian);
                     }
                 }
@@ -100,7 +100,7 @@
             } 
 
             foreach($guardianListDao as $guardian) {
-                if(!is_null($guardian['downDate'])) {
+                if(!is_null($guardian->getDownDate())) {
                     array_push($temporalList, $guardian);
                 }
             }

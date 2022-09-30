@@ -77,7 +77,7 @@
 
                         <?php if (isset($serviceArray['Monday'])){ ?>
 
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Monday" checked>&nbsp; Lunes</label>
+                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Monday" checked="true">&nbsp; Lunes</label>
 
                         <?php } else { ?>
 

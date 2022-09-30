@@ -8,7 +8,7 @@
 
         /*Metodo inicial de la pagina que te envia al home de la pagina o al inicio de sesión en el caso de ser correspondiente */
 
-        public function index() {
+        public function index($type = null, $action = null, $specific = null) {
   
             if (!isset($_SESSION['userPH'])){
 

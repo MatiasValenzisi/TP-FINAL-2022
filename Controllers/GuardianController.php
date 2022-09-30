@@ -66,11 +66,20 @@
 
         public function list($dateType = null){
 
-            $this->guardianList =  $this->updateGuardianList($dateType);           
+            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
+            $this->guardianList =  $this->updateGuardianList($dateType); 
+                 
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/temporal-listado-guardian.php";            
+
+            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
+            if(is_null(strcmp($dateType, "dischargedate"))) { //Selecciona el tipo de lista que vas a mostrar
+                require_once ROOT_VIEWS."/temporal-listado-guardian-dischargedate.php";  
+            } else {
+                require_once ROOT_VIEWS."/temporal-listado-guardian-downdate.php";
+            }        
+
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         

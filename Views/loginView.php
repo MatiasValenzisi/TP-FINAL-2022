@@ -1,8 +1,5 @@
 <body class="login">
-    <?php 
-   require_once("alert.php");
-    echo "<script>sweet('TESDT','TWWET','error')</script>"
-    ?>
+
     <div class="login_wrapper " id="login" style="padding:12px;">
 
         <div class="card card-container ">
@@ -25,7 +22,7 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input type="password" class="form-control" name="passwordPH" placeholder="Contraseña">
                 </div>
-                <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px" <i
+                <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
                     class="fa fa-user"></i> Iniciar sesión</button>
 
                 <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"
@@ -55,9 +52,3 @@
 
         </div>
     </div>
-
-
-    </script>
-</body>
-
-</html>

@@ -97,7 +97,7 @@
 
         public function register($typeUser = null, $type = null, $action = null, $specific = null){
 
-            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/loginHeader.php";
 
             if(strcmp($typeUser, "guardian") == 0){
 
@@ -107,6 +107,8 @@
 
                 require_once ROOT_VIEWS."/registerOwnerView.php";
             }
+
+            require_once ROOT_VIEWS."/loginFooter.php";
         }
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */

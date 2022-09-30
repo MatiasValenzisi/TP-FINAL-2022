@@ -64,15 +64,38 @@
         
         // Muestra un listado de guardianes activos.
 
-        public function list(){
+        public function list($dateType = null){
 
+            $this->guardianList =  $this->updateGuardianList($dateType);           
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/temporal-listado-guardian.php";            
+            require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         
         // Actualiza la lista de guardianes
 
-        private function updateOwnerList() {
-            $guardianListDao = $this->getGuardianDAO();
-            $this->ownerList = $guardianListDao->getAllDAO();
+        private function updateGuardianList($dateType = null) {
+            $temporalList = array();
+            $guardianDao = $this->getGuardianDAO();
+            $guardianListDao = $guardianDao->getAllDAO();
+           
+            if(is_null(strcmp($dateType, "dischargedate"))) {
+                foreach($guardianListDao as $guardian) {
+                    if(is_null($guardian['downDate'])) {
+                        array_push($temporalList, $guardian);
+                    }
+                }
+                return $temporalList;
+            } 
+
+            foreach($guardianListDao as $guardian) {
+                if(!is_null($guardian['downDate'])) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
         }
 
         public function getGuardianDAO() {

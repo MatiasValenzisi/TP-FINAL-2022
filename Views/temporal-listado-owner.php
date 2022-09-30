@@ -11,10 +11,11 @@
         <table id="datatable" class="table table-striped table-bordered">
           <thead>
             <tr>
+                <th>Token</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
-                <th>DNI</th>
+                <th>Documento</th>
                 <th>Fecha de nacimiento</th>
                 <th>Fecha de alta</th>
             </tr>
@@ -23,6 +24,7 @@
                 <?php
                 foreach($this->ownerList as $owner) { ?>
                     <tr>
+                        <td><?php echo $owner->getToken();     ?></td>
                         <td><?php echo $owner->getFirstName();     ?></td>
                         <td><?php echo $owner->getLastName();      ?></td>
                         <td><?php echo $owner->getUserName();      ?></td>

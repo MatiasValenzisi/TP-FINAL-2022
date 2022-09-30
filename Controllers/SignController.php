@@ -55,11 +55,28 @@
 
                 } else {
 
-                    if (!is_null($userLogin)){
+                    if (is_null($userLogin)){ // El usuario no existe.
 
-                    }
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 
-                    header("Location: ".FRONT_ROOT);
+                    } else {
+
+                        if(!is_null($userLogin->getDownDate()){ // El usuario esta dado de baja.
+
+                            header("Location: ".FRONT_ROOT."/home/index/error/login/user");
+
+                        } else {
+
+                            if (strcmp($userLogin->getPassword(), $password) != 0){ // La contraseña no coincide con la ingresada.
+
+                                header("Location: ".FRONT_ROOT."/home/index/error/login/password");
+
+                            } else { // Error desconocido.
+
+                                header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
+                            }
+                        }   
+                    }                    
                 }
 
             } else {
@@ -86,7 +103,7 @@
 
                 require_once ROOT_VIEWS."/registerGuardianView.php";
 
-            } else{
+            } else {
 
                 require_once ROOT_VIEWS."/registerOwnerView.php";
             }
@@ -105,12 +122,14 @@
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
-            if(strcmp($typeUser, "guardian") == 0) {  
+            if(strcmp($typeUser, "guardian") == 0) { 
+
                 if($this->userController->checkPassword($parameters['password_new'])){
                     
                     if($this->userController->controllerDNI($parameters['dni'])){
 
                         if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                            
                             $newGuardian = new Guardian(
                                 $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
                                 $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
@@ -119,15 +138,19 @@
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
     
                             header("Location: ".FRONT_ROOT."/");
+
                         } else {
+
                             header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
                         }
                         
                     } else {
+
                         header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                     }
     
                 } else {
+
                     header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
                 }
     
@@ -146,14 +169,19 @@
                             $this->userController->getOwnerDAO()->addDAO($newOwner);
 
                             header("Location: ".FRONT_ROOT."/");
+
                         } else {
+
                             header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
                         }
+
                     } else {
+
                         header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
                     }
                 
                 } else {
+
                     header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
                 }
             }

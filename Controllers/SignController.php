@@ -78,11 +78,11 @@
 
         /* Metodo que llama al formulario para crear un usuario */ 
 
-        public function register($type = null){
+        public function register($typeUser = null, $type = null, $action = null, $specific = null){
 
             require_once ROOT_VIEWS."/mainHeader.php";
 
-            if(strcmp($type, "guardian") == 0){
+            if(strcmp($typeUser, "guardian") == 0){
 
                 require_once ROOT_VIEWS."/registerGuardianView.php";
 
@@ -94,7 +94,7 @@
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function createUser($type = null){
+        public function createUser($typeUser = null){
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
 
@@ -105,7 +105,7 @@
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
-            if(strcmp($type, "guardian") == 0) {  
+            if(strcmp($typeUser, "guardian") == 0) {  
                 if($this->userController->checkPassword($parameters['password_new'])){
                     
                     if($this->userController->controllerDNI($parameters['dni'])){
@@ -120,15 +120,15 @@
     
                             header("Location: ".FRONT_ROOT."/");
                         } else {
-                            header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/birthDate");
+                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
                         }
                         
                     } else {
-                        header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/dni");
+                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                     }
     
                 } else {
-                    header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/password");
+                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
                 }
     
             } else {
@@ -147,14 +147,14 @@
 
                             header("Location: ".FRONT_ROOT."/");
                         } else {
-                            header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/birthDate");
+                            header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
                         }
                     } else {
-                        header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/dni");
+                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
                     }
                 
                 } else {
-                    header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/password");
+                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
                 }
             }
         }

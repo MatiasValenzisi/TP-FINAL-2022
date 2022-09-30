@@ -65,7 +65,18 @@
         // Muestra un listado de guardianes activos.
 
         public function list(){
-            echo "lista de guardianes activos";
+
+        }
+        
+        // Actualiza la lista de guardianes
+
+        private function updateOwnerList() {
+            $guardianListDao = $this->getGuardianDAO();
+            $this->ownerList = $guardianListDao->getAllDAO();
+        }
+
+        public function getGuardianDAO() {
+            return $this->guardianDAO;
         }
     } 
 ?>

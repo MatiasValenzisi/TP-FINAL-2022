@@ -64,15 +64,47 @@
         
         // Muestra un listado de guardianes activos.
 
-        public function list(){
+        public function list($dateType = null){
 
+            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
+            $this->guardianList =  $this->updateGuardianList($dateType); 
+                 
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+
+            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
+            if(is_null(strcmp($dateType, "dischargedate"))) { //Selecciona el tipo de lista que vas a mostrar
+                require_once ROOT_VIEWS."/temporal-listado-guardian-dischargedate.php";  
+            } else {
+                require_once ROOT_VIEWS."/temporal-listado-guardian-downdate.php";
+            }        
+
+            require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         
         // Actualiza la lista de guardianes
 
-        private function updateOwnerList() {
-            $guardianListDao = $this->getGuardianDAO();
-            $this->ownerList = $guardianListDao->getAllDAO();
+        private function updateGuardianList($dateType = null) {
+            $temporalList = array();
+            $guardianDao = $this->getGuardianDAO();
+            $guardianListDao = $guardianDao->getAllDAO();
+           
+            if(is_null(strcmp($dateType, "dischargedate"))) {
+                foreach($guardianListDao as $guardian) {
+                    if(is_null($guardian['downDate'])) {
+                        array_push($temporalList, $guardian);
+                    }
+                }
+                return $temporalList;
+            } 
+
+            foreach($guardianListDao as $guardian) {
+                if(!is_null($guardian['downDate'])) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
         }
 
         public function getGuardianDAO() {

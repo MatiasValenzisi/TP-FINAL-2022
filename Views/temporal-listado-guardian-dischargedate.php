@@ -10,26 +10,26 @@
         <table id="datatable" class="table table-striped table-bordered">
           <thead>
             <tr>
+                <th>Token</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Email</th>
-                <th>DNI</th>
+                <th>Documento</th>
                 <th>Fecha de nacimiento</th>
                 <th>Fecha de alta</th>
-                <th>Fecha de baja</th>
             </tr>
 
           </thead>
                 <?php
-                foreach($this->ownerList as $owner) { ?>
+                foreach($this->guardianList as $guardian) { ?>
                     <tr>
-                        <td><?php echo $owner->getFirstName();     ?></td>
-                        <td><?php echo $owner->getLastName();      ?></td>
-                        <td><?php echo $owner->getUserName();      ?></td>
-                        <td><?php echo $owner->getDni();           ?></td>
-                        <td><?php echo $owner->getBirthDate();     ?></td>
-                        <td><?php echo $owner->getDischargeDate(); ?></td>
-                        <td><?php if($owner->getDownDate() == null){echo " - ";} else { echo $owner->getDownDate();} ?></td>
+                        <td><?php echo $guardian->getToken();         ?></td>
+                        <td><?php echo $guardian->getFirstName();     ?></td>
+                        <td><?php echo $guardian->getLastName();      ?></td>
+                        <td><?php echo $guardian->getUserName();      ?></td>
+                        <td><?php echo $guardian->getDni();           ?></td>
+                        <td><?php echo $guardian->getBirthDate();     ?></td>
+                        <td><?php echo $guardian->getDischargeDate(); ?></td>
                     </tr>
                 <?php } ?>
 

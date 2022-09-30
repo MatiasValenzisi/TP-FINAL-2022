@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="dni_new">DNI:</label>
+              <label class="form-label" for="dni_new">Documento:</label>
               <input type="text" class="form-control" placeholder="Dni" name="dni_new" required />
             </div>
 

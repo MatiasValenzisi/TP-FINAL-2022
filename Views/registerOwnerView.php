@@ -13,11 +13,12 @@
             <div class="form-outline text-left">
 
               <label class="form-label" for="type_new">Tipo de usuario:</label>
-
+              
               <select class="form-control" id="type_new" name="type_new" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
                 <option value="guardian">Guardian</option>
                 <option value="owner" selected>Dueño</option>          
               </select>
+
             </div>
 
             <br>

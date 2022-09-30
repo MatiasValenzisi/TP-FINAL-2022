@@ -61,7 +61,7 @@
 
                     } else {
 
-                        if(!is_null($userLogin->getDownDate()){ // El usuario esta dado de baja.
+                        if(!is_null($userLogin->getDownDate())){ // El usuario esta dado de baja.
 
                             header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 

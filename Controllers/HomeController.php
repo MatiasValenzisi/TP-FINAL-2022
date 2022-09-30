@@ -12,8 +12,9 @@
   
             if (!isset($_SESSION['userPH'])){
 
-			    require_once ROOT_VIEWS."/mainHeader.php";
+			    require_once ROOT_VIEWS."/loginHeader.php";
                 require_once ROOT_VIEWS."/loginView.php";
+                require_once ROOT_VIEWS."/loginFooter.php";
 
     		} else { 
 
@@ -26,10 +27,8 @@
         public function administration(){ 
             
             require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/temporal-listado.php";            
-            require_once ROOT_VIEWS."/mainFooter.php"; 
-                
+            require_once ROOT_VIEWS."/mainNav.php";         
+            require_once ROOT_VIEWS."/mainFooter.php";                 
         } 
     }
 ?>

@@ -1,8 +1,5 @@
 <body class="login">
-    <?php 
-   require_once("alert.php");
-    echo "<script>sweet('TESDT','TWWET','error')</script>"
-    ?>
+
     <div class="login_wrapper " id="login" style="padding:12px;">
 
         <div class="card card-container ">
@@ -55,9 +52,3 @@
 
         </div>
     </div>
-
-
-    </script>
-</body>
-
-</html>

@@ -24,7 +24,7 @@
         "dischargeDate": "2022-09-27",
         "downDate": null,
         "firstName": "Matias",
-        "lastName": "Lolero",
+        "lastName": "Nuevo",
         "birthDate": "1999-05-05",
         "dni": "42665502",
         "experience": "3",
@@ -32,7 +32,9 @@
         "reviewList": null,
         "serviceList": [
             "Monday",
+            "Tuesday",
             "Wednesday",
+            "Thursday",
             "Friday",
             "Saturday"
         ]

@@ -35,8 +35,7 @@
 
                     $_SESSION['userPH'] = $userLogin;
                 }
-            }
-            
+            }            
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */

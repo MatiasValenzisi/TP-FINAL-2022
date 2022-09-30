@@ -14,6 +14,7 @@
 
 			    require_once ROOT_VIEWS."/loginHeader.php";
                 require_once ROOT_VIEWS."/loginView.php";
+                require_once ROOT_VIEWS."/notificationAlert.php";
                 require_once ROOT_VIEWS."/loginFooter.php";
 
     		} else { 

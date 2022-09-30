@@ -66,13 +66,24 @@
 
                                   </li>
 
+                                  <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
                                   <li>
                                     <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+
                                         <li><a href="<?php echo FRONT_ROOT?>/guardian/list/dischargedate"> Listado de guardianes</a></li>
-                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/downdate"> Guardianes dados de baja</a></li>                              
+
+                                        <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/downdate"> Guardianes dados de baja</a></li>  
+
+                                        <?php } ?>
+
                                     </ul>                                    
                                   </li>
+
+                                  <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?> 
 
                                   <li>
                                     <a><i class="fa fa-user text-center"></i> Dueños<span class="fa fa-chevron-down"></span></a>
@@ -84,12 +95,16 @@
                                     </ul>
                                   </li>
 
+                                  <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
                                   <li>
                                     <a><i class="fa fa-paw text-center"></i> Mascotas<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>
                                     </ul>
                                   </li>
+
+                                  <?php } ?>
 
                                   <li>
                                     <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>

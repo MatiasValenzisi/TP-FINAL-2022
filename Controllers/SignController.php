@@ -129,7 +129,7 @@
                     if($this->userController->controllerDNI($parameters['dni'])){
 
                         if($this->userController->birthDateCheck($parameters['birthDate_new'])){
-                            
+
                             $newGuardian = new Guardian(
                                 $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
                                 $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
@@ -137,7 +137,7 @@
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
     
-                            header("Location: ".FRONT_ROOT."/");
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
 
                         } else {
 
@@ -168,7 +168,7 @@
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);
 
-                            header("Location: ".FRONT_ROOT."/");
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
 
                         } else {
 

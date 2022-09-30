@@ -22,7 +22,7 @@
 
         // Muestra el perfil del guardian en sessión.
 
-        public function profile($type = null, $action = null){
+        public function profile($type = null, $action = null, $specific = null){
 
             $serviceArray = array();
 
@@ -36,7 +36,8 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/profileGuardianView.php";        
+            require_once ROOT_VIEWS."/profileGuardianView.php";  
+            require_once ROOT_VIEWS."/notificationAlert.php";      
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 

@@ -13,17 +13,12 @@
             <br>
 
             <div class="form-outline text-left">
-            <label class="form-label" for="type_new">Tipo de usuario:</label>
-            <select class="form-control" id="type_new" name="type_new" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
-                <?php
-                    if(strcmp($type, "guardian") == 0){?>
-                        <option value="guardian" selected>Guardian</option>
-                        <option value="owner">Dueño</option> 
-                    <?php } else { ?>
-                                    <option value="guardian">Guardian</option>
-                                    <option value="owner" selected>Dueño</option> 
-                    <?php }
-                ?>
+
+              <label class="form-label" for="type_new">Tipo de usuario:</label>
+
+              <select class="form-control" id="type_new" name="type_new" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">                
+                <option value="guardian" selected>Guardian</option>
+                <option value="owner">Dueño</option> 
               </select>
             </div>
 
@@ -79,6 +74,9 @@
             <br>
 
           </form>
+
         </section>
+
       </div>
+
     </div>

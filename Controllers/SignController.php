@@ -107,6 +107,7 @@
                 require_once ROOT_VIEWS."/registerOwnerView.php";
             }
 
+            require_once ROOT_VIEWS."/notificationAlert.php";
             require_once ROOT_VIEWS."/loginFooter.php";
         }
 
@@ -162,6 +163,7 @@
                     if($this->userController->controllerDNI($parameters['dni'])){
 
                         if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                            
                             $newOwner = new Owner(
                                 $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
                                 $lastName, $parameters['birthDate_new'], $parameters['dni_new']

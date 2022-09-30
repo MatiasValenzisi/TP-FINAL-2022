@@ -32,9 +32,6 @@
         "reviewList": null,
         "serviceList": [
             "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
             "Friday",
             "Saturday"
         ]

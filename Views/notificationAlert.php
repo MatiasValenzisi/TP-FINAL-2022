@@ -103,7 +103,16 @@
                         
                         if (strcmp($specific, 'save') == 0){
 
-                            echo "<script>sweet('Error al actualizar el perfil','La contraseña debe contener mínimamente una letra y un número.','error')</script>";
+                            echo "<script>sweet('Error al actualizar el perfil!','La contraseña debe contener mínimamente una letra y un número.','error')</script>";
+                        }
+
+                    break;
+
+                    case 'check':
+                        
+                        if (strcmp($specific, 'user') == 0){
+
+                            echo "<script>sweet('Se ha cerrado cerrado la sesión','Los datos de la sesión han caducado.','error')</script>";
                         }
 
                     break;

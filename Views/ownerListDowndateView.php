@@ -18,6 +18,7 @@
                 <th>Documento</th>
                 <th>Fecha de nacimiento</th>
                 <th>Fecha de alta</th>
+                <th>Fecha de baja</th>
             </tr>
 
           </thead>
@@ -31,6 +32,7 @@
                         <td><?php echo $owner->getDni();           ?></td>
                         <td><?php echo $owner->getBirthDate();     ?></td>
                         <td><?php echo $owner->getDischargeDate(); ?></td>
+                        <td><?php echo $owner->getDownDate();       ?></td>
                     </tr>
                 <?php } ?>
 

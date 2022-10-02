@@ -16,7 +16,7 @@
                 <th>Email</th>
                 <th>Documento</th>
                 <th>Fecha de nacimiento</th>
-                <th>Fecha de alta</th>
+                <th>Experiencia</th>
             </tr>
 
           </thead>
@@ -29,7 +29,7 @@
                         <td><?php echo $guardian->getUserName();      ?></td>
                         <td><?php echo $guardian->getDni();           ?></td>
                         <td><?php echo $guardian->getBirthDate();     ?></td>
-                        <td><?php echo $guardian->getDischargeDate(); ?></td>
+                        <td><?php echo $guardian->getExperience() . " Año/s"; ?></td>
                     </tr>
                 <?php } ?>
 

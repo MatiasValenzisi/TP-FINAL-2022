@@ -36,7 +36,7 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/profileGuardianView.php";  
+            require_once ROOT_VIEWS."/guardianProfileView.php";  
             require_once ROOT_VIEWS."/notificationAlert.php";      
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
@@ -63,17 +63,15 @@
             }            
         }
         
-        // Muestra un listado de guardianes activos.
+        // Muestra un listado de guardianes.
 
         public function list($dateType = null){
-
-            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
           
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
 
-            //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
-            if(strcmp($dateType, "downdate") == 0) { //Selecciona el tipo de lista que vas a mostrar
+            //Selecciona el tipo de lista que vas a mostrar
+            if(strcmp($dateType, "downdate") == 0) { 
                 $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
                 require_once ROOT_VIEWS."/guardianListDowndateView.php";
             } else {

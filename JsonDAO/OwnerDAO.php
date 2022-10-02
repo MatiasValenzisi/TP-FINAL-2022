@@ -23,6 +23,30 @@
             return $this->ownerList;
         }
 
+        public function getAllDownDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->ownerList as $owner) {
+                if(!is_null($owner->getDownDate())) {
+                    array_push($temporalList, $owner);
+                }
+            }
+            return $temporalList;
+        }
+
+        public function getAllDischargeDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->ownerList as $owner) {
+                if(is_null($owner->getDownDate())) {
+                    array_push($temporalList, $owner);
+                }
+            }
+            return $temporalList;
+        }
+
         public function deleteDAO($value){
 
             // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 

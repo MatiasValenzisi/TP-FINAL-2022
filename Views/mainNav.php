@@ -97,8 +97,9 @@
 
                                   <li>
                                     <a><i class="fa fa-paw text-center"></i> Mascotas<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>
+                                    <ul class="nav child_menu">       
+                                       <li><a href="<?php echo FRONT_ROOT?>/pet/add"> Añadir mascota</a></li>                               
+                                       <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>                                       
                                     </ul>
                                   </li>
 

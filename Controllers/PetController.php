@@ -24,5 +24,10 @@
 
             echo "listado de mascotas";
         }
+
+        public function add(){
+
+            echo "Añadir mascotas";
+        }
     } 
 ?>

@@ -72,7 +72,7 @@
                                     <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
-                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/dischargedate"> Listado de guardianes</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a></li>
 
                                         <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
 
@@ -90,7 +90,7 @@
                                     <ul class="nav child_menu">                                        
                                         <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de dueños</a></li>
                                         <?php /* ?>
-                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list/discharged"> Dueños dados de baja</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list/downdate"> Dueños dados de baja</a></li>
                                         */ ?>
                                     </ul>
                                   </li>

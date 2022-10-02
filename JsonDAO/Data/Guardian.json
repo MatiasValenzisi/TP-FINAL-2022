@@ -35,5 +35,24 @@
             "Friday",
             "Saturday"
         ]
+    },
+    {
+        "token": "222222",
+        "userName": "josePaz@gmail.com",
+        "password": "123456j",
+        "dischargeDate": "2022-10-01",
+        "downDate": "2022-10-02",
+        "firstName": "Jose",
+        "lastName": "Paz",
+        "birthDate": "1996-05-05",
+        "dni": "42662546",
+        "experience": "6",
+        "bookingList": null,
+        "reviewList": null,
+        "serviceList": [
+            "Monday",
+            "Friday",
+            "Saturday"
+        ]
     }
 ]

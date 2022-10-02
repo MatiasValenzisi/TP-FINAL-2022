@@ -68,48 +68,20 @@
         public function list($dateType = null){
 
             //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
-            $this->guardianList =  $this->updateGuardianList($dateType); 
-                 
-
+          
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
 
             //Actualiza el atributo de listado de guardianes en base a si queres el listado con los guardianes de alta o baja 
-            if(is_null(strcmp($dateType, "dischargedate"))) { //Selecciona el tipo de lista que vas a mostrar
-                require_once ROOT_VIEWS."/temporal-listado-guardian-dischargedate.php";  
+            if(strcmp($dateType, "downdate") == 0) { //Selecciona el tipo de lista que vas a mostrar
+                $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
+                require_once ROOT_VIEWS."/guardianListDowndateView.php";
             } else {
-                require_once ROOT_VIEWS."/temporal-listado-guardian-downdate.php";
+                $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+                require_once ROOT_VIEWS."/guardianListDischargedateView.php";                 
             }        
 
             require_once ROOT_VIEWS."/mainFooter.php"; 
-        }
-        
-        // Actualiza la lista de guardianes
-
-        private function updateGuardianList($dateType = null) {
-            $temporalList = array();
-            $guardianDao = $this->getGuardianDAO();
-            $guardianListDao = $guardianDao->getAllDAO();
-           
-            if(is_null(strcmp($dateType, "dischargedate"))) {
-                foreach($guardianListDao as $guardian) {
-                    if($guardian->getDownDate()) {
-                        array_push($temporalList, $guardian);
-                    }
-                }
-                return $temporalList;
-            } 
-
-            foreach($guardianListDao as $guardian) {
-                if(!is_null($guardian->getDownDate())) {
-                    array_push($temporalList, $guardian);
-                }
-            }
-            return $temporalList;
-        }
-
-        public function getGuardianDAO() {
-            return $this->guardianDAO;
         }
     } 
 ?>

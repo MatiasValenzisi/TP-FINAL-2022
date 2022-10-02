@@ -100,11 +100,11 @@
 
             if(strcmp($typeUser, "guardian") == 0){
 
-                require_once ROOT_VIEWS."/registerGuardianView.php";
+                require_once ROOT_VIEWS."/guardianRegisterView.php";
 
             } else {
 
-                require_once ROOT_VIEWS."/registerOwnerView.php";
+                require_once ROOT_VIEWS."/ownerRegisterView.php";
             }
 
             require_once ROOT_VIEWS."/notificationAlert.php";

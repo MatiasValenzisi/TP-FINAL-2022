@@ -31,7 +31,7 @@
             
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/temporal-listado-owner.php";            
+            require_once ROOT_VIEWS."/ownerListDischargedateView.php";            
             require_once ROOT_VIEWS."/mainFooter.php"; 
             
         }

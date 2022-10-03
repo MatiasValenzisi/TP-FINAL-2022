@@ -12,9 +12,9 @@
             
             <div class="form-outline text-left">
 
-              <label class="form-label" for="type">Tipo de usuario:</label>
+              <label class="form-label" for="typeUser">Tipo de usuario:</label>
               
-              <select class="form-control" id="type" name="type" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
+              <select class="form-control" id="typeUser" name="typeUser" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
                 <option value="guardian">Guardian</option>
                 <option value="owner" selected>Dueño</option>          
               </select>

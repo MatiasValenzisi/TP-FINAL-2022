@@ -58,5 +58,21 @@
             "Friday",
             "Saturday"
         ]
+    },
+    {
+        "token": "255644",
+        "userName": "nuevoguardian@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-10-03",
+        "downDate": null,
+        "firstName": "Guardian",
+        "lastName": "Nuevo",
+        "birthDate": "2018-07-06",
+        "dni": "345234545",
+        "profilePicture": null,
+        "experience": null,
+        "bookingList": "2",
+        "reviewList": null,
+        "serviceList": null
     }
 ]

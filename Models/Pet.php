@@ -11,8 +11,9 @@
         protected $observations;
         protected $vaccinationPlan;
         protected $photo;
+        protected $video;
 
-        public function __construct($token = null, $tokenOwner = null, $name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null){
+        public function __construct($token = null, $tokenOwner = null, $name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null, $video = null){
 
             $this->$token          = $token;
             $this->$tokenOwner     = $tokenOwner;
@@ -23,6 +24,7 @@
             $this->observations    = $observations;
             $this->vaccinationPlan = $vaccinationPlan;
             $this->photo           = $photo;
+            $this->video           = $video;
         }
 
         public function getToken(){
@@ -114,5 +116,15 @@
             
             $this->weight = $weight;
         }
+
+        public function getVideo() { 
+
+            return $this->video; 
+        } 
+
+        public function setVideo($video) { 
+
+            $this->video = $video; 
+        } 
     }
 ?>

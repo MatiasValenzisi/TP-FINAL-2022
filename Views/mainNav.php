@@ -26,8 +26,19 @@
                       <!-- menu profile quick info -->
                       <div class="profile clearfix">
                           <div class="profile_pic">
+
+                            <?php if (is_null($_SESSION['userPH'])) { ?>
+
                               <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
                                   class="img-circle profile_img">
+
+                                <?php } else { ?>
+
+                                  <img src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getToken() ?>.png" alt="..."
+                                  class="img-circle profile_img">
+
+                                <?php } ?>
+
                           </div>
                           <div class="profile_info">
                               <span>Bienvenido</span>

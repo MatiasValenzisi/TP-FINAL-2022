@@ -34,15 +34,15 @@
 
             foreach($this->dogList as $dog) {
 
-                $arrayValues["token"]           = $admin->getToken();
-                $arrayValues["tokenOwner"]      = $admin->getTokenOwner();
-                $arrayValues["name"]            = $admin->getName();
-                $arrayValues["race"]            = $admin->getRace();
-                $arrayValues["size"]            = $admin->getSize();
-                $arrayValues["observations"]    = $admin->getObservations();
-                $arrayValues["vaccinationPlan"] = $admin->getVaccinationPlan();
-                $arrayValues["photo"]           = $admin->getPhoto();
-                $arrayValues["weight"]          = $admin->getWeight();
+                $arrayValues["token"]           = $dog->getToken();
+                $arrayValues["tokenOwner"]      = $dog->getTokenOwner();
+                $arrayValues["name"]            = $dog->getName();
+                $arrayValues["race"]            = $dog->getRace();
+                $arrayValues["size"]            = $dog->getSize();
+                $arrayValues["observations"]    = $dog->getObservations();
+                $arrayValues["vaccinationPlan"] = $dog->getVaccinationPlan();
+                $arrayValues["photo"]           = $dog->getPhoto();
+                $arrayValues["weight"]          = $dog->getWeight();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -86,6 +86,23 @@
                     array_push($this->dogList, $dog);
                 }
             }
+        }
+
+        public function getDogTokenDAO($token){ 
+
+            $this->retrieveData();
+
+            $user = null;
+
+            foreach ($this->dogList as $value) {
+
+                if(strcmp($value->getToken(), $token) == 0){
+
+                    $user = $value;
+                }
+            }
+
+            return $user;
         }
     }
 ?>

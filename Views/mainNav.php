@@ -17,7 +17,7 @@
                       <!-- site title -->
                       <div class="navbar nav_title" style="border: 0;">
                           <a class="site_title"><i class="fa fa-paw" style="border:none"></i><span>
-                          <b><?php echo PROJECT_NAME ?></b> </span></a>
+                                  <b><?php echo PROJECT_NAME ?></b> </span></a>
                       </div>
 
                       <!-- /site title -->
@@ -31,7 +31,8 @@
                           </div>
                           <div class="profile_info">
                               <span>Bienvenido</span>
-                              <h2><b><?php echo $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName() ?></b></h2>
+                              <h2><b><?php echo $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName() ?></b>
+                              </h2>
                           </div>
                       </div>
                       <!-- /menu profile quick info -->
@@ -44,57 +45,69 @@
                               <ul class="nav side-menu">
 
                                   <li>
-                                    <a href="<?php echo FRONT_ROOT?>/home/administration"><i class="fa fa-home text-center"></i> Pagina principal</a>
+                                      <a href="<?php echo FRONT_ROOT?>/home/administration"><i
+                                              class="fa fa-home text-center"></i> Pagina principal</a>
                                   </li>
 
                                   <li>
 
-                                    <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+                                      <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
 
-                                      <a href=" <?php echo FRONT_ROOT ?>/admin/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+                                      <a href=" <?php echo FRONT_ROOT ?>/admin/profile"><i
+                                              class="fa fa-user-secret text-center"></i> Mi perfil</a>
 
-                                    <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0){ ?>
+                                      <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0){ ?>
 
-                                      <a href=" <?php echo FRONT_ROOT ?>/guardian/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+                                      <a href=" <?php echo FRONT_ROOT ?>/guardian/profile"><i
+                                              class="fa fa-user-secret text-center"></i> Mi perfil</a>
 
-                                    <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+                                      <?php } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 
-                                      <a href=" <?php echo FRONT_ROOT ?>/owner/profile"><i class="fa fa-user-secret text-center"></i> Mi perfil</a>
+                                      <a href=" <?php echo FRONT_ROOT ?>/owner/profile"><i
+                                              class="fa fa-user-secret text-center"></i> Mi perfil</a>
 
-                                    <?php } ?>
+                                      <?php } ?>
 
 
                                   </li>
 
                                   <li>
-                                    <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a></li>
-                                        <?php /* ?>
-                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/discharged"> Guardianes dados de baja</a></li>
-                                        */ ?>
-                                    </ul>                                    
+                                      <a><i class="fa fa-briefcase text-center"></i> Guardianes<span
+                                              class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a>
+                                          </li>
+                                          <?php /* ?>
+                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/list/discharged"> Guardianes
+                                                  dados de baja</a></li>
+                                          */ ?>
+                                      </ul>
                                   </li>
 
                                   <li>
-                                    <a><i class="fa fa-user text-center"></i> Dueños<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">                                        
-                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de dueños</a></li>
-                                        <?php /* ?>
-                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list/discharged"> Dueños dados de baja</a></li>
-                                        */ ?>
-                                    </ul>
+                                      <a><i class="fa fa-user text-center"></i> Dueños<span
+                                              class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                          <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de dueños</a></li>
+                                          <?php /* ?>
+                                          <li><a href="<?php echo FRONT_ROOT?>/owner/list/discharged"> Dueños dados de
+                                                  baja</a></li>
+                                          */ ?>
+                                      </ul>
                                   </li>
 
                                   <li>
-                                    <a><i class="fa fa-paw text-center"></i> Mascotas<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>
-                                    </ul>
+                                      <a><i class="fa fa-paw text-center"></i> Mascotas<span
+                                              class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                          <li><a href="<?php echo FRONT_ROOT?>/pet/createpet">Añadir mascota</a></li>
+                                          <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>
+                                      </ul>
                                   </li>
 
                                   <li>
-                                    <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
+                                      <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
+                                              class="fa fa-sign-out text-center"></i> Cerrar sesión</a>
                                   </li>
                               </ul>
                           </div>

@@ -132,7 +132,7 @@
 
       public function getUserToken($token){ 
 
-          $this->user = $this->adminDAO->getUserTokenDAO($token);
+          $this->user = $this->adminDAO->getAllDAO($token);
 
           if ($this->user != null){
 

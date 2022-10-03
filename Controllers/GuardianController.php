@@ -45,9 +45,9 @@
 
             $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $guardian->setPassword($_POST['password_edit']);
-            $guardian->setExperience($_POST['experience_edit']);
-            $guardian->setServiceList($_POST['disp_edit']);
+            $guardian->setPassword($_POST['password']);
+            $guardian->setExperience($_POST['experience']);
+            $guardian->setServiceList($_POST['disp']);
 
             if($this->userController->checkPassword($guardian->getPassword())){
 

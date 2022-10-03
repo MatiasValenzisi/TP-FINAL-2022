@@ -13,12 +13,14 @@
             $urlArray = array_filter($urlArray);
 
             if(empty($urlArray))
-                $this->controller = 'Home';            
+                $this->controller = 'Home'; 
+
             else
                 $this->controller = ucwords(array_shift($urlArray));
 
             if(empty($urlArray))
                 $this->method = 'index';
+
             else
                 $this->method = array_shift($urlArray);
 
@@ -29,11 +31,14 @@
                 unset($_GET["url"]);
 
                 if(!empty($_GET)){
+
                     foreach($_GET as $key => $value)                    
                         array_push($this->parameters, $value);
-                }
-                else
+                    
+                } else {
+
                     $this->parameters = $urlArray;
+                }
             }
 
             elseif ($_POST)

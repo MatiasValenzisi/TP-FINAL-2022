@@ -9,6 +9,7 @@
         "lastName": "Jhons",
         "birthDate": "1989-12-31",
         "dni": "23232323",
+        "profilePicture": null,
         "bookingsList": null,
         "petList": null,
         "paymentsList": null
@@ -23,6 +24,7 @@
         "lastName": "Zarate",
         "birthDate": "2000-05-05",
         "dni": "42222253",
+        "profilePicture": null,
         "bookingsList": null,
         "petList": null,
         "paymentsList": null

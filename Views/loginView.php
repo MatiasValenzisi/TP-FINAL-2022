@@ -16,11 +16,11 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" class="form-control" name="usernamePH" placeholder="Usuario">
+                    <input type="text" class="form-control" name="username" placeholder="Usuario">
                 </div>
                 <div class="input-group" style="margin-bottom: 25px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" class="form-control" name="passwordPH" placeholder="Contraseña">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
                 </div>
                 <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
                     class="fa fa-user"></i> Iniciar sesión</button>

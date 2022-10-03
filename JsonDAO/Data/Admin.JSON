@@ -8,6 +8,7 @@
         "firstName": "Administrador",
         "lastName": "Principal",
         "birthDate": "2001-01-01",
-        "dni": "30000123"
+        "dni": "30000123",
+        "profilePicture": null
     }
 ]

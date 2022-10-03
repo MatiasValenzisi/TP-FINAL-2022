@@ -35,11 +35,17 @@
             require_once ROOT_VIEWS."/mainNav.php";
 
             //Selecciona el tipo de lista que vas a mostrar
+
             if(strcmp($dateType, "downdate") == 0) {
+
                 $this->ownerList = $this->ownerDAO->getAllDownDateDAO();
+
                 require_once ROOT_VIEWS."/ownerListDowndateView.php";
+
             } else {
+
                 $this->ownerList = $this->ownerDAO->getAllDischargeDateDAO();
+                
                 require_once ROOT_VIEWS."/ownerListDischargedateView.php";                 
             }        
 

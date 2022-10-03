@@ -71,11 +71,17 @@
             require_once ROOT_VIEWS."/mainNav.php";
 
             //Selecciona el tipo de lista que vas a mostrar
+
             if(strcmp($dateType, "downdate") == 0) { 
+
                 $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
+
                 require_once ROOT_VIEWS."/guardianListDowndateView.php";
+
             } else {
+
                 $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+                
                 require_once ROOT_VIEWS."/guardianListDischargedateView.php";                 
             }        
 

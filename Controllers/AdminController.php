@@ -21,6 +21,7 @@
         // Muestra el perfil del admin en sessión.
 
         public function profile(){
+            
             echo "perfil administrador";
         }
     } 

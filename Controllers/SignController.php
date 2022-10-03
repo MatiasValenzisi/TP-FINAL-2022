@@ -134,7 +134,7 @@
 
                             $newGuardian = new Guardian(
                                 $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], null, $parameters['experience_new']
                             );
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
@@ -166,7 +166,7 @@
                             
                             $newOwner = new Owner(
                                 $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new']
+                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], null
                             );
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);

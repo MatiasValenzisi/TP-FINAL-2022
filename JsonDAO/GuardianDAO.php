@@ -78,19 +78,20 @@
 
             foreach($this->guardianList as $guardian) {
 
-                $arrayValues["token"]         = $guardian->getToken();
-                $arrayValues["userName"]      = $guardian->getUserName();
-                $arrayValues["password"]      = $guardian->getPassword();
-                $arrayValues["dischargeDate"] = $guardian->getDischargeDate();
-                $arrayValues["downDate"]      = $guardian->getDownDate();
-                $arrayValues["firstName"]     = $guardian->getFirstName();
-                $arrayValues["lastName"]      = $guardian->getLastName();
-                $arrayValues["birthDate"]     = $guardian->getBirthDate();
-                $arrayValues["dni"]           = $guardian->getDni();
-                $arrayValues["experience"]    = $guardian->getExperience();
-                $arrayValues["bookingList"]   = $guardian->getBookingList();
-                $arrayValues["reviewList"]    = $guardian->getReviewList();
-                $arrayValues["serviceList"]   = $guardian->getServiceList();
+                $arrayValues["token"]          = $guardian->getToken();
+                $arrayValues["userName"]       = $guardian->getUserName();
+                $arrayValues["password"]       = $guardian->getPassword();
+                $arrayValues["dischargeDate"]  = $guardian->getDischargeDate();
+                $arrayValues["downDate"]       = $guardian->getDownDate();
+                $arrayValues["firstName"]      = $guardian->getFirstName();
+                $arrayValues["lastName"]       = $guardian->getLastName();
+                $arrayValues["birthDate"]      = $guardian->getBirthDate();
+                $arrayValues["dni"]            = $guardian->getDni();
+                $arrayValues["profilePicture"] = $guardian->getProfilePicture();
+                $arrayValues["experience"]     = $guardian->getExperience();
+                $arrayValues["bookingList"]    = $guardian->getBookingList();
+                $arrayValues["reviewList"]     = $guardian->getReviewList();
+                $arrayValues["serviceList"]    = $guardian->getServiceList();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -129,7 +130,8 @@
                     $guardian->setFirstName($values["firstName"]);
                     $guardian->setLastName($values["lastName"]);
                     $guardian->setBirthDate($values["birthDate"]);
-                    $guardian->setDni($values["dni"]);
+                    $guardian->setDni($values["dni"]);                    
+                    $guardian->setProfilePicture($values["profilePicture"]);
                     $guardian->setExperience($values["experience"]);
                     $guardian->setBookingList($values["bookingList"]);
                     $guardian->setReviewList($values["reviewList"]);

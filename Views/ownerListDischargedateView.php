@@ -21,21 +21,25 @@
             </tr>
 
           </thead>
-                <?php
-                foreach($this->ownerList as $owner) { ?>
-                    <tr>
-                        <td><?php echo $owner->getToken();         ?></td>
-                        <td><?php echo $owner->getFirstName();     ?></td>
-                        <td><?php echo $owner->getLastName();      ?></td>
-                        <td><?php echo $owner->getUserName();      ?></td>
-                        <td><?php echo $owner->getDni();           ?></td>
-                        <td><?php echo $owner->getBirthDate();     ?></td>
-                        <td><?php echo $owner->getDischargeDate(); ?></td>
-                    </tr>
-                <?php } ?>
 
           <tbody>
+
+            <?php foreach($this->ownerList as $owner) { ?>
+              
+              <tr>
+                <td><?php echo $owner->getToken();         ?></td>
+                <td><?php echo $owner->getFirstName();     ?></td>
+                <td><?php echo $owner->getLastName();      ?></td>
+                <td><?php echo $owner->getUserName();      ?></td>
+                <td><?php echo $owner->getDni();           ?></td>
+                <td><?php echo $owner->getBirthDate();     ?></td>
+                <td><?php echo $owner->getDischargeDate(); ?></td>
+              </tr>
+
+            <?php } ?>
+
           </tbody>
+
         </table>
       </div>
     </div>

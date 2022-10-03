@@ -63,12 +63,9 @@
 
                                     <?php } ?>
 
-
                                   </li>
 
                                   <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
-
-                                  <?php echo  ?>
 
                                   <li>
                                     <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>

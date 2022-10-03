@@ -54,7 +54,7 @@
 
                 } else {
 
-                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || !is_null($userLogin->getDischargeDate())){ // El usuario no existe.
+                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ // El usuario no existe.
 
                         header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 

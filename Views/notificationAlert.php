@@ -25,7 +25,7 @@
 
                             case 'user':
 
-                                echo "<script>sweet('Error al iniciar sesión!','No se encontró el usuario dado.','error')</script>";
+                                echo "<script>sweet('Error al iniciar sesión!','El usuario no se encuentra activo.','error')</script>";
 
                             break;
 

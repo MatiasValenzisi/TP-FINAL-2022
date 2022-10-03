@@ -4,7 +4,7 @@
       <div class="form text">
         <section class="login_content">
 
-          <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="GET">
+          <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
             <input type="hidden" name="type" value="guardian">
             <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
               <h2>Registrarse como guardian</h2>

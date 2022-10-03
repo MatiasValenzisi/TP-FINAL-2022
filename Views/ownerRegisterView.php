@@ -3,7 +3,7 @@
       <div class="form text">
         <section class="login_content">
 
-          <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="GET">
+          <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
             <input type="hidden" name="type" value="owner">
             <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
               <h2>Registrarse como dueño</h2>
@@ -12,9 +12,9 @@
             
             <div class="form-outline text-left">
 
-              <label class="form-label" for="type_new">Tipo de usuario:</label>
+              <label class="form-label" for="type">Tipo de usuario:</label>
               
-              <select class="form-control" id="type_new" name="type_new" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
+              <select class="form-control" id="type" name="type" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
                 <option value="guardian">Guardian</option>
                 <option value="owner" selected>Dueño</option>          
               </select>
@@ -24,33 +24,33 @@
             <br>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="email_new">Correo electrónico:</label>
-              <input type="email" class="form-control" placeholder="Correo electrónico" name="email_new" required />
+              <label class="form-label" for="email">Correo electrónico:</label>
+              <input type="email" class="form-control" placeholder="Correo electrónico" name="email" required />
             </div>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="password_new">Contraseña:</label>
-              <input type="password" class="form-control" placeholder="Contraseña" name="password_new" required />
+              <label class="form-label" for="password">Contraseña:</label>
+              <input type="password" class="form-control" placeholder="Contraseña" name="password" required />
             </div>  
 
             <div class="form-outline text-left">
-              <label class="form-label" for="firstName_new">Nombre:</label>
-              <input type="text" class="form-control" placeholder="Nombre" name="firstName_new" required= />
+              <label class="form-label" for="firstName">Nombre:</label>
+              <input type="text" class="form-control" placeholder="Nombre" name="firstName" required= />
             </div>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="lastName_new">Apellido:</label>
-              <input type="text" class="form-control" placeholder="Apellido" name="lastName_new" required />
+              <label class="form-label" for="lastName">Apellido:</label>
+              <input type="text" class="form-control" placeholder="Apellido" name="lastName" required />
             </div>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="dni_new">Documento:</label>
-              <input type="text" class="form-control" placeholder="Dni" name="dni_new" required />
+              <label class="form-label" for="dni">Documento:</label>
+              <input type="text" class="form-control" placeholder="Documento" name="dni" required />
             </div>
 
             <div class="form-outline text-left">
-              <label class="form-label" for="birthDate_new">Fecha de nacimiento:</label>
-              <input type="date" class="form-control" name="birthDate_new" required />
+              <label class="form-label" for="birthDate">Fecha de nacimiento:</label>
+              <input type="date" class="form-control" name="birthDate" required />
             </div>        
 
             <br><br>

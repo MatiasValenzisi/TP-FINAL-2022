@@ -117,7 +117,7 @@
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-            $parameters     = $_GET;
+            $parameters     = $_POST;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
             $firstName      = $this->userController->textNameFormat($parameters['firstName']);
             $lastName       = $this->userController->textNameFormat($parameters['lastName']);

@@ -23,13 +23,13 @@
                 <?php
                 foreach($this->guardianList as $guardian) { ?>
                     <tr>
-                        <td><?php echo $guardian->getToken();         ?></td>
-                        <td><?php echo $guardian->getFirstName();     ?></td>
-                        <td><?php echo $guardian->getLastName();      ?></td>
-                        <td><?php echo $guardian->getUserName();      ?></td>
-                        <td><?php echo $guardian->getDni();           ?></td>
-                        <td><?php echo $guardian->getBirthDate();     ?></td>
-                        <td><a href="<?php echo FRONT_ROOT ?>/guardian/confirmGuardian/<?php echo $guardian->getToken(); ?>"</a> <?php echo "Dar alta"                     ?></td>
+                        <td><?php echo $guardian->getToken();     ?></td>
+                        <td><?php echo $guardian->getFirstName(); ?></td>
+                        <td><?php echo $guardian->getLastName();  ?></td>
+                        <td><?php echo $guardian->getUserName();  ?></td>
+                        <td><?php echo $guardian->getDni();       ?></td>
+                        <td><?php echo $guardian->getBirthDate(); ?></td>
+                        <td><a href="<?php echo FRONT_ROOT ?>/guardian/confirmGuardian/<?php echo $guardian->getToken(); ?>"><?php echo "Dar alta"?></a></td>
                     </tr>
                 <?php } ?>
 

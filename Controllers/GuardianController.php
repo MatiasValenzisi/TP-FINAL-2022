@@ -98,8 +98,11 @@
         // Metodo de alta (guardian)
 
         public function confirmGuardian($token) {
-            $guardianDao = $this->guardianDAO->getAllPendientDateDAO();
             
+            $this->guardianDAO->confirmPendientGuardianDAO($token);
+            
+            
+            header("Location: ".FRONT_ROOT."/guardian/list/pendient");
         }
     } 
 ?>

@@ -40,7 +40,7 @@
             $temporalList = array();
 
             foreach($this->guardianList as $guardian) {
-                if(is_null($guardian->getDownDate())) {
+                if(is_null($guardian->getDownDate()) && !is_null($guardian->getDischargeDate())) {
                     array_push($temporalList, $guardian);
                 }
             }
@@ -175,17 +175,27 @@
 
             $this->retrieveData();
 
-            $user = null;
+            $guardian = null;
 
             foreach ($this->guardianList as $value) {
 
                 if(strcmp($value->getToken(), $token) == 0){
 
-                    $user = $value;
+                    $guardian = $value;
                 }
             }
 
-            return $user;
+            return $guardian;
         }    
+
+        public function confirmPendientGuardianDAO($token) {
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+            $this->getUserTokenDAO($token)->setDischargeDate(date("Y-m-d"));
+
+            $this->saveData();
+        }
+
+
     }
 ?>

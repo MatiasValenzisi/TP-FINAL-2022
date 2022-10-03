@@ -113,28 +113,27 @@
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function createUser($typeUser = null){
+        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null){
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-            $parameters     = $_POST;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($parameters['firstName']);
-            $lastName       = $this->userController->textNameFormat($parameters['lastName']);
+            $firstName      = $this->userController->textNameFormat($firstName);
+            $lastName       = $this->userController->textNameFormat($lastName);
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
             if(strcmp($typeUser, "guardian") == 0) { 
 
-                if($this->userController->checkPassword($parameters['password'])){
+                if($this->userController->checkPassword($password)){
                     
-                    if($this->userController->controllerDNI($parameters['dni'])){
+                    if($this->userController->controllerDNI($dni)){
 
-                        if($this->userController->birthDateCheck($parameters['birthDate'])){
+                        if($this->userController->birthDateCheck($birthDate)){
 
                             $newGuardian = new Guardian(
-                                $token, $parameters['email'], $parameters['password'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate'], $parameters['dni'], null, $parameters['experience']
+                                $token, $email, $password, $dischargeDate, $downDate, $firstName,
+                                $lastName, $birthDate, $dni, null, $experience
                             );
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
@@ -158,15 +157,15 @@
     
             } else {
     
-                if($this->userController->checkPassword($parameters['password'])){
+                if($this->userController->checkPassword($password)){
     
-                    if($this->userController->controllerDNI($parameters['dni'])){
+                    if($this->userController->controllerDNI($dni)){
 
-                        if($this->userController->birthDateCheck($parameters['birthDate'])){
+                        if($this->userController->birthDateCheck($birthDate)){
                             
                             $newOwner = new Owner(
-                                $token, $parameters['email'], $parameters['password'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate'], $parameters['dni'], null
+                                $token, $email, $password, $dischargeDate, $downDate, $firstName,
+                                $lastName, $birthDate, $dni, null
                             );
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);

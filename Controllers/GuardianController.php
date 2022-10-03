@@ -78,6 +78,12 @@
 
                 require_once ROOT_VIEWS."/guardianListDowndateView.php";
 
+            } else if(strcmp($dateType, "pendient") == 0) {
+
+                $this->guardianList = $this->guardianDAO->getAllPendientDateDAO();
+
+                require_once ROOT_VIEWS."/guardianListPendientView.php";
+
             } else {
 
                 $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
@@ -88,11 +94,12 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        // Listado de guardianes sin fecha de alta (Pendientes)
 
-        public function pendient(){
+        // Metodo de alta (guardian)
 
-            echo "Guardianes sin fecha de alta, pendientes";
+        public function confirmGuardian($token) {
+            $guardianDao = $this->guardianDAO->getAllPendientDateDAO();
+            
         }
     } 
 ?>

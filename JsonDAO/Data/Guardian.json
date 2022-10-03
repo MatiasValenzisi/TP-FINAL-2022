@@ -74,5 +74,21 @@
         "bookingList": "2",
         "reviewList": null,
         "serviceList": null
+    },
+    {
+        "token": "507530",
+        "userName": "pendiente@gmail.com",
+        "password": "123456p",
+        "dischargeDate": null,
+        "downDate": null,
+        "firstName": "Elpen",
+        "lastName": "Diente",
+        "birthDate": "1950-05-05",
+        "dni": "425556661",
+        "profilePicture": null,
+        "experience": null,
+        "bookingList": "0",
+        "reviewList": null,
+        "serviceList": null
     }
 ]

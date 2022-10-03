@@ -47,6 +47,18 @@
             return $temporalList;
         }
 
+        public function getAllPendientDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->guardianList as $guardian) {
+                if(is_null($guardian->getDischargeDate())) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
+        }
+
         public function deleteDAO($value){
 
             // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 

@@ -73,7 +73,7 @@
 
                                         <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
 
-                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/pendient"> Guardianes pendientes</a></li>
+                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/list/pendient"> Guardianes pendientes</a></li>
 
                                         <?php } ?>
 

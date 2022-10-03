@@ -132,7 +132,7 @@
                         if($this->userController->birthDateCheck($birthDate)){
 
                             $newGuardian = new Guardian(
-                                $token, $email, $password, $dischargeDate, $downDate, $firstName,
+                                $token, $email, $password, /*dischargeDate*/null, $downDate, $firstName,
                                 $lastName, $birthDate, $dni, null, $experience
                             );
                             
@@ -188,6 +188,7 @@
                 }
             }
         }
+
 
         /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
 

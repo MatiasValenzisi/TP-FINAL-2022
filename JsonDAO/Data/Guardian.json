@@ -58,5 +58,21 @@
             "Friday",
             "Saturday"
         ]
+    },
+    {
+        "token": "873501",
+        "userName": "alejo@gmail.com",
+        "password": "123456a",
+        "dischargeDate": "2022-10-03",
+        "downDate": null,
+        "firstName": "Alejo",
+        "lastName": "Valentin",
+        "birthDate": "1950-02-12",
+        "dni": "42156324",
+        "profilePicture": null,
+        "experience": null,
+        "bookingList": "2",
+        "reviewList": null,
+        "serviceList": null
     }
 ]

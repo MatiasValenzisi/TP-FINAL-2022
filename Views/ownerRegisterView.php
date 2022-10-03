@@ -4,7 +4,7 @@
         <section class="login_content">
 
           <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
-            <input type="hidden" name="type" value="owner">
+            <input type="hidden" name="typeUser" value="owner">
             <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
               <h2>Registrarse como dueño</h2>
             </div> 
@@ -12,9 +12,9 @@
             
             <div class="form-outline text-left">
 
-              <label class="form-label" for="type">Tipo de usuario:</label>
+              <label class="form-label" for="typeUser">Tipo de usuario:</label>
               
-              <select class="form-control" id="type" name="type" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
+              <select class="form-control" id="typeUser" name="typeUser" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
                 <option value="guardian">Guardian</option>
                 <option value="owner" selected>Dueño</option>          
               </select>

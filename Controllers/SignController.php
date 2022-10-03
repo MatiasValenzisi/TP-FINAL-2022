@@ -54,28 +54,17 @@
 
                 } else {
 
-                    if (is_null($userLogin)){ // El usuario no existe.
+                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || !is_null($userLogin->getDischargeDate())){ // El usuario no existe.
 
                         header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 
-                    } else {
+                    } else if (strcmp($userLogin->getPassword(), $password) != 0) { // La contraseña no coincide con la ingresada.
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/password");
+                    } else { // Error desconocido.
 
-                        if(!is_null($userLogin->getDownDate())){ // El usuario esta dado de baja.
-
-                            header("Location: ".FRONT_ROOT."/home/index/error/login/user");
-
-                        } else {
-
-                            if (strcmp($userLogin->getPassword(), $password) != 0){ // La contraseña no coincide con la ingresada.
-
-                                header("Location: ".FRONT_ROOT."/home/index/error/login/password");
-
-                            } else { // Error desconocido.
-
-                                header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
-                            }
-                        }   
-                    }                    
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
+                    }
+                   
                 }
 
             } else {

@@ -119,22 +119,22 @@
 
             $parameters     = $_GET;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($parameters['firstName_new']);
-            $lastName       = $this->userController->textNameFormat($parameters['lastName_new']);
+            $firstName      = $this->userController->textNameFormat($parameters['firstName']);
+            $lastName       = $this->userController->textNameFormat($parameters['lastName']);
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
             if(strcmp($typeUser, "guardian") == 0) { 
 
-                if($this->userController->checkPassword($parameters['password_new'])){
+                if($this->userController->checkPassword($parameters['password'])){
                     
                     if($this->userController->controllerDNI($parameters['dni'])){
 
-                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                        if($this->userController->birthDateCheck($parameters['birthDate'])){
 
                             $newGuardian = new Guardian(
-                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], null, $parameters['experience_new']
+                                $token, $parameters['email'], $parameters['password'], $dischargeDate, $downDate, $firstName,
+                                $lastName, $parameters['birthDate'], $parameters['dni'], null, $parameters['experience']
                             );
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
@@ -158,15 +158,15 @@
     
             } else {
     
-                if($this->userController->checkPassword($parameters['password_new'])){
+                if($this->userController->checkPassword($parameters['password'])){
     
                     if($this->userController->controllerDNI($parameters['dni'])){
 
-                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                        if($this->userController->birthDateCheck($parameters['birthDate'])){
                             
                             $newOwner = new Owner(
-                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], null
+                                $token, $parameters['email'], $parameters['password'], $dischargeDate, $downDate, $firstName,
+                                $lastName, $parameters['birthDate'], $parameters['dni'], null
                             );
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);

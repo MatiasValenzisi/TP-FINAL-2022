@@ -68,9 +68,17 @@
 
                                   <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 
+                                  <?php echo  ?>
+
                                   <li>
                                     <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+
+                                        <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+
+                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/pendient"> Guardianes pendientes</a></li>
+
+                                        <?php } ?>
 
                                         <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a></li>
 

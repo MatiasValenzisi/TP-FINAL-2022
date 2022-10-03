@@ -87,5 +87,12 @@
 
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
+
+        // Listado de guardianes sin fecha de alta (Pendientes)
+
+        public function pendient(){
+
+            echo "Guardianes sin fecha de alta, pendientes";
+        }
     } 
 ?>

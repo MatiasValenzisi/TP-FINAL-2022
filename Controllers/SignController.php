@@ -46,7 +46,7 @@
 
                 $userLogin = $this->userController->getUserName($username);
 
-                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
+                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && !is_null($userLogin->getDischargeDate())  && strcmp($userLogin->getPassword(), $password) == 0){
 
                     $_SESSION["userPH"] = $userLogin;
 

@@ -90,5 +90,21 @@
         "bookingList": "0",
         "reviewList": null,
         "serviceList": null
+    },
+    {
+        "token": "352791",
+        "userName": "jose@gmail.com",
+        "password": "123456j",
+        "dischargeDate": null,
+        "downDate": null,
+        "firstName": "Jose",
+        "lastName": "Alberto",
+        "birthDate": "1920-02-12",
+        "dni": "56898121",
+        "profilePicture": null,
+        "experience": null,
+        "bookingList": "1",
+        "reviewList": null,
+        "serviceList": null
     }
 ]

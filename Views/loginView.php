@@ -1,6 +1,6 @@
 <body class="login">
 
-    <div class="login_wrapper " id="login" style="padding:12px;">
+    <div class="login_wrapper" id="login" style="padding:12px;">
 
         <div class="card card-container ">
             <div class="login_content">
@@ -16,7 +16,7 @@
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type=" text" class="form-control" name="usernamePH" value="" placeholder="Usuario">
+                    <input type="text" class="form-control" name="usernamePH" placeholder="Usuario">
                 </div>
                 <div class="input-group" style="margin-bottom: 25px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -25,8 +25,7 @@
                 <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
                     class="fa fa-user"></i> Iniciar sesión</button>
 
-                <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"
-                    onclick="sweet('TESDT','TWWET','error')"><i class="fa fa-google"></i> Google</button>
+                <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"><i class="fa fa-google"></i> Google</button>
 
                 <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                         class="fa fa-facebook"></i> Facebook</button>

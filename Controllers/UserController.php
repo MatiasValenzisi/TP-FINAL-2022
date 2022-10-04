@@ -45,14 +45,13 @@
 
       private function controllerLetters($string){
 
-        //la primera letra de letters no la toma
           $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           for ($i=0; $i < strlen($string); $i++){
+
               if (strstr($letters, $string[$i]) != false){
 
                 return true;
-
               }
           }
           
@@ -62,6 +61,7 @@
       // Controlar si hay aunque sea un número. 
 
       private function controllerNumber($string){
+
           for ($i=0; $i < strlen($string); $i++) { 
               
               if (is_numeric($string[$i])) {
@@ -71,32 +71,37 @@
           }
 
           return false; 
-
       }
 
       // Controlar que no haya letras en el DNI
 
       public function controllerDNI($string){
-            // Si no detecta una letra devuelve true
-            if(!$this->controllerLetters($string)) {
-                return true;
-            }
-            return false;
+
+          if(!$this->controllerLetters($string)) {
+
+            return true;
+          }
+          
+          return false;
       }
 
       // Emprolija el nombre/apellido
 
       public function textNameFormat($aCambiar) {
+
         return ucwords(strtolower($aCambiar));
       }
 
       // Revisa que la fecha de nacimiento no sea mayor a la actual
 
       public function birthDateCheck($birthDate){
+
         $now  = date("Y-m-d");
+
         if($birthDate <= $now) {
             return true;
         } 
+        
         return false;
       }
 

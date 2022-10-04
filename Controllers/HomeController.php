@@ -8,12 +8,14 @@
 
         /*Metodo inicial de la pagina que te envia al home de la pagina o al inicio de sesión en el caso de ser correspondiente */
 
-        public function index() {
+        public function index($type = null, $action = null, $specific = null) {
   
             if (!isset($_SESSION['userPH'])){
 
-			    require_once ROOT_VIEWS."/mainHeader.php";
+			    require_once ROOT_VIEWS."/loginHeader.php";
                 require_once ROOT_VIEWS."/loginView.php";
+                require_once ROOT_VIEWS."/notificationAlert.php";
+                require_once ROOT_VIEWS."/loginFooter.php";
 
     		} else { 
 
@@ -27,8 +29,12 @@
             
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";         
+<<<<<<< HEAD
             require_once ROOT_VIEWS."/mainFooter.php"; 
                 
+=======
+            require_once ROOT_VIEWS."/mainFooter.php";                 
+>>>>>>> efa345bce3d29e4fa8179a07bd1722cb5ed6a751
         } 
     }
 ?>

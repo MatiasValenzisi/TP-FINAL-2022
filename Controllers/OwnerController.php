@@ -26,28 +26,31 @@
         
         // Muestra un listado de dueños.
 
-        public function list(){
-            $this->updateOwnerList();
-            
+        
+        // Muestra un listado de dueños.
+
+        public function list($dateType = null){
+          
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/temporal-listado-owner.php";            
+
+            //Selecciona el tipo de lista que vas a mostrar
+
+            if(strcmp($dateType, "downdate") == 0) {
+
+                $this->ownerList = $this->ownerDAO->getAllDownDateDAO();
+
+                require_once ROOT_VIEWS."/ownerListDowndateView.php";
+
+            } else {
+
+                $this->ownerList = $this->ownerDAO->getAllDischargeDateDAO();
+                
+                require_once ROOT_VIEWS."/ownerListDischargedateView.php";                 
+            }        
+
             require_once ROOT_VIEWS."/mainFooter.php"; 
-            
         }
 
-        // Actualiza la lista de dueños
-
-        private function updateOwnerList() {
-            $this->setOwnerList($this->getOwnerDAO());
-        }
-
-        public function getOwnerDAO() {
-            return $this->ownerDAO;
-        }
-
-        public function setOwnerList($list){
-            $this->ownerList = $list;
-        }
     } 
 ?>

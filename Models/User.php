@@ -11,18 +11,20 @@
         protected $lastName;
         protected $birthDate;
         protected $dni;
+        protected $profilePicture;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null) {
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null) {
         
-            $this->token         = $token;
-            $this->userName      = $userName;
-            $this->password      = $password;
-            $this->dischargeDate = $dischargeDate;
-            $this->downDate      = $downDate;
-            $this->firstName     = $firstName;
-            $this->lastName      = $lastName;
-            $this->birthDate     = $birthDate;
-            $this->dni           = $dni;
+            $this->token          = $token;
+            $this->userName       = $userName;
+            $this->password       = $password;
+            $this->dischargeDate  = $dischargeDate;
+            $this->downDate       = $downDate;
+            $this->firstName      = $firstName;
+            $this->lastName       = $lastName;
+            $this->birthDate      = $birthDate;
+            $this->dni            = $dni;
+            $this->profilePicture = $profilePicture;
         }
 
         public function getToken(){
@@ -114,5 +116,15 @@
             
             $this->dni = $dni;
         }
+
+        public function getProfilePicture() { 
+            
+            return $this->profilePicture; 
+        } 
+
+        public function setProfilePicture($profilePicture) { 
+
+            $this->profilePicture = $profilePicture;
+        } 
     }
 ?>

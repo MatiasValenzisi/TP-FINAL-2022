@@ -10,7 +10,7 @@
 
                   <div class="x_content"><br>
                     
-                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit" method="GET">
+                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit" method="POST">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Token de usuario &nbsp;</label>
@@ -27,9 +27,9 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_edit">Contraseña <span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Contraseña <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" class="form-control col-md-7 col-xs-12" placeholder="Contraseña" name="password_edit" id="password_edit" value="<?php echo $_SESSION['userPH']->getPassword() ?>" required/>
+                          <input type="password" class="form-control col-md-7 col-xs-12" placeholder="Contraseña" name="password" id="password" value="<?php echo $_SESSION['userPH']->getPassword() ?>" required/>
                         </div>
                       </div>
 
@@ -62,9 +62,9 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="experience_edit">Años de experiencia: <span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="experience">Años de experiencia: <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" class="form-control col-md-7 col-xs-12" placeholder="Años de experiencia" name="experience_edit" id="experience_edit" value="<?php echo $_SESSION['userPH']->getExperience() ?>" min="0" max="99" required/>
+                          <input type="number" class="form-control col-md-7 col-xs-12" placeholder="Años de experiencia" name="experience" id="experience" value="<?php echo $_SESSION['userPH']->getExperience() ?>" min="0" max="99" required/>
                         </div>
                       </div>
 
@@ -73,65 +73,28 @@
                         <label class="col-md-3 col-sm-3 col-xs-12 control-label">Disponibilidad de estadías <span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                        <div class="checkbox">
+                          <div class="checkbox">
 
-                        <?php if (isset($serviceArray['Monday'])){ ?>
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Monday'])){ echo "checked"; } ?> 
+                              value="Monday">&nbsp; Lunes</label>
 
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Monday" checked>&nbsp; Lunes</label>
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Tuesday'])){ echo "checked"; } ?> 
+                              value="Tuesday">&nbsp; Martes</label>
 
-                        <?php } else { ?>
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Wednesday'])){ echo "checked"; } ?> 
+                              value="Wednesday">&nbsp; Miércoles</label>
 
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Monday">&nbsp; Lunes</label>
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Thursday'])){ echo "checked"; } ?> 
+                              value="Thursday">&nbsp; Jueves</label>
 
-                        <?php } if (isset($serviceArray['Tuesday'])){ ?> 
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Friday'])){ echo "checked"; } ?> 
+                              value="Friday">&nbsp; Viernes</label>
 
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Tuesday" checked>&nbsp; Martes</label>
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Saturday'])){ echo "checked"; } ?> 
+                              value="Saturday">&nbsp; Sábado</label>
 
-                        <?php } else { ?>                     
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Tuesday">&nbsp; Martes</label>
-
-                        <?php } if (isset($serviceArray['Wednesday'])){ ?> 
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Wednesday" checked>&nbsp; Miércoles</label>
-
-                        <?php } else { ?>
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Wednesday">&nbsp; Miércoles</label>
-
-                        <?php } if (isset($serviceArray['Thursday'])){ ?> 
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Thursday" checked>&nbsp; Jueves</label>
-
-                        <?php } else { ?>
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Thursday">&nbsp; Jueves</label>
-
-                        <?php } if (isset($serviceArray['Friday'])){ ?> 
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Friday" checked>&nbsp; Viernes</label>
-
-                        <?php } else { ?>
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Friday">&nbsp; Viernes</label>
-
-                        <?php } if (isset($serviceArray['Saturday'])){ ?> 
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Saturday" checked>&nbsp; Sábado</label>
-
-                        <?php } else { ?>
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Saturday">&nbsp; Sábado</label>
-
-                        <?php } if (isset($serviceArray['Saturday'])){ ?> 
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Sunday" checked>&nbsp; Domingo</label>   
-
-                        <?php } else { ?>
-
-                          <label><input type="checkbox" class="flat" name="disp_edit[]" value="Sunday">&nbsp; Domingo</label>   
-
-                        <?php } ?>                          
+                            <label><input type="checkbox" class="flat" name="disp[]" <?php if (isset($serviceArray['Sunday'])){ echo "checked"; } ?> 
+                              value="Sunday">&nbsp; Domingo</label>                      
                           
                           </div>
                         </div>

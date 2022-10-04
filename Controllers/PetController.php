@@ -32,6 +32,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
+<<<<<<< HEAD
         // Crear mascota
         public function createPet()
         {
@@ -103,5 +104,11 @@
         return $tokenList; 
     }
     
+=======
+        public function add(){
+
+            echo "Añadir mascotas";
+        }
+>>>>>>> efa345bce3d29e4fa8179a07bd1722cb5ed6a751
     } 
 ?>

@@ -23,6 +23,30 @@
             return $this->ownerList;
         }
 
+        public function getAllDownDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->ownerList as $owner) {
+                if(!is_null($owner->getDownDate())) {
+                    array_push($temporalList, $owner);
+                }
+            }
+            return $temporalList;
+        }
+
+        public function getAllDischargeDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->ownerList as $owner) {
+                if(is_null($owner->getDownDate())) {
+                    array_push($temporalList, $owner);
+                }
+            }
+            return $temporalList;
+        }
+
         public function deleteDAO($value){
 
             // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 
@@ -35,18 +59,19 @@
 
             foreach($this->ownerList as $owner) {
 
-                $arrayValues["token"]         = $owner->getToken();
-                $arrayValues["userName"]      = $owner->getUserName();
-                $arrayValues["password"]      = $owner->getPassword();
-                $arrayValues["dischargeDate"] = $owner->getDischargeDate();
-                $arrayValues["downDate"]      = $owner->getDownDate();
-                $arrayValues["firstName"]     = $owner->getFirstName();
-                $arrayValues["lastName"]      = $owner->getLastName();
-                $arrayValues["birthDate"]     = $owner->getBirthDate();
-                $arrayValues["dni"]           = $owner->getDni();
-                $arrayValues["bookingsList"]  = $owner->getBookingsList();
-                $arrayValues["petList"]       = $owner->getPetList();
-                $arrayValues["paymentsList"]  = $owner->getPaymentsList();
+                $arrayValues["token"]          = $owner->getToken();
+                $arrayValues["userName"]       = $owner->getUserName();
+                $arrayValues["password"]       = $owner->getPassword();
+                $arrayValues["dischargeDate"]  = $owner->getDischargeDate();
+                $arrayValues["downDate"]       = $owner->getDownDate();
+                $arrayValues["firstName"]      = $owner->getFirstName();
+                $arrayValues["lastName"]       = $owner->getLastName();
+                $arrayValues["birthDate"]      = $owner->getBirthDate();
+                $arrayValues["dni"]            = $owner->getDni();
+                $arrayValues["profilePicture"] = $owner->getProfilePicture();
+                $arrayValues["bookingsList"]   = $owner->getBookingsList();
+                $arrayValues["petList"]        = $owner->getPetList();
+                $arrayValues["paymentsList"]   = $owner->getPaymentsList();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -86,6 +111,7 @@
                     $owner->setLastName($values["lastName"]);
                     $owner->setBirthDate($values["birthDate"]);
                     $owner->setDni($values["dni"]);
+                    $owner->setProfilePicture($values["profilePicture"]);
                     $owner->setBookingsList($values["bookingsList"]);
                     $owner->setPetList($values["petList"]);
                     $owner->setPaymentsList($values["paymentsList"]);

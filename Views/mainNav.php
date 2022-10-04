@@ -26,8 +26,19 @@
                       <!-- menu profile quick info -->
                       <div class="profile clearfix">
                           <div class="profile_pic">
+
+                            <?php if (is_null($_SESSION['userPH'])) { ?>
+
                               <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
                                   class="img-circle profile_img">
+
+                                <?php } else { ?>
+
+                                  <img src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getToken() ?>.png" alt="..."
+                                  class="img-circle profile_img">
+
+                                <?php } ?>
+
                           </div>
                           <div class="profile_info">
                               <span>Bienvenido</span>
@@ -68,10 +79,12 @@
 
                                       <?php } ?>
 
-
                                   </li>
 
+                                  <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
                                   <li>
+<<<<<<< HEAD
                                       <a><i class="fa fa-briefcase text-center"></i> Guardianes<span
                                               class="fa fa-chevron-down"></span></a>
                                       <ul class="nav child_menu">
@@ -82,9 +95,32 @@
                                                   dados de baja</a></li>
                                           */ ?>
                                       </ul>
+=======
+                                    <a><i class="fa fa-briefcase text-center"></i> Guardianes<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+
+                                          <li><a href="<?php echo FRONT_ROOT?>/guardian/list/pendient"> Guardianes pendientes</a></li>
+
+                                        <?php } ?>
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Listado de guardianes</a></li>
+
+                                        <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?>
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/guardian/list/downdate"> Guardianes dados de baja</a></li>  
+
+                                        <?php } ?>
+
+                                    </ul>                                    
+>>>>>>> efa345bce3d29e4fa8179a07bd1722cb5ed6a751
                                   </li>
 
+                                  <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){ ?> 
+
                                   <li>
+<<<<<<< HEAD
                                       <a><i class="fa fa-user text-center"></i> Dueños<span
                                               class="fa fa-chevron-down"></span></a>
                                       <ul class="nav child_menu">
@@ -94,16 +130,35 @@
                                                   baja</a></li>
                                           */ ?>
                                       </ul>
+=======
+                                    <a><i class="fa fa-user text-center"></i> Dueños<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">                                        
+                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list"> Listado de dueños</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/owner/list/downdate"> Dueños dados de baja</a></li>
+                                    </ul>
+>>>>>>> efa345bce3d29e4fa8179a07bd1722cb5ed6a751
                                   </li>
 
+                                  <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
                                   <li>
+<<<<<<< HEAD
                                       <a><i class="fa fa-paw text-center"></i> Mascotas<span
                                               class="fa fa-chevron-down"></span></a>
                                       <ul class="nav child_menu">
                                           <li><a href="<?php echo FRONT_ROOT?>/pet/createpet">Añadir mascota</a></li>
                                           <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>
                                       </ul>
+=======
+                                    <a><i class="fa fa-paw text-center"></i> Mascotas<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">       
+                                       <li><a href="<?php echo FRONT_ROOT?>/pet/add"> Añadir mascota</a></li>                               
+                                       <li><a href="<?php echo FRONT_ROOT?>/pet/list"> Listado de mascotas</a></li>                                       
+                                    </ul>
+>>>>>>> efa345bce3d29e4fa8179a07bd1722cb5ed6a751
                                   </li>
+
+                                  <?php } ?>
 
                                   <li>
                                       <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i

@@ -22,7 +22,7 @@
 
         // Muestra el perfil del guardian en sessión.
 
-        public function profile($type = null, $action = null){
+        public function profile($type = null, $action = null, $specific = null){
 
             $serviceArray = array();
 
@@ -36,7 +36,8 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/profileGuardianView.php";        
+            require_once ROOT_VIEWS."/guardianProfileView.php";  
+            require_once ROOT_VIEWS."/notificationAlert.php";      
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
@@ -44,9 +45,9 @@
 
             $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $guardian->setPassword($_GET['password_edit']);
-            $guardian->setExperience($_GET['experience_edit']);
-            $guardian->setServiceList($_GET['disp_edit']);
+            $guardian->setPassword($_POST['password']);
+            $guardian->setExperience($_POST['experience']);
+            $guardian->setServiceList($_POST['disp']);
 
             if($this->userController->checkPassword($guardian->getPassword())){
 
@@ -62,10 +63,46 @@
             }            
         }
         
-        // Muestra un listado de guardianes activos.
+        // Muestra un listado de guardianes.
 
-        public function list(){
-            echo "lista de guardianes activos";
+        public function list($dateType = null){
+          
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+
+            //Selecciona el tipo de lista que vas a mostrar
+
+            if(strcmp($dateType, "downdate") == 0) { 
+
+                $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
+
+                require_once ROOT_VIEWS."/guardianListDowndateView.php";
+
+            } else if(strcmp($dateType, "pendient") == 0) {
+
+                $this->guardianList = $this->guardianDAO->getAllPendientDateDAO();
+
+                require_once ROOT_VIEWS."/guardianListPendientView.php";
+
+            } else {
+
+                $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+                
+                require_once ROOT_VIEWS."/guardianListDischargedateView.php";                 
+            }        
+
+            require_once ROOT_VIEWS."/mainFooter.php"; 
+        }
+
+
+        // Metodo de alta (guardian)
+
+        public function confirmGuardian($token) {
+            
+            $this->guardianDAO->confirmPendientGuardianDAO($token);
+            
+            
+            header("Location: ".FRONT_ROOT."/guardian/list/pendient");
         }
     } 
 ?>

@@ -1,7 +1,7 @@
 [
     {
         "token": "010890",
-        "userName": "duenionotengoenie@gmail.com",
+        "userName": "phil@gmail.com",
         "password": "123456",
         "dischargeDate": "2022-09-27",
         "downDate": null,
@@ -9,6 +9,7 @@
         "lastName": "Jhons",
         "birthDate": "1989-12-31",
         "dni": "23232323",
+        "profilePicture": null,
         "bookingsList": null,
         "petList": null,
         "paymentsList": null
@@ -23,6 +24,22 @@
         "lastName": "Zarate",
         "birthDate": "2000-05-05",
         "dni": "42222253",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    },
+    {
+        "token": "787165",
+        "userName": "german@gmail.com",
+        "password": "123456g",
+        "dischargeDate": "2022-10-03",
+        "downDate": null,
+        "firstName": "German",
+        "lastName": "Germ",
+        "birthDate": "1999-05-05",
+        "dni": "42555666",
+        "profilePicture": null,
         "bookingsList": null,
         "petList": null,
         "paymentsList": null

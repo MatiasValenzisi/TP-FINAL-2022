@@ -35,8 +35,7 @@
 
                     $_SESSION['userPH'] = $userLogin;
                 }
-            }
-            
+            }            
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */
@@ -47,7 +46,7 @@
 
                 $userLogin = $this->userController->getUserName($username);
 
-                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && strcmp($userLogin->getPassword(), $password) == 0){
+                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && !is_null($userLogin->getDischargeDate())  && strcmp($userLogin->getPassword(), $password) == 0){
 
                     $_SESSION["userPH"] = $userLogin;
 
@@ -55,11 +54,17 @@
 
                 } else {
 
-                    if (!is_null($userLogin)){
+                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ // El usuario no existe.
 
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/user");
+
+                    } else if (strcmp($userLogin->getPassword(), $password) != 0) { // La contraseña no coincide con la ingresada.
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/password");
+                    } else { // Error desconocido.
+
+                        header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
                     }
-
-                    header("Location: ".FRONT_ROOT);
+                   
                 }
 
             } else {
@@ -78,86 +83,101 @@
 
         /* Metodo que llama al formulario para crear un usuario */ 
 
-        public function register($type = null){
+        public function register($typeUser = null, $type = null, $action = null, $specific = null){
 
-            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/loginHeader.php";
 
-            if(strcmp($type, "guardian") == 0){
+            if(strcmp($typeUser, "guardian") == 0){
 
-                require_once ROOT_VIEWS."/registerGuardianView.php";
+                require_once ROOT_VIEWS."/guardianRegisterView.php";
 
-            } else{
+            } else {
 
-                require_once ROOT_VIEWS."/registerOwnerView.php";
+                require_once ROOT_VIEWS."/ownerRegisterView.php";
             }
+
+            require_once ROOT_VIEWS."/notificationAlert.php";
+            require_once ROOT_VIEWS."/loginFooter.php";
         }
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function createUser($type = null){
+        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null){
 
             date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-            $parameters     = $_GET;
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($parameters['firstName_new']);
-            $lastName       = $this->userController->textNameFormat($parameters['lastName_new']);
+            $firstName      = $this->userController->textNameFormat($firstName);
+            $lastName       = $this->userController->textNameFormat($lastName);
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
-            if(strcmp($type, "guardian") == 0) {  
-                if($this->userController->checkPassword($parameters['password_new'])){
-                    
-                    if($this->userController->controllerDNI($parameters['dni'])){
+            if(strcmp($typeUser, "guardian") == 0) { 
 
-                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                if($this->userController->checkPassword($password)){
+                    
+                    if($this->userController->controllerDNI($dni)){
+
+                        if($this->userController->birthDateCheck($birthDate)){
+
                             $newGuardian = new Guardian(
-                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new'], $parameters['experience_new']
+                                $token, $email, $password, /*dischargeDate*/null, $downDate, $firstName,
+                                $lastName, $birthDate, $dni, null, $experience
                             );
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);
     
-                            header("Location: ".FRONT_ROOT."/");
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
+
                         } else {
-                            header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/birthDate");
+
+                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
                         }
                         
                     } else {
-                        header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/dni");
+
+                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                     }
     
                 } else {
-                    header("Location: ".FRONT_ROOT."/sign/register/error/create/guardian/password");
+
+                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
                 }
     
             } else {
     
-                if($this->userController->checkPassword($parameters['password_new'])){
+                if($this->userController->checkPassword($password)){
     
-                    if($this->userController->controllerDNI($parameters['dni'])){
+                    if($this->userController->controllerDNI($dni)){
 
-                        if($this->userController->birthDateCheck($parameters['birthDate_new'])){
+                        if($this->userController->birthDateCheck($birthDate)){
+                            
                             $newOwner = new Owner(
-                                $token, $parameters['email_new'], $parameters['password_new'], $dischargeDate, $downDate, $firstName,
-                                $lastName, $parameters['birthDate_new'], $parameters['dni_new']
+                                $token, $email, $password, $dischargeDate, $downDate, $firstName,
+                                $lastName, $birthDate, $dni, null
                             );
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);
 
-                            header("Location: ".FRONT_ROOT."/");
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
+
                         } else {
-                            header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/birthDate");
+
+                            header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
                         }
+
                     } else {
-                        header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/dni");
+
+                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
                     }
                 
                 } else {
-                    header("Location: ".FRONT_ROOT."/sign/register/error/create/owner/password");
+
+                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
                 }
             }
         }
+
 
         /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
 

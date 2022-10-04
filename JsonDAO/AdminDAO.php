@@ -35,15 +35,16 @@
 
             foreach($this->adminList as $admin) {
 
-                $arrayValues["token"]         = $admin->getToken();
-                $arrayValues["userName"]      = $admin->getUserName();
-                $arrayValues["password"]      = $admin->getPassword();
-                $arrayValues["dischargeDate"] = $admin->getDischargeDate();
-                $arrayValues["downDate"]      = $admin->getDownDate();
-                $arrayValues["firstName"]     = $admin->getFirstName();
-                $arrayValues["lastName"]      = $admin->getLastName();
-                $arrayValues["birthDate"]     = $admin->getBirthDate();
-                $arrayValues["dni"]           = $admin->getDni();
+                $arrayValues["token"]           = $admin->getToken();
+                $arrayValues["userName"]        = $admin->getUserName();
+                $arrayValues["password"]        = $admin->getPassword();
+                $arrayValues["dischargeDate"]   = $admin->getDischargeDate();
+                $arrayValues["downDate"]        = $admin->getDownDate();
+                $arrayValues["firstName"]       = $admin->getFirstName();
+                $arrayValues["lastName"]        = $admin->getLastName();
+                $arrayValues["birthDate"]       = $admin->getBirthDate();
+                $arrayValues["dni"]             = $admin->getDni();                
+                $arrayValues["profilePicture"]  = $admin->getProfilePicture();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -83,6 +84,7 @@
                     $admin->setLastName($values["lastName"]);
                     $admin->setBirthDate($values["birthDate"]);
                     $admin->setDni($values["dni"]);
+                    $admin->setProfilePicture($values["profilePicture"]);
                     
                     array_push($this->adminList, $admin);
                 }

@@ -23,6 +23,42 @@
             return $this->guardianList;
         }
 
+        public function getAllDownDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->guardianList as $guardian) {
+                if(!is_null($guardian->getDownDate())) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
+        }
+
+        public function getAllDischargeDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->guardianList as $guardian) {
+                if(is_null($guardian->getDownDate()) && !is_null($guardian->getDischargeDate())) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
+        }
+
+        public function getAllPendientDateDAO() {
+            $this->retrieveData();
+            $temporalList = array();
+
+            foreach($this->guardianList as $guardian) {
+                if(is_null($guardian->getDischargeDate())) {
+                    array_push($temporalList, $guardian);
+                }
+            }
+            return $temporalList;
+        }
+
         public function deleteDAO($value){
 
             // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 
@@ -54,19 +90,20 @@
 
             foreach($this->guardianList as $guardian) {
 
-                $arrayValues["token"]         = $guardian->getToken();
-                $arrayValues["userName"]      = $guardian->getUserName();
-                $arrayValues["password"]      = $guardian->getPassword();
-                $arrayValues["dischargeDate"] = $guardian->getDischargeDate();
-                $arrayValues["downDate"]      = $guardian->getDownDate();
-                $arrayValues["firstName"]     = $guardian->getFirstName();
-                $arrayValues["lastName"]      = $guardian->getLastName();
-                $arrayValues["birthDate"]     = $guardian->getBirthDate();
-                $arrayValues["dni"]           = $guardian->getDni();
-                $arrayValues["experience"]    = $guardian->getExperience();
-                $arrayValues["bookingList"]   = $guardian->getBookingList();
-                $arrayValues["reviewList"]    = $guardian->getReviewList();
-                $arrayValues["serviceList"]   = $guardian->getServiceList();
+                $arrayValues["token"]          = $guardian->getToken();
+                $arrayValues["userName"]       = $guardian->getUserName();
+                $arrayValues["password"]       = $guardian->getPassword();
+                $arrayValues["dischargeDate"]  = $guardian->getDischargeDate();
+                $arrayValues["downDate"]       = $guardian->getDownDate();
+                $arrayValues["firstName"]      = $guardian->getFirstName();
+                $arrayValues["lastName"]       = $guardian->getLastName();
+                $arrayValues["birthDate"]      = $guardian->getBirthDate();
+                $arrayValues["dni"]            = $guardian->getDni();
+                $arrayValues["profilePicture"] = $guardian->getProfilePicture();
+                $arrayValues["experience"]     = $guardian->getExperience();
+                $arrayValues["bookingList"]    = $guardian->getBookingList();
+                $arrayValues["reviewList"]     = $guardian->getReviewList();
+                $arrayValues["serviceList"]    = $guardian->getServiceList();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -105,7 +142,8 @@
                     $guardian->setFirstName($values["firstName"]);
                     $guardian->setLastName($values["lastName"]);
                     $guardian->setBirthDate($values["birthDate"]);
-                    $guardian->setDni($values["dni"]);
+                    $guardian->setDni($values["dni"]);                    
+                    $guardian->setProfilePicture($values["profilePicture"]);
                     $guardian->setExperience($values["experience"]);
                     $guardian->setBookingList($values["bookingList"]);
                     $guardian->setReviewList($values["reviewList"]);
@@ -137,17 +175,27 @@
 
             $this->retrieveData();
 
-            $user = null;
+            $guardian = null;
 
             foreach ($this->guardianList as $value) {
 
                 if(strcmp($value->getToken(), $token) == 0){
 
-                    $user = $value;
+                    $guardian = $value;
                 }
             }
 
-            return $user;
+            return $guardian;
         }    
+
+        public function confirmPendientGuardianDAO($token) {
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+            $this->getUserTokenDAO($token)->setDischargeDate(date("Y-m-d"));
+
+            $this->saveData();
+        }
+
+
     }
 ?>

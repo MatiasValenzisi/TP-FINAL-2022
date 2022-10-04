@@ -7,9 +7,9 @@
         private $reviewList;
         private $serviceList;
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $experience = null, $bookingList = null, $reviewList = null){
+        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $experience = null, $bookingList = null, $reviewList = null, $profilePicture = null){
 
-            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
+            parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni, $profilePicture);
 
             $this->experience  = $experience;
             $this->bookingList = $bookingList;

@@ -2,7 +2,7 @@
     {
         "token": "823905",
         "userName": "nicolas_brun@gmail.com",
-        "password": "123456",
+        "password": "123456n",
         "dischargeDate": "2022-09-27",
         "downDate": null,
         "firstName": "Nicolas",
@@ -14,8 +14,7 @@
         "bookingList": null,
         "reviewList": null,
         "serviceList": [
-            "Tuesday",
-            "Wednesday"
+            "Sunday"
         ]
     },
     {

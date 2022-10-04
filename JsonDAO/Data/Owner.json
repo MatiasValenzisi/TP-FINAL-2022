@@ -43,5 +43,50 @@
         "bookingsList": null,
         "petList": null,
         "paymentsList": null
+    },
+    {
+        "token": "009685",
+        "userName": "duki@gmail.com",
+        "password": "1234a",
+        "dischargeDate": "2022-10-04",
+        "downDate": null,
+        "firstName": "Duki",
+        "lastName": "Lombardo",
+        "birthDate": "1996-07-24",
+        "dni": "42775505",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    },
+    {
+        "token": "107637",
+        "userName": "messi@gmail.com",
+        "password": "fulbo123",
+        "dischargeDate": "2022-10-04",
+        "downDate": null,
+        "firstName": "Lionel Andres",
+        "lastName": "Messi",
+        "birthDate": "1987-07-24",
+        "dni": "39568797",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    },
+    {
+        "token": "670949",
+        "userName": "mirthaLegrand@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-10-04",
+        "downDate": null,
+        "firstName": "Mirtha",
+        "lastName": "Legrand",
+        "birthDate": "1900-06-05",
+        "dni": "00000001",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
     }
 ]

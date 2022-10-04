@@ -52,6 +52,7 @@
             file_put_contents($this->fileName, $jsonContent);
         }
 
+        
         public function retrieveData(){
 
             $this->dogList = array();

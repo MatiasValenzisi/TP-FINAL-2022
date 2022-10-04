@@ -28,20 +28,26 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/petAdministrationView.php";            
+            require_once ROOT_VIEWS."/petAdministrationView.php"; 
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
+        public function add()
+        {
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/createPetView.php";     
+            require_once ROOT_VIEWS."/mainFooter.php"; 
+        }
         // Crear mascota
         public function createPet()
         {
-            $parameters     = $_GET;
             
+            $parameters  = $_POST;
             $ownerToken=$_SESSION['userPH']->getToken();
-            $token=$this->createToken($this->getPetToken());
-            $this->dog =new Dog($token,$ownerToken,$parameters["name"],$parameters["race_new"]); 
+            $token=$this->createToken($this->getTokenPetList());
+            $this->dog =new Dog($token,$ownerToken,$parameters["name"],$parameters["race"],$parameters["size"],$parameters["observations"],$parameters["vaccinationplan"],$parameters["photo"]=null); 
             $this->dogDAO->addDAO($this->dog);
-            $this->dogDAO->saveData();
         }
 
         public function createToken($petListToken){ 
@@ -84,18 +90,17 @@
         return $this->pet;
         
     }
-    public function getTokenUserList(){ 
+    public function getTokenPetList(){ 
 
         $tokenList = array();
 
-        $adminDao = $this->getAdminDAO();
-        $adminList = $adminDao->getAllDAO();
+        $dogList = $this->dogDAO->getAllDAO();
 
-        if($adminList != null) {
+        if($dogList != null) {
 
-            foreach($adminList as $admin) {
+            foreach($dogList as $currentDog) {
 
-                array_push($tokenList, $admin->getToken());
+                array_push($tokenList, $currentDog->getToken());
             }
         }
 

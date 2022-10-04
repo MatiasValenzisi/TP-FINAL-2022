@@ -41,13 +41,13 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit(){
+        public function profileEdit($password, $experience, $disp = null){
 
             $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $guardian->setPassword($_POST['password']);
-            $guardian->setExperience($_POST['experience']);
-            $guardian->setServiceList($_POST['disp']);
+            $guardian->setPassword($password);
+            $guardian->setExperience($experience);
+            $guardian->setServiceList($disp);
 
             if($this->userController->checkPassword($guardian->getPassword())){
 

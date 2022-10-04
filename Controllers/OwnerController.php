@@ -35,7 +35,7 @@
 
             $owner = $this->ownerDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $owner->setPassword($_POST['password']);
+            $owner->setPassword($password);
 
             if($this->userController->checkPassword($owner->getPassword())){
 

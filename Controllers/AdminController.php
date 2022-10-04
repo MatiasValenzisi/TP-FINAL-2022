@@ -31,11 +31,11 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit(){
+        public function profileEdit($password){
 
             $admin = $this->adminDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $admin->setPassword($_POST['password']);
+            $admin->setPassword($password);
 
             if($this->userController->checkPassword($admin->getPassword())){
 

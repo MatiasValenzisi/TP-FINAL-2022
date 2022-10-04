@@ -43,5 +43,35 @@
         "bookingsList": null,
         "petList": null,
         "paymentsList": null
+    },
+    {
+        "token": "009685",
+        "userName": "duki@gmail.com",
+        "password": "1234a",
+        "dischargeDate": "2022-10-04",
+        "downDate": null,
+        "firstName": "Duki",
+        "lastName": "Lombardo",
+        "birthDate": "1996-07-24",
+        "dni": "42775505",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
+    },
+    {
+        "token": "107637",
+        "userName": "laComadreja@gmail.com",
+        "password": "fulbo123",
+        "dischargeDate": "2022-10-04",
+        "downDate": null,
+        "firstName": "Lionel Andres",
+        "lastName": "Messi",
+        "birthDate": "1987-07-24",
+        "dni": "39568797",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
     }
 ]

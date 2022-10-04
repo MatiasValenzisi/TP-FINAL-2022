@@ -27,7 +27,7 @@
                     <div class="profile clearfix">
                         <div class="profile_pic">
 
-                            <?php if (is_null($_SESSION['userPH'])) { ?>
+                            <?php if (is_null($_SESSION['userPH']->getProfilePicture())) { ?>
 
                             <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
                                 class="img-circle profile_img">

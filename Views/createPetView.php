@@ -4,81 +4,75 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Perfil guardian</h2>
+                    <h2>Crear Perro</h2>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="x_content"><br>
 
-                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit"
+                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/pet/createpet"
                         method="POST">
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Token de usuario
-                                &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getToken() ?>
-                                </label>
-                            </div>
-                        </div>
+
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo electrónico
-                                &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getUserName() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Contraseña
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre
                                 <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" class="form-control col-md-7 col-xs-12" placeholder="Contraseña"
-                                    name="password" id="password"
-                                    value="<?php echo $_SESSION['userPH']->getPassword() ?>" required />
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Nombre"
+                                    name="name" id="name" value="" required />
                             </div>
                         </div>
 
+
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre &nbsp;</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="raze">Raza
+                                <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getFirstName() ?>
-                                </label>
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Raza"
+                                    name="raze" id="raze" value="" required />
                             </div>
                         </div>
 
+
+
+
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellido &nbsp;</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="observations">Observaciones
+                                <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getLastName() ?>
-                                </label>
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Observacion"
+                                    name="observations" id="observations" value="" required />
                             </div>
                         </div>
 
+
+
+
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI &nbsp;</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="vaccinationplan">Plan
+                                Vacunacion
+                                <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getDni() ?>
-                                </label>
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Plan vacunacion"
+                                    name="vaccinationplan" id="vaccinationplan" value="" required />
                             </div>
                         </div>
 
+
+
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de nacimiento
-                                &nbsp;</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo">Foto</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getBirthDate() ?>
-                                </label>
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Plan vacunacion"
+                                    name="photo" id="photo" value="" required />
                             </div>
                         </div>
+
+
+
+
+
 
 
 

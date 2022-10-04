@@ -40,13 +40,13 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         // Crear mascota
-        public function createPet()
+        public function createPet($name,$race,$observations,$vaccinationplan,$photo=null)
         {
             
-            $parameters  = $_POST;
+
             $ownerToken=$_SESSION['userPH']->getToken();
             $token=$this->createToken($this->getTokenPetList());
-            $this->dog =new Dog($token,$ownerToken,$parameters["name"],$parameters["race"],$parameters["size"],$parameters["observations"],$parameters["vaccinationplan"],$parameters["photo"]=null); 
+            $this->dog =new Dog($token,$ownerToken,$name,$race,$observations,$vaccinationplan,$photo); 
             $this->dogDAO->addDAO($this->dog);
         }
 

@@ -1,152 +1,73 @@
-<div class="">
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Perfil guardian</h2>
-                    <div class="clearfix"></div>
-                </div>
+<body class="login">
+    <div style="position: relative; width:auto; padding-left: 35%; padding-right: 35%">
+      <div class="form text">
+        <section class="login_content">
 
-                <div class="x_content"><br>
+          <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
+            <input type="hidden" name="typeUser" value="owner">
+            <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
+              <h2>Registrarse como dueño</h2>
+            </div> 
+            <br>
+            
+            <div class="form-outline text-left">
 
-                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit"
-                        method="POST">
+              <label class="form-label" for="typeUser">Tipo de usuario:</label>
+              
+              <select class="form-control" id="typeUser" name="typeUser" onchange="location='<?php echo FRONT_ROOT ?>/sign/register/'+this.value">
+                <option value="guardian">Guardian</option>
+                <option value="owner" selected>Dueño</option>          
+              </select>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Token de usuario
-                                &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getToken() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Correo electrónico
-                                &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getUserName() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Contraseña
-                                <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" class="form-control col-md-7 col-xs-12" placeholder="Contraseña"
-                                    name="password" id="password"
-                                    value="<?php echo $_SESSION['userPH']->getPassword() ?>" required />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getFirstName() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Apellido &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getLastName() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getDni() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de nacimiento
-                                &nbsp;</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="form-control col-md-7 col-xs-12"
-                                    style="font-weight: normal;"><?php echo $_SESSION['userPH']->getBirthDate() ?>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="experience">Años de
-                                experiencia: <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" class="form-control col-md-7 col-xs-12"
-                                    placeholder="Años de experiencia" name="experience" id="experience"
-                                    value="<?php echo $_SESSION['userPH']->getExperience() ?>" min="0" max="99"
-                                    required />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Disponibilidad de
-                                estadías <span class="required">*</span></label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-
-                                <div class="checkbox">
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Monday'])){ echo "checked"; } ?>
-                                            value="Monday">&nbsp; Lunes</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Tuesday'])){ echo "checked"; } ?>
-                                            value="Tuesday">&nbsp; Martes</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Wednesday'])){ echo "checked"; } ?>
-                                            value="Wednesday">&nbsp; Miércoles</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Thursday'])){ echo "checked"; } ?>
-                                            value="Thursday">&nbsp; Jueves</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Friday'])){ echo "checked"; } ?>
-                                            value="Friday">&nbsp; Viernes</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Saturday'])){ echo "checked"; } ?>
-                                            value="Saturday">&nbsp; Sábado</label>
-
-                                    <label><input type="checkbox" class="flat" name="disp[]"
-                                            <?php if (isset($serviceArray['Sunday'])){ echo "checked"; } ?>
-                                            value="Sunday">&nbsp; Domingo</label>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-
-                                <button class="btn btn-primary" type="button"
-                                    onclick="location.href='<?php echo FRONT_ROOT ?>/home/administration'"
-                                    style="width:20%;">Cancel</button>
-
-                                <button type="submit" class="btn btn-success" style="width:20%;">Guardar
-                                    cambios</button>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
-        </div>
+
+            <br>
+
+            <div class="form-outline text-left">
+              <label class="form-label" for="email">Correo electrónico:</label>
+              <input type="email" class="form-control" placeholder="Correo electrónico" name="email" required />
+            </div>
+
+            <div class="form-outline text-left">
+              <label class="form-label" for="password">Contraseña:</label>
+              <input type="password" class="form-control" placeholder="Contraseña" name="password" required />
+            </div>  
+
+            <div class="form-outline text-left">
+              <label class="form-label" for="firstName">Nombre:</label>
+              <input type="text" class="form-control" placeholder="Nombre" name="firstName" required= />
+            </div>
+
+            <div class="form-outline text-left">
+              <label class="form-label" for="lastName">Apellido:</label>
+              <input type="text" class="form-control" placeholder="Apellido" name="lastName" required />
+
+              <div class="form-outline text-left">
+              <label class="form-label" for="dni">Documento:</label>
+              <input type="text" class="form-control" placeholder="Documento" name="dni" required />
+            </div>
+
+            <div class="form-outline text-left">
+              <label class="form-label" for="birthDate">Fecha de nacimiento:</label>
+              <input type="date" class="form-control" name="birthDate" required />
+            </div>        
+
+            <br><br>
+
+            <div class="form-group">
+
+              <button type="button" style="width:40%;" onclick="location.href='<?php echo FRONT_ROOT ?>'" class="btn btn-primary">Cancelar</button>
+
+              <button type="submit" style="width:40%" class="btn btn-success">Registrarse</button>
+
+            </div>
+
+            <br>
+
+          </form>
+
+        </section>
+
+      </div>
+
     </div>
-</div>

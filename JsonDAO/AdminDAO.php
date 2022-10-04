@@ -29,6 +29,21 @@
             // (En caso de ser eliminar, creariamos otro metodo igual a dar de baja).
         }
 
+        public function updateDAO($value){
+
+            $this->retrieveData();
+
+            foreach ($this->adminList as $key => $admin) {
+
+                if (strcmp($admin->getToken(), $value->getToken()) == 0){
+
+                     $admin->setPassword($value->getPassword()); 
+                 }
+            }
+
+            $this->SaveData();
+        }
+
         public function saveData(){
 
             $arrayToEncode = array();

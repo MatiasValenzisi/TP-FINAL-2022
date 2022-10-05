@@ -13,7 +13,7 @@
 
             array_push($this->guardianList, $guardian);
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function getAllDAO(){ 
@@ -24,10 +24,13 @@
         }
 
         public function getAllDownDateDAO() {
+
             $this->retrieveData();
+
             $temporalList = array();
 
             foreach($this->guardianList as $guardian) {
+
                 if(!is_null($guardian->getDownDate())) {
                     array_push($temporalList, $guardian);
                 }
@@ -36,7 +39,9 @@
         }
 
         public function getAllDischargeDateDAO() {
+
             $this->retrieveData();
+
             $temporalList = array();
 
             foreach($this->guardianList as $guardian) {
@@ -48,7 +53,9 @@
         }
 
         public function getAllPendientDateDAO() {
+
             $this->retrieveData();
+
             $temporalList = array();
 
             foreach($this->guardianList as $guardian) {
@@ -61,8 +68,21 @@
 
         public function deleteDAO($value){
 
-            // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 
-            // (En caso de ser eliminar, creariamos otro metodo igual a dar de baja).
+            $this->retrieveData();
+
+            $guardianListAux = array();
+
+            foreach ($this->guardianList as $key => $guardian) {
+
+                if (strcmp($guardian->getToken(), $value) != 0){
+                   array_push($guardianListAux, $guardian);          
+                }               
+            }
+
+            $this->guardianList = $guardianListAux;
+
+            $this->saveData();
+            
         }
 
         public function updateDAO($value){
@@ -81,7 +101,7 @@
                 }               
             }
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function saveData(){
@@ -188,14 +208,14 @@
             return $guardian;
         }    
 
-        public function confirmPendientGuardianDAO($token) {
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
+        public function confirmGuardianDAO($token) {
+
+            $this->retrieveData();
 
             $this->getUserTokenDAO($token)->setDischargeDate(date("Y-m-d"));
 
             $this->saveData();
         }
-
 
     }
 ?>

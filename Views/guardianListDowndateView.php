@@ -18,24 +18,29 @@
                 <th>Fecha de nacimiento</th>
                 <th>Fecha de alta</th>
                 <th>Fecha de baja</th>
+                <th>Acción</th>
             </tr>
 
           </thead>
-                <?php
-                foreach($this->guardianList as $guardian) { ?>
-                    <tr>
-                        <td><?php echo $guardian->getToken();         ?></td>
-                        <td><?php echo $guardian->getFirstName();     ?></td>
-                        <td><?php echo $guardian->getLastName();      ?></td>
-                        <td><?php echo $guardian->getUserName();      ?></td>
-                        <td><?php echo $guardian->getDni();           ?></td>
-                        <td><?php echo $guardian->getBirthDate();     ?></td>
-                        <td><?php echo $guardian->getDischargeDate(); ?></td>
-                        <td><?php echo $guardian->getDownDate();      ?></td>
-                    </tr>
-                <?php } ?>
 
           <tbody>
+
+            <?php foreach($this->guardianList as $guardian) { ?>
+
+              <tr>
+                <td><?php echo $guardian->getToken(); ?></td>
+                <td><?php echo $guardian->getFirstName(); ?></td>
+                <td><?php echo $guardian->getLastName(); ?></td>
+                <td><?php echo $guardian->getUserName(); ?></td>
+                <td><?php echo $guardian->getDni(); ?></td>
+                <td><?php echo $guardian->getBirthDate(); ?></td>
+                <td><?php echo $guardian->getDischargeDate(); ?></td>
+                <td><?php echo $guardian->getDownDate(); ?></td>
+                <td><a class="text-info"href="<?php echo FRONT_ROOT ?>/guardian/view/<?php echo $guardian->getToken(); ?>"><b>Visualizar</b></a></td>
+              </tr> 
+
+            <?php } ?>
+
           </tbody>
         </table>
       </div>

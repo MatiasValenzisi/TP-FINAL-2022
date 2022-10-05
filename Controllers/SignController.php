@@ -104,8 +104,6 @@
 
         public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null){
 
-            date_default_timezone_set('America/Argentina/Buenos_Aires');
-
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
             $firstName      = $this->userController->textNameFormat($firstName);
             $lastName       = $this->userController->textNameFormat($lastName);

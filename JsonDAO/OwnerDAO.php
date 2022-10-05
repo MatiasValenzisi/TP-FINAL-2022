@@ -13,7 +13,7 @@
 
             array_push($this->ownerList, $owner);
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function getAllDAO(){ 
@@ -65,7 +65,7 @@
                 }               
             }
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function saveData(){

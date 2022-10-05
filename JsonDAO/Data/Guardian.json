@@ -74,6 +74,22 @@
         "reviewList": null,
         "serviceList": null
     },
+        {
+        "token": "876501",
+        "userName": "joselito@gmail.com",
+        "password": "123456a",
+        "dischargeDate": null,
+        "downDate": null,
+        "firstName": "Jose",
+        "lastName": "Lito",
+        "birthDate": "1980-02-12",
+        "dni": "42166324",
+        "profilePicture": null,
+        "experience": "0",
+        "bookingList": "2",
+        "reviewList": null,
+        "serviceList": null
+    },
     {
         "token": "507530",
         "userName": "pendiente@gmail.com",
@@ -87,22 +103,6 @@
         "profilePicture": null,
         "experience": "0",
         "bookingList": "0",
-        "reviewList": null,
-        "serviceList": null
-    },
-    {
-        "token": "352791",
-        "userName": "jose@gmail.com",
-        "password": "123456j",
-        "dischargeDate": null,
-        "downDate": null,
-        "firstName": "Jose",
-        "lastName": "Alberto",
-        "birthDate": "1920-02-12",
-        "dni": "56898121",
-        "profilePicture": null,
-        "experience": null,
-        "bookingList": "1",
         "reviewList": null,
         "serviceList": null
     }

@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Crear Perro</h2>
+                    <h2>Añadir perro</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -12,8 +12,6 @@
 
                     <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/pet/createpet"
                         method="POST">
-
-
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre
@@ -24,7 +22,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="race">Raza
                                 <span class="required">*</span></label>
@@ -34,9 +31,6 @@
                             </div>
                         </div>
 
-
-
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="observations">Observaciones
                                 <span class="required">*</span></label>
@@ -45,8 +39,6 @@
                                     name="observations" id="observations" value="" required />
                             </div>
                         </div>
-
-
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="size">Tamaño
@@ -58,7 +50,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="weight">Peso
                                 <span class="required">*</span></label>
@@ -67,8 +58,6 @@
                                     name="weight" id="weight" value="" required />
                             </div>
                         </div>
-
-
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="vaccinationplan">Plan
@@ -80,8 +69,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo">Foto</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -90,8 +77,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="video">Video</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -99,11 +84,6 @@
                                     name="video" id="video" value="" required />
                             </div>
                         </div>
-
-
-
-
-
 
                         <div class="ln_solid"></div>
                         <div class="form-group">

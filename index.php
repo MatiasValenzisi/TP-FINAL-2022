@@ -16,6 +16,8 @@
 
 	session_start();	
 
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 	if (isset($_SESSION['userPH'])){	
 			
 		$signController = new SignController();

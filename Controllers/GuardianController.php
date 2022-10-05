@@ -99,10 +99,22 @@
 
         public function confirmGuardian($token) {
             
-            $this->guardianDAO->confirmPendientGuardianDAO($token);
+            $this->guardianDAO->confirmGuardianDAO($token);
             
             
             header("Location: ".FRONT_ROOT."/guardian/list/pendient");
+        }
+
+        public function declineGuardian($token) {
+            
+            $this->guardianDAO->deleteDAO($token);            
+            
+            header("Location: ".FRONT_ROOT."/guardian/list/pendient");
+        }
+
+        public function view($token) {
+
+            echo "Visualizar guardian.";
         }
     } 
 ?>

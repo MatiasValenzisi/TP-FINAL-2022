@@ -13,7 +13,7 @@
 
             array_push($this->adminList, $admin);
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function getAllDAO(){ 
@@ -41,7 +41,7 @@
                  }
             }
 
-            $this->SaveData();
+            $this->saveData();
         }
 
         public function saveData(){

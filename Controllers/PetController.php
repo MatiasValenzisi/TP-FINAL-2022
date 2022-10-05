@@ -26,34 +26,29 @@
         public function list(){
 
             $this->dogList=$this->dogDAO->getAllDAO();
+
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/petAdministrationView.php"; 
-            require_once ROOT_VIEWS."/mainFooter.php"; 
-
-         
-
-          
+            require_once ROOT_VIEWS."/mainFooter.php";           
         }
 
-        public function add()
-        {
+        public function add(){
+
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/createPetView.php";     
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
-        // Crear mascota
-        public function createPet($name,$race,$observations,$size,$weight,$vaccinationplan,$photo=null,$video=null)
-        {
-            
 
+        public function createPet($name,$race,$observations,$size,$weight,$vaccinationplan,$photo=null,$video=null){
+            
             $ownerToken=$_SESSION['userPH']->getToken();
+
             $token=$this->createToken($this->getTokenPetList());
       
-            $this->dog =new Dog($token,$ownerToken,$name,$race,$size,$weight,$observations,$vaccinationplan,$photo,$video); 
-            
-    
+            $this->dog = new Dog($token,$ownerToken,$name,$race,$size,$weight,$observations,$vaccinationplan,$photo,$video); 
+                
             $this->dogDAO->addDAO($this->dog);
 
             header("Location: ".FRONT_ROOT."/pet/list");

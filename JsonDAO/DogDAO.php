@@ -9,6 +9,7 @@
 
         public function addDAO($dog){  
 
+
             $this->retrieveData();
 
             array_push($this->dogList, $dog);
@@ -43,6 +44,7 @@
                 $arrayValues["vaccinationPlan"] = $dog->getVaccinationPlan();
                 $arrayValues["photo"]           = $dog->getPhoto();
                 $arrayValues["weight"]          = $dog->getWeight();
+                $arrayValues["video"]           = $dog->getVideo();
                 
                 array_push($arrayToEncode, $arrayValues);
             }
@@ -83,6 +85,8 @@
                     $dog->setVaccinationPlan($values["vaccinationPlan"]);
                     $dog->setPhoto($values["photo"]);
                     $dog->setWeight($values["weight"]);
+                    $dog->setVideo($values["video"]);
+                    
                 
                     array_push($this->dogList, $dog);
                 }

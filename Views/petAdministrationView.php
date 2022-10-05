@@ -27,6 +27,21 @@
 
                     <tbody>
 
+                        <?php foreach($this->dogList as $pet) { ?>
+
+                        <tr>
+                            <td><?php echo $pet->getName();         ?></td>
+                            <td><?php echo $pet->getRace();     ?></td>
+                            <td><?php echo $pet->getSize()."cm" ;    ?></td>
+                            <td><?php echo $pet->getWeight()."kg";     ?></td>
+                            <td><?php echo $pet->getObservations();     ?></td>
+                            <td><?php echo $pet->getVaccinationPlan();     ?></td>
+                            <td><?php echo $pet->getPhoto();     ?></td>
+
+
+                        </tr>
+
+                        <?php } ?>
 
                     </tbody>
                 </table>

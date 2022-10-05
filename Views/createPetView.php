@@ -26,11 +26,11 @@
 
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="raze">Raza
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="race">Raza
                                 <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Raza"
-                                    name="raze" id="raze" value="" required />
+                                    name="race" id="race" value="" required />
                             </div>
                         </div>
 
@@ -46,6 +46,27 @@
                             </div>
                         </div>
 
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="size">Tamaño
+
+                                <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="tamaño"
+                                    name="size" id="size" value="" required />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="weight">Peso
+                                <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Plan vacunacion"
+                                    name="weight" id="weight" value="" required />
+                            </div>
+                        </div>
 
 
 
@@ -64,13 +85,20 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="photo">Foto</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Plan vacunacion"
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="foto"
                                     name="photo" id="photo" value="" required />
                             </div>
                         </div>
 
 
 
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="video">Video</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="video"
+                                    name="video" id="video" value="" required />
+                            </div>
+                        </div>
 
 
 
@@ -85,7 +113,7 @@
                                     onclick="location.href='<?php echo FRONT_ROOT ?>/home/administration'"
                                     style="width:20%;">Cancel</button>
 
-                                <button type="submit" class="btn btn-success" style="width:50%;">Guardar
+                                <button type="submit" class="btn btn-success" style="width:50%; ">Guardar
                                     cambios</button>
 
                             </div>

@@ -70,10 +70,10 @@
 
             $this->retrieveData();
 
-            foreach ($this->guardianList as $index => $guardian) {
+            foreach ($this->guardianList as $key => $guardian) {
 
                 if (strcmp($guardian->getToken(), $value) == 0){
-                   unset($this->guardianList[$index]);
+                   unset($this->guardianList[$key]);
                    $this->saveData();         
                 }               
             } 

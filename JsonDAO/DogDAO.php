@@ -40,10 +40,10 @@
                 $arrayValues["name"]            = $dog->getName();
                 $arrayValues["race"]            = $dog->getRace();
                 $arrayValues["size"]            = $dog->getSize();
+                $arrayValues["weight"]          = $dog->getWeight();
                 $arrayValues["observations"]    = $dog->getObservations();
                 $arrayValues["vaccinationPlan"] = $dog->getVaccinationPlan();
-                $arrayValues["photo"]           = $dog->getPhoto();
-                $arrayValues["weight"]          = $dog->getWeight();
+                $arrayValues["photo"]           = $dog->getPhoto();                
                 $arrayValues["video"]           = $dog->getVideo();
                 
                 array_push($arrayToEncode, $arrayValues);
@@ -81,10 +81,10 @@
                     $dog->setName($values["name"]);
                     $dog->setRace($values["race"]);
                     $dog->setSize($values["size"]);
+                    $dog->setWeight($values["weight"]);
                     $dog->setObservations($values["observations"]);
                     $dog->setVaccinationPlan($values["vaccinationPlan"]);
-                    $dog->setPhoto($values["photo"]);
-                    $dog->setWeight($values["weight"]);
+                    $dog->setPhoto($values["photo"]);                    
                     $dog->setVideo($values["video"]);
                     
                 

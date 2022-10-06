@@ -137,9 +137,9 @@
 
                                           <button class="btn btn-primary" type="button"
                                               onclick="location.href='<?php echo FRONT_ROOT ?>/home/administration'"
-                                              style="width:20%;">Cancel</button>
+                                              style="width:40%;">Cancel</button>
 
-                                          <button type="submit" class="btn btn-success" style="width:20%;">Guardar
+                                          <button type="submit" class="btn btn-success" style="width:40%;">Guardar
                                               cambios</button>
 
                                       </div>

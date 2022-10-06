@@ -14,10 +14,9 @@
         protected $video;
 
         public function __construct($token = null, $tokenOwner = null, $name = null, $race = null, $size = null, $weight = null, $observations = null, $vaccinationPlan = null, $photo = null, $video = null){
-            
-            
-            $this->$token          = $this->setToken($token);
-            $this->$tokenOwner     = $this->setTokenOwner($tokenOwner);
+                        
+            $this->token           = $token;
+            $this->tokenOwner      = $tokenOwner;
             $this->name            = $name;
             $this->race            = $race;
             $this->size            = $size;

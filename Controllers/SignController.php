@@ -59,12 +59,13 @@
                         header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 
                     } else if (strcmp($userLogin->getPassword(), $password) != 0) { // La contraseña no coincide con la ingresada.
+
                         header("Location: ".FRONT_ROOT."/home/index/error/login/password");
+
                     } else { // Error desconocido.
 
                         header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
-                    }
-                   
+                    }                   
                 }
 
             } else {

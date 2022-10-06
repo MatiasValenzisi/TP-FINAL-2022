@@ -20,8 +20,6 @@
             $this->tokenPet  = null;
             $this->dogList = array();
         }
-    
-        // Muestra un listado de mascotas.
 
         public function list(){
 
@@ -29,29 +27,130 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/petAdministrationView.php"; 
+            require_once ROOT_VIEWS."/petListView.php"; 
             require_once ROOT_VIEWS."/mainFooter.php";           
         }
 
-        public function add(){
+        public function add($typePet = null, $type = null, $action = null, $specific = null){
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/createPetView.php";     
+            require_once ROOT_VIEWS."/dogCreateView.php";
+            require_once ROOT_VIEWS."/notificationAlert.php";     
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function createPet($name,$race,$observations,$size,$weight,$vaccinationplan,$photo=null,$video=null){
+        public function createPet($typePet, $name, $race, $size, $weight, $vaccinationPlan, $photo = null, $video = null, $observations = ''){
             
-            $ownerToken=$_SESSION['userPH']->getToken();
+            $ownerToken = $_SESSION['userPH']->getToken();
 
-            $token=$this->createToken($this->getTokenPetList());
-      
-            $this->dog = new Dog($token,$ownerToken,$name,$race,$size,$weight,$observations,$vaccinationplan,$photo,$video); 
+            $token = $this->createToken($this->getTokenPetList());            
+
+            if (getimagesize($_FILES['vaccinationPlan']['tmp_name'])) {
+
+                $sizeVP = $_FILES['vaccinationPlan']['size'];
+
+                if ($sizeVP > 1000000){ // 1 mb.
+                    
+                    header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/size");   
+
+                } else {
+
+                    $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
+                    
+                    if (move_uploaded_file($_FILES['vaccinationPlan']['tmp_name'], $fileName)){
+
+                       $vaccinationPlan = $token."-".basename($_FILES['vaccinationPlan']['name']);
+
+                    } else {
+
+                        header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/unknown");                        
+                    }             
+                }
                 
-            $this->dogDAO->addDAO($this->dog);
+            } else {
+
+                header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/format");
+            }
+
+            if (file_exists($_FILES['photo']['tmp_name'])) {
+
+                if (getimagesize($_FILES['photo']['tmp_name'])) {
+
+                    $sizeP = $_FILES['photo']['size'];
+
+                    if ($sizeP > 1000000){ // 1 mb.
+                        
+                         header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/size");
+
+                    } else {
+
+                        $fileName = ROOT_VIEWS."/photo/".$token."-".basename($_FILES['photo']['name']);
+                        
+                        if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+
+                            $photo = $token."-".basename($_FILES['photo']['name']);
+
+                        }  else {
+
+                            header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/unknown");
+
+                        }            
+                    }
+                
+                } else {
+
+                     header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/format");
+                }
+               
+            } if (file_exists($_FILES['video']['tmp_name'])) {
+
+                $fileName = ROOT_VIEWS."/video/".$token."-".basename($_FILES['video']['name']);
+                $extension = $this->getExtension($fileName);
+
+                if (strcmp($extension, 'mp4') == 0){
+
+                    $sizeV = $_FILES['video']['size'];
+
+                    if ($sizeV > 10000000){ // 10 mb.
+
+                        header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/size");
+
+                    } else {
+                        
+                        if (move_uploaded_file($_FILES['video']['tmp_name'], $fileName)){
+
+                            $video = $token."-".basename($_FILES['video']['name']);
+
+                        }  else {
+
+                            header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/unknown");
+                        }   
+                    }
+
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/format");
+                }                
+            } 
+
+            if (strcmp($typePet,"dog") == 0) {
+               
+                $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+
+                $this->dogDAO->addDAO($this->dog);
+
+            } 
 
             header("Location: ".FRONT_ROOT."/pet/list");
+        }
+
+        private function getExtension($str){
+
+            $array = explode(".", $str);
+            $indice = count($array)-1;
+            $extension = $array[$indice];
+            return $extension;
         }
 
         public function createToken($petListToken){ 
@@ -68,49 +167,55 @@
    				   if($newToken == $value){
 
    				      $controller = true;
+   				    }  
+                }  
 
-   				}  }  } while($controller);
+            } while($controller);
 
    	   	   return $newToken; 
    	   }
 
        /* Retorna un número aleatorio de una cantidad dada */
    		
-   	  public function generateNumber($cant){ 
+   	    public function generateNumber($cant){ 
 
-        $key = '';
+            $key = '';
 
-        for($i=0; $i<$cant; $i++) {
+            for($i=0; $i<$cant; $i++) {
             
-            $key .= rand(0,9);
-        } 		
+                $key .= rand(0,9);
+            } 		
           	     
- 		return $key; 
-   	  }
+ 		    return $key; 
+   	    }
 
-     public function getPetToken($token){ 
-        $this->pet = $this->dogDAO->getDogTokenDAO($token);
+        public function getPetToken($token){ 
         
-        return $this->pet;
+            $this->pet = $this->dogDAO->getDogTokenDAO($token);
         
-    }
-    public function getTokenPetList(){ 
-
-        $tokenList = array();
-
-        $dogList = $this->dogDAO->getAllDAO();
-
-        if($dogList != null) {
-
-            foreach($dogList as $currentDog) {
-
-                array_push($tokenList, $currentDog->getToken());
-            }
+            return $this->pet;
+        
         }
 
+        public function getTokenPetList(){ 
 
-        return $tokenList; 
-    }
-    
+            $tokenList = array();
+
+            $dogList = $this->dogDAO->getAllDAO();
+
+            if($dogList != null) {
+
+                foreach($dogList as $currentDog) {
+
+                    array_push($tokenList, $currentDog->getToken());
+                }
+            }
+            return $tokenList; 
+        }
+
+        public function view($token){
+
+            echo "Visualizar mascota.";
+        } 
     } 
 ?>

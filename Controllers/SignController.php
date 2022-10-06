@@ -54,11 +54,11 @@
 
                 } else {
 
-                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ // El usuario no existe.
+                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ 
 
                         header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 
-                    } else if (strcmp($userLogin->getPassword(), $password) != 0) { // La contraseña no coincide con la ingresada.
+                    } else if (strcmp($userLogin->getPassword(), $password) != 0) { 
 
                         header("Location: ".FRONT_ROOT."/home/index/error/login/password");
 
@@ -120,7 +120,7 @@
                         if($this->userController->birthDateCheck($birthDate)){
 
                             $newGuardian = new Guardian(
-                                $token, $email, $password, /*dischargeDate*/null, $downDate, $firstName,
+                                $token, $email, $password, null, $downDate, $firstName,
                                 $lastName, $birthDate, $dni, null, $experience
                             );
                             

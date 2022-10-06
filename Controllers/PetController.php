@@ -5,20 +5,23 @@
 
     class PetController {  
 
-        private $dogDAO;
-        private $catDAO;
-        private $dog;
-        private $cat;
         private $tokenPet;
+
+        private $dogDAO;
+        private $dog;
         private $dogList;
-        private $catList;
+
+        //private $catDAO;        
+        //private $cat;   
+        //private $catList;
         
         public function __construct(){
           
-            $this->dogDAO  = new DogDAO();
-            $this->dog     = null;
-            $this->tokenPet  = null;
-            $this->dogList = array();
+            $this->tokenPet = null; 
+            
+            $this->dogDAO   = new DogDAO();           
+            $this->dog      = null;            
+            $this->dogList  = array();            
         }
 
         public function list(){
@@ -35,7 +38,15 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/dogCreateView.php";
+
+            if (strcmp($typePet,"cat") == 0){
+
+                require_once ROOT_VIEWS."/catCreateView.php";
+
+            } else {
+
+                require_once ROOT_VIEWS."/dogCreateView.php";
+            }            
             require_once ROOT_VIEWS."/notificationAlert.php";     
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
@@ -213,9 +224,27 @@
             return $tokenList; 
         }
 
-        public function view($token){
+        public function view($typePet, $token){
 
-            echo "Visualizar mascota.";
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";            
+
+            if (strcmp($typePet,"dog") == 0) {
+
+                echo "Vista perro.";
+                //require_once ROOT_VIEWS."/dogView.php";
+                
+            } elseif (strcmp($typePet,"cat") == 0) {
+
+                echo "Vista gato.";
+                //require_once ROOT_VIEWS."/catView.php";
+
+            } else {
+
+                header("Location: ".FRONT_ROOT."/pet/list");
+            }
+
+            require_once ROOT_VIEWS."/mainFooter.php"; 
         } 
     } 
 ?>

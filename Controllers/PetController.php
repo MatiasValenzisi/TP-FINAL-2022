@@ -63,7 +63,7 @@
 
                 if ($sizeVP > 1000000){ // 1 mb.
                     
-                    header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/size");   
+                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size");   
 
                 } else {
 
@@ -75,13 +75,13 @@
 
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/unknown");                        
+                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/unknown");                        
                     }             
                 }
                 
             } else {
 
-                header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/vaccination/format");
+                header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/format");
             }
 
             if (file_exists($_FILES['photo']['tmp_name'])) {
@@ -92,7 +92,7 @@
 
                     if ($sizeP > 1000000){ // 1 mb.
                         
-                         header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/size");
+                         header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/size");
 
                     } else {
 
@@ -104,14 +104,14 @@
 
                         }  else {
 
-                            header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/unknown");
+                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/unknown");
 
                         }            
                     }
                 
                 } else {
 
-                     header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/photo/format");
+                     header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/format");
                 }
                
             } if (file_exists($_FILES['video']['tmp_name'])) {
@@ -125,7 +125,7 @@
 
                     if ($sizeV > 10000000){ // 10 mb.
 
-                        header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/size");
+                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/size");
 
                     } else {
                         
@@ -135,21 +135,25 @@
 
                         }  else {
 
-                            header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/unknown");
+                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/unknown");
                         }   
                     }
 
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/guardian/add/".$typePet."/error/video/format");
+                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/format");
                 }                
             } 
 
+            echo "shdjk";
+
+            exit();
+
             if (strcmp($typePet,"dog") == 0) {
                
-                $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+               // $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
-                $this->dogDAO->addDAO($this->dog);
+              //  $this->dogDAO->addDAO($this->dog);
 
             } 
 

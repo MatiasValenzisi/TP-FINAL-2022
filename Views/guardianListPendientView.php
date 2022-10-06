@@ -16,12 +16,7 @@
                 <th>Email</th>
                 <th>Documento</th>
                 <th>Fecha de nacimiento</th>
-
-                <?php if (!empty($this->guardianList)) { ?>
-
-                <th colspan="2">Guardian pendiente</th>
-
-                <?php } ?>
+                <th>Guardian pendiente</th>
             </tr>
 
           </thead>
@@ -38,12 +33,11 @@
                 <td><?php echo $guardian->getDni(); ?></td>
                 <td><?php echo $guardian->getBirthDate(); ?></td>
 
-                <?php if (!empty($this->guardianList)) { ?>
-
-                  <td><a class="text-success" href="<?php echo FRONT_ROOT ?>/guardian/confirmGuardian/<?php echo $guardian->getToken(); ?>"><b>Aceptar</b></a></td>
-                  <td><a class="text-danger"href="<?php echo FRONT_ROOT ?>/guardian/declineGuardian/<?php echo $guardian->getToken(); ?>"><b>Rechazar</b></a></td>
-
-                <?php } ?>
+                  <td>
+                    <a class="text-success" href="<?php echo FRONT_ROOT ?>/guardian/confirmGuardian/<?php echo $guardian->getToken(); ?>"><b>Aceptar</b></a>
+                     / 
+                    <a class="text-danger"href="<?php echo FRONT_ROOT ?>/guardian/declineGuardian/<?php echo $guardian->getToken(); ?>"><b>Rechazar</b></a>
+                  </td>
 
               </tr>
 

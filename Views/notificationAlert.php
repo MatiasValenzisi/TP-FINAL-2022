@@ -116,6 +116,82 @@
                         }
 
                     break;
+
+                    case 'vaccination':
+
+                        switch ($specific) {
+
+                            case 'format':
+
+                                echo "<script>sweet('Error al cargar el plan de vacunación!','No se admite ese formato de archivo.','error')</script>";
+                               
+                            break;
+
+                            case 'size':
+
+                                echo "<script>sweet('Error al cargar el plan de vacunación!','El archivo es muy grande.','error')</script>";
+                               
+                            break;
+
+                            case 'unknown':
+
+                                echo "<script>sweet('Error al cargar el plan de vacunación!','No se pudo guardar el plan de vacunación.','error')</script>";
+                                
+                            break;                            
+                        }
+
+                    break;
+
+                    case 'photo':
+
+                        switch ($specific) {
+
+                            case 'format':
+
+                                echo "<script>sweet('Error al cargar la foto de la mascota!','No se admite ese formato de archivo.','error')</script>";
+                               
+                            break;
+
+                            case 'size':
+
+                                echo "<script>sweet('Error al cargar la foto de la mascota','El archivo es muy grande.','error')</script>";
+                               
+                            break;
+
+                            case 'unknown':
+
+                                echo "<script>sweet('Error al cargar la foto de la mascota','No se pudo guardar la foto de la mascota.','error')</script>";
+                                
+                            break;                            
+                        }
+
+                    break;
+
+                    case 'video':
+
+                        switch ($specific) {
+
+                            case 'format':
+
+                                echo "<script>sweet('Error al cargar el video de la mascota!','No se admite ese formato de archivo.','error')</script>";
+                               
+                            break;
+
+                            case 'size':
+
+                                echo "<script>sweet('Error al cargar el video de la mascota!','El archivo es muy grande.','error')</script>";
+                               
+                            break;
+
+                            case 'unknown':
+
+                                echo "<script>sweet('Error al cargar el video de la mascota!','No se pudo guardar el video de la mascota.','error')</script>";
+                                
+                            break;                            
+                        }
+
+                    break;
+
                 }
 
             break;

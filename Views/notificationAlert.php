@@ -123,7 +123,7 @@
 
                             case 'format':
 
-                                echo "<script>sweet('Error al cargar el plan de vacunación!','Solo se admiten formatos de imagen.','error')</script>";
+                                echo "<script>sweet('Error al cargar el plan de vacunación!','Solo se admiten formato JPG y PNG.','error')</script>";
                                
                             break;
 
@@ -148,7 +148,7 @@
 
                             case 'format':
 
-                                echo "<script>sweet('Error al cargar la foto de la mascota!','Solo se admiten formatos de imagen.','error')</script>";
+                                echo "<script>sweet('Error al cargar la foto de la mascota!','Solo se admiten formato JPG y PNG.','error')</script>";
                                
                             break;
 

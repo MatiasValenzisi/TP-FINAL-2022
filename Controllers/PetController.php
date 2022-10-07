@@ -55,9 +55,13 @@
             
             $ownerToken = $_SESSION['userPH']->getToken();
 
-            $token = $this->createToken($this->getTokenPetList());            
+            $token = $this->createToken($this->getTokenPetList());  
 
-            if (getimagesize($_FILES['vaccinationPlan']['tmp_name'])) {
+            $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
+
+            $extension = $this->getExtension($fileName);   
+
+            if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
                 $sizeVP = $_FILES['vaccinationPlan']['size'];
 
@@ -65,9 +69,7 @@
                     
                     header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size");   
 
-                } else {
-
-                    $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
+                } else {                
                     
                     if (move_uploaded_file($_FILES['vaccinationPlan']['tmp_name'], $fileName)){
 
@@ -86,7 +88,11 @@
 
             if (file_exists($_FILES['photo']['tmp_name'])) {
 
-                if (getimagesize($_FILES['photo']['tmp_name'])) {
+                $fileName = ROOT_VIEWS."/photo/".$token."-".basename($_FILES['photo']['name']);
+
+                $extension = $this->getExtension($fileName);
+
+                if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
                     $sizeP = $_FILES['photo']['size'];
 
@@ -94,9 +100,7 @@
                         
                          header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/size");
 
-                    } else {
-
-                        $fileName = ROOT_VIEWS."/photo/".$token."-".basename($_FILES['photo']['name']);
+                    } else {                        
                         
                         if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
 
@@ -145,19 +149,15 @@
                 }                
             } 
 
-            echo "shdjk";
-
-            exit();
-
-            if (strcmp($typePet,"dog") == 0) {
+            /*if (strcmp($typePet,"dog") == 0) {
                
-               // $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+                $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
-              //  $this->dogDAO->addDAO($this->dog);
+                $this->dogDAO->addDAO($this->dog);
 
-            } 
+            }*/ 
 
-            header("Location: ".FRONT_ROOT."/pet/list");
+            //header("Location: ".FRONT_ROOT."/pet/list");
         }
 
         private function getExtension($str){

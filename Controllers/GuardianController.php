@@ -94,6 +94,25 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
+        public function view($token) {
+            $this->guardian = $this->guardianDAO->getUserTokenDAO($token);
+
+            $serviceArray = array();
+
+            if (!is_null($this->guardian->getServiceList())){
+
+                foreach ($this->guardian->getServiceList() as $key => $value) {
+               
+                    $serviceArray[$value] = $value;
+                }
+            }
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/guardianView.php";
+            require_once ROOT_VIEWS."/mainFooter.php"; 
+        }
+
 
         // Metodo de alta (guardian)
 
@@ -112,9 +131,5 @@
             header("Location: ".FRONT_ROOT."/guardian/list/pendient");
         }
 
-        public function view($token) {
-
-            echo "Visualizar guardian.";
-        }
     } 
 ?>

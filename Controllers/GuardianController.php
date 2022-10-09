@@ -87,10 +87,17 @@
             } else {
 
                 $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
-                
-                require_once ROOT_VIEWS."/guardianListDischargedateView.php";                 
-            }        
 
+                if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){
+
+                    require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
+
+                } else {
+
+                    require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";    
+                }            
+            }
+            
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 

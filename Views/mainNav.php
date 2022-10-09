@@ -29,13 +29,13 @@
 
                             <?php if (is_null($_SESSION['userPH']->getProfilePicture())) { ?>
 
-                            <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt="..."
+                            <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt=""
                                 class="img-circle profile_img">
 
                             <?php } else { ?>
 
                             <img src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getToken() ?>.png"
-                                alt="..." class="img-circle profile_img">
+                                alt="" class="img-circle profile_img">
 
                             <?php } ?>
 

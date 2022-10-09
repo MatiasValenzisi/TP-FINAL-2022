@@ -34,7 +34,7 @@
 
                             <?php } else { ?>
 
-                            <img src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getToken() ?>.png"
+                            <img src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getProfilePicture() ?>"
                                 alt="" class="img-circle profile_img">
 
                             <?php } ?>

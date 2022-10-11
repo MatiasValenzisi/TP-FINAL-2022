@@ -8,6 +8,11 @@ define("ROOT_VIEWS", ROOT . "/Views");
 define("FRONT_ROOT", "http://localhost/Github/TP-FINAL-2022");
 define("VIEWS_PATH", FRONT_ROOT."/Views");
 
+/* Carpetas de archivos multimedia de mascotas */
+define("VACCINATION", VIEWS_PATH."/vaccination/");
+define("PHOTO", VIEWS_PATH."/photo/");
+define("VIDEO", VIEWS_PATH."/video/");
+
 /* Constantes para la conexion de la base de datos */ 
 define("DB_HOST", "localhost:3306"); 
 define("DB_NAME", "pet-hero");

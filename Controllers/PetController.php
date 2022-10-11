@@ -67,7 +67,7 @@
 
                 if ($sizeVP > 1000000){ // 1 mb.
                     
-                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size");   
+                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size");  
 
                 } else {                
                     
@@ -149,15 +149,15 @@
                 }                
             } 
 
-            /*if (strcmp($typePet,"dog") == 0) {
+            if (strcmp($typePet,"dog") == 0) {
                
                 $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
                 $this->dogDAO->addDAO($this->dog);
 
-            }*/ 
+            }
 
-            //header("Location: ".FRONT_ROOT."/pet/list");
+            header("Location: ".FRONT_ROOT."/pet/list");
         }
 
         private function getExtension($str){
@@ -228,27 +228,27 @@
             return $tokenList; 
         }
 
-        public function view($typePet, $token){
-
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";            
+        public function view($typePet, $token){   
 
             if (strcmp($typePet,"dog") == 0) {
-
-                echo "Vista perro.";
-                //require_once ROOT_VIEWS."/dogView.php";
+                
+                $this->dog = $this->dogDAO->getDogTokenDAO($token);
+                
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";  
+                require_once ROOT_VIEWS."/dogView.php";
+                require_once ROOT_VIEWS."/mainFooter.php"; 
                 
             } elseif (strcmp($typePet,"cat") == 0) {
 
-                echo "Vista gato.";
-                //require_once ROOT_VIEWS."/catView.php";
+                echo "Vista gato: /catView.php";
 
             } else {
-
+                
                 header("Location: ".FRONT_ROOT."/pet/list");
             }
 
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+            
         } 
     } 
 ?>

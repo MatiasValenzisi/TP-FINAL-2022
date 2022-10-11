@@ -13,7 +13,11 @@
         "experience": "0",
         "bookingList": "2",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Monday",
+            "Friday",
+            "Saturday"
+        ]
     },
     {
         "token": "656268",
@@ -29,7 +33,9 @@
         "experience": "0",
         "bookingList": "0",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Monday"
+        ]
     },
     {
         "token": "378468",
@@ -45,7 +51,10 @@
         "experience": "2",
         "bookingList": "0",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Monday",
+            "Saturday"
+        ]
     },    
     {
         "token": "507530",
@@ -61,7 +70,11 @@
         "experience": "1",
         "bookingList": "0",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Monday",
+            "Friday",
+            "Saturday"
+        ]
     },
     {
         "token": "334658",
@@ -77,7 +90,11 @@
         "experience": "3",
         "bookingList": "0",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Monday",
+            "Friday",
+            "Saturday"
+        ]
     },
     {
         "token": "376447",
@@ -93,7 +110,10 @@
         "experience": "1",
         "bookingList": "0",
         "reviewList": null,
-        "serviceList": null
+        "serviceList": [
+            "Friday",
+            "Saturday"
+        ]
     },
     {
         "token": "082654",

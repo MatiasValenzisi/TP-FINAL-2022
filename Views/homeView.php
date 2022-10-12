@@ -22,6 +22,7 @@
         margin-right: 20px;
         width: 150px;
         height: 50px;
+        object-fit: contain;
     }
 
     .title {

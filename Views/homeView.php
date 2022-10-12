@@ -19,7 +19,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        margin-right: 20px;
+
         width: 150px;
         height: 50px;
         object-fit: contain;
@@ -30,6 +30,7 @@
         font-size: 50px;
         margin-bottom: 20px;
         font-weight: 800;
+        line-height: 150px;
     }
 
     .subtitle {
@@ -62,10 +63,10 @@
 </head>
 
 <body>
-    <img src="../Temporal-pruebas/utn.png" alt="utn" class="utn-logo">
+
     <div class="home-container x_panel">
 
-
+        <img src="../Temporal-pruebas/utn.png" alt="utn" class="utn-logo">
 
         <div>
             <h1 class="title x_title">Pet Hero</h1>

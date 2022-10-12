@@ -86,7 +86,7 @@
             } else {
 
                 header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/format");
-
+                exit();
             }
 
             if (file_exists($_FILES['photo']['tmp_name'])) {

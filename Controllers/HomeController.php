@@ -28,7 +28,8 @@
         public function administration(){ 
             
             require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";         
+            require_once ROOT_VIEWS."/mainNav.php";     
+            require_once ROOT_VIEWS."/homeView.php";    
             require_once ROOT_VIEWS."/mainFooter.php";                 
         } 
     }

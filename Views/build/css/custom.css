@@ -258,9 +258,7 @@ body {
   margin-left: 15%;
   z-index: 1000;
   position: inherit;
-  margin-top: 20px;
-  border: 1px solid rgba(52, 73, 94, 0.44);
-  padding: 4px;
+  margin-top: 25px;
 }
 .profile_info {
   padding: 25px 10px 10px;
@@ -1136,7 +1134,7 @@ legend {
   padding: 10px;
 }
 .profile_details .profile_view .img-circle {
-  border: 1px solid #e6e9ed;
+
   padding: 2px;
 }
 .profile_details .profile_view h2 {

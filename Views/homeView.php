@@ -63,30 +63,33 @@
 
 <body>
     <img src="../Temporal-pruebas/utn.png" alt="utn" class="utn-logo">
-    <div class="home-container">
+    <div class="home-container x_panel">
 
 
 
         <div>
-            <h1 class="title">Pet Hero</h1>
-            <h3 class="subtitle">Slogan</h3>
+            <h1 class="title x_title">Pet Hero</h1>
+            <div class="clearfix"></div>
+            <h3 class="subtitle ">Slogan</h3>
         </div>
+
+
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, autem quidem quam atque sint assumenda Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Fugit, voluptatum laudantium? Esse suscipit, dicta
+            quibusdam
+            blanditiis vel debitis omnis, ad reprehenderit quas rerum, in quis odio aut numquam. Praesentium, eveniet?
+            repudiandae dolorem reiciendis sapiente, veritatis asperiores doloribus ducimus optio dolorum saepe qui eius
+            eaque id!</p>
+
+        <div class="images">
+            <img src="../Temporal-pruebas/home2.jpeg" alt="animal">
+            <img src="../Temporal-pruebas/home1.jpeg" alt="animal">
+        </div>
+
+
+
+        <h4 class="title">Contactanos!</h4>
     </div>
-
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, autem quidem quam atque sint assumenda Lorem
-        ipsum dolor sit amet consectetur, adipisicing elit. Fugit, voluptatum laudantium? Esse suscipit, dicta quibusdam
-        blanditiis vel debitis omnis, ad reprehenderit quas rerum, in quis odio aut numquam. Praesentium, eveniet?
-        repudiandae dolorem reiciendis sapiente, veritatis asperiores doloribus ducimus optio dolorum saepe qui eius
-        eaque id!</p>
-
-    <div class="images">
-        <img src="../Temporal-pruebas/home2.jpeg" alt="animal">
-        <img src="../Temporal-pruebas/home1.jpeg" alt="animal">
-    </div>
-
-
-    <h4 class="title">Contactanos!</h4>
-
 </body>
 
 </html>

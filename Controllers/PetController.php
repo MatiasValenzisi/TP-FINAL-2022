@@ -67,7 +67,8 @@
 
                 if ($sizeVP > 1000000){ // 1 mb.
                     
-                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size");  
+                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size"); 
+                    exit(); 
 
                 } else {                
                     
@@ -77,13 +78,15 @@
 
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/unknown");                        
+                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/unknown");  
+                        exit();                      
                     }             
                 }
                 
             } else {
 
                 header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/format");
+
             }
 
             if (file_exists($_FILES['photo']['tmp_name'])) {
@@ -99,6 +102,7 @@
                     if ($sizeP > 1000000){ // 1 mb.
                         
                          header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/size");
+                         exit();
 
                     } else {                        
                         
@@ -109,13 +113,14 @@
                         }  else {
 
                             header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/unknown");
-
+                            exit();
                         }            
                     }
                 
                 } else {
 
                      header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/format");
+                     exit();
                 }
                
             } if (file_exists($_FILES['video']['tmp_name'])) {
@@ -130,6 +135,7 @@
                     if ($sizeV > 10000000){ // 10 mb.
 
                         header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/size");
+                        exit();
 
                     } else {
                         
@@ -140,12 +146,14 @@
                         }  else {
 
                             header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/unknown");
+                            exit();
                         }   
                     }
 
                 } else {
 
                     header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/format");
+                    exit();
                 }                
             } 
 

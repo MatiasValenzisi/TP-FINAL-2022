@@ -34,7 +34,7 @@
                                     <td><?php echo $pet->getToken(); ?></td>
                                     <td><?php echo $pet->getName(); ?></td>
                                     <td><?php echo $pet->getRace(); ?></td>
-                                    <td><?php echo $pet->getSize()." cm"; ?></td>
+                                    <td><?php echo $pet->getSize(); ?></td>
                                     <td><?php echo $pet->getWeight()." kg"; ?></td>
                                     <?php if (strcmp(get_class($pet), "Models\Dog") == 0) { ?>
                                         <td><a class="text-info"href="<?php echo FRONT_ROOT ?>/pet/view/dog/<?php echo $pet->getToken(); ?>"><b>Visualizar</b></a></td>

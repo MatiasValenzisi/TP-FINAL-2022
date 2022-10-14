@@ -32,12 +32,15 @@
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="size">Tamaño <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="number" class="form-control col-md-7 col-xs-12" placeholder="tamaño"
-                                    name="size" id="size" required />
+                            <div class="col-md-6 col-sm-6 col-xs-12">                              
+                                <select class="form-control col-md-7 col-xs-12" id="size" name="size">                
+                                    <option value="Grande" selected>Grande</option>
+                                    <option value="Mediano">Mediano</option> 
+                                    <option value="Pequeño">Pequeño</option> 
+                                </select>
                             </div>
                         </div>
-
+  
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="weight">Peso <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">

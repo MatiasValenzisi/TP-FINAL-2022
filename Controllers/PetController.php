@@ -9,24 +9,25 @@
 
         private $dogDAO;
         private $dog;
-        private $dogList;
+
+        private $petList;
 
         //private $catDAO;        
         //private $cat;   
-        //private $catList;
         
         public function __construct(){
           
             $this->tokenPet = null; 
             
             $this->dogDAO   = new DogDAO();           
-            $this->dog      = null;            
-            $this->dogList  = array();            
+            $this->dog      = null;    
+                    
+            $this->petList  = array();            
         }
 
         public function list(){
 
-            $this->dogList=$this->dogDAO->getAllDAO();
+            $this->petList = $this->dogDAO->getAllDAO();
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -224,13 +225,13 @@
 
             $tokenList = array();
 
-            $dogList = $this->dogDAO->getAllDAO();
+            $petList = $this->dogDAO->getAllDAO();
 
-            if($dogList != null) {
+            if($petList != null) {
 
-                foreach($dogList as $currentDog) {
+                foreach($petList as $current) {
 
-                    array_push($tokenList, $currentDog->getToken());
+                    array_push($tokenList, $current->getToken());
                 }
             }
             return $tokenList; 

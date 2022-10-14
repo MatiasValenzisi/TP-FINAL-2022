@@ -87,7 +87,7 @@
                         <?php } if (!is_null($this->dog->getVideo()) && !empty($this->dog->getVideo())){ ?>
 
                         <br>
-                        
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Video: &nbsp;</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -104,7 +104,6 @@
                                 onclick="location.href='<?php echo FRONT_ROOT ?>/pet/list'"
                                 class="btn btn-primary">Volver al listado de mascotas</button>
                         </div>
-
                     </form>
                 </div>
             </div>

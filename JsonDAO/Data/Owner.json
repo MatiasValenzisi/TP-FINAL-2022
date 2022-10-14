@@ -13,5 +13,20 @@
         "bookingsList": null,
         "petList": null,
         "paymentsList": null
+    },
+    {
+        "token": "912279",
+        "userName": "moni@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-10-14",
+        "downDate": null,
+        "firstName": "Monica",
+        "lastName": "Argento",
+        "birthDate": "1996-10-14",
+        "dni": "20363825",
+        "profilePicture": null,
+        "bookingsList": null,
+        "petList": null,
+        "paymentsList": null
     }
 ]

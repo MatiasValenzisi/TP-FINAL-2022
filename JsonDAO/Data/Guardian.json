@@ -44,7 +44,7 @@
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Gamora",
-        "lastName": "Saldaña",
+        "lastName": "Salda\u00f1a",
         "birthDate": "1978-06-19",
         "dni": "25030603",
         "profilePicture": "gamora.jpg",
@@ -55,7 +55,7 @@
             "Monday",
             "Saturday"
         ]
-    },    
+    },
     {
         "token": "507530",
         "userName": "rocket@gmail.com",
@@ -121,7 +121,7 @@
         "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
-        "firstName": "Nébula",
+        "firstName": "N\u00e9bula",
         "lastName": "Gillan",
         "birthDate": "1987-11-28",
         "dni": "27163565",
@@ -130,7 +130,7 @@
         "bookingList": "0",
         "reviewList": null,
         "serviceList": null
-    },  
+    },
     {
         "token": "362379",
         "userName": "yondu@gmail.com",
@@ -166,5 +166,24 @@
         "bookingList": "2",
         "reviewList": null,
         "serviceList": null
+    },
+    {
+        "token": "132809",
+        "userName": "pepe@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-10-14",
+        "downDate": null,
+        "firstName": "Pepe",
+        "lastName": "Argento",
+        "birthDate": "2001-07-02",
+        "dni": "50603502",
+        "profilePicture": null,
+        "experience": "3",
+        "bookingList": "3",
+        "reviewList": null,
+        "serviceList": [
+            "Tuesday",
+            "Saturday"
+        ]
     }
 ]

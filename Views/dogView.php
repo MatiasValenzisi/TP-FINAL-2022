@@ -87,16 +87,11 @@
                         <?php } if (!is_null($this->dog->getVideo()) && !empty($this->dog->getVideo())){ ?>
 
                         <br>
-
-                        <?php var_dump(VIDEO.$this->dog->getVideo())?>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Video: &nbsp;</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <video width=320 height=320 controls>
-                                    <source src="https://pixabay.com/es/videos/cachorro-perro-mascota-canino-1047/"
-                                        type="video/mp4">
-                                    Lo sentimos. Este vídeo no puede ser reproducido en tu navegador.
-                                </video>
+                                <video src="<?php echo VIDEO.$this->dog->getVideo() ?>" width=320 height=320 controls poster="">
                             </div>
                         </div>
 

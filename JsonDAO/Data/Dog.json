@@ -10,29 +10,5 @@
         "vaccinationPlan": "893074-imagen1.png",
         "photo": "893074-doberman.png",
         "video": "893074-video_1.mp4"
-    },
-    {
-        "token": "592242",
-        "tokenOwner": "010890",
-        "name": "Duki",
-        "race": "Boxer",
-        "size": "20",
-        "weight": "20",
-        "observations": "",
-        "vaccinationPlan": "592242-imagen1.png",
-        "photo": null,
-        "video": null
-    },
-    {
-        "token": "131178",
-        "tokenOwner": "010890",
-        "name": "Andres Calamaro",
-        "race": "calamar",
-        "size": "10",
-        "weight": "7",
-        "observations": "",
-        "vaccinationPlan": null,
-        "photo": null,
-        "video": null
     }
 ]

@@ -1,14 +1,39 @@
 [
     {
         "token": "000001",
-        "userName": "admin@gmail.com",
+        "userName": "mati@gmail.com",
         "password": "123456m",
         "dischargeDate": "2022-09-22",
         "downDate": null,
-        "firstName": "Administrador",
-        "lastName": "Principal",
-        "birthDate": "2001-01-01",
-        "dni": "30000123",
-        "profilePicture": null
+        "firstName": "Matias",
+        "lastName": "Valenzisi",
+        "birthDate": "1994-08-12",
+        "dni": "38055056",
+        "profilePicture": "matias.jpg"
+    },
+    {
+        "token": "000002",
+        "userName": "nico@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-09-22",
+        "downDate": null,
+        "firstName": "Nicolas",
+        "lastName": "Brun",
+        "birthDate": "2000-05-08",
+        "dni": "40530123",
+        "profilePicture": "nicolas.jpg"
+    },
+    {
+        "token": "000003",
+        "userName": "tobi@gmail.com",
+        "password": "123456m",
+        "dischargeDate": "2022-09-22",
+        "downDate": null,
+        "firstName": "Tobias",
+        "lastName": "Selva",
+        "birthDate": "2002-01-10",
+        "dni": "40372893",
+        "profilePicture": "tobias.jpg"
     }
+
 ]

@@ -2,7 +2,7 @@
     {
         "token": "873501",
         "userName": "groot@gmail.com",
-        "password": "123456a",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Groot",
@@ -22,7 +22,7 @@
     {
         "token": "656268",
         "userName": "starlord@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Starlord",
@@ -40,7 +40,7 @@
     {
         "token": "378468",
         "userName": "gamora@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Gamora",
@@ -59,7 +59,7 @@
     {
         "token": "507530",
         "userName": "rocket@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Rocket",
@@ -79,7 +79,7 @@
     {
         "token": "334658",
         "userName": "drax@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Drax",
@@ -99,7 +99,7 @@
     {
         "token": "376447",
         "userName": "mantis@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Mantis",
@@ -118,7 +118,7 @@
     {
         "token": "082654",
         "userName": "nebula@gmail.com",
-        "password": "123456p",
+        "password": "123456m",
         "dischargeDate": "2022-10-03",
         "downDate": null,
         "firstName": "Nébula",
@@ -134,7 +134,7 @@
     {
         "token": "362379",
         "userName": "yondu@gmail.com",
-        "password": "123456j",
+        "password": "123456m",
         "dischargeDate": "2022-10-01",
         "downDate": "2022-10-02",
         "firstName": "Yondu",
@@ -154,7 +154,7 @@
     {
         "token": "856864",
         "userName": "kraglin@gmail.com",
-        "password": "123456a",
+        "password": "123456m",
         "dischargeDate": null,
         "downDate": null,
         "firstName": "Kraglin",

@@ -10,8 +10,8 @@
         "birthDate": "1967-07-18",
         "dni": "42156324",
         "profilePicture": "groot.jpg",
-        "experience": "0",
-        "bookingList": "2",
+        "experience": "2",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Monday",
@@ -31,7 +31,7 @@
         "dni": "37464739",
         "profilePicture": "starlord.jpg",
         "experience": "0",
-        "bookingList": "0",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Monday"
@@ -49,7 +49,7 @@
         "dni": "25030603",
         "profilePicture": "gamora.jpg",
         "experience": "2",
-        "bookingList": "0",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Monday",
@@ -68,7 +68,7 @@
         "dni": "425556661",
         "profilePicture": "rocket.jpg",
         "experience": "1",
-        "bookingList": "0",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Monday",
@@ -88,7 +88,7 @@
         "dni": "07236372",
         "profilePicture": "drax.jpg",
         "experience": "3",
-        "bookingList": "0",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Monday",
@@ -108,7 +108,7 @@
         "dni": "32532680",
         "profilePicture": "mantis.jpg",
         "experience": "1",
-        "bookingList": "0",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": [
             "Friday",
@@ -126,8 +126,8 @@
         "birthDate": "1987-11-28",
         "dni": "27163565",
         "profilePicture": "nebula.jpg",
-        "experience": "2",
-        "bookingList": "0",
+        "experience": "8",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": null
     },
@@ -162,28 +162,9 @@
         "birthDate": "1974-05-22",
         "dni": "42166324",
         "profilePicture": null,
-        "experience": "0",
-        "bookingList": "2",
+        "experience": "2",
+        "bookingList": null,
         "reviewList": null,
         "serviceList": null
-    },
-    {
-        "token": "132809",
-        "userName": "pepe@gmail.com",
-        "password": "123456m",
-        "dischargeDate": "2022-10-14",
-        "downDate": null,
-        "firstName": "Pepe",
-        "lastName": "Argento",
-        "birthDate": "2001-07-02",
-        "dni": "50603502",
-        "profilePicture": null,
-        "experience": "3",
-        "bookingList": "3",
-        "reviewList": null,
-        "serviceList": [
-            "Tuesday",
-            "Saturday"
-        ]
     }
 ]

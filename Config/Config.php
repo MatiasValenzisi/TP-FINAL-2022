@@ -14,10 +14,14 @@ define("PHOTO", VIEWS_PATH."/photo/");
 define("VIDEO", VIEWS_PATH."/video/");
 
 /* Constantes para la conexion de la base de datos */ 
-define("DB_HOST", "localhost:3306"); 
-define("DB_NAME", "pet-hero");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_HOST", "db4free.net"); 
+define("DB_NAME", "pet_hero");
+define("DB_USER", "root_hero");
+define("DB_PASS", "123456@m");
+
+/* Correo electronico */
+define("EMAIL", "petheroveterinary@gmail.com");
+define("EMAIL_PASS", "123456@m");
 
 /* Constantes adicionales */
 define("PROJECT_NAME", "Pet Hero");

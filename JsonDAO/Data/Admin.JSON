@@ -8,7 +8,7 @@
         "firstName": "Matias",
         "lastName": "Valenzisi",
         "birthDate": "1994-08-12",
-        "dni": "38055056",
+        "dni": "38.055.056",
         "profilePicture": "matias.jpg"
     },
     {
@@ -20,7 +20,7 @@
         "firstName": "Nicolas",
         "lastName": "Brun",
         "birthDate": "2000-05-08",
-        "dni": "40530123",
+        "dni": "40.530.123",
         "profilePicture": "nicolas.jpg"
     },
     {
@@ -32,7 +32,7 @@
         "firstName": "Tobias",
         "lastName": "Selva",
         "birthDate": "2002-01-10",
-        "dni": "40372893",
+        "dni": "40.372.893",
         "profilePicture": "tobias.jpg"
     }
 

@@ -121,7 +121,7 @@
 
                             $newGuardian = new Guardian(
                                 $token, $email, $password, null, $downDate, $firstName,
-                                $lastName, $birthDate, $dni, null, $experience
+                                $lastName, $birthDate, $dni, $experience, null
                             );
                             
                             $this->userController->getGuardianDAO()->addDAO($newGuardian);

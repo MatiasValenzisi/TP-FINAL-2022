@@ -75,14 +75,48 @@
 
       // Controlar que no haya letras en el DNI
 
-      public function controllerDNI($string){
+      public function controllerDNI($string, $typeUser){
 
-          if(!$this->controllerLetters($string)) {
+        if(!$this->controllerLetters($string) && strlen($string) == 8) {
+
+            if($typeUser == "guardian") {
+                $this->guardianDAO = new GuardianDAO();
+                $lista = $this->guardianDAO->getAllDAO();
+            } else {
+                $this->ownerDAO = new OwnerDAO();
+                $lista = $this->ownerDAO->getAllDAO();
+            }
+
+            foreach($lista as $item) {  //Devuelve false si ya existe una cuenta con ese dni
+                if($item->getDni() == $string) {
+                    return false;
+                }
+            }
 
             return true;
-          }
-          
+        }
+         
           return false;
+      }
+
+      public function controllerEmail($email, $typeUser) {
+        
+        if($typeUser == "guardian") {
+            $this->guardianDAO = new GuardianDAO();
+            $lista = $this->guardianDAO->getAllDAO();
+        } else {
+            $this->ownerDAO = new OwnerDAO();
+            $lista = $this->ownerDAO->getAllDAO();
+        }
+
+        foreach($lista as $item) {  //Devluelve false si ya existe una cuenta con ese mail
+            if($item->getEmail() == $email) {
+                return false;
+            }
+        }
+
+        return true;
+
       }
 
       // Emprolija el nombre/apellido
@@ -104,6 +138,7 @@
         
         return false;
       }
+
 
       /* Busca un usuario por su userName entre los diferentes tipos y lo retorna si existe */
 

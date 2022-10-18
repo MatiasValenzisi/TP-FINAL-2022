@@ -25,8 +25,15 @@
 
         public function deleteDAO($value){
 
-            // Dar de baja con downDate = fecha actual. VER queda como eliminar o dar de baja 
-            // (En caso de ser eliminar, creariamos otro metodo igual a dar de baja).
+            $this->retrieveData();
+
+            foreach ($this->adminList as $key => $admin) {
+
+                if (strcmp($admin->getToken(), $value) == 0){
+                   unset($this->adminList[$key]);
+                   $this->saveData();         
+                }               
+            } 
         }
 
         public function updateDAO($value){

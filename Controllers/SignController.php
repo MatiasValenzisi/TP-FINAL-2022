@@ -115,27 +115,33 @@
 
                 if($this->userController->checkPassword($password)){
                     
-                    if($this->userController->controllerDNI($dni)){
+                    if($this->userController->controllerEmail($email, $typeUser)) {
+                       
+                        if($this->userController->controllerDNI($dni, $typeUser)){
 
-                        if($this->userController->birthDateCheck($birthDate)){
-
-                            $newGuardian = new Guardian(
-                                $token, $email, $password, null, $downDate, $firstName,
-                                $lastName, $birthDate, $dni, $experience, null
-                            );
-                            
-                            $this->userController->getGuardianDAO()->addDAO($newGuardian);
+                            if($this->userController->birthDateCheck($birthDate)){
     
-                            header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
-
+                                $newGuardian = new Guardian(
+                                    $token, $email, $password, null, $downDate, $firstName,
+                                    $lastName, $birthDate, $dni, $experience, null
+                                );
+                                
+                                $this->userController->getGuardianDAO()->addDAO($newGuardian);
+        
+                                header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
+    
+                            } else {
+    
+                                header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
+                            }
+                            
                         } else {
-
-                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
+    
+                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                         }
-                        
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
+                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/email");
                     }
     
                 } else {
@@ -147,7 +153,7 @@
     
                 if($this->userController->checkPassword($password)){
     
-                    if($this->userController->controllerDNI($dni)){
+                    if($this->userController->controllerDNI($dni, $typeUser)){
 
                         if($this->userController->birthDateCheck($birthDate)){
                             

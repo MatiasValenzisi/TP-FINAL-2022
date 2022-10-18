@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Añadir nuevo perro</h2>
+                    <h2>Añadir nuevo gato</h2>
                     <div class="clearfix"></div>
                 </div>
 
@@ -13,22 +13,23 @@
                     <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/pet/createPet"
                         method="POST" enctype="multipart/form-data">
 
-                        <input type="hidden" name="typePet" value="dog">
+                        <input type="hidden" name="typePet" value="cat">
+
+
+
 
 
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="size">Tipo <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo <span
                                     class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" id="typePet" name="typePet"
                                     onchange="location='<?php echo FRONT_ROOT ?>/pet/add/'+this.value">
-                                    <option value="dog" selected>Perro</option>
-                                    <option value="cat">Gato</option>
+                                    <option value="dog">Perro</option>
+                                    <option value="cat" selected>Gato</option>
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span
                                     class="required">*</span></label>

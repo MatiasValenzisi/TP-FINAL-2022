@@ -1,34 +1,40 @@
 <?php namespace Controllers;
 
     use JsonDAO\DogDAO as DogDAO;
-    use Models\Dog as Dog; 
+    use JsonDAO\CatDAO as CatDAO;
+use Models\Cat;
+use Models\Dog as Dog; 
 
     class PetController {  
 
         private $tokenPet;
-
         private $dogDAO;
+        private $catDAO;        
         private $dog;
-
+        private $cat;
+        private $dogList;
         private $petList;
-
-        //private $catDAO;        
+        
         //private $cat;   
         
         public function __construct(){
           
             $this->tokenPet = null; 
-            
             $this->dogDAO   = new DogDAO();           
+            $this->catDAO   = new CatDAO();           
             $this->dog      = null;    
+            $this->cat      = null;    
+            $this->dogList  = array();            
+            
                     
-            $this->petList  = array();            
         }
 
         public function list(){
 
-            $this->petList = $this->dogDAO->getAllDAO();
-
+            $this->dogList = $this->dogDAO->getAllDAO();
+            $this->catList = $this->catDAO->getAllDAO();
+            
+            $this->petList=array_merge($this->dogList,$this->catList);
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/petListView.php"; 
@@ -40,6 +46,7 @@
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
 
+        
             if (strcmp($typePet,"cat") == 0){
 
                 require_once ROOT_VIEWS."/catCreateView.php";
@@ -56,7 +63,7 @@
             
             $ownerToken = $_SESSION['userPH']->getToken();
 
-            $token = $this->createToken($this->getTokenPetList());  
+            $token = $this->createToken($this->getTokendogList());  
 
             $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
 
@@ -164,6 +171,11 @@
 
                 $this->dogDAO->addDAO($this->dog);
 
+            }else if (strcmp($typePet,"cat") == 0)
+            {
+                $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+
+                $this->catDAO->addDAO($this->cat);
             }
 
             header("Location: ".FRONT_ROOT."/pet/list");
@@ -177,7 +189,7 @@
             return $extension;
         }
 
-        public function createToken($petListToken){ 
+        public function createToken($dogListToken){ 
 
    		 $newToken = null;
 
@@ -186,7 +198,7 @@
    			    $controller = false;
    				$newToken = $this->generateNumber(6);
 
-   				foreach($petListToken  as $key => $value) {
+   				foreach($dogListToken  as $key => $value) {
 
    				   if($newToken == $value){
 
@@ -221,15 +233,15 @@
         
         }
 
-        public function getTokenPetList(){ 
+        public function getTokendogList(){ 
 
             $tokenList = array();
 
-            $petList = $this->dogDAO->getAllDAO();
+            $dogList = $this->dogDAO->getAllDAO();
 
-            if($petList != null) {
+            if($dogList != null) {
 
-                foreach($petList as $current) {
+                foreach($dogList as $current) {
 
                     array_push($tokenList, $current->getToken());
                 }
@@ -249,8 +261,11 @@
                 require_once ROOT_VIEWS."/mainFooter.php"; 
                 
             } elseif (strcmp($typePet,"cat") == 0) {
-
-                echo "Vista gato: /catView.php";
+                $this->cat = $this->catDAO->getCatTokenDAO($token);
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";  
+                require_once ROOT_VIEWS."/catView.php";
+                require_once ROOT_VIEWS."/mainFooter.php"; 
 
             } else {
                 

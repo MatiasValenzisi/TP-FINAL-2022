@@ -4,7 +4,10 @@
 
         <div class="card card-container ">
             <div class="login_content">
-                <h1 class="text-center"><i class="fa fa-paw"></i> <?php echo PROJECT_NAME ?> </h1>
+                <h1 class="animate__animated animate__bounce">An animated element</h1>
+                <h1 class="text-center animate__animated animate__bounceInRight"><i
+                        class="fa fa-paw animate__animated animate__bounceInLeft"></i>
+                    <?php echo PROJECT_NAME ?> </h1>
             </div>
             <br>
             <div class="text-center" style="margin-bottom: 25px">
@@ -23,9 +26,10 @@
                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
                 </div>
                 <button class="btn btn-lg btn-success btn-block btn-signin" type="submit" style="margin-bottom: 10px"><i
-                    class="fa fa-user"></i> Iniciar sesión</button>
+                        class="fa fa-user"></i> Iniciar sesión</button>
 
-                <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"><i class="fa fa-google"></i> Google</button>
+                <button class="btn btn-lg btn-danger btn-block btn-sig" style="margin-bottom: 10px" type="button"><i
+                        class="fa fa-google"></i> Google</button>
 
                 <button class="btn btn-lg btn-primary btn-block" style="margin-bottom: 10px"><i
                         class="fa fa-facebook"></i> Facebook</button>

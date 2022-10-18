@@ -26,7 +26,6 @@
                 $parameters["birthDate"]      = $value->getBirthDate();
                 $parameters["dni"]            = $value->getDni();
                 $parameters["profilePicture"] = $value->getProfilePicture();
-                $parameters["experience"]     = $value->getExperience();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -64,7 +63,6 @@
                     $admin->setBirthDate($value['birthDate']);
                     $admin->setDni($value["dni"]);
                     $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setExperience($value["experience"]);
                     $admin->setDischargeDate($value["dischargeDate"]);
                     $admin->setDownDate($value["downDate"]);
 
@@ -102,7 +100,7 @@
 
         // Metodo que actualiza un usuario de tipo Admin en base de datos mediante su token. 
 
-        public function updateDAO($update){
+        public function updateDAO($value){
 
             try {
 
@@ -115,7 +113,6 @@
                 $parameters["birthDate"]      = $value->getBirthDate();
                 $parameters["dni"]            = $value->getDni();
                 $parameters["profilePicture"] = $value->getProfilePicture();
-                $parameters["experience"]     = $value->getExperience();
                 $parameters["dischargeDate"]  = $value->getDischargeDate();
                 $parameters["downDate"]       = $value->getDownDate();
 
@@ -155,7 +152,6 @@
                     $admin->setBirthDate($value['birthDate']);
                     $admin->setDni($value["dni"]);
                     $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setExperience($value["experience"]);
                     $admin->setDischargeDate($value["dischargeDate"]);
                     $admin->setDownDate($value["downDate"]);
                 }
@@ -193,7 +189,6 @@
                     $admin->setBirthDate($value['birthDate']);
                     $admin->setDni($value["dni"]);
                     $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setExperience($value["experience"]);
                     $admin->setDischargeDate($value["dischargeDate"]);
                     $admin->setDownDate($value["downDate"]);
                 }

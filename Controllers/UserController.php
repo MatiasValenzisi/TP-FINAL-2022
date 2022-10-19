@@ -2,9 +2,9 @@
 
     use DateTime;
     
-    use JsonDAO\AdminDAO as AdminDAO;
-    use JsonDAO\GuardianDAO as GuardianDAO;
-    use JsonDAO\OwnerDAO as OwnerDAO;
+    use DAO\AdminDAO as AdminDAO;
+    use DAO\GuardianDAO as GuardianDAO;
+    use DAO\OwnerDAO as OwnerDAO;
 
     use Models\Admin as Admin;
     use Models\Guardian as Guardian; 

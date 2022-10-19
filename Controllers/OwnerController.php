@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-    use JsonDAO\OwnerDAO as OwnerDAO;
+    use DAO\OwnerDAO as OwnerDAO;
     use Models\Owner as Owner; 
 
     class OwnerController {  

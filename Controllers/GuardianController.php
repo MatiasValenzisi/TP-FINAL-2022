@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-    use JsonDAO\GuardianDAO as GuardianDAO;
+    use DAO\GuardianDAO as GuardianDAO;
     use Models\Guardian as Guardian; 
 
     class GuardianController {  

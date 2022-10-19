@@ -96,25 +96,27 @@
             return true;
         }
          
-          return false;
+        return false;
       }
 
-      public function controllerEmail($email, $typeUser) {
+      public function controllerEmail($email) {
         
-        if($typeUser == "guardian") {
-            $this->guardianDAO = new GuardianDAO();
-            $lista = $this->guardianDAO->getAllDAO();
+        $this->user = $this->adminDAO->getUserNameDAO($email);
+
+        if($this->user != null) {
+            return false;
         } else {
-            $this->ownerDAO = new OwnerDAO();
-            $lista = $this->ownerDAO->getAllDAO();
-        }
+            $this->user = $this->guardianDAO->getUserNameDAO($email);
 
-        foreach($lista as $item) {  //Devluelve false si ya existe una cuenta con ese mail
-            if($item->getEmail() == $email) {
+            if($this->user != null) {
                 return false;
+            } else {
+                $this->user = $this->ownerDAO->getUserNameDAO($email);
+                if($this->user != null) {
+                    return false;
+                }
             }
-        }
-
+        } 
         return true;
 
       }

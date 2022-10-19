@@ -82,6 +82,138 @@
 
         }
 
+        public function getAllDownDateDAO() {
+
+            $guardianList = array();
+
+            try {
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $guardian = new Guardian();
+
+                    $guardian->setToken($value["token"]);
+                    $guardian->setUserName($value["userName"]);
+                    $guardian->setPassword($value["password"]);
+                    $guardian->setFirstName($value["firstName"]);
+                    $guardian->setLastName($value["lastName"]);
+                    $guardian->setBirthDate($value['birthDate']);
+                    $guardian->setDni($value["dni"]);
+                    $guardian->setProfilePicture($value["profilePicture"]);
+                    $guardian->setExperience($value["experience"]);
+                    $guardian->setDischargeDate($value["dischargeDate"]);
+                    $guardian->setDownDate($value["downDate"]);
+
+                    array_push($guardianList, $guardian);
+
+                }
+
+            } catch (Exception $e) {
+                return false;
+            }
+
+            return $guardianList;
+        }
+
+        public function getAllDischargeDateDAO() {
+
+            $dischargeList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $guardian = new Guardian();
+
+                    $guardian->setToken($value["token"]);
+                    $guardian->setUserName($value["userName"]);
+                    $guardian->setPassword($value["password"]);
+                    $guardian->setFirstName($value["firstName"]);
+                    $guardian->setLastName($value["lastName"]);
+                    $guardian->setBirthDate($value['birthDate']);
+                    $guardian->setDni($value["dni"]);
+                    $guardian->setProfilePicture($value["profilePicture"]);
+                    $guardian->setExperience($value["experience"]);
+                    $guardian->setDischargeDate($value["dischargeDate"]);
+                    $guardian->setDownDate($value["downDate"]);
+
+                    array_push($dischargeList, $guardian);
+
+                }
+
+            } catch (Exception $e) {
+                return false;
+            }
+
+            return $dischargeList;
+        }
+
+        public function getAllPendientDateDAO() {
+            
+            $pendientList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NULL;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $guardian = new Guardian();
+
+                    $guardian->setToken($value["token"]);
+                    $guardian->setUserName($value["userName"]);
+                    $guardian->setPassword($value["password"]);
+                    $guardian->setFirstName($value["firstName"]);
+                    $guardian->setLastName($value["lastName"]);
+                    $guardian->setBirthDate($value['birthDate']);
+                    $guardian->setDni($value["dni"]);
+                    $guardian->setProfilePicture($value["profilePicture"]);
+                    $guardian->setExperience($value["experience"]);
+                    $guardian->setDischargeDate($value["dischargeDate"]);
+                    $guardian->setDownDate($value["downDate"]);
+
+                    array_push($pendientList, $guardian);
+
+                }
+
+
+            } catch (Exception $e) {
+                return false;
+            }
+
+            return $pendientList;
+        }
+
+        public function confirmGuardianDAO($value) {
+
+            try {
+                $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+
+                $parameters["dischargeDate"] = $value->setDischargeDate(date("Y-m-d"));
+
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            } catch (Exception $e) {
+                return false;
+            }
+
+            return true;
+        }
+
+
         // Metodo que da de baja un usuario en la base de datos.
 
         public function deleteDAO($value){ 
@@ -173,7 +305,7 @@
 
         public function getUserTokenDAO($token){
 
-            $admin = null;
+            $guardian = null;
 
             try {
 
@@ -204,7 +336,7 @@
                 return false;
             }
 
-            return $admin;
+            return $guardian;
         }        
         
     } ?>

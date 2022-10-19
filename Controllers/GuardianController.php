@@ -43,17 +43,17 @@
 
         public function profileEdit($password, $experience, $disp = null){
 
-            $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+            $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            $guardian->setPassword($password);
-            $guardian->setExperience($experience);
-            $guardian->setServiceList($disp);
+            $this->guardian->setPassword($password);
+            $this->guardian->setExperience($experience);
+            $this->guardian->setServiceList($disp);
 
-            if($this->userController->checkPassword($guardian->getPassword())){
+            if($this->userController->checkPassword($this->guardian->getPassword())){
 
-                $this->guardianDAO->updateDAO($guardian);
+                $this->guardianDAO->updateDAO($this->guardian);
 
-                $_SESSION['userPH'] = $guardian;
+                $_SESSION['userPH'] = $this->guardian;
 
                 header("Location: ".FRONT_ROOT."/guardian/profile/success/edit/save");
 

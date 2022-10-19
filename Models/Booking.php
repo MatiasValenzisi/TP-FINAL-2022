@@ -2,118 +2,130 @@
 
     class Booking {
 
-        private $initialDate;
-        private $finalDate;
-        private $initialSchedule; // Horario inicial.
-        private $finalSchedule;   // Horario final.
-        private $condition;       // Estado.
-        private $couponPayment;
-        private $remainingPayment;
-        private $guardian;
-        private $owner;
+        private $pet;              // Tipo de mascota: gato o perro.
+        private $race              // Raza de la mascota.   
+        private $dateList;         // Listado de fechas.
+        private $price;            // Precio total. Dias por precio del guardian.
+        private $state;            // Estado de la reserva.
+        private $couponPayment;    // Cupón de pago.
+        private $remainingPayment; // Pago restante.
+        private $tokenGuardian;    // Token del guardian asignado a la reserva.
+        private $tokenOwner;       // Token del dueño que solicito la reserva.
+        private $acceptanceDate;   // Fecha de aceptación de la reserva por parte del guardian. 
 
-        public function __construct($initialDate = null, $finalDate = null, $initialSchedule = null, $finalSchedule = null, $condition = null, 
-        $couponPayment = null, $remainingPayment = null, $guardian = null, $owner = null){
+        public function __construct($pet = null, $race = null, $dateList = null, $price = null, $state = null, 
+        $couponPayment = null, $remainingPayment = null, $tokenGuardian = null, $tokenOwner = null, $acceptanceDate = null){
 
-            $this->initialDate      = $initialDate;
-            $this->finalDate        = $finalDate;
-            $this->initialSchedule  = $initialSchedule;
-            $this->finalSchedule    = $finalSchedule;
-            $this->condition        = $condition;
-            $this->couponPayment    = $couponPayment;
+            $this->pet               = $pet;
+            $this->race              = $race;
+            $this->dateList          = $dateList;
+            $this->price             = $price;
+            $this->state             = $state;
+            $this->couponPayment     = $couponPayment;
+            $this->remainingPayment  = $remainingPayment;
+            $this->tokenGuardian     = $tokenGuardian;
+            $this->tokenOwner        = $tokenOwner;
+            $this->acceptanceDate    = $acceptanceDate;
+        }  
+
+        public function getPet() { 
+
+            return $this->pet; 
+        } 
+
+        public function setPet($pet) { 
+
+            $this->pet = $pet; 
+        }    
+
+        public function getRace() { 
+
+            return $this->race; 
+        } 
+
+        public function setRace($race) { 
+
+            $this->race = $race; return
+        } 
+
+        public function getDateList() { 
+
+            return $this->dateList; 
+        } 
+
+        public function setDateList($dateList) { 
+
+            $this->dateList = $dateList; 
+        } 
+
+        public function getPrice() { 
+
+            return $this->price; 
+        } 
+
+        public function setPrice($price) { 
+
+            $this->price = $price; 
+        } 
+
+        public function getState() { 
+
+            return $this->state; 
+        } 
+
+        public function setState($state) { 
+
+            $this->state = $state; 
+        } 
+
+        public function getCouponPayment() { 
+
+            return $this->couponPayment; 
+        } 
+
+        public function setCouponPayment($couponPayment) { 
+
+            $this->couponPayment = $couponPayment; 
+        } 
+
+        public function getRemainingPayment() { 
+
+            return $this->remainingPayment; 
+        } 
+
+        public function setRemainingPayment($remainingPayment) { 
+
             $this->remainingPayment = $remainingPayment;
-            $this->guardian         = $guardian;
-            $this->owner            = $owner;
-        }
-      
-        public function getInitialDate(){
-
-            return $this->initialDate;
         }
 
-        public function setInitialDate($initialDate){
+        public function getTokenGuardian() { 
 
-            $this->initialDate = $initialDate;
-        }
+            return $this->tokenGuardian; 
+        } 
 
-        public function getFinalDate(){
+        public function setTokenGuardian($tokenGuardian) { 
 
-            return $this->finalDate;
-        }
+            $this->tokenGuardian = $tokenGuardian; 
+        }  
 
-        public function setFinalDate($finalDate){
-            
-            $this->finalDate = $finalDate;
-        }
+        public function getTokenOwner() { 
 
-        public function getInitialSchedule(){
+            return $this->tokenOwner; 
+        } 
 
-            return $this->initialSchedule;
-        }
+        public function setTokenOwner($tokenOwner) { 
 
-        public function setInitialSchedule($initialSchedule){
+            $this->tokenOwner = $tokenOwner;
+        } 
 
-            $this->initialSchedule = $initialSchedule;
-        }
+        public function getAcceptanceDate() { 
 
-        public function getFinalSchedule(){
+            return $this->acceptanceDate; 
+        } 
 
-            return $this->finalSchedule;
-        }
+        public function setAcceptanceDate($acceptanceDate) { 
 
-        public function setFinalSchedule($finalSchedule){
-            
-            $this->finalSchedule = $finalSchedule;
-        }
-
-        public function getCondition(){
-            
-            return $this->condition;
-        }
-
-        public function setCondition($condition){
-            
-            $this->condition = $condition;
-        }
-
-        public function getCouponPayment(){
-
-            return $this->couponPayment;
-        }
-
-        public function setCouponPayment($couponPayment){
-            
-            $this->couponPayment = $couponPayment;
-        }
-
-        public function getRemainingPayment(){
-            
-            return $this->remainingPayment;
-        }
-
-        public function setRemainingPayment($remainingPayment){
-            
-            $this->remainingPayment = $remainingPayment;
-        }
-
-        public function getGuardian(){
-            
-            return $this->guardian;
-        }
-
-        public function setGuardian($guardian){
-
-            $this->guardian = $guardian;
-        }
-
-        public function getOwner(){
-            
-            return $this->owner;
-        }
-
-        public function setOwner($owner){
-            
-            $this->owner = $owner;
-        }
+            $this->acceptanceDate = $acceptanceDate; 
+        } 
     }
 ?>

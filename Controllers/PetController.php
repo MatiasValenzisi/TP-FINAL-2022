@@ -61,6 +61,7 @@ use Models\Dog as Dog;
 
         public function createPet($typePet, $name, $race, $size, $weight, $vaccinationPlan = null, $photo = null, $video = null, $observations = ''){
             
+            
             $ownerToken = $_SESSION['userPH']->getToken();
 
             $token = $this->createToken($this->getTokendogList());  

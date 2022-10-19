@@ -23,6 +23,19 @@
             return $this->guardianList;
         }
 
+        public function deleteDAO($value){
+
+            $this->retrieveData();
+
+            foreach ($this->guardianList as $key => $guardian) {
+
+                if (strcmp($guardian->getToken(), $value) == 0){
+                   unset($this->guardianList[$key]);
+                   $this->saveData();         
+                }               
+            } 
+        }
+
         public function getAllDownDateDAO() {
 
             $this->retrieveData();
@@ -64,19 +77,6 @@
                 }
             }
             return $temporalList;
-        }
-
-        public function deleteDAO($value){
-
-            $this->retrieveData();
-
-            foreach ($this->guardianList as $key => $guardian) {
-
-                if (strcmp($guardian->getToken(), $value) == 0){
-                   unset($this->guardianList[$key]);
-                   $this->saveData();         
-                }               
-            } 
         }
 
         public function updateDAO($value){

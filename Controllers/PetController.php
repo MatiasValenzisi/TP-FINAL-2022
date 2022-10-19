@@ -2,8 +2,8 @@
 
     use JsonDAO\DogDAO as DogDAO;
     use JsonDAO\CatDAO as CatDAO;
-use Models\Cat;
-use Models\Dog as Dog; 
+    use Models\Cat as Cat;
+    use Models\Dog as Dog; 
 
     class PetController {  
 

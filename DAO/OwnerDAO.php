@@ -4,14 +4,14 @@
     use DAO\Connection as Connection;
     use \Exception as Exception;
 
-    use Models\Admin as Admin;
+    use Models\Owner as Owner;
 
-    class AdminDAO implements IDAO{
+    class OwnerDAO implements IDAO{
         
         private $connection;
-        private $tableName = "admin";
+        private $tableName = "owner";
 
-        // Metodo que genera un nuevo usuario de tipo Admin a la base de datos.
+        // Metodo que genera un nuevo usuario de tipo Owner a la base de datos.
 
         public function addDAO($value){   
 
@@ -39,11 +39,11 @@
             return true;
         }
 
-        // Metodo que retorna todos los usuarios Admin de la base de datos en forma de lista.
+        // Metodo que retorna todos los usuarios Owner de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
-            $adminList = array();
+            $ownerList = array();
 
             try {
 
@@ -54,20 +54,20 @@
 
                 foreach ($resultSet as $key => $value) {
                  
-                    $admin = new Admin();
+                    $owner = new Owner();
 
-                    $admin->setToken($value["token"]);
-                    $admin->setUserName($value["userName"]);
-                    $admin->setPassword($value["password"]);
-                    $admin->setFirstName($value["firstName"]);
-                    $admin->setLastName($value["lastName"]);
-                    $admin->setBirthDate($value['birthDate']);
-                    $admin->setDni($value["dni"]);
-                    $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setDischargeDate($value["dischargeDate"]);
-                    $admin->setDownDate($value["downDate"]);
+                    $owner->setToken($value["token"]);
+                    $owner->setUserName($value["userName"]);
+                    $owner->setPassword($value["password"]);
+                    $owner->setFirstName($value["firstName"]);
+                    $owner->setLastName($value["lastName"]);
+                    $owner->setBirthDate($value['birthDate']);
+                    $owner->setDni($value["dni"]);
+                    $owner->setProfilePicture($value["profilePicture"]);
+                    $owner->setDischargeDate($value["dischargeDate"]);
+                    $owner->setDownDate($value["downDate"]);
 
-                    array_push($adminList, $admin);
+                    array_push($ownerList, $owner);
 
                 }
 
@@ -76,7 +76,7 @@
                 return false;
             }
 
-            return $adminList;
+            return $ownerList;
 
         }
 
@@ -99,7 +99,7 @@
             return true;
         }
 
-        // Metodo que actualiza un usuario de tipo Admin en base de datos mediante su token. 
+        // Metodo que actualiza un usuario de tipo Owner en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -128,11 +128,11 @@
             return true;
         }
 
-        // Metodo que retorna un usuario de tipo Admin de la base de datos a partir de su nombre de usuario.
+        // Metodo que retorna un usuario de tipo Owner de la base de datos a partir de su nombre de usuario.
 
         public function getUserNameDAO($username) {
 
-            $admin = null;
+            $owner = null;
 
             try {
 
@@ -143,18 +143,18 @@
 
                 foreach ($resultSet as $key => $value) {
                  
-                    $admin = new Admin();
+                    $owner = new Owner();
 
-                    $admin->setToken($value["token"]);
-                    $admin->setUserName($value["userName"]);
-                    $admin->setPassword($value["password"]);
-                    $admin->setFirstName($value["firstName"]);
-                    $admin->setLastName($value["lastName"]);
-                    $admin->setBirthDate($value['birthDate']);
-                    $admin->setDni($value["dni"]);
-                    $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setDischargeDate($value["dischargeDate"]);
-                    $admin->setDownDate($value["downDate"]);
+                    $owner->setToken($value["token"]);
+                    $owner->setUserName($value["userName"]);
+                    $owner->setPassword($value["password"]);
+                    $owner->setFirstName($value["firstName"]);
+                    $owner->setLastName($value["lastName"]);
+                    $owner->setBirthDate($value['birthDate']);
+                    $owner->setDni($value["dni"]);
+                    $owner->setProfilePicture($value["profilePicture"]);
+                    $owner->setDischargeDate($value["dischargeDate"]);
+                    $owner->setDownDate($value["downDate"]);
                 }
 
             } catch (Exception $e){
@@ -162,14 +162,14 @@
                 return false;
             }
 
-            return $admin;
+            return $owner;
         }
 
-        // Metodo que retorna un usuario de tipo Admin de la base de datos a partir de su token.
+        // Metodo que retorna un usuario de tipo Owner de la base de datos a partir de su token.
 
         public function getUserTokenDAO($token){
 
-            $admin = null;
+            $owner = null;
 
             try {
 
@@ -180,18 +180,18 @@
 
                 foreach ($resultSet as $key => $value) {
                  
-                    $admin = new Admin();
+                    $owner = new Owner();
 
-                    $admin->setToken($value["token"]);
-                    $admin->setUserName($value["userName"]);
-                    $admin->setPassword($value["password"]);
-                    $admin->setFirstName($value["firstName"]);
-                    $admin->setLastName($value["lastName"]);
-                    $admin->setBirthDate($value['birthDate']);
-                    $admin->setDni($value["dni"]);
-                    $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setDischargeDate($value["dischargeDate"]);
-                    $admin->setDownDate($value["downDate"]);
+                    $owner->setToken($value["token"]);
+                    $owner->setUserName($value["userName"]);
+                    $owner->setPassword($value["password"]);
+                    $owner->setFirstName($value["firstName"]);
+                    $owner->setLastName($value["lastName"]);
+                    $owner->setBirthDate($value['birthDate']);
+                    $owner->setDni($value["dni"]);
+                    $owner->setProfilePicture($value["profilePicture"]);
+                    $owner->setDischargeDate($value["dischargeDate"]);
+                    $owner->setDownDate($value["downDate"]);
                 }
 
             } catch (Exception $e){
@@ -199,7 +199,7 @@
                 return false;
             }
 
-            return $admin;
+            return $owner;
         }        
         
     } ?>

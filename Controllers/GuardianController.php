@@ -24,9 +24,7 @@
 
         public function profile($type = null, $action = null, $specific = null){
 
-            echo "En reparación ...";
-
-            /*$serviceArray = array();
+            $serviceArray = array();
 
             if (!is_null($_SESSION['userPH']->getServiceDayList())){
 
@@ -40,12 +38,14 @@
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/guardianProfileView.php";  
             require_once ROOT_VIEWS."/notificationAlert.php";      
-            require_once ROOT_VIEWS."/mainFooter.php"; */
+            require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($password, $experience, $disp = null, $servicePrice = null, $serviceStartDate = null, $serviceEndDate = null){
+        public function profileEdit($password, $experience, $disp = null, $servicePrice = null, $serviceDate = null){
 
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+            var_dump($serviceDate);
+
+            /*$this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
             $this->guardian->setPassword($password);
             $this->guardian->setExperience($experience);
@@ -65,7 +65,9 @@
             } else {
 
                 header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
-            }           
+            }*/
+
+            exit();          
         }
         
         // Muestra un listado de guardianes.

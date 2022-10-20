@@ -17,7 +17,7 @@
                 <th>Documento</th>
                 <th>Fecha de nacimiento</th>
                 <th>Experiencia</th>
-                <th>Precio del servicio</th>
+                <th>Precio base del servicio por dia</th>
                 <th>Fecha de alta</th>
                 <th>Fecha de baja</th>
                 <th>Acción</th>

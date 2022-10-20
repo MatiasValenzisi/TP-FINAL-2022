@@ -58,8 +58,7 @@
                                         <li><i class="fa fa-calendar"></i> 
                                             Fecha de nacimiento:<?php echo date("d-m-Y", strtotime($guardian->getBirthDate())); ?>
                                         </li>
-                                        <li><i class="fa fa-money"></i> Precio por dia:
-                                            <?php echo "$".$guardian->getServicePrice(); ?>
+                                        <li><i class="fa fa-money"></i> Precio base del servicio por dia: <?php echo "$".$guardian->getServicePrice(); ?>
                                         </li>
                                         <li><i class="fa fa-history"></i> Experiencia:
                                             <?php echo $guardian->getExperience() . " Año/s."; ?>

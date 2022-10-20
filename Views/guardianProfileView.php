@@ -92,9 +92,34 @@
                                   </div>
 
                                   <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="servicePrice">Precio diario por servicio en pesos: <span class="required">*</span></label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                          <input type="number" class="form-control col-md-7 col-xs-12"
+                                              placeholder="Precio diario por servicio en pesos" name="servicePrice" id="servicePrice"
+                                              value="<?php echo $_SESSION['userPH']->getServicePrice() ?>" min="0"/>
+                                      </div>
+                                  </div>
 
+                                  <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reservation">Fecha rango de servicios: <span class="required">*</span></label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <fieldset>
+                                          <div class="control-group">
+                                            <div class="controls">
+                                              <div class="input-prepend input-group">
+                                                <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control col-md-7 col-xs-12" name="serviceDate" id="reservation" class="form-control" 
+                                                value="<?php echo (date("m-d-Y").' - '.date("m-d-Y")) ?>" />
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </fieldset>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
                                       <label class="col-md-3 col-sm-3 col-xs-12 control-label">Disponibilidad de
-                                          estadías <span class="required">*</span></label>
+                                          estadías para servicios <span class="required">*</span></label>
                                       <div class="col-md-9 col-sm-9 col-xs-12">
 
                                           <div class="checkbox">
@@ -130,6 +155,8 @@
                                           </div>
                                       </div>
                                   </div>
+
+                                  <br>
 
                                   <div class="ln_solid"></div>
                                   <div class="form-group">

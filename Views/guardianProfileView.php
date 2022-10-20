@@ -96,7 +96,7 @@
                                       <div class="col-md-6 col-sm-6 col-xs-12">
                                           <input type="number" class="form-control col-md-7 col-xs-12"
                                               placeholder="Precio diario por servicio en pesos" name="servicePrice" id="servicePrice"
-                                              value="<?php echo $_SESSION['userPH']->getServicePrice() ?>" min="0"/>
+                                              value="<?php echo $_SESSION['userPH']->getServicePrice() ?>" min="0" required/>
                                       </div>
                                   </div>
 

@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-    use DAO\AdminDAO as AdminDAO;
+    use JsonDAO\AdminDAO as AdminDAO;
     use Models\Admin as Admin; 
 
     class AdminController {  

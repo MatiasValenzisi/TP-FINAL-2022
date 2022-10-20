@@ -19,23 +19,23 @@
         
         public function checkSession(){
 
-            $user = $_SESSION['userPH'];
+            //$user = $_SESSION['userPH'];
 
-            $userLogin = $this->userController->getUserName($user->getUserName());
+            //$userLogin = $this->userController->getUserName($user->getUserName());
 
-            if ($user->getPassword() != $userLogin->getPassword()){
+            //if ($user->getPassword() != $userLogin->getPassword()){
 
-                unset($_SESSION['userPH']);
+                //unset($_SESSION['userPH']);
                  
-                header("Location: ".FRONT_ROOT."/home/index/error/check/user");                
+                //header("Location: ".FRONT_ROOT."/home/index/error/check/user");                
 
-            } else {
+            //} else {
 
-                if ($_SESSION['userPH'] != $userLogin){
+                //if ($_SESSION['userPH'] != $userLogin){
 
-                    $_SESSION['userPH'] = $userLogin;
-                }
-            }            
+                    //$_SESSION['userPH'] = $userLogin;
+                //}
+            //}            
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */

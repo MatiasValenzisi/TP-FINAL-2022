@@ -109,7 +109,7 @@
                                               <div class="input-prepend input-group">
                                                 <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
                                                 <input type="text" class="form-control col-md-7 col-xs-12" name="serviceDate" id="reservation" class="form-control" 
-                                                value="<?php echo (date("m-d-Y").' - '.date("m-d-Y")) ?>" />
+                                                value="<?php echo $serviceDate ?>" />
                                               </div>
                                             </div>
                                           </div>

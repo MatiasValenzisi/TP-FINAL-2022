@@ -26,6 +26,19 @@
 
             $serviceArray = array();
 
+            $serviceDate = date("m-d-Y").' - '.date("m-d-Y");
+
+            if (!is_null($_SESSION['userPH']->getServiceStartDate()) && !is_null($_SESSION['userPH']->getServiceEndDate())){
+
+                $serviceStartDate = date("Y-m-d", strtotime($_SESSION['userPH']->getServiceStartDate()));
+                $serviceStartDate = date("m-d-Y", strtotime($serviceStartDate));
+
+                $serviceEndDate = date("Y-m-d", strtotime($_SESSION['userPH']->getServiceEndDate()));
+                $serviceEndDate = date("m-d-Y", strtotime($serviceEndDate));
+
+                $serviceDate = $serviceStartDate.' - '.$serviceEndDate; 
+            }
+
             if (!is_null($_SESSION['userPH']->getServiceDayList())){
 
                 foreach ($_SESSION['userPH']->getServiceDayList() as $key => $value) {
@@ -41,18 +54,24 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($password, $experience, $disp = null, $servicePrice = null, $serviceDate = null){
+        public function profileEdit($password, $experience, $servicePrice = null, $serviceDate = null, $disp = null){
 
-            var_dump($serviceDate);
+            $serviceDate = explode(" - ", $serviceDate);
 
-            /*$this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+            $serviceStartDate = date("m/d/Y", strtotime($serviceDate["0"]));
+            $serviceStartDate = date("Y-m-d", strtotime($serviceStartDate));
+
+            $serviceEndDate = date("m/d/Y", strtotime($serviceDate["1"]));
+            $serviceEndDate = date("Y-m-d", strtotime($serviceEndDate));
+
+            $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
             $this->guardian->setPassword($password);
             $this->guardian->setExperience($experience);
-            $this->guardian->setServiceList($disp);
             $this->guardian->setServicePrice($servicePrice);
             $this->guardian->setServiceStartDate($serviceStartDate);
             $this->guardian->setServiceEndDate($serviceEndDate);
+            $this->guardian->setServiceDayList($disp);
 
             if($this->userController->checkPassword($this->guardian->getPassword())){
 
@@ -65,9 +84,7 @@
             } else {
 
                 header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
-            }*/
-
-            exit();          
+            }          
         }
         
         // Muestra un listado de guardianes.

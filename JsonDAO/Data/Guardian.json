@@ -53,11 +53,12 @@
         "dni": "25030603",
         "profilePicture": "gamora.jpg",
         "experience": "2",
-        "servicePrice": null,
-        "serviceStartDate": null,
-        "serviceEndDate": null,
+        "servicePrice": "",
+        "serviceStartDate": "2022-10-20",
+        "serviceEndDate": "2022-11-20",
         "serviceDayList": [
             "Monday",
+            "Wednesday",
             "Saturday"
         ],
         "bookingList": null,
@@ -191,7 +192,6 @@
         "serviceDayList": null,
         "bookingList": null,
         "reviewList": null,
-        "serviceList": null,
         "dischargeDate": null,
         "downDate": null
     }

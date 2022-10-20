@@ -2,18 +2,25 @@
 
     class Guardian extends User {
 
-        private $experience;
-        private $bookingList;
-        private $reviewList;
-        private $serviceList;
+        private $experience;         // Años de experiencia.
+        private $serviceStartDate;   // Fecha de inicio del servicio.
+        private $serviceEndDate;     // Fecha de finalización del servicio.
+        private $serviceDayList;     // Días de la semana en que trabaja dentro del rango de inicio y finalización del servicio.
+        private $bookingList;        // Listado de reservas asociadas al guardian. 
+        private $reviewList;         // Listado de reseñas del guardian.
 
-        public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $experience = null, $bookingList = null, $reviewList = null, $profilePicture = null){
+        public function __construct(
+
+            $token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null, $experience = null, $serviceStartDate = null, $serviceEndDate = null, $serviceDayList = null, $bookingList = null, $reviewList = null){
 
             parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni, $profilePicture);
 
-            $this->experience  = $experience;
-            $this->bookingList = $bookingList;
-            $this->reviewList  = $reviewList;
+            $this->experience       = $experience;
+            $this->serviceStartDate = $serviceStartDate;
+            $this->serviceEndDate   = $serviceEndDate;
+            $this->serviceDayList   = $serviceDayList;
+            $this->bookingList      = $bookingList;
+            $this->reviewList       = $reviewList;
         }
 
         public function getExperience(){
@@ -26,34 +33,55 @@
             $this->experience = $experience;
         }
 
-        public function getBookingList(){
-            
-            return $this->bookingList;
-        }
+        public function getServiceStartDate() { 
 
-        public function setBookingList($bookingList){
-            
-            $this->bookingList = $bookingList;
-        }
+            return $this->serviceStartDate; 
+        } 
 
-        public function getReviewList(){
-            
-            return $this->reviewList;
-        }
+        public function setServiceStartDate($serviceStartDate) { 
 
-        public function setReviewList($reviewList){
+            $this->serviceStartDate = $serviceStartDate; 
+        } 
 
-            $this->reviewList = $reviewList;
-        }
+        public function getServiceEndDate() { 
 
-        public function getServiceList(){
-            
-            return $this->serviceList;
-        }
+            return $this->serviceEndDate; 
+        } 
 
-        public function setServiceList($serviceList){
-            
-            $this->serviceList = $serviceList;
-        }
+        public function setServiceEndDate($serviceEndDate) { 
+
+            $this->serviceEndDate = $serviceEndDate; 
+        } 
+
+        public function getServiceDayList() { 
+
+            return $this->serviceDayList; 
+        } 
+
+        public function setServiceDayList($serviceDayList) { 
+
+            $this->serviceDayList = $serviceDayList; 
+        } 
+
+        public function getBookingList() { 
+
+            return $this->bookingList 
+        } 
+
+        public function setBookingList($bookingList) { 
+
+            $this->bookingList = $bookingList 
+        } 
+
+        public function getReviewList() { 
+
+            return $this->reviewList; 
+        } 
+
+        public function setReviewList($reviewList) { 
+
+            $this->reviewList = $reviewList; 
+        } 
+
     }
 ?>

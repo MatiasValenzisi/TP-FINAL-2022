@@ -2,6 +2,7 @@
 
     class Booking {
 
+        private $token;            // Token o número de reserva.
         private $pet;              // Tipo de mascota: gato o perro.
         private $race              // Raza de la mascota.   
         private $dateList;         // Listado de fechas.
@@ -13,9 +14,10 @@
         private $tokenOwner;       // Token del dueño que solicito la reserva.
         private $acceptanceDate;   // Fecha de aceptación de la reserva por parte del guardian. 
 
-        public function __construct($pet = null, $race = null, $dateList = null, $price = null, $state = null, 
+        public function __construct($token = null, $pet = null, $race = null, $dateList = null, $price = null, $state = null, 
         $couponPayment = null, $remainingPayment = null, $tokenGuardian = null, $tokenOwner = null, $acceptanceDate = null){
 
+            $this->token             = $token;
             $this->pet               = $pet;
             $this->race              = $race;
             $this->dateList          = $dateList;
@@ -27,6 +29,16 @@
             $this->tokenOwner        = $tokenOwner;
             $this->acceptanceDate    = $acceptanceDate;
         }  
+
+        public function getToken() { 
+
+            return $this->token; 
+        } 
+
+        public function setToken($token) { 
+
+            $this->token = $token; 
+        } 
 
         public function getPet() { 
 

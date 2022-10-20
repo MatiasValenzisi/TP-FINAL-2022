@@ -97,17 +97,17 @@
 
             $this->retrieveData();
 
-            $user = null;
+            $cat = null;
 
             foreach ($this->catList as $value) {
 
                 if(strcmp($value->getToken(), $token) == 0){
 
-                    $user = $value;
+                    $cat = $value;
                 }
             }
 
-            return $user;
+            return $cat;
         }
     }
 ?>

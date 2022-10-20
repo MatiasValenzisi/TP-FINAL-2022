@@ -19,6 +19,7 @@
                             <th>Raza</th>
                             <th>Tamaño</th>
                             <th>Peso</th>
+                            <th>Tipo</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -30,20 +31,27 @@
 
                             if (strcmp($_SESSION['userPH']->getToken(), $pet->getTokenOwner()) == 0){ ?>
 
-                                <tr>
-                                    <td><?php echo $pet->getToken(); ?></td>
-                                    <td><?php echo $pet->getName(); ?></td>
-                                    <td><?php echo $pet->getRace(); ?></td>
-                                    <td><?php echo $pet->getSize(); ?></td>
-                                    <td><?php echo $pet->getWeight()." kg"; ?></td>
-                                    <?php if (strcmp(get_class($pet), "Models\Dog") == 0) { ?>
-                                        <td><a class="text-info"href="<?php echo FRONT_ROOT ?>/pet/view/dog/<?php echo $pet->getToken(); ?>"><b>Visualizar</b></a></td>
-                                    <?php } elseif (strcmp(get_class($pet), "Models\Cat") == 0) { ?>
-                                        <td><a class="text-info"href="<?php echo FRONT_ROOT ?>/pet/view/cat/<?php echo $pet->getToken(); ?>"><b>Visualizar</b></a></td>
-                                    <?php } ?>
-                                </tr>
+                        <tr>
+                            <td><?php echo $pet->getToken(); ?></td>
+                            <td><?php echo $pet->getName(); ?></td>
+                            <td><?php echo $pet->getRace(); ?></td>
+                            <td><?php echo $pet->getSize(); ?></td>
+                            <td><?php echo $pet->getWeight()." kg"; ?></td>
 
-                            <?php }
+                            <?php if (strcmp(get_class($pet), "Models\Dog") == 0) { ?>
+                            <td>Perro</td>
+                            <td><a class="text-info"
+                                    href="<?php echo FRONT_ROOT ?>/pet/view/dog/<?php echo $pet->getToken(); ?>"><b>Visualizar</b></a>
+                            </td>
+                            <?php } elseif (strcmp(get_class($pet), "Models\Cat") == 0) { ?>
+                            <td>Gato</td>
+                            <td><a class="text-info"
+                                    href="<?php echo FRONT_ROOT ?>/pet/view/cat/<?php echo $pet->getToken(); ?>"><b>Visualizar</b></a>
+                            </td>
+                            <?php } ?>
+                        </tr>
+
+                        <?php }
                         } ?>
 
                     </tbody>

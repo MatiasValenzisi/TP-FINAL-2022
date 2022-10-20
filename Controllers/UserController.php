@@ -77,48 +77,26 @@
 
       public function controllerDNI($string, $typeUser){
 
+        $lista = null;
+
         if(!$this->controllerLetters($string) && strlen($string) == 8) {
 
             if($typeUser == "guardian") {
-                $this->guardianDAO = new GuardianDAO();
                 $lista = $this->guardianDAO->getAllDAO();
             } else {
-                $this->ownerDAO = new OwnerDAO();
                 $lista = $this->ownerDAO->getAllDAO();
             }
 
             foreach($lista as $item) {  //Devuelve false si ya existe una cuenta con ese dni
                 if($item->getDni() == $string) {
-                    return false;
+                    return null;
                 }
             }
 
-            return true;
-        }
+            return $lista;
+        }   
          
-        return false;
-      }
-
-      public function controllerEmail($email) {
-        
-        $this->user = $this->adminDAO->getUserNameDAO($email);
-
-        if($this->user != null) {
-            return false;
-        } else {
-            $this->user = $this->guardianDAO->getUserNameDAO($email);
-
-            if($this->user != null) {
-                return false;
-            } else {
-                $this->user = $this->ownerDAO->getUserNameDAO($email);
-                if($this->user != null) {
-                    return false;
-                }
-            }
-        } 
-        return true;
-
+        return $lista;
       }
 
       // Emprolija el nombre/apellido

@@ -4,7 +4,7 @@
                     <section class="login_content">
 
                         <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
-                            <input type="hidden" name="typePet" value="cat">
+                            <input type="hidden" name="typeUser" value="guardian">
                             <div class="bg-primary text-center" style="padding-top: 3px; padding-bottom: 3px">
                                 <h2>Registrarse como guardian</h2>
                             </div>
@@ -64,6 +64,14 @@
                                 <label class="form-label" for="experience">Años de experiencia:</label>
                                 <input type="number" class="form-control" placeholder="Años de experiencia"
                                     name="experience" min="0" max="99" required />
+                            </div>
+
+                            <br>
+
+                            <div class="form-outline text-left">
+                                <label class="form-label" for="experience">Precio base del servicio:</label>
+                                <input type="number" class="form-control" placeholder="Precio base"
+                                    name="servicePrice" min="0" max="99" required />
                             </div>
 
                             <br><br>

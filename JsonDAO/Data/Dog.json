@@ -22,17 +22,5 @@
         "vaccinationPlan": "528827-imagen1.png",
         "photo": "528827-doberman.png",
         "video": "528827-video_2.mp4"
-    },
-    {
-        "token": "532796",
-        "tokenOwner": "912279",
-        "name": "Fatiga2",
-        "race": "Pastor",
-        "size": "Mediano",
-        "weight": "80",
-        "observations": "",
-        "vaccinationPlan": "532796-imagen1.png",
-        "photo": null,
-        "video": null
     }
 ]

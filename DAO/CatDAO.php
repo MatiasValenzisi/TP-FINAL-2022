@@ -1,4 +1,4 @@
-<?php namespace JsonDAO;
+<?php namespace DAO;
 
 use DAO\IDAO as IDAO; 
 use DAO\Connection as Connection;
@@ -80,7 +80,6 @@ use \Exception as Exception;
             return $catList;
 
         }
-
 
         // Metodo que actualiza un perro en base de datos mediante su token. 
 

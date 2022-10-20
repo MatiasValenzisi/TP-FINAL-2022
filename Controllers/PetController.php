@@ -1,7 +1,7 @@
 <?php namespace Controllers;
 
-    use JsonDAO\DogDAO as DogDAO;
-    use JsonDAO\CatDAO as CatDAO;
+    use DAO\DogDAO as DogDAO;
+    use DAO\CatDAO as CatDAO;
     use Models\Cat as Cat;
     use Models\Dog as Dog; 
 
@@ -9,32 +9,40 @@
 
         private $tokenPet;
         private $dogDAO;
-        private $catDAO;        
+        private $catDAO;
         private $dog;
         private $cat;
         private $dogList;
+        private $catList;
         private $petList;
-        
-        //private $cat;   
         
         public function __construct(){
           
             $this->tokenPet = null; 
             $this->dogDAO   = new DogDAO();           
-            $this->catDAO   = new CatDAO();           
+            $this->catDAO   = new CatDAO();
             $this->dog      = null;    
-            $this->cat      = null;    
-            $this->dogList  = array();            
-            
-                    
+            $this->cat      = null; 
+            $this->dogList  = array();   
+            $this->catList  = array();   
+            $this->petList  = array();                     
         }
 
         public function list(){
 
             $this->dogList = $this->dogDAO->getAllDAO();
             $this->catList = $this->catDAO->getAllDAO();
-            
-            $this->petList=array_merge($this->dogList,$this->catList);
+
+            if (!empty($this->dogList)){
+
+                $this->petList = array_merge($this->petList, $this->dogList);
+            } 
+
+            if (!empty($this->catList)){
+
+                $this->petList = array_merge($this->petList, $this->catList);
+            } 
+
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/petListView.php"; 

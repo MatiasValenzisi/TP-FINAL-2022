@@ -1,4 +1,4 @@
-<?php namespace JsonDAO;
+<?php namespace DAO;
 
 use DAO\IDAO as IDAO; 
 use DAO\Connection as Connection;

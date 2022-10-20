@@ -97,17 +97,17 @@
 
             $this->retrieveData();
 
-            $user = null;
+            $dog = null;
 
             foreach ($this->dogList as $value) {
 
                 if(strcmp($value->getToken(), $token) == 0){
 
-                    $user = $value;
+                    $dog = $value;
                 }
             }
 
-            return $user;
+            return $dog;
         }
     }
 ?>

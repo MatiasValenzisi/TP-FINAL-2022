@@ -92,7 +92,7 @@
                                   </div>
 
                                   <div class="form-group">
-                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="servicePrice">Precio diario por servicio en pesos: <span class="required">*</span></label>
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="servicePrice">Precio base del servicio por día: <span class="required">*</span></label>
                                       <div class="col-md-6 col-sm-6 col-xs-12">
                                           <input type="number" class="form-control col-md-7 col-xs-12"
                                               placeholder="Precio diario por servicio en pesos" name="servicePrice" id="servicePrice"

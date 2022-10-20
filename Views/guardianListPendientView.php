@@ -16,6 +16,8 @@
                 <th>Email</th>
                 <th>Documento</th>
                 <th>Fecha de nacimiento</th>
+                <th>Experiencia</th>
+                <th>Precio del servicio</th>
                 <th>Guardian pendiente</th>
             </tr>
 
@@ -32,6 +34,20 @@
                 <td><?php echo $guardian->getUserName(); ?></td>
                 <td><?php echo $guardian->getDni(); ?></td>
                 <td><?php echo $guardian->getBirthDate(); ?></td>
+                <td><?php echo $guardian->getExperience() . " Año/s"; ?></td>
+                <td>
+
+                <?php if (empty($guardian->getServicePrice())){
+
+                  echo "No disponible.";
+
+                } else {
+
+                  echo "$".$guardian->getServicePrice();
+
+                } ?> 
+
+                </td>
 
                   <td>
                     <a class="text-success" href="<?php echo FRONT_ROOT ?>/guardian/confirmGuardian/<?php echo $guardian->getToken(); ?>"><b>Aceptar</b></a>

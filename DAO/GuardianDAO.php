@@ -65,7 +65,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
@@ -104,7 +113,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+                    
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
@@ -142,7 +160,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+                    
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
@@ -155,6 +182,67 @@
             }
 
             return $dischargeList;
+        }
+
+        // Retorna únicamente los usuarios de tipo guardian que tengan todos sus datos cargados.
+
+        public function getAllDischargeDateCompleteDAO(){
+
+            $dischargeCompleteList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName."
+
+                WHERE ".$this->tableName.".dischargeDate IS NOT NULL 
+
+                AND ".$this->tableName.".downDate IS NULL 
+
+                AND ".$this->tableName.".servicePrice IS NOT NULL 
+
+                AND ".$this->tableName.".serviceStartDate IS NOT NULL
+
+                AND ".$this->tableName.".serviceEndDate IS NOT NULL";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $guardian = new Guardian();
+
+                    $guardian->setToken($value["token"]);
+                    $guardian->setUserName($value["userName"]);
+                    $guardian->setPassword($value["password"]);
+                    $guardian->setFirstName($value["firstName"]);
+                    $guardian->setLastName($value["lastName"]);
+                    $guardian->setBirthDate($value['birthDate']);
+                    $guardian->setDni($value["dni"]);
+                    $guardian->setProfilePicture($value["profilePicture"]);
+
+                    $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+                    
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
+                    $guardian->setDischargeDate($value["dischargeDate"]);
+                    $guardian->setDownDate($value["downDate"]);
+
+                    if (!empty($guardian->getServiceDayList()) && !is_null($guardian->getServiceDayList())){
+                        
+                        array_push($dischargeCompleteList, $guardian);
+                    } 
+                }
+
+            } catch (Exception $e) {
+                return false;
+            }
+
+            return $dischargeCompleteList;
         }
 
         public function getAllPendientDateDAO() {
@@ -180,7 +268,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
@@ -239,18 +336,21 @@
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET password = :password, firstName = :firstName, lastName = :lastName, birthDate = :birthDate, dni = :dni, profilePicture = :profilePicture, experience = :experience, dischargeDate = :dischargeDate, downDate = :downDate 
-                WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
 
-                $parameters["password"]       = $value->getPassword();
-                $parameters["firstName"]      = $value->getFirstName();
-                $parameters["lastName"]       = $value->getLastName();
-                $parameters["birthDate"]      = $value->getBirthDate();
-                $parameters["dni"]            = $value->getDni();
-                $parameters["profilePicture"] = $value->getProfilePicture();
-                $parameters["experience"]     = $value->getExperience();
-                $parameters["dischargeDate"]  = $value->getDischargeDate();
-                $parameters["downDate"]       = $value->getDownDate();
+                $parameters["password"]         = $value->getPassword();
+                $parameters["profilePicture"]   = $value->getProfilePicture();
+                $parameters["experience"]       = $value->getExperience();
+                $parameters["servicePrice"]     = $value->getServicePrice();
+                $parameters["serviceStartDate"] = $value->getServiceStartDate();
+                $parameters["serviceEndDate"]   = $value->getServiceEndDate();
+
+                //$parameters["serviceDayList"]   = $value->getServiceDayList();
+                //$parameters["bookingList"]      = $value->getBookingList();
+                //$parameters["reviewList"]       = $value->getReviewList();
+
+                $parameters["dischargeDate"]    = $value->getDischargeDate();
+                $parameters["downDate"]         = $value->getDownDate();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -288,7 +388,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
                 }
@@ -326,7 +435,16 @@
                     $guardian->setBirthDate($value['birthDate']);
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
+
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setServicePrice($value["servicePrice"]);
+                    $guardian->setServiceStartDate($value["serviceStartDate"]);
+                    $guardian->setServiceEndDate($value["serviceEndDate"]);
+                    
+                    //$guardian->setServiceDayList(null);
+                    //$guardian->setBookingList(null);
+                    //$guardian->setReviewList(null); 
+
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
                 }

@@ -123,7 +123,7 @@
     
                                 $newGuardian = new Guardian(
                                     $token, $email, $password, null, $downDate, $firstName,
-                                    $lastName, $birthDate, $dni, $experience, null
+                                    $lastName, $birthDate, $dni, null, $experience
                                 );
                                 
                                 $this->userController->getGuardianDAO()->addDAO($newGuardian);
@@ -159,7 +159,7 @@
                             
                             $newOwner = new Owner(
                                 $token, $email, $password, $dischargeDate, $downDate, $firstName,
-                                $lastName, $birthDate, $dni, null
+                                $lastName, $birthDate, $dni
                             );
                             
                             $this->userController->getOwnerDAO()->addDAO($newOwner);

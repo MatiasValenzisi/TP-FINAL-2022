@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-    use DAO\GuardianDAO as GuardianDAO;
+    use JsonDAO\GuardianDAO as GuardianDAO;
     use Models\Guardian as Guardian; 
 
     class GuardianController {  
@@ -24,11 +24,13 @@
 
         public function profile($type = null, $action = null, $specific = null){
 
-            $serviceArray = array();
+            echo "En reparación ...";
 
-            if (!is_null($_SESSION['userPH']->getServiceList())){
+            /*$serviceArray = array();
 
-                foreach ($_SESSION['userPH']->getServiceList() as $key => $value) {
+            if (!is_null($_SESSION['userPH']->getServiceDayList())){
+
+                foreach ($_SESSION['userPH']->getServiceDayList() as $key => $value) {
                
                     $serviceArray[$value] = $value;
                 }
@@ -38,16 +40,19 @@
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/guardianProfileView.php";  
             require_once ROOT_VIEWS."/notificationAlert.php";      
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+            require_once ROOT_VIEWS."/mainFooter.php"; */
         }
 
-        public function profileEdit($password, $experience, $disp = null){
+        public function profileEdit($password, $experience, $disp = null, $servicePrice = null, $serviceStartDate = null, $serviceEndDate = null){
 
             $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
             $this->guardian->setPassword($password);
             $this->guardian->setExperience($experience);
             $this->guardian->setServiceList($disp);
+            $this->guardian->setServicePrice($servicePrice);
+            $this->guardian->setServiceStartDate($serviceStartDate);
+            $this->guardian->setServiceEndDate($serviceEndDate);
 
             if($this->userController->checkPassword($this->guardian->getPassword())){
 
@@ -60,7 +65,7 @@
             } else {
 
                 header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
-            }            
+            }           
         }
         
         // Muestra un listado de guardianes.
@@ -84,15 +89,17 @@
 
                 require_once ROOT_VIEWS."/guardianListPendientView.php";
 
-            } else {
-
-                $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+            } else {                
 
                 if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){
+
+                    $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
 
                     require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
 
                 } else {
+
+                    $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
 
                     require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";    
                 }            
@@ -102,13 +109,14 @@
         }
 
         public function view($token) {
+            
             $this->guardian = $this->guardianDAO->getUserTokenDAO($token);
 
             $serviceArray = array();
 
-            if (!is_null($this->guardian->getServiceList())){
+            if (!is_null($this->guardian->getServiceDayList())){
 
-                foreach ($this->guardian->getServiceList() as $key => $value) {
+                foreach ($this->guardian->getServiceDayList() as $key => $value) {
                
                     $serviceArray[$value] = $value;
                 }

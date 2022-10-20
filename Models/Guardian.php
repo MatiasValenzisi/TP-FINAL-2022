@@ -3,6 +3,7 @@
     class Guardian extends User {
 
         private $experience;         // Años de experiencia.
+        private $servicePrice;       // Precio del servicio por día.
         private $serviceStartDate;   // Fecha de inicio del servicio.
         private $serviceEndDate;     // Fecha de finalización del servicio.
         private $serviceDayList;     // Días de la semana en que trabaja dentro del rango de inicio y finalización del servicio.
@@ -11,11 +12,12 @@
 
         public function __construct(
 
-            $token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null, $experience = null, $serviceStartDate = null, $serviceEndDate = null, $serviceDayList = null, $bookingList = null, $reviewList = null){
+            $token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null, $experience = null, $servicePrice = null, $serviceStartDate = null, $serviceEndDate = null, $serviceDayList = null, $bookingList = null, $reviewList = null){
 
             parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni, $profilePicture);
 
             $this->experience       = $experience;
+            $this->servicePrice     = $servicePrice;
             $this->serviceStartDate = $serviceStartDate;
             $this->serviceEndDate   = $serviceEndDate;
             $this->serviceDayList   = $serviceDayList;
@@ -32,6 +34,16 @@
             
             $this->experience = $experience;
         }
+
+        public function getServicePrice() { 
+
+            return $this->servicePrice; 
+        } 
+
+        public function setServicePrice($servicePrice) { 
+
+            $this->servicePrice = $servicePrice; 
+        } 
 
         public function getServiceStartDate() { 
 
@@ -65,12 +77,12 @@
 
         public function getBookingList() { 
 
-            return $this->bookingList 
+            return $this->bookingList;
         } 
 
         public function setBookingList($bookingList) { 
 
-            $this->bookingList = $bookingList 
+            $this->bookingList = $bookingList;
         } 
 
         public function getReviewList() { 

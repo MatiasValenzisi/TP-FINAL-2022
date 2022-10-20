@@ -58,11 +58,30 @@
             $temporalList = array();
 
             foreach($this->guardianList as $guardian) {
+
                 if(is_null($guardian->getDownDate()) && !is_null($guardian->getDischargeDate())) {
                     array_push($temporalList, $guardian);
                 }
             }
             return $temporalList;
+        }
+
+        // Retorna únicamente los usuarios de tipo guardian que tengan todos sus datos cargados.
+
+        public function getAllDischargeDateCompleteDAO(){
+
+            $this->retrieveData();
+
+            $temporalCompleteList = array();
+
+            foreach($this->guardianList as $guardian) {
+                
+                if(is_null($guardian->getDownDate()) && !is_null($guardian->getDischargeDate()) && !is_null($guardian->getServicePrice()) && !is_null($guardian->getServiceStartDate()) && !is_null($guardian->getServiceEndDate()) && !empty($guardian->getServiceDayList()) && !is_null($guardian->getServiceDayList())){
+
+                    array_push($temporalCompleteList, $guardian);
+                }
+            }
+            return $temporalCompleteList;
         }
 
         public function getAllPendientDateDAO() {
@@ -87,11 +106,21 @@
 
                 if (strcmp($guardian->getToken(), $value->getToken()) == 0){
 
-                     $guardian->setPassword($value->getPassword()); 
-                     $guardian->setExperience($value->getExperience()); 
-                     $guardian->setBookingList($value->getBookingList()); 
-                     $guardian->setReviewList($value->getReviewList()); 
-                     $guardian->setServiceList($value->getServiceList());                     
+                    $guardian->setPassword($value->getPassword());
+                    $guardian->setProfilePicture($value->getProfilePicture());
+
+                    $guardian->setExperience($value->getExperience()); 
+                    $guardian->setServicePrice($value->getServicePrice()); 
+                    $guardian->setServiceStartDate($value->getServiceStartDate()); 
+                    $guardian->setServiceEndDate($value->getServiceEndDate()); 
+
+                    $guardian->setServiceDayList($value->getServiceDayList()); 
+                    $guardian->setBookingList($value->getBookingList()); 
+                    $guardian->setReviewList($value->getReviewList()); 
+
+                    $guardian->setDischargeDate($value->getDischargeDate()); 
+                    $guardian->setDownDate($value->getDownDate());
+                  
                 }               
             }
 
@@ -104,21 +133,27 @@
 
             foreach($this->guardianList as $guardian) {
 
-                $arrayValues["token"]          = $guardian->getToken();
-                $arrayValues["userName"]       = $guardian->getUserName();
-                $arrayValues["password"]       = $guardian->getPassword();
-                $arrayValues["dischargeDate"]  = $guardian->getDischargeDate();
-                $arrayValues["downDate"]       = $guardian->getDownDate();
-                $arrayValues["firstName"]      = $guardian->getFirstName();
-                $arrayValues["lastName"]       = $guardian->getLastName();
-                $arrayValues["birthDate"]      = $guardian->getBirthDate();
-                $arrayValues["dni"]            = $guardian->getDni();
-                $arrayValues["profilePicture"] = $guardian->getProfilePicture();
-                $arrayValues["experience"]     = $guardian->getExperience();
-                $arrayValues["bookingList"]    = $guardian->getBookingList();
-                $arrayValues["reviewList"]     = $guardian->getReviewList();
-                $arrayValues["serviceList"]    = $guardian->getServiceList();
-                
+                $arrayValues["token"]            = $guardian->getToken();
+                $arrayValues["userName"]         = $guardian->getUserName();
+                $arrayValues["password"]         = $guardian->getPassword();
+                $arrayValues["firstName"]        = $guardian->getFirstName();
+                $arrayValues["lastName"]         = $guardian->getLastName();
+                $arrayValues["birthDate"]        = $guardian->getBirthDate();
+                $arrayValues["dni"]              = $guardian->getDni();
+                $arrayValues["profilePicture"]   = $guardian->getProfilePicture();
+
+                $arrayValues["experience"]       = $guardian->getExperience();
+                $arrayValues["servicePrice"]     = $guardian->getServicePrice();
+                $arrayValues["serviceStartDate"] = $guardian->getServiceStartDate();
+                $arrayValues["serviceEndDate"]   = $guardian->getServiceEndDate();
+
+                $arrayValues["serviceDayList"]   = $guardian->getServiceDayList();
+                $arrayValues["bookingList"]      = $guardian->getBookingList();
+                $arrayValues["reviewList"]       = $guardian->getReviewList();
+
+                $arrayValues["dischargeDate"]    = $guardian->getDischargeDate();
+                $arrayValues["downDate"]         = $guardian->getDownDate();
+
                 array_push($arrayToEncode, $arrayValues);
             }
 
@@ -151,19 +186,26 @@
                     $guardian->setToken($values["token"]);
                     $guardian->setUserName($values["userName"]);
                     $guardian->setPassword($values["password"]);
-                    $guardian->setDischargeDate($values["dischargeDate"]);
-                    $guardian->setDownDate($values["downDate"]);
                     $guardian->setFirstName($values["firstName"]);
                     $guardian->setLastName($values["lastName"]);
-                    $guardian->setBirthDate($values["birthDate"]);
-                    $guardian->setDni($values["dni"]);                    
+                    $guardian->setBirthDate($values['birthDate']);
+                    $guardian->setDni($values["dni"]);
                     $guardian->setProfilePicture($values["profilePicture"]);
+
                     $guardian->setExperience($values["experience"]);
+                    $guardian->setServicePrice($values["servicePrice"]);
+                    $guardian->setServiceStartDate($values["serviceStartDate"]);
+                    $guardian->setServiceEndDate($values["serviceEndDate"]);
+
+                    $guardian->setServiceDayList($values["serviceDayList"]);
                     $guardian->setBookingList($values["bookingList"]);
-                    $guardian->setReviewList($values["reviewList"]);
-                    $guardian->setServiceList($values["serviceList"]);
+                    $guardian->setReviewList($values["reviewList"]); 
+
+                    $guardian->setDischargeDate($values["dischargeDate"]);
+                    $guardian->setDownDate($values["downDate"]);
                     
                     array_push($this->guardianList, $guardian);
+                    
                 }
             }
         }

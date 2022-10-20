@@ -3,168 +3,196 @@
         "token": "873501",
         "userName": "groot@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Groot",
         "lastName": "Diesel",
         "birthDate": "1967-07-18",
         "dni": "42156324",
         "profilePicture": "groot.jpg",
         "experience": "2",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": "4800",
+        "serviceStartDate": "2022-10-03",
+        "serviceEndDate": "2022-11-03",
+        "serviceDayList": [
             "Monday",
             "Friday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "656268",
         "userName": "starlord@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Starlord",
         "lastName": "Pratt",
         "birthDate": "1979-06-21",
         "dni": "37464739",
         "profilePicture": "starlord.jpg",
         "experience": "0",
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
+            "Monday"
+        ],
         "bookingList": null,
         "reviewList": null,
-        "serviceList": [
-            "Monday"
-        ]
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "378468",
         "userName": "gamora@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Gamora",
         "lastName": "Salda\u00f1a",
         "birthDate": "1978-06-19",
         "dni": "25030603",
         "profilePicture": "gamora.jpg",
         "experience": "2",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
             "Monday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "507530",
         "userName": "rocket@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Rocket",
         "lastName": "Cooper",
         "birthDate": "1974-05-22",
         "dni": "425556661",
         "profilePicture": "rocket.jpg",
         "experience": "1",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
             "Monday",
             "Friday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "334658",
         "userName": "drax@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Drax",
         "lastName": "Bautista",
         "birthDate": "1969-01-18",
         "dni": "07236372",
         "profilePicture": "drax.jpg",
         "experience": "3",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
             "Monday",
             "Friday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "376447",
         "userName": "mantis@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "Mantis",
         "lastName": "Klementieff",
         "birthDate": "1986-05-03",
         "dni": "32532680",
         "profilePicture": "mantis.jpg",
         "experience": "1",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
             "Friday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "082654",
         "userName": "nebula@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-03",
-        "downDate": null,
         "firstName": "N\u00e9bula",
         "lastName": "Gillan",
         "birthDate": "1987-11-28",
         "dni": "27163565",
         "profilePicture": "nebula.jpg",
         "experience": "8",
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": null,
         "bookingList": null,
         "reviewList": null,
-        "serviceList": null
+        "dischargeDate": "2022-10-03",
+        "downDate": null
     },
     {
         "token": "362379",
         "userName": "yondu@gmail.com",
         "password": "123456m",
-        "dischargeDate": "2022-10-01",
-        "downDate": "2022-10-02",
         "firstName": "Yondu",
         "lastName": "Rooker",
         "birthDate": "1955-04-06",
         "dni": "12590301",
         "profilePicture": "yondu.jpg",
         "experience": "8",
-        "bookingList": null,
-        "reviewList": null,
-        "serviceList": [
+        "servicePrice": null,
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": [
             "Monday",
             "Friday",
             "Saturday"
-        ]
+        ],
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": "2022-10-01",
+        "downDate": "2022-10-02"
     },
     {
         "token": "856864",
         "userName": "kraglin@gmail.com",
         "password": "123456m",
-        "dischargeDate": null,
-        "downDate": null,
         "firstName": "Kraglin",
         "lastName": "Gunn",
         "birthDate": "1974-05-22",
         "dni": "42166324",
         "profilePicture": null,
         "experience": "2",
+        "servicePrice": "3600",
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": null,
         "bookingList": null,
         "reviewList": null,
-        "serviceList": null
+        "serviceList": null,
+        "dischargeDate": null,
+        "downDate": null
     }
 ]

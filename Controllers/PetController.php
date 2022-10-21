@@ -33,6 +33,7 @@
             $this->dogList = $this->dogDAO->getAllDAO();
             $this->catList = $this->catDAO->getAllDAO();
 
+            
             if (!empty($this->dogList)){
 
                 $this->petList = array_merge($this->petList, $this->dogList);
@@ -42,6 +43,7 @@
 
                 $this->petList = array_merge($this->petList, $this->catList);
             } 
+            
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -182,8 +184,12 @@
 
             }else if (strcmp($typePet,"cat") == 0)
             {
+           
                 $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
+                var_dump($this->cat);
+      
+                exit();
                 $this->catDAO->addDAO($this->cat);
             }
 

@@ -13,6 +13,7 @@ use \Exception as Exception;
 
         public function addDAO($value){   
 
+        
             try {
 
                 $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan,photo,video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan,:photo,:video);";
@@ -23,12 +24,14 @@ use \Exception as Exception;
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations();
+                $parameters["observations"]    = $value->getObservations();//aca llega bien
         
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
                 $parameters["video"]           = $value->getVideo();
-
+                
+            
+                
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -36,6 +39,7 @@ use \Exception as Exception;
 
                 return false;
             }  
+  
 
             return true;
         }
@@ -56,7 +60,8 @@ use \Exception as Exception;
                 foreach ($resultSet as $key => $value) {
                  
                     $dog = new Dog();
-
+                    
+                   
                     $dog->setToken($value["token"]);
                     $dog->setTokenOwner($value["tokenOwner"]);
                     $dog->setName($value["name"]);
@@ -111,6 +116,7 @@ use \Exception as Exception;
                 return false;
             }  
 
+     
             return true;
         }
 

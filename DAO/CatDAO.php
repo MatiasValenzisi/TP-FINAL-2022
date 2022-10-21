@@ -13,6 +13,7 @@ use \Exception as Exception;
 
         public function addDAO($value){   
 
+
             try {
 
                 $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan,photo,video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan,:photo,:video);";
@@ -23,12 +24,12 @@ use \Exception as Exception;
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations();
+                $parameters["observations"]    = $value->getObservations();//aca llega bien
         
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
                 $parameters["video"]           = $value->getVideo();
-
+       
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -36,6 +37,7 @@ use \Exception as Exception;
 
                 return false;
             }  
+
 
             return true;
         }
@@ -56,7 +58,8 @@ use \Exception as Exception;
                 foreach ($resultSet as $key => $value) {
                  
                     $cat = new Cat();
-
+                    
+                   
                     $cat->setToken($value["token"]);
                     $cat->setTokenOwner($value["tokenOwner"]);
                     $cat->setName($value["name"]);
@@ -80,6 +83,7 @@ use \Exception as Exception;
             return $catList;
 
         }
+
 
         // Metodo que actualiza un perro en base de datos mediante su token. 
 
@@ -146,7 +150,7 @@ use \Exception as Exception;
 
                 foreach ($resultSet as $key => $value) {
                  
-                    $cat = new Cat();
+                    $cat = new cat();
 
                     $cat->setToken($value["token"]);
                     $cat->setTokenOwner($value["tokenOwner"]);

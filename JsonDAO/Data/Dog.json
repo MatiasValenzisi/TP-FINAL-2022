@@ -1,26 +1,14 @@
 [
-    {
-        "token": "893074",
-        "tokenOwner": "010890",
-        "name": "Dobermin",
-        "race": "Doberman",
-        "size": "Grande",
-        "weight": "60",
-        "observations": "Prueba de observaciones.",
-        "vaccinationPlan": "893074-imagen1.png",
-        "photo": "893074-doberman.png",
-        "video": "893074-video_1.mp4"
-    },
-    {
-        "token": "528827",
-        "tokenOwner": "912279",
-        "name": "Fatiga",
-        "race": "Pastor",
-        "size": "Grande",
-        "weight": "60",
-        "observations": "",
-        "vaccinationPlan": "528827-imagen1.png",
-        "photo": "528827-doberman.png",
-        "video": "528827-video_2.mp4"
-    }
+  {
+    "token": "528827",
+    "tokenOwner": "912279",
+    "name": "Fatiga",
+    "race": "Pastor",
+    "size": "Grande",
+    "weight": "60",
+    "observations": "",
+    "vaccinationPlan": "528827-imagen1.png",
+    "photo": "528827-doberman.png",
+    "video": "528827-video_2.mp4"
+  }
 ]

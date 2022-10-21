@@ -194,5 +194,24 @@
         "reviewList": null,
         "dischargeDate": null,
         "downDate": null
+    },
+    {
+        "token": "881027",
+        "userName": "juanperes@gmail.com",
+        "password": "123456m",
+        "firstName": "Test",
+        "lastName": "Testeado",
+        "birthDate": "2022-10-03",
+        "dni": "12345343",
+        "profilePicture": null,
+        "experience": "3",
+        "servicePrice": "3",
+        "serviceStartDate": null,
+        "serviceEndDate": null,
+        "serviceDayList": null,
+        "bookingList": null,
+        "reviewList": null,
+        "dischargeDate": null,
+        "downDate": null
     }
 ]

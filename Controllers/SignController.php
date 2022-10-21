@@ -115,7 +115,7 @@
 
                 if($this->userController->checkPassword($password)){
                     
-                    if(is_null($this->userController->getUserName($email)) ) {
+                    if(is_null($this->userController->getUserName($email))){
                        
                         if($this->userController->controllerDNI($dni, $typeUser)){
 

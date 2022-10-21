@@ -59,6 +59,29 @@
         width: 350px;
         height: 350px;
     }
+
+    .members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+    }
+
+    .members .member {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+    }
+
+    .members .member img {
+        object-fit: cover;
+        object-fit: center;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
     </style>
 </head>
 
@@ -86,7 +109,22 @@
             <img src="../Temporal-pruebas/home2.jpeg" alt="animal">
             <img src="../Temporal-pruebas/home1.jpeg" alt="animal">
         </div>
+        <h2 class="title">Integrantes</h2>
+        <div class="members">
 
+            <div class="member">
+                <img src="../Views/profile/tobias.jpg" alt="tobias">
+                <h4>Tobias</h4>
+            </div>
+            <div class="member">
+                <img src="../Views/profile/matias.jpg" alt="matias">
+                <h4>Tobias</h4>
+            </div>
+            <div class="member">
+                <img src="../Views/profile/nicolas.jpg" alt="nicolas">
+                <h4>Tobias</h4>
+            </div>
+        </div>
 
 
         <h4 class="title">Contactanos!</h4>

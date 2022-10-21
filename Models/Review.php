@@ -5,14 +5,14 @@
         private $score;
         private $date;
         private $observations;
-        private $guardian;
+        private $tokenGuardian;
 
-        public function __construct($score = null, $date = null, $observations = null, $guardian = null){
+        public function __construct($score = null, $date = null, $observations = null, $tokenGuardian = null){
             
-            $this->score        = $score;
-            $this->date         = $date;
-            $this->observations = $observations;
-            $this->guardian     = $guardian;
+            $this->score         = $score;
+            $this->date          = $date;
+            $this->observations  = $observations;
+            $this->tokenGuardian = $tokenGuardian;
         }
 
         public function getScore(){
@@ -45,14 +45,14 @@
             $this->observations = $observations;
         }
 
-        public function getGuardian(){
-            
-            return $this->guardian;
-        }
+        public function getTokenGuardian() {
 
-        public function setGuardian($guardian){
-            
-            $this->guardian = $guardian;
-        }
+            return $this->tokenGuardian; 
+        } 
+
+        public function setTokenGuardian($tokenGuardian) { 
+
+            $this->tokenGuardian = $tokenGuardian; 
+        } 
     }
 ?>

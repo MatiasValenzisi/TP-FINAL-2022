@@ -75,28 +75,37 @@
 
       // Controlar que no haya letras en el DNI
 
-      public function controllerDNI($string, $typeUser){
+      public function controllerDNI($dni, $typeUser){
 
-        $lista = null;
+        $controllerDNI = true;
 
-        if(!$this->controllerLetters($string) && strlen($string) == 8) {
+        if (!$this->controllerLetters($dni) && strlen($dni) == 8){
 
-            if($typeUser == "guardian") {
+            $temporalList = null;
+
+            if (strcmp($typeUser,"guardian") == 0) {
+
                 $lista = $this->guardianDAO->getAllDAO();
-            } else {
-                $lista = $this->ownerDAO->getAllDAO();
-            }
+                
+            } elseif (strcmp($typeUser,"owner") == 0){
 
-            foreach($lista as $item) {  //Devuelve false si ya existe una cuenta con ese dni
-                if($item->getDni() == $string) {
-                    return null;
+                $lista = $this->ownerDAO->getAllDAO();
+            } 
+
+            foreach ($temporalList as $key => $user) {
+                
+                if (strcmp($user->getDni(), $dni) == 0) {
+                    
+                    $controllerDNI = false;
                 }
             }
 
-            return $lista;
-        }   
-         
-        return $lista;
+        } else {
+
+            $controllerDNI = false;            
+        } 
+
+        return $controllerDNI;
       }
 
       // Emprolija el nombre/apellido

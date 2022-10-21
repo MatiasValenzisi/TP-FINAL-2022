@@ -117,7 +117,7 @@
                     
                     if(is_null($this->userController->getUserName($email)) ) {
                        
-                        if($this->userController->controllerDNI($dni, $typeUser) != null){
+                        if($this->userController->controllerDNI($dni, $typeUser)){
 
                             if($this->userController->birthDateCheck($birthDate)){
     

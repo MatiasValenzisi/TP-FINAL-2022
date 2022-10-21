@@ -11,8 +11,7 @@ use \Exception as Exception;
         private $connection;
         private $tableName = "cat";
 
-        public function addDAO($value){   
-            
+        public function addDAO($value){ 
 
             try {
 
@@ -38,7 +37,6 @@ use \Exception as Exception;
                 return false;
             }  
 
-
             return true;
         }
 
@@ -58,8 +56,7 @@ use \Exception as Exception;
                 foreach ($resultSet as $key => $value) {
                  
                     $cat = new Cat();
-                    
-                   
+                                       
                     $cat->setToken($value["token"]);
                     $cat->setTokenOwner($value["tokenOwner"]);
                     $cat->setName($value["name"]);
@@ -68,11 +65,10 @@ use \Exception as Exception;
                     $cat->setWeight($value["weight"]);
                     $cat->setObservations($value["observations"]);
                     $cat->setVaccinationPlan($value["vaccinationPlan"]);
-                    $cat->setPhoto($value["photo"]);                    
+                    $cat->setPhoto($value["photo"]);                   
                     $cat->setVideo($value["video"]);
-
+                    
                     array_push($catList, $cat);
-
                 }
 
             } catch (Exception $e){

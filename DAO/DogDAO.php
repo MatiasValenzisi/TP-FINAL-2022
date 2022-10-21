@@ -24,7 +24,7 @@ use \Exception as Exception;
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations()        
+                $parameters["observations"]    = $value->getObservations();        
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
                 $parameters["video"]           = $value->getVideo();  
@@ -35,8 +35,7 @@ use \Exception as Exception;
             } catch (Exception $e){
 
                 return false;
-            }  
-  
+            }   
 
             return true;
         }
@@ -71,7 +70,6 @@ use \Exception as Exception;
                     $dog->setVideo($value["video"]);
 
                     array_push($dogList, $dog);
-
                 }
 
             } catch (Exception $e){
@@ -112,8 +110,7 @@ use \Exception as Exception;
 
                 return false;
             }  
-
-     
+                 
             return true;
         }
 

@@ -85,11 +85,11 @@
 
             if (strcmp($typeUser,"guardian") == 0) {
 
-                $lista = $this->guardianDAO->getAllDAO();
+                $temporalList = $this->guardianDAO->getAllDAO();
                 
             } elseif (strcmp($typeUser,"owner") == 0){
 
-                $lista = $this->ownerDAO->getAllDAO();
+                $temporalList = $this->ownerDAO->getAllDAO();
             } 
 
             foreach ($temporalList as $key => $user) {

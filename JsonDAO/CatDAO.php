@@ -74,7 +74,7 @@
                 
                 foreach($arrayToDecode as $values) {
 
-                    $cat = new cat();
+                    $cat = new Cat();
 
                     $cat->setToken($values["token"]);
                     $cat->setTokenOwner($values["tokenOwner"]);

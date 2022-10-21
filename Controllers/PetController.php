@@ -184,12 +184,12 @@
 
             }else if (strcmp($typePet,"cat") == 0)
             {
-           
+                
+   
                 $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
-                var_dump($this->cat);
-      
-                exit();
+                
+           
                 $this->catDAO->addDAO($this->cat);
             }
 

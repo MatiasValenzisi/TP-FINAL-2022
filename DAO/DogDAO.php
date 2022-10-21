@@ -24,13 +24,10 @@ use \Exception as Exception;
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations();//aca llega bien
-        
+                $parameters["observations"]    = $value->getObservations()        
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
-                $parameters["video"]           = $value->getVideo();
-                
-            
+                $parameters["video"]           = $value->getVideo();  
                 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);

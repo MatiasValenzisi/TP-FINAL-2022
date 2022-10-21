@@ -7,7 +7,8 @@ use Controllers\UserController;
         private $token;            // Token o número de reserva.
         private $pet;              // Tipo de mascota: gato o perro.
         private $race;             // Raza de la mascota.   
-        private $dateList;         // Listado de fechas.
+        private $dateStart;        // Fecha inicial.
+        private $dateEnd;          // Fecha final.
         private $price;            // Precio total. Dias por precio del guardian.
         private $state;            // Estado de la reserva.
         private $couponPayment;    // Cupón de pago.
@@ -16,13 +17,14 @@ use Controllers\UserController;
         private $tokenOwner;       // Token del dueño que solicito la reserva.
         private $acceptanceDate;   // Fecha de aceptación de la reserva por parte del guardian. 
 
-        public function __construct($token = null, $pet = null, $race = null, $dateList = null, $price = null, $state = null, 
+        public function __construct($token = null, $pet = null, $race = null, $dateStart = null, $dateEnd = null, $price = null, $state = null, 
         $couponPayment = null, $remainingPayment = null, $tokenGuardian = null, $tokenOwner = null, $acceptanceDate = null){
 
             $this->token             = $token;
             $this->pet               = $pet;
             $this->race              = $race;
-            $this->dateList          = $dateList;
+            $this->dateStart         = $dateStart;
+            $this->dateEnd           = $dateEnd;
             $this->price             = $price;
             $this->state             = $state;
             $this->couponPayment     = $couponPayment;
@@ -62,14 +64,24 @@ use Controllers\UserController;
             $this->race = $race; 
         } 
 
-        public function getDateList() { 
+        public function getDateStart() { 
 
-            return $this->dateList; 
+            return $this->dateStart; 
+        }
+
+        public function setDateStart($dateStart) { 
+
+            $this->dateStart = $dateStart; 
         } 
 
-        public function setDateList($dateList) { 
+        public function getDateEnd() { 
 
-            $this->dateList = $dateList; 
+            return $this->dateEnd; 
+        } 
+
+        public function setDateEnd($dateEnd) { 
+
+            $this->dateEnd = $dateEnd; 
         } 
 
         public function getPrice() { 

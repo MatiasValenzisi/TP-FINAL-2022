@@ -71,7 +71,7 @@
                             <div class="form-outline text-left">
                                 <label class="form-label" for="experience">Precio base del servicio:</label>
                                 <input type="number" class="form-control" placeholder="Precio base"
-                                    name="servicePrice" min="0" max="99" required />
+                                    name="servicePrice" min="0" required />
                             </div>
 
                             <br><br>

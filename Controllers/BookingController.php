@@ -19,7 +19,7 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
 
-            if(strcmp($typeUser) == "guardian") {
+            if(strcmp($typeUser, "guardian") == 0) {
 
                 $this->guardian = $this->bookingDAO->getUserName($_SESSION['userName']);
                 $this->bookingList = $this->guardian->getBookingList();

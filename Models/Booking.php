@@ -1,5 +1,7 @@
 <?php namespace Models;
 
+use Controllers\UserController;
+
     class Booking {
 
         private $token;            // Token o número de reserva.
@@ -139,5 +141,25 @@
 
             $this->acceptanceDate = $acceptanceDate; 
         } 
+
+        public function getOwnerFullName() {
+            $userController = new UserController();
+            $owner = $userController->getUserToken($this->tokenOwner);
+
+            return $owner->getFirstName()." ".$owner->getLastName();
+        }
+
+        public function getInitialDate() {
+            return $this->dateList[0];
+        }
+
+        public function getFinalDate() {
+            $finalDate = null;
+            foreach($this->dateList as $date) {
+                $finalDate = $date;
+            }
+            return $finalDate;
+        }
+
     }
 ?>

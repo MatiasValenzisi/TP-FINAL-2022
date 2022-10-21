@@ -32,7 +32,6 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e){
-
                 return false;
             }  
 

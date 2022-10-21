@@ -55,9 +55,10 @@
         "experience": "2",
         "servicePrice": "5050",
         "serviceStartDate": "2022-09-13",
-        "serviceEndDate": "2022-10-20",
+        "serviceEndDate": "2022-09-13",
         "serviceDayList": [
             "Monday",
+            "Tuesday",
             "Wednesday",
             "Saturday"
         ],

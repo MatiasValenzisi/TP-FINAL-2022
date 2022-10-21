@@ -34,6 +34,9 @@
 
             } catch (Exception $e){
 
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }  
 
@@ -84,6 +87,9 @@
 
             } catch (Exception $e){
 
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -131,6 +137,10 @@
                 }
 
             } catch (Exception $e) {
+
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -178,6 +188,10 @@
                 }
 
             } catch (Exception $e) {
+
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -239,6 +253,10 @@
                 }
 
             } catch (Exception $e) {
+
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -287,6 +305,10 @@
 
 
             } catch (Exception $e) {
+
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -304,6 +326,10 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e) {
+
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
@@ -323,6 +349,9 @@
                 $this->connection->ExecuteNonQuery($query);
 
             } catch(Exception $ex){
+
+                echo $e->getMessage();
+                exit();
 
                 return false;
             }
@@ -357,6 +386,9 @@
 
             } catch (Exception $e){
 
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }  
 
@@ -367,7 +399,7 @@
 
         public function getUserNameDAO($username) {
 
-            $admin = null;
+            $guardian = null;
 
             try {
 
@@ -404,10 +436,13 @@
 
             } catch (Exception $e){
 
+                echo $e->getMessage();
+                exit();
+
                 return false;
             }
 
-            return $admin;
+            return $guardian;
         }
 
         // Metodo que retorna un usuario de tipo Guardian de la base de datos a partir de su token.
@@ -450,6 +485,9 @@
                 }
 
             } catch (Exception $e){
+
+                echo $e->getMessage();
+                exit();
 
                 return false;
             }

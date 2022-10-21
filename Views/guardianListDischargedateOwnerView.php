@@ -34,7 +34,7 @@
                 <div>
                     <div class="guardianownerview">
                         <h2>Listado de guardianes</h2>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Filtrar guardianes</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#formFilter">Filtrar guardianes</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -120,23 +120,40 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Filtrar guardianes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Proximamente...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Filtrar guardianes</button>
-      </div>
+
+<div class="modal fade" id="formFilter" tabindex="-1" role="dialog" aria-labelledby="form" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/list/" method="POST" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="form">Filtrar guardianes por rango de fecha</h5>
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" name="dateType" value="date">
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="input-prepend input-group">
+                                <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                <input type="text" class="form-control col-md-7 col-xs-12" name="data" id="reservation" class="form-control" value="<?php echo date() ?>"/>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Filtrar guardianes</button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
-  </div>
 </div>
+
 <!-- Modal -->

@@ -1,10 +1,11 @@
 <?php namespace DAO;
 
-use DAO\IDAO as IDAO; 
-use DAO\Connection as Connection;
-use \Exception as Exception;
+    use DAO\IDAO as IDAO; 
+    use DAO\Connection as Connection;
+    
+    use \Exception as Exception;
 
-    use Models\Dog as Dog;
+    use Models\Dog as Dog;    
 
     class DogDAO implements IDAO {
 
@@ -112,26 +113,8 @@ use \Exception as Exception;
             }  
                  
             return true;
-        }
-
-      
-        public function deleteDAO($value){ 
-
-            try {
-
-                $query = "UPDATE ".$this->tableName." SET downDate = now() WHERE ".$this->tableName.".token = '".$value."';";
-                
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-
-            } catch(Exception $ex){
-
-                return false;
-            }
-
-            return true;
-        }
-        
+        }      
+    
         // Metodo que retorna un perro de la base de datos a partir de su token.
 
         public function getDogTokenDAO($token){

@@ -9,7 +9,8 @@
     class GuardianDAO implements IDAO{
         
         private $connection;
-        private $tableName = "guardian";
+        private $tableName  = "guardian";
+        private $tableName2 = "guardian_x_day";
 
         // Metodo que genera un nuevo usuario de tipo Guardian a la base de datos.
 
@@ -17,7 +18,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience);";
+                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience, servicePrice) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience, :servicePrice);";
 
                 $parameters["userName"]       = $value->getUserName();
                 $parameters["token"]          = $value->getToken();
@@ -28,6 +29,7 @@
                 $parameters["dni"]            = $value->getDni();
                 $parameters["profilePicture"] = $value->getProfilePicture();
                 $parameters["experience"]     = $value->getExperience();
+                $parameters["servicePrice"]   = $value->getServicePrice();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -71,15 +73,12 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
 
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
                     array_push($guardianList, $guardian);
-
                 }
 
             } catch (Exception $e){
@@ -119,18 +118,16 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
                     
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
                     array_push($guardianList, $guardian);
-
                 }
 
             } catch (Exception $e) {
+
                 return false;
             }
 
@@ -166,18 +163,16 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
                     
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
                     array_push($dischargeList, $guardian);
-
                 }
 
             } catch (Exception $e) {
+
                 return false;
             }
 
@@ -225,9 +220,7 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
                     
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
@@ -239,6 +232,7 @@
                 }
 
             } catch (Exception $e) {
+
                 return false;
             }
 
@@ -274,19 +268,16 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
 
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
 
                     array_push($pendientList, $guardian);
-
                 }
 
-
             } catch (Exception $e) {
+
                 return false;
             }
 
@@ -296,14 +287,15 @@
         public function confirmGuardianDAO($value) {
 
             try {
-                $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token ='".$value."';";
 
-                $parameters["dischargeDate"] = $value->setDischargeDate(date("Y-m-d"));
+                $parameters["dischargeDate"] = date("Y-m-d");
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e) {
+
                 return false;
             }
 
@@ -311,13 +303,13 @@
         }
 
 
-        // Metodo que da de baja un usuario en la base de datos.
+        // Metodo que elimina un guardian.
 
         public function deleteDAO($value){ 
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET downDate = now() WHERE ".$this->tableName.".token = '".$value."';";
+                $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = '".$value."';";
                 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
@@ -345,12 +337,8 @@
                 $parameters["serviceStartDate"] = $value->getServiceStartDate();
                 $parameters["serviceEndDate"]   = $value->getServiceEndDate();
 
-                //$parameters["serviceDayList"]   = $value->getServiceDayList();
-                //$parameters["bookingList"]      = $value->getBookingList();
-                //$parameters["reviewList"]       = $value->getReviewList();
-
                 $parameters["dischargeDate"]    = $value->getDischargeDate();
-                $parameters["downDate"]         = $value->getDownDate();
+                $parameters["downDate"]         = $value->getDownDate();                
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -358,16 +346,23 @@
             } catch (Exception $e){
 
                 return false;
-            }  
+            }
 
-            return true;
+            if (!is_null($value->getServiceDayList())){
+
+                $this->updateServiceDayListDAO($value->getToken(), $value->getServiceDayList());
+
+            } else {
+
+                return true;
+            }            
         }
 
         // Metodo que retorna un usuario de tipo Guardian de la base de datos a partir de su nombre de usuario.
 
         public function getUserNameDAO($username) {
 
-            $admin = null;
+            $guardian = null;
 
             try {
 
@@ -394,9 +389,9 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
 
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
+                    $guardian->setBookingList(null);
+                    $guardian->setReviewList(null); 
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
@@ -407,7 +402,7 @@
                 return false;
             }
 
-            return $admin;
+            return $guardian;
         }
 
         // Metodo que retorna un usuario de tipo Guardian de la base de datos a partir de su token.
@@ -441,9 +436,9 @@
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
                     
-                    //$guardian->setServiceDayList(null);
-                    //$guardian->setBookingList(null);
-                    //$guardian->setReviewList(null); 
+                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
+                    $guardian->setBookingList(null);
+                    $guardian->setReviewList(null); 
 
                     $guardian->setDischargeDate($value["dischargeDate"]);
                     $guardian->setDownDate($value["downDate"]);
@@ -455,6 +450,81 @@
             }
 
             return $guardian;
-        }        
+        }
+
+        private function getServiceDayListDAO($token){
+            
+            $dayList = null;
+
+            try {
+
+                $query = "SELECT GD.dayName FROM ".$this->tableName2." AS GD WHERE GD.tokenGuardian = '".$token."'";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                if (!empty($resultSet)){
+
+                    $dayList = array();
+
+                    foreach ($resultSet as $key => $value) {
+
+                        array_push($dayList, $value["dayName"]);
+                    }
+                }
+
+            } catch (Exception $e) {
+
+                return false;
+            }
+
+            return $dayList; 
+        }
+
+        private function updateServiceDayListDAO($tokenGuardian, $dayList){
+
+            try {
+
+                // Eliminar dias asignados anteriormente al token del guardian en guardian_x_day.
+
+                $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = '".$tokenGuardian."';";
+                
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+
+                // Asignar dias al token del guardian en guardian_x_day.
+
+                foreach ($dayList as $key => $dayName) {
+                
+                    $this->addServiceDayListDAO($tokenGuardian, $dayName);
+                }
+
+            } catch(Exception $ex){
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private function addServiceDayListDAO($tokenGuardian, $dayName){
+
+            try {
+
+                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, dayName) VALUES (:tokenGuardian, :dayName);";
+
+                $parameters["tokenGuardian"]  = $tokenGuardian;
+                $parameters["dayName"]        = $dayName;
+
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            } catch (Exception $e){
+
+                return false;
+            }  
+
+            return true;
+        }         
         
     } ?>

@@ -1,23 +1,29 @@
 <?php namespace Controllers;
 
-    use JsonDAO\GuardianDAO as GuardianDAO;
-    use Models\Guardian as Guardian; 
+    use DAO\GuardianDAO as GuardianDAO;
+    use DAO\ReviewDAO as ReviewDAO;
+    use Models\Guardian as Guardian;
+    use Models\Review as Review; 
 
     class GuardianController {  
 
-        private $guardianDAO;
-        private $guardian;
         private $token;
+        private $guardian;
+        private $guardianDAO;
         private $guardianList;
         private $userController;
+        private $reviewDAO;
+        private $reviewList;
         
         public function __construct(){
-          
-            $this->guardianDAO    = new GuardianDAO();
-            $this->guardian       = null;
+            
             $this->token          = null;
+            $this->guardian       = null;
+            $this->guardianDAO    = new GuardianDAO();
             $this->guardianList   = array();
             $this->userController = new UserController();
+            $this->reviewDAO      = new ReviewDAO();            
+            $this->reviewList     = array();
         }
 
         // Muestra el perfil del guardian en sessión.
@@ -89,7 +95,7 @@
         
         // Muestra un listado de guardianes.
 
-        public function list($dateType = null){
+        public function list($dateType = null, $data = null){
           
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -116,15 +122,178 @@
 
                     require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
 
-                } else {
+                } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
                     $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
+
+                    if (strcmp($dateType, "price") == 0 && !is_null($data)){
+
+                        $this->guardianList = $this->filterPrice($this->guardianList, $data);     
+
+                    } else if (strcmp($dateType, "rating") == 0 && !is_null($data)){
+
+                        $this->guardianList = $this->filterRating($this->guardianList, $data);       
+
+                    } else if (strcmp($dateType, "date") == 0 && !is_null($data)){     
+
+                        $dataNew = explode(" - ", $data);
+
+                        $startDate = date("m/d/Y", strtotime($dataNew["0"]));
+                        $startDate = date("Y-m-d", strtotime($startDate));
+
+                        $endDate = date("m/d/Y", strtotime($dataNew["1"]));
+                        $endDate = date("Y-m-d", strtotime($endDate));
+
+                        $this->guardianList = $this->filterDate($this->guardianList, $startDate, $endDate); 
+                    }                      
 
                     require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";    
                 }            
             }
             
             require_once ROOT_VIEWS."/mainFooter.php"; 
+        }
+
+        // Retorna todos los guardianes con un precio igual o menor al enviado.
+
+        private function filterPrice($guardianList, $price){
+
+            $guardianFilterList = array();
+
+            foreach ($guardianList as $key => $guardian) {
+
+                if ($guardian->getPrice() <= $price){
+
+                    array_push($guardianFilterList, $guardian);
+                }              
+            }
+
+            return $guardianFilterList;            
+        }
+
+        // Retorna todos los guardianes con una clasificación igual o mayor al enviado.
+
+        private function filterRating($guardianList, $rating){
+
+            $guardianFilterList = array();
+
+            foreach ($guardianList as $key => $guardian) {
+
+                $reviewList = $this->reviewDAO->getReviewListTokenGuardianDAO($guardian->getToken());
+
+                if (!empty($reviewList)){
+
+                    $cont = 0;
+                    $scoreTotal = 0;
+
+                    foreach ($reviewList as $key => $review) {
+
+                        $scoreTotal = $scoreTotal + $review->getScore();
+                        $cont++;                        
+                    }
+
+                    $ratingTotal = $scoreTotal / $cont;
+
+                    if ($ratingTotal >= $rating){
+
+                        array_push($guardianFilterList, $guardian);
+                    }                    
+                }                
+            }
+
+            return $guardianFilterList;
+        }
+
+        // Retorna todos los guardianes que trabajen ese rango de dias.
+
+        private function filterDate($guardianList, $dateStart, $dateEnd){
+        
+            $guardianFilterList = array();
+            $dateRangeList = $this->getDateRange($dateStart, $dateEnd);
+
+            foreach ($guardianList as $key => $guardian) {
+                
+                $guardianDateList = $this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList());
+
+                if ($this->getCompareDateList($dateRangeList, $guardianDateList)){
+                    array_push($guardianFilterList, $guardian);
+                }
+            }
+
+            return $guardianFilterList;
+
+        }
+
+        // Retorna el arreglo de fechas que trabaja el guardian.
+
+        private function getDateListGuardian($dateStart, $dateEnd, $dayList){
+
+            $dateList = array();
+
+            $dateStart = date("Y-m-d", strtotime($dateStart));
+
+            while ($dateStart <= $dateEnd) {
+
+                $day = date('l', strtotime($dateStart));
+
+                foreach ($dayList as $key => $value) {
+
+                    if (strcmp($value, $day) == 0){
+
+                        array_push($dateList, $dateStart);
+                    }
+                }
+
+                $dateStart = date("Y-m-d", strtotime($dateStart."+ 1 days"));            
+            }
+
+            return $dateList;
+        }
+
+        // Retorna las fechas de un rango.
+
+        private function getDateRange($dateStart, $dateEnd){
+
+            $dateList = array();
+
+            $dateStart = date("Y-m-d", strtotime($dateStart));
+
+            while ($dateStart <= $dateEnd) {  
+
+                array_push($dateList, $dateStart);
+                
+                $dateStart = date("Y-m-d", strtotime($dateStart."+ 1 days"));            
+            }
+
+            return $dateList;
+        } 
+
+        // Retorna verdadero o falso si la lista de fecha dos abarca la lista uno.
+
+        private function getCompareDateList($dateList1, $dateList2){
+
+            $compareDate = true;
+
+            foreach ($dateList1 as $key => $date1) {
+
+                $control = false; 
+
+                foreach ($dateList2 as $key => $date2) {
+
+                    if ($date1 == $date2){
+
+                        $control = true;
+                    }
+
+                } 
+
+                if (!$control){
+
+                    $compareDate = false;
+                }
+            }
+
+            return $compareDate;
         }
 
         public function view($token) {
@@ -146,9 +315,6 @@
             require_once ROOT_VIEWS."/guardianView.php";
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
-
-
-        // Metodo de alta (guardian)
 
         public function confirmGuardian($token) {
             

@@ -80,25 +80,6 @@
 
         }
 
-        // Metodo que da de baja un usuario en la base de datos.
-
-        public function deleteDAO($value){ 
-
-            try {
-
-                $query = "UPDATE ".$this->tableName." SET downDate = now() WHERE ".$this->tableName.".token = '".$value."';";
-                
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-
-            } catch(Exception $ex){
-
-                return false;
-            }
-
-            return true;
-        }
-
         // Metodo que actualiza un usuario de tipo Admin en base de datos mediante su token. 
 
         public function updateDAO($value){

@@ -3,7 +3,7 @@
     use DateTime;
     
     use DAO\AdminDAO as AdminDAO;
-    use JsonDAO\GuardianDAO as GuardianDAO;
+    use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
 
     use Models\Admin as Admin;

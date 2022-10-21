@@ -1,8 +1,9 @@
 <?php namespace DAO;
 
-use DAO\IDAO as IDAO; 
-use DAO\Connection as Connection;
-use \Exception as Exception;
+    use DAO\IDAO as IDAO; 
+    use DAO\Connection as Connection;
+    
+    use \Exception as Exception;
 
     use Models\Cat as Cat;
 
@@ -40,7 +41,7 @@ use \Exception as Exception;
             return true;
         }
 
-        // Metodo que retorna todos los perros de la base de datos en forma de lista.
+        // Metodo que retorna todos los gatos de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
@@ -80,8 +81,7 @@ use \Exception as Exception;
 
         }
 
-
-        // Metodo que actualiza un perro en base de datos mediante su token. 
+        // Metodo que actualiza un gatos en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -112,26 +112,8 @@ use \Exception as Exception;
 
             return true;
         }
-
-      
-        public function deleteDAO($value){ 
-
-            try {
-
-                $query = "UPDATE ".$this->tableName." SET downDate = now() WHERE ".$this->tableName.".token = '".$value."';";
-                
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-
-            } catch(Exception $ex){
-
-                return false;
-            }
-
-            return true;
-        }
-        
-        // Metodo que retorna un perro de la base de datos a partir de su token.
+    
+        // Metodo que retorna un gato de la base de datos a partir de su token.
 
         public function getCatTokenDAO($token){
 

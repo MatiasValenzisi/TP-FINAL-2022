@@ -32,7 +32,7 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e){
-
+                
                 return false;
             }  
 
@@ -78,25 +78,6 @@
 
             return $ownerList;
 
-        }
-
-        // Metodo que da de baja un usuario en la base de datos.
-
-        public function deleteDAO($value){ 
-
-            try {
-
-                $query = "UPDATE ".$this->tableName." SET downDate = now() WHERE ".$this->tableName.".token = '".$value."';";
-                
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-
-            } catch(Exception $ex){
-
-                return false;
-            }
-
-            return true;
         }
 
         // Metodo que actualiza un usuario de tipo Owner en base de datos mediante su token. 

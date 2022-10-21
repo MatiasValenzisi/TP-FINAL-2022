@@ -1,23 +1,32 @@
 <?php namespace Controllers;
 
-    use JsonDAO\GuardianDAO as GuardianDAO;
-    use Models\Guardian as Guardian; 
+    use DAO\GuardianDAO as GuardianDAO;
+    use DAO\ReviewDAO as ReviewDAO;
+    use Models\Guardian as Guardian;
+    use Models\Review as Review; 
 
     class GuardianController {  
 
-        private $guardianDAO;
-        private $guardian;
         private $token;
+
+        private $guardian;
+        private $guardianDAO;
         private $guardianList;
+
         private $userController;
+
+        private $reviewDAO;
+        private $reviewList;
         
         public function __construct(){
-          
-            $this->guardianDAO    = new GuardianDAO();
-            $this->guardian       = null;
+            
             $this->token          = null;
+            $this->guardian       = null;
+            $this->guardianDAO    = new GuardianDAO();
             $this->guardianList   = array();
             $this->userController = new UserController();
+            $this->reviewDAO      = new ReviewDAO();            
+            $this->reviewList     = array();
         }
 
         // Muestra el perfil del guardian en sessión.
@@ -116,9 +125,17 @@
 
                     require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
 
-                } else {
+                } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
                     $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
+
+                    if (strcmp($dateType, "filter") == 0){
+
+
+
+                    
+
+                    }                    
 
                     require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";    
                 }            

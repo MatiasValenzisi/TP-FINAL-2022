@@ -23,19 +23,6 @@
             return $this->adminList;
         }
 
-        public function deleteDAO($value){
-
-            $this->retrieveData();
-
-            foreach ($this->adminList as $key => $admin) {
-
-                if (strcmp($admin->getToken(), $value) == 0){
-                   unset($this->adminList[$key]);
-                   $this->saveData();         
-                }               
-            } 
-        }
-
         public function updateDAO($value){
 
             $this->retrieveData();

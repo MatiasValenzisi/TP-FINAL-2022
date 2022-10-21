@@ -24,11 +24,6 @@
             return $this->dogList;
         }
 
-        public function deleteDAO($value){
-
-            // Eliminar perro.
-        }
-
         public function saveData(){
 
             $arrayToEncode = array();

@@ -4,7 +4,7 @@
 
         private $token;            // Token o número de reserva.
         private $pet;              // Tipo de mascota: gato o perro.
-        private $race              // Raza de la mascota.   
+        private $race;              // Raza de la mascota.   
         private $dateList;         // Listado de fechas.
         private $price;            // Precio total. Dias por precio del guardian.
         private $state;            // Estado de la reserva.
@@ -57,7 +57,7 @@
 
         public function setRace($race) { 
 
-            $this->race = $race; return
+            $this->race = $race; 
         } 
 
         public function getDateList() { 

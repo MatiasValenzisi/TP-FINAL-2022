@@ -36,9 +36,6 @@
 
             } catch (Exception $e){
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }  
 
@@ -86,9 +83,6 @@
 
             } catch (Exception $e){
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -134,9 +128,6 @@
 
             } catch (Exception $e) {
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -181,9 +172,6 @@
                 }
 
             } catch (Exception $e) {
-
-                echo $e->getMessage();
-                exit();
 
                 return false;
             }
@@ -245,9 +233,6 @@
 
             } catch (Exception $e) {
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -293,9 +278,6 @@
 
             } catch (Exception $e) {
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -313,9 +295,6 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e) {
-
-                echo $e->getMessage();
-                exit();
 
                 return false;
             }
@@ -336,9 +315,6 @@
                 $this->connection->ExecuteNonQuery($query);
 
             } catch(Exception $ex){
-
-                echo $e->getMessage();
-                exit();
 
                 return false;
             }
@@ -368,9 +344,6 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e){
-
-                echo $e->getMessage();
-                exit();
 
                 return false;
             }
@@ -426,9 +399,6 @@
 
             } catch (Exception $e){
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -476,9 +446,6 @@
 
             } catch (Exception $e){
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -508,9 +475,6 @@
 
             } catch (Exception $e) {
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -537,9 +501,6 @@
 
             } catch(Exception $ex){
 
-                echo $e->getMessage();
-                exit();
-
                 return false;
             }
 
@@ -559,9 +520,6 @@
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch (Exception $e){
-
-                echo $e->getMessage();
-                exit();
 
                 return false;
             }  

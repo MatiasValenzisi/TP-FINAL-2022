@@ -208,14 +208,19 @@
 
         private function filterDate($guardianList, $dateStart, $dateEnd){
         
+            $guardianFilterList = array();
+            $dateRangeList = $this->getDateRange($dateStart, $dateEnd);
+
             foreach ($guardianList as $key => $guardian) {
                 
-                var_dump($this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList()));
-                echo "<br><br>";
+                $guardianDateList = $this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList());
 
+                if ($this->getCompareDateList($dateRangeList, $guardianDateList)){
+                    array_push($guardianFilterList, $guardian);
+                }
             }
 
-            exit();
+            return $guardianFilterList;
 
         }
 
@@ -243,7 +248,53 @@
             }
 
             return $dateList;
+        }
+
+        // Retorna las fechas de un rango.
+
+        private function getDateRange($dateStart, $dateEnd){
+
+            $dateList = array();
+
+            $dateStart = date("Y-m-d", strtotime($dateStart));
+
+            while ($dateStart <= $dateEnd) {  
+
+                array_push($dateList, $dateStart);
+                
+                $dateStart = date("Y-m-d", strtotime($dateStart."+ 1 days"));            
+            }
+
+            return $dateList;
         } 
+
+        // Retorna verdadero o falso si la lista de fecha dos abarca la lista uno.
+
+        private function getCompareDateList($dateList1, $dateList2){
+
+            $compareDate = true;
+
+            foreach ($dateList1 as $key => $date1) {
+
+                $control = false; 
+
+                foreach ($dateList2 as $key => $date2) {
+
+                    if ($date1 == $date2){
+
+                        $control = true;
+                    }
+
+                } 
+
+                if (!$control){
+
+                    $compareDate = false;
+                }
+            }
+
+            return $compareDate;
+        }
 
         public function view($token) {
             

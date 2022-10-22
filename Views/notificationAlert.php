@@ -1,4 +1,4 @@
-<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+e<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
 
 <script type='text/javascript'>
 
@@ -188,6 +188,15 @@
                                 echo "<script>sweet('Error al cargar el video de la mascota!','No se pudo guardar el video de la mascota.','error')</script>";
                                 
                             break;                            
+                        }
+
+                    break;
+
+                    case 'filter':
+                        
+                        if (strcmp($specific, 'guardian') == 0){
+
+                            echo "<script>sweet('Error al filtrar guardianes!','El rango no debe tener fechas pasadas.','error')</script>";
                         }
 
                     break;

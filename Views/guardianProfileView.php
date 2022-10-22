@@ -161,14 +161,12 @@
                                   <div class="ln_solid"></div>
                                   <div class="form-group">
                                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-
                                           <button class="btn btn-primary" type="button"
                                               onclick="location.href='<?php echo FRONT_ROOT ?>/home/administration'"
                                               style="width:40%;">Cancel</button>
 
                                           <button type="submit" class="btn btn-success" style="width:40%;">Guardar
                                               cambios</button>
-
                                       </div>
                                   </div>
                               </form>

@@ -2,28 +2,28 @@
 
     class Owner extends User {
 
-        private $bookingsList ;
+        private $bookingList ;
         private $petList;
         private $paymentsList ;
         
         public function __construct($token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, 
-        $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingsList = null, $petList = null, $paymentsList = null, $profilePicture = null){
+        $firstName = null, $lastName = null, $birthDate = null, $dni = null, $bookingList = null, $petList = null, $paymentsList = null, $profilePicture = null){
 
             parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni, $profilePicture);
 
-            $this->bookingsList = $bookingsList;
+            $this->bookingList = $bookingList;
             $this->petList      = $petList;
             $this->paymentsList = $paymentsList;                
         }
 
-        public function getBookingsList(){
+        public function getBookingList(){
 
-            return $this->bookingsList;
+            return $this->bookingList;
         }
 
-        public function setBookingsList($bookingsList){
+        public function setBookingList($bookingList){
             
-            $this->bookingsList = $bookingsList;
+            $this->bookingsList = $bookingList;
         }
 
         public function getPetList(){

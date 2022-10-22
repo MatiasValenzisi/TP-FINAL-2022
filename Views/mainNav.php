@@ -77,25 +77,6 @@
                                     <a href=" <?php echo FRONT_ROOT ?>/owner/profile"><i
                                             class="fa fa-user-secret text-center"></i> Mi perfil</a>
 
-                                    <?php } ?>
-
-                                </li>
-
-                                <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") != 0){ ?>
-
-                                <li>
-                                    <a><i class="fa fa-briefcase text-center"></i> Reservas<span
-                                                class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-
-                                            <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0){ ?>
-
-                                            <li><a href="<?php echo FRONT_ROOT?>/booking/list/guardian"> Reservas actuales</a></li>
-
-                                            <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
-
-                                            <?php } ?>
-                                        </ul>
                                 </li>
 
 
@@ -149,8 +130,27 @@
                                     </ul>
                                 </li>
 
-                                <?php } ?>
+                                <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") != 0){ ?>
+                                            
+                                <li>
+                                    <a><i class="fa fa-solid fa-book text-center"></i> Reservas<span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
 
+                                            <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Ver reservas actuales</a></li>
+
+                                            <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
+                                                <li><a href="<?php echo FRONT_ROOT?>/booking/create"> Realizar reserva</a></li>
+
+                                            <?php } ?>
+                                            
+                                            <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
+
+                                        </ul>
+                                </li>
+
+                                    <?php } ?>
                                 <li>
                                     <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
                                             class="fa fa-sign-out text-center"></i> Cerrar sesión</a>

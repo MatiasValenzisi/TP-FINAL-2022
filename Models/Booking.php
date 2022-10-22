@@ -161,17 +161,7 @@ use Controllers\UserController;
             return $owner->getFirstName()." ".$owner->getLastName();
         }
 
-        public function getInitialDate() {
-            return $this->dateList[0];
-        }
-
-        public function getFinalDate() {
-            $finalDate = null;
-            foreach($this->dateList as $date) {
-                $finalDate = $date;
-            }
-            return $finalDate;
-        }
+        
 
     }
 ?>

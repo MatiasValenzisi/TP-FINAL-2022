@@ -19,7 +19,7 @@
                 <th>Total</th>>
                 <th>Estado</th>
             </tr>
-
+    
           </thead>
 
           <tbody>

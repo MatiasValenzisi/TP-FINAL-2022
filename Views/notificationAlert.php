@@ -1,4 +1,4 @@
-e<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
 
 <script type='text/javascript'>
 
@@ -196,7 +196,7 @@ e<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert
                         
                         if (strcmp($specific, 'guardian') == 0){
 
-                            echo "<script>sweet('Error al filtrar guardianes!','El rango no debe tener fechas pasadas.','error')</script>";
+                            echo "<script>sweet('Error al filtrar guardianes!','El rango de busqueda no debe tener fechas pasadas.','error')</script>";
                         }
 
                     break;

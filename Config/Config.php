@@ -25,6 +25,6 @@ define("EMAIL_PASS", "123456@m");
 
 /* Constantes adicionales */
 define("PROJECT_NAME", "Pet Hero");
-define("PROJECT_DESCRIPTION", "TP Final Laboratorio IV - Metodologia de Sistemas | UTN - Mar del Plata | 2022.");
+define("PROJECT_DESCRIPTION", "Pet Hero Todos los derechos reservados © 2022");
 
 ?>

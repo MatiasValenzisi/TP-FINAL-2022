@@ -1,5 +1,4 @@
 <style>
-
 .guardianownerview {
     display: flex;
     justify-content: space-between;
@@ -23,7 +22,6 @@
 .profile_view {
     margin: 20px;
 }
-
 </style>
 
 <div class="">
@@ -34,7 +32,8 @@
                 <div>
                     <div class="guardianownerview">
                         <h2>Listado de guardianes</h2>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#formFilter">Filtrar guardianes</button>
+                        <button class="btn btn-success" data-toggle="modal" data-target="#formFilter">Filtrar
+                            guardianes</button>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -46,19 +45,22 @@
                     <div class="col-md-5 col-sm- col-xs-12 profile_details">
                         <div class="profile_view">
                             <div class="col-sm-12">
-                                
+
                                 <h4 class="brief"><i><?php echo "Token: ". $guardian->getToken(); ?></i></h4>
-                                
+
                                 <div class="left col-xs-7">
-                                    <h4><strong><?php echo $guardian->getFirstName()." ".$guardian->getLastName(); ?></strong></h4>
+                                    <h4><strong><?php echo $guardian->getFirstName()." ".$guardian->getLastName(); ?></strong>
+                                    </h4>
                                     <ul class="list-unstyled">
-                                        <li><i class="fa fa-envelope"></i> 
+                                        <li><i class="fa fa-envelope"></i>
                                             Correo:<?php echo $guardian->getUserName().""; ?>
                                         </li>
-                                        <li><i class="fa fa-calendar"></i> 
-                                            Fecha de nacimiento:<?php echo date("d-m-Y", strtotime($guardian->getBirthDate())); ?>
+                                        <li><i class="fa fa-calendar"></i>
+                                            Fecha de
+                                            nacimiento:<?php echo date("d-m-Y", strtotime($guardian->getBirthDate())); ?>
                                         </li>
-                                        <li><i class="fa fa-money"></i> Precio base del servicio por día: <?php echo "$".$guardian->getServicePrice(); ?>
+                                        <li><i class="fa fa-money"></i> Precio base del servicio por día:
+                                            <?php echo "$".$guardian->getServicePrice(); ?>
                                         </li>
                                         <li><i class="fa fa-history"></i> Experiencia:
                                             <?php echo $guardian->getExperience() . " Año/s."; ?>
@@ -85,7 +87,7 @@
                             </div>
 
                             <div class="col-xs-12 bottom text-center">
-                                
+
                                 <div class="col-xs-12 col-sm-6 emphasis">
                                     <p class="ratings">
                                         <a>4.0</a>
@@ -125,7 +127,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
-            <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/list/" method="POST" enctype="multipart/form-data">
+            <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/list/" method="POST"
+                enctype="multipart/form-data">
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="form">Filtrar guardianes por rango de fecha</h5>
@@ -138,11 +141,13 @@
                     <div class="control-group">
                         <div class="controls">
                             <div class="input-prepend input-group">
-                                <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                <input type="text" class="form-control col-md-7 col-xs-12" name="data" id="reservation" class="form-control" value="<?php echo date() ?>"/>
+                                <span class="add-on input-group-addon"><i
+                                        class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                <input type="text" class="form-control col-md-7 col-xs-12" name="data" id="reservation"
+                                    class="form-control" value="<?php echo date("m/d/Y");?>" />
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
 
                 <div class="modal-footer">

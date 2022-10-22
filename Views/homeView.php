@@ -118,16 +118,17 @@
             </div>
             <div class="member">
                 <img src="../Views/profile/matias.jpg" alt="matias">
-                <h4>Tobias</h4>
+                <h4>Matias</h4>
             </div>
             <div class="member">
                 <img src="../Views/profile/nicolas.jpg" alt="nicolas">
-                <h4>Tobias</h4>
+                <h4>Nicolas</h4>
             </div>
         </div>
 
 
         <h4 class="title">Contactanos!</h4>
+        <p>insertar form aqui</p>
     </div>
 </body>
 

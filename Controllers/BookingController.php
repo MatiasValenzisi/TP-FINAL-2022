@@ -2,17 +2,20 @@
 
     use Models\Booking as Booking;
     use DAO\BookingDAO as BookingDAO;
+    use DAO\GuardianDAO as GuardianDAO;
 
     class BookingController {
 
         private $bookingList;
         private $bookingDAO;
-        private $guardian = null;
+        private $guardian;
+        private $guardianDAO;
 
 
         public function __construct()
         {
             $this->bookingDAO = new BookingDAO();
+            $this->guardianDAO = new GuardianDAO;
         }
 
         public function list($typeUser = null) {
@@ -21,7 +24,7 @@
 
             if(strcmp($typeUser, "guardian") == 0) {
 
-                $this->guardian = $this->bookingDAO->getUserName($_SESSION['userName']);
+                $this->guardian = $this->guardianDAO->getUserNameDAO($_SESSION['userPH']->getToken());
                 $this->bookingList = $this->guardian->getBookingList();
 
                 require_once ROOT_VIEWS."/guardianBookingList.php";   

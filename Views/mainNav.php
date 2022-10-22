@@ -90,7 +90,7 @@
 
                                             <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0){ ?>
 
-                                            <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Reservas actuales</a></li>
+                                            <li><a href="<?php echo FRONT_ROOT?>/booking/list/guardian"> Reservas actuales</a></li>
 
                                             <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
 

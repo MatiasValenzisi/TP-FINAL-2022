@@ -192,6 +192,15 @@
 
                     break;
 
+                    case 'filter':
+                        
+                        if (strcmp($specific, 'guardian') == 0){
+
+                            echo "<script>sweet('Error al filtrar guardianes!','El rango de busqueda no debe tener fechas pasadas.','error')</script>";
+                        }
+
+                    break;
+
                 }
 
             break;

@@ -100,8 +100,6 @@
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
 
-            //Selecciona el tipo de lista que vas a mostrar
-
             if(strcmp($dateType, "downdate") == 0) { 
 
                 $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
@@ -124,6 +122,10 @@
 
                 } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
+                    $type     = null;
+                    $action   = null;
+                    $specific = null;
+
                     $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
 
                     if (strcmp($dateType, "price") == 0 && !is_null($data)){
@@ -144,10 +146,20 @@
                         $endDate = date("m/d/Y", strtotime($dataNew["1"]));
                         $endDate = date("Y-m-d", strtotime($endDate));
 
-                        $this->guardianList = $this->filterDate($this->guardianList, $startDate, $endDate); 
+                        if ($startDate >= date("Y-m-d")){
+
+                            $this->guardianList = $this->filterDate($this->guardianList, $startDate, $endDate);
+
+                        } else {
+
+                            $type     = "error";
+                            $action   = "filter";
+                            $specific = "guardian";
+                        }                         
                     }                      
 
-                    require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";    
+                    require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";
+                    require_once ROOT_VIEWS."/notificationAlert.php";    
                 }            
             }
             
@@ -330,6 +342,5 @@
             
             header("Location: ".FRONT_ROOT."/guardian/list/pendient");
         }
-
     } 
 ?>

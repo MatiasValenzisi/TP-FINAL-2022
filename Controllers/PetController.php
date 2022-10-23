@@ -32,7 +32,6 @@
 
             $this->dogList = $this->dogDAO->getAllDAO();
             $this->catList = $this->catDAO->getAllDAO();
-
             
             if (!empty($this->dogList)){
 
@@ -42,8 +41,7 @@
             if (!empty($this->catList)){
 
                 $this->petList = array_merge($this->petList, $this->catList);
-            } 
-            
+            }            
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -55,7 +53,6 @@
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
-
         
             if (strcmp($typePet,"cat") == 0){
 
@@ -64,14 +61,14 @@
             } else {
 
                 require_once ROOT_VIEWS."/dogCreateView.php";
-            }            
+            }
+            
             require_once ROOT_VIEWS."/notificationAlert.php";     
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
         public function createPet($typePet, $name, $race, $size, $weight, $vaccinationPlan = null, $photo = null, $video = null, $observations = ''){
-            
-            
+                        
             $ownerToken = $_SESSION['userPH']->getToken();
 
             $token = $this->createToken($this->getTokendogList());  
@@ -182,8 +179,7 @@
 
                 $this->dogDAO->addDAO($this->dog);
 
-            }else if (strcmp($typePet,"cat") == 0)
-            {
+            } else if (strcmp($typePet,"cat") == 0){
                 
    
                 $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
@@ -276,6 +272,7 @@
                 require_once ROOT_VIEWS."/mainFooter.php"; 
                 
             } elseif (strcmp($typePet,"cat") == 0) {
+
                 $this->cat = $this->catDAO->getCatTokenDAO($token);
                 require_once ROOT_VIEWS."/mainHeader.php";
                 require_once ROOT_VIEWS."/mainNav.php";  
@@ -285,9 +282,7 @@
             } else {
                 
                 header("Location: ".FRONT_ROOT."/pet/list");
-            }
-
-            
+            }            
         } 
     } 
 ?>

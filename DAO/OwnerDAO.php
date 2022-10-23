@@ -181,6 +181,79 @@
             }
 
             return $owner;
-        }        
+        } 
+
+         public function getAllDownDateDAO() {
+
+            $ownerList = array();
+
+            try {
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $owner = new Owner();
+
+                    $owner->setToken($value["token"]);
+                    $owner->setUserName($value["userName"]);
+                    $owner->setPassword($value["password"]);
+                    $owner->setFirstName($value["firstName"]);
+                    $owner->setLastName($value["lastName"]);
+                    $owner->setBirthDate($value['birthDate']);
+                    $owner->setDni($value["dni"]);
+                    $owner->setProfilePicture($value["profilePicture"]);
+                    $owner->setDischargeDate($value["dischargeDate"]);
+                    $owner->setDownDate($value["downDate"]);
+
+                    array_push($ownerList, $owner);
+                }
+
+            } catch (Exception $e) {
+
+                return false;
+            }
+
+            return $ownerList;
+        }
+
+        public function getAllDischargeDateDAO() {
+
+            $dischargeList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $owner = new Owner();
+
+                    $owner->setToken($value["token"]);
+                    $owner->setUserName($value["userName"]);
+                    $owner->setPassword($value["password"]);
+                    $owner->setFirstName($value["firstName"]);
+                    $owner->setLastName($value["lastName"]);
+                    $owner->setBirthDate($value['birthDate']);
+                    $owner->setDni($value["dni"]);
+                    $owner->setProfilePicture($value["profilePicture"]);
+                    $owner->setDischargeDate($value["dischargeDate"]);
+                    $owner->setDownDate($value["downDate"]);
+
+                    array_push($dischargeList, $owner);
+                }
+
+            } catch (Exception $e) {
+
+                return false;
+            }
+
+            return $dischargeList;
+        }           
         
     } ?>

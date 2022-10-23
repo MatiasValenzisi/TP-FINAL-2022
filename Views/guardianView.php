@@ -139,9 +139,29 @@
                                     </div>
                                 </div>
 
+                                <br>
+
+                                <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
                                 <div class="form-group">
-                                    <br><button type="button" style="margin-left: 40%;" onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/list'" class="btn btn-primary">Volver al listado</button>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button class="btn btn-primary" type="button"
+                                             onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/list'"
+                                              style="width:40%;">Volver al listado</button>
+                                        <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/booking/create/<?php echo $this->guardian->getToken(); ?>'" class="btn btn-success" style="width:40%;">Realizar una reserva</button>
+                                    </div>
                                 </div>
+
+                                <?php } else { ?>
+
+                                <div class="form-group">                                    
+                                    <button type="button" style="margin-left: 30%; width: 20%" onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/list'" class="btn btn-primary">Volver al listado</button>
+                                </div>
+
+                                <?php } ?>
+
+                                <br>
+
                             </div>
                         </div>
                     </div>

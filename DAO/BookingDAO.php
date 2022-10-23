@@ -85,7 +85,7 @@
 
         }
 
-        // Metodo que elimina un guardian.
+        // Metodo que elimina una reserva.
 
         public function deleteDAO($value){ 
 
@@ -104,7 +104,7 @@
             return true;
         }
 
-        // Metodo que actualiza un usuario de tipo Guardian en base de datos mediante su token. 
+        // Metodo que actualiza estado de la reserva
 
         /*public function updateDAO($value){
 

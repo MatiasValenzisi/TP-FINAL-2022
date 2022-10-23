@@ -148,7 +148,7 @@
                                         <button class="btn btn-primary" type="button"
                                              onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/list'"
                                               style="width:40%;">Volver al listado</button>
-                                        <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/booking/create'" class="btn btn-success" style="width:40%;">Realizar una reserva</button>
+                                        <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/booking/create/<?php echo $this->guardian->getToken(); ?>'" class="btn btn-success" style="width:40%;">Realizar una reserva</button>
                                     </div>
                                 </div>
 

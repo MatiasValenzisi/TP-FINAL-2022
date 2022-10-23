@@ -14,9 +14,8 @@
         private $owner;
         private $ownerDAO;
 
+        public function __construct(){
 
-        public function __construct()
-        {
             $this->bookingDAO = new BookingDAO();
             $this->guardianDAO = new GuardianDAO();
             $this->ownerDAO = new OwnerDAO();
@@ -24,11 +23,15 @@
 
         public function create($tokenGuardian = null, $type = null, $action = null, $specific = null){
 
+            echo "Crear reserva...";
         }
 
-        public function list($typeUser = null) {
+        public function list($typeUser = null) { 
 
-            require_once ROOT_VIEWS."/mainHeader.php";
+            echo "Listar reservas actuales...";
+
+
+        /*  require_once ROOT_VIEWS."/mainHeader.php";
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
@@ -46,15 +49,16 @@
             }
 
             require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/mainFooter.php";
-
+            require_once ROOT_VIEWS."/mainFooter.php"; */
         }
 
-        /* pausado hasta definir tipos de estado de la reserva!!
+        // pausado hasta definir tipos de estado de la reserva!!
 
-        public function history() {
-            
-            require_once ROOT_VIEWS."/mainHeader.php";
+        public function history() { 
+
+            echo "Mostrar historial de reservas...";
+
+        /*  require_once ROOT_VIEWS."/mainHeader.php";
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
@@ -73,7 +77,8 @@
 
             require_once ROOT_VIEWS."/mainNav.php";  
             require_once ROOT_VIEWS."/mainFooter.php";
-        }
-        */
+
+            */
+        }    
     }
 ?>

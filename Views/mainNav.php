@@ -135,19 +135,19 @@
                                 <li>
                                     <a><i class="fa fa-solid fa-book text-center"></i> Reservas<span
                                                 class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
+                                    <ul class="nav child_menu">
 
-                                            <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Ver reservas actuales</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Ver reservas actuales</a></li>
 
-                                            <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+                                        <?php /* if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 
-                                                <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Realizar reserva</a></li>
+                                            <li><a href="<?php echo FRONT_ROOT?>/guardian/list"> Realizar reserva</a></li>
 
-                                            <?php } ?>
+                                        <?php } */ ?>
                                             
-                                            <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
 
-                                        </ul>
+                                    </ul>
                                 </li>
 
                                     <?php } ?>

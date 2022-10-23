@@ -193,5 +193,4 @@
             header("Location: ".FRONT_ROOT."/");
         }   
     } 
-
 ?>

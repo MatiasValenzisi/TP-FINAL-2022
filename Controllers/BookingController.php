@@ -22,6 +22,10 @@
             $this->ownerDAO = new OwnerDAO();
         }
 
+        public function create($tokenGuardian = null, $type = null, $action = null, $specific = null){
+
+        }
+
         public function list($typeUser = null) {
 
             require_once ROOT_VIEWS."/mainHeader.php";
@@ -43,7 +47,6 @@
 
             require_once ROOT_VIEWS."/mainNav.php";  
             require_once ROOT_VIEWS."/mainFooter.php";
-
 
         }
 
@@ -72,8 +75,5 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
         */
-
-
-
     }
 ?>

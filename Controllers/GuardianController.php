@@ -342,6 +342,5 @@
             
             header("Location: ".FRONT_ROOT."/guardian/list/pendient");
         }
-
     } 
 ?>

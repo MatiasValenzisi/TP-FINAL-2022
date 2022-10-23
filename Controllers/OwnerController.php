@@ -78,6 +78,5 @@
 
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
-
     } 
 ?>

@@ -46,14 +46,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="reservation">Fecha rango de reserva: <span class="required">*</span></label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="serviceDate">Fecha rango de reserva: <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <fieldset>
                                         <div class="control-group">
                                             <div class="controls">
                                                 <div class="input-prepend input-group">
                                                     <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                                    <input type="text" class="form-control col-md-7 col-xs-12" name="serviceDate" id="reservation" class="form-control" value="<?php echo $date ?>" />
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" name="serviceDate" id="serviceDate" class="form-control" value="<?php echo $date ?>" />
                                                 </div>
                                             </div>
                                         </div>

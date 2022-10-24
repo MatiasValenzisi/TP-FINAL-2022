@@ -69,9 +69,9 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
 
-        public function consultAction($tokenGuardian, $tokenPet, $reservation){
+        public function consultAction($tokenGuardian, $tokenPet, $serviceDate){
 
-            $dataNew   = explode(" - ", $reservation);
+            $dataNew   = explode(" - ", $serviceDate);
 
             $startDate = date("m/d/Y", strtotime($dataNew["0"]));
             $startDate = date("Y-m-d", strtotime($startDate));

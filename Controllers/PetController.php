@@ -71,7 +71,7 @@
                         
             $ownerToken = $_SESSION['userPH']->getToken();
 
-            $token = $this->createToken($this->getTokendogList());  
+            $token = $this->createToken($this->getTokenPetList());  
 
             $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
 
@@ -200,7 +200,7 @@
             return $extension;
         }
 
-        public function createToken($dogListToken){ 
+        public function createToken($listToken){ 
 
    		 $newToken = null;
 
@@ -209,7 +209,7 @@
    			    $controller = false;
    				$newToken = $this->generateNumber(6);
 
-   				foreach($dogListToken  as $key => $value) {
+   				foreach($listToken  as $key => $value) {
 
    				   if($newToken == $value){
 
@@ -239,20 +239,36 @@
         public function getPetToken($token){ 
         
             $this->pet = $this->dogDAO->getDogTokenDAO($token);
+
+            if (is_null($this->pet)){
+
+                $this->pet = $this->catDAO->getCatTokenDAO($token);
+            }
         
             return $this->pet;
         
         }
 
-        public function getTokendogList(){ 
+        public function getTokenPetList(){ 
 
             $tokenList = array();
 
-            $dogList = $this->dogDAO->getAllDAO();
+            $this->dogList = $this->dogDAO->getAllDAO();
+            $this->catList = $this->catDAO->getAllDAO();
+            
+            if (!empty($this->dogList)){
 
-            if($dogList != null) {
+                $this->petList = array_merge($this->petList, $this->dogList);
+            } 
 
-                foreach($dogList as $current) {
+            if (!empty($this->catList)){
+
+                $this->petList = array_merge($this->petList, $this->catList);
+            }  
+
+            if($this->petList != null) {
+
+                foreach($this->petList as $current) {
 
                     array_push($tokenList, $current->getToken());
                 }

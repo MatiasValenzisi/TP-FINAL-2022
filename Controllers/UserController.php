@@ -201,8 +201,10 @@
    				   if($newToken == $value){
 
    				      $controller = true;
-
-   				}  }  } while($controller);
+   				    }  
+                }
+                
+            } while($controller);
 
    	   	   return $newToken; 
    	   }

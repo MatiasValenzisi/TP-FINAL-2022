@@ -37,7 +37,7 @@
 
                                         <?php foreach ($this->petList as $key => $pet) { ?>
                                            
-                                            <option value="<?php echo $pet->getToken() ?>"><?php echo $pet->getName()." - ".$pet->getRace() ?></option>
+                                            <option value="<?php echo $pet->getToken() ?>"><?php echo $pet->getName()." - Tamaño ".$pet->getSize() ?></option>
 
                                         <?php } ?>
                                         

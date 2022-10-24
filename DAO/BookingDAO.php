@@ -17,10 +17,10 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, pet, race, dateStart, dateEnd, price, state, couponPayment, remainingPayment, tokenGuardian, tokenOwner, acceptanceDate) VALUES (:token, :pet, :race, :dateStart, :dateEnd, :price, :state, :couponPayment, :remainingPayment, :tokenGuardian, :tokenOwner, :acceptanceDate);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenPet, race, dateStart, dateEnd, price, state, couponPayment, remainingPayment, tokenGuardian, tokenOwner, acceptanceDate) VALUES (:token, :tokenPet, :race, :dateStart, :dateEnd, :price, :state, :couponPayment, :remainingPayment, :tokenGuardian, :tokenOwner, :acceptanceDate);";
 
                 $parameters["token"]            = $value->getToken();
-                $parameters["pet"]              = $value->getPet();
+                $parameters["tokenPet"]         = $value->getTokenPet();
                 $parameters["race"]             = $value->getRace();
                 $parameters["dateStart"]        = $value->getDateStart();
                 $parameters["dateEnd"]          = $value->getDateEnd();
@@ -61,7 +61,7 @@
                     $booking = new Booking();
 
                     $booking->setToken($value["token"]);
-                    $booking->setPet($value["pet"]);
+                    $booking->setTokenPet($value["tokenPet"]);
                     $booking->setRace($value["race"]);
                     $booking->setDateStart($value["dateStart"]);
                     $booking->setDateEnd($value["dateEnd"]);

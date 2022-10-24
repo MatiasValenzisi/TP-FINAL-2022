@@ -201,6 +201,30 @@
 
                     break;
 
+                    case 'consult':
+                        
+                        switch ($specific) {
+
+                            case 'date':
+
+                               echo "<script>sweet('Error al consultar reserva!','Las reservas deben consultarse con un mínimo de siete días previos.','error')</script>";
+
+                            break;
+
+                            case 'guardian':
+
+                               echo "<script>sweet('Error al consultar reserva!','El guardian no provee de su servicio para ese rango de fechas. Por favor verifique el perfil del guardian.','error')</script>";
+
+                            break;
+
+                            case 'pet':
+
+                               echo "<script>sweet('Error al consultar reserva!','El guardian seleccionado no provee servicio para ese tamaño de mascota. Por favor verifique el perfil del guardian.','error')</script>";
+
+                            break;
+                        }
+
+                    break;
                 }
 
             break;

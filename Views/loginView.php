@@ -42,14 +42,16 @@ a {
     border: 1px solid #FF4B2B;
     background-color: #FF4B2B;
     color: #FFFFFF;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-    transition: all .5s ease-in-out;
+
+    line-height: 40px;
     width: 100%;
+
+
+    text-transform: uppercase;
+
+    transition: all .5s ease-in-out;
 }
 
 .btn:active {
@@ -97,6 +99,7 @@ input {
     justify-content: center;
     align-items: center;
 }
+
 
 .form-container {
 
@@ -157,6 +160,15 @@ input {
 
 .btn:hover {
     opacity: 0.5;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+
+        height: 600px;
+
+    }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -225,7 +237,7 @@ input {
 
                 <button type="submit" class="btn">Iniciar Sesion</button>
 
-                <a href="<?php echo FRONT_ROOT ?>/sign/register" class="password btn ">Registrarse en
+                <a href="<?php echo FRONT_ROOT ?>/sign/register" class="btn">Registrarse en
                     <?php echo PROJECT_NAME ?>.</a>
 
             </form>

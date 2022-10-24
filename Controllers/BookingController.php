@@ -212,12 +212,21 @@
 
             $token = $this->createToken($this->getTokenBookingList());
 
-            var_dump($_POST);
+            $startDate      = date("Y-m-d", strtotime($startDate));
+            $endDate        = date("Y-m-d", strtotime($endDate));            
+
+            $this->booking = new Booking ($token, $tokenPet, $startDate, $endDate, $priceTotal, 'Pendiente', null, null, $tokenGuardian, $_SESSION['userPH']->getToken());
+
+            $this->bookingDAO->addDAO($this->booking);
+
+            header("Location: ".FRONT_ROOT."/booking/list");   
         }
 
-        public function list($typeUser = null) { 
+        public function list() { 
 
             echo "Listar reservas actuales...";
+
+            // El tipo de usuario es igual a la instancia de la session.
 
 
         /*  require_once ROOT_VIEWS."/mainHeader.php";

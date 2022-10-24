@@ -103,7 +103,7 @@
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null, $servicePrice = null){
+        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null, $petSize, $servicePrice = null){
 
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
             $firstName      = $this->userController->textNameFormat($firstName);
@@ -123,7 +123,7 @@
     
                                 $newGuardian = new Guardian(
                                     $token, $email, $password, null, $downDate, $firstName,
-                                    $lastName, $birthDate, $dni, null, $experience, $servicePrice
+                                    $lastName, $birthDate, $dni, null, $experience, $petSize, $servicePrice
                                 );
                                 
                                 $this->userController->getGuardianDAO()->addDAO($newGuardian);

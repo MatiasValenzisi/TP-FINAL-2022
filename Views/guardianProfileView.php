@@ -92,6 +92,55 @@
                                   </div>
 
                                   <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="petSize">Tamaño de mascotas: <span
+                                              class="required">*</span></label>
+                                      <div class="col-md-6 col-sm-6 col-xs-12">
+                                          <select class="form-control col-md-7 col-xs-12" id="petSize" name="petSize">
+
+                                            <?php switch ($_SESSION['userPH']->getPetSize()) {
+
+                                              case 'Grande':
+                                                
+                                                echo ('
+
+                                                <option value="Grande" selected>Grande</option>
+                                                <option value="Mediano">Mediano</option>
+                                                <option value="Pequeño">Pequeño</option>
+
+                                                ');
+
+                                                break;
+
+                                              case 'Mediano':
+
+                                                echo ('
+
+                                                <option value="Grande">Grande</option>
+                                                <option value="Mediano"selected>Mediano</option>
+                                                <option value="Pequeño">Pequeño</option>
+
+                                                ');
+
+                                                break;     
+
+                                              case 'Pequeño':
+
+                                                echo ('
+
+                                                <option value="Grande">Grande</option>
+                                                <option value="Mediano">Mediano</option>
+                                                <option value="Pequeño" selected>Pequeño</option>
+
+                                                ');
+
+                                                break;
+
+                                            } ?>
+                                          </select>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
                                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="servicePrice">Precio base del servicio por día: <span class="required">*</span></label>
                                       <div class="col-md-6 col-sm-6 col-xs-12">
                                           <input type="number" class="form-control col-md-7 col-xs-12"

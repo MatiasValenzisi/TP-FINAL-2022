@@ -3,6 +3,7 @@
     class Guardian extends User {
 
         private $experience;         // Años de experiencia.
+        private $petSize;            // Tamaño de mascota que cuida.
         private $servicePrice;       // Precio del servicio por día.
         private $serviceStartDate;   // Fecha de inicio del servicio.
         private $serviceEndDate;     // Fecha de finalización del servicio.
@@ -12,11 +13,12 @@
 
         public function __construct(
 
-            $token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null, $experience = null, $servicePrice = null, $serviceStartDate = null, $serviceEndDate = null, $serviceDayList = null, $bookingList = null, $reviewList = null){
+            $token = null, $userName = null, $password = null, $dischargeDate = null, $downDate = null, $firstName = null, $lastName = null, $birthDate = null, $dni = null, $profilePicture = null, $experience = null, $petSize = null, $servicePrice = null, $serviceStartDate = null, $serviceEndDate = null, $serviceDayList = null, $bookingList = null, $reviewList = null){
 
             parent::__construct($token, $userName, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni, $profilePicture);
 
             $this->experience       = $experience;
+            $this->petSize          = $petSize;
             $this->servicePrice     = $servicePrice;
             $this->serviceStartDate = $serviceStartDate;
             $this->serviceEndDate   = $serviceEndDate;
@@ -34,6 +36,16 @@
             
             $this->experience = $experience;
         }
+
+        public function getPetSize() {
+         
+            return $this->petSize; 
+        } 
+
+        public function setPetSize($petSize) { 
+
+            $this->petSize = $petSize; 
+        } 
 
         public function getServicePrice() { 
 

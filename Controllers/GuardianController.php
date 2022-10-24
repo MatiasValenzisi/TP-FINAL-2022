@@ -60,7 +60,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($password, $experience, $servicePrice = null, $serviceDate = null, $disp = null){
+        public function profileEdit($password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null){
 
             $serviceDate = explode(" - ", $serviceDate);
 
@@ -74,6 +74,7 @@
 
             $this->guardian->setPassword($password);
             $this->guardian->setExperience($experience);
+            $this->guardian->setPetSize($petSize);
             $this->guardian->setServicePrice($servicePrice);
             $this->guardian->setServiceStartDate($serviceStartDate);
             $this->guardian->setServiceEndDate($serviceEndDate);

@@ -18,7 +18,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience, servicePrice) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience, :servicePrice);";
+                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience, petSize, servicePrice) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience, :petSize, :servicePrice);";
 
                 $parameters["userName"]       = $value->getUserName();
                 $parameters["token"]          = $value->getToken();
@@ -29,6 +29,7 @@
                 $parameters["dni"]            = $value->getDni();
                 $parameters["profilePicture"] = $value->getProfilePicture();
                 $parameters["experience"]     = $value->getExperience();
+                $parameters["petSize"]        = $value->getPetSize();
                 $parameters["servicePrice"]   = $value->getServicePrice();
 
                 $this->connection = Connection::GetInstance();
@@ -69,6 +70,7 @@
                     $guardian->setProfilePicture($value["profilePicture"]);
 
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -114,6 +116,7 @@
                     $guardian->setProfilePicture($value["profilePicture"]);
 
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -158,7 +161,8 @@
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
 
-                    $guardian->setExperience($value["experience"]);
+                    $guardian->setExperience($value["experience"]);                    
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -215,7 +219,8 @@
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
 
-                    $guardian->setExperience($value["experience"]);
+                    $guardian->setExperience($value["experience"]);                    
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -263,7 +268,8 @@
                     $guardian->setDni($value["dni"]);
                     $guardian->setProfilePicture($value["profilePicture"]);
 
-                    $guardian->setExperience($value["experience"]);
+                    $guardian->setExperience($value["experience"]);                    
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -328,11 +334,12 @@
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, petSize = :petSize, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
 
                 $parameters["password"]         = $value->getPassword();
                 $parameters["profilePicture"]   = $value->getProfilePicture();
                 $parameters["experience"]       = $value->getExperience();
+                $parameters["petSize"]          = $value->getPetSize();
                 $parameters["servicePrice"]     = $value->getServicePrice();
                 $parameters["serviceStartDate"] = $value->getServiceStartDate();
                 $parameters["serviceEndDate"]   = $value->getServiceEndDate();
@@ -385,6 +392,7 @@
                     $guardian->setProfilePicture($value["profilePicture"]);
 
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);
@@ -432,6 +440,7 @@
                     $guardian->setProfilePicture($value["profilePicture"]);
 
                     $guardian->setExperience($value["experience"]);
+                    $guardian->setPetSize($value["petSize"]);
                     $guardian->setServicePrice($value["servicePrice"]);
                     $guardian->setServiceStartDate($value["serviceStartDate"]);
                     $guardian->setServiceEndDate($value["serviceEndDate"]);

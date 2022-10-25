@@ -37,7 +37,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -85,11 +86,11 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $guardianList;
-
         }
 
         public function getAllDownDateDAO() {
@@ -131,7 +132,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $guardianList;
@@ -177,7 +179,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dischargeList;
@@ -238,7 +241,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dischargeCompleteList;
@@ -284,7 +288,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $pendientList;
@@ -302,7 +307,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return true;
@@ -322,7 +328,8 @@
 
             } catch(Exception $ex){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return true;
@@ -352,7 +359,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             if (!is_null($value->getServiceDayList())){
@@ -360,7 +368,7 @@
                 $this->updateServiceDayListDAO($value->getToken(), $value->getServiceDayList());
 
             } else {
-
+                
                 return true;
             }            
         }
@@ -407,7 +415,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $guardian;
@@ -455,7 +464,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $guardian;
@@ -484,7 +494,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dayList; 
@@ -510,7 +521,8 @@
 
             } catch(Exception $ex){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return true;
@@ -530,7 +542,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;

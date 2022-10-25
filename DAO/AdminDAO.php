@@ -33,7 +33,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -73,7 +74,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $adminList;
@@ -103,7 +105,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -140,7 +143,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $admin;
@@ -177,7 +181,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $admin;

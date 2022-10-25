@@ -28,7 +28,8 @@
 
             } catch (Exception $e){
                 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -59,7 +60,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $reviewList;
@@ -90,7 +92,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $reviewList;

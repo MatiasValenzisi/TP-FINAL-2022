@@ -36,7 +36,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -76,7 +77,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $bookingList;
@@ -96,7 +98,8 @@
 
             } catch(Exception $ex){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return true;
@@ -125,7 +128,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             if (!is_null($value->getServiceDayList())){

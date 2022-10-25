@@ -33,7 +33,8 @@
 
             } catch (Exception $e){
                 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -73,7 +74,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $ownerList;
@@ -103,7 +105,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
 
             return true;
@@ -140,7 +143,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $owner;
@@ -177,7 +181,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $owner;
@@ -213,7 +218,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $ownerList;
@@ -250,7 +256,8 @@
 
             } catch (Exception $e) {
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dischargeList;

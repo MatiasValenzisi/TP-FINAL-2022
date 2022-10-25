@@ -13,7 +13,6 @@
         private $tableName = "dog";
 
         public function addDAO($value){   
-
         
             try {
 
@@ -35,7 +34,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }   
 
             return true;
@@ -75,7 +75,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dogList;
@@ -109,7 +110,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }  
                  
             return true;
@@ -146,7 +148,8 @@
 
             } catch (Exception $e){
 
-                return false;
+                echo ($e->getMessage());
+                exit();
             }
 
             return $dog;

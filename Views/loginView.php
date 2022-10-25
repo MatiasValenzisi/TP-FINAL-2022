@@ -85,16 +85,16 @@ input {
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 32px;
 
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
 
     overflow: hidden;
-    width: 768px;
+    width: 800px;
     max-width: 100%;
-    height: 480px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,7 +116,7 @@ input {
 .overlay-container {
 
     width: 50%;
-    height: 480px;
+    height: 100%;
     overflow: hidden;
     transition: transform 0.6s ease-in-out;
     z-index: 100;
@@ -214,6 +214,11 @@ input {
         transition: all .5s ease-in-out;
     }
 
+}
+
+img {
+    width: 100%;
+    height: 100%;
 }
 </style>
 

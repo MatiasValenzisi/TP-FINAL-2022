@@ -1,4 +1,5 @@
 <style>
+
 .sideways {
     margin-top: 14px;
 }
@@ -18,18 +19,16 @@
     align-items: center;
     width: 30%;
     margin: 50px auto;
-
 }
 
 .buttons button {
-    padding: 8px 60px;
+    padding: 8px 100px;
 }
 
 @media screen and (max-width: 600px) {
+
     .title {
         font-size: 30px;
-
-
     }
 
     .buttons {
@@ -38,16 +37,13 @@
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
-
-
     }
 
     .buttons button {
-
         width: 80%;
     }
-
 }
+
 </style>
 
 

@@ -1,4 +1,5 @@
 <style>
+
 .sideways {
     margin-top: 14px;
 }
@@ -22,32 +23,15 @@
 }
 
 .buttons button {
-    padding: 8px 60px;
+    padding: 8px 100px;
 }
 
 @media screen and (max-width: 600px) {
     .title {
         font-size: 30px;
-
-
     }
-
-    .buttons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-        margin-top: 20px;
-
-    }
-
-    .buttons button {
-
-        width: 80%;
-    }
-
 }
+
 </style>
 
 <body class="login">

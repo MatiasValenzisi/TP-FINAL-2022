@@ -137,7 +137,7 @@
                                                 class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
-                                        <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Ver reservas actuales</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Reservas actuales</a></li>
                                             
                                         <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
 

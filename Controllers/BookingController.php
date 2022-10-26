@@ -228,7 +228,7 @@
             header("Location: ".FRONT_ROOT."/booking/list");   
         }
 
-        public function list() { 
+        public function list($type = null, $action = null, $specific = null) { 
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -262,23 +262,25 @@
                 require_once ROOT_VIEWS."/ownerBookingListView.php";   
             }
 
+            require_once ROOT_VIEWS."/notificationAlert.php"; 
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         
-        /*
-        public function update($bookingToken = null) {
-            
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+        public function update($bookingToken, $action) {
 
-                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                require_once ROOT_VIEWS."/bookingUpdateView.php";
+                $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
 
+                // Control de raza para guardianesa { header("Location: ".FRONT_ROOT."/booking/list/error/update/booking"); }
+
+                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");  
 
             } else {
+
                 header("location: ".FRONT_ROOT);
             }
-        } */
+        } 
 
         // pausado hasta definir tipos de estado de la reserva!!
 

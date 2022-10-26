@@ -164,6 +164,7 @@
         }
 
         public function getTokenDAO($token) {
+
             $booking = null;
 
             try {
@@ -218,23 +219,13 @@
             return true;
         }
 
-        // Metodo que actualiza estado de la reserva
-        /*
-        public function updateDAO($value){
+        public function updateState($bookingToken, $action){
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET state = :state WHERE ".$this->tableName.".token ='".$bookingToken."';";
 
-                $parameters["password"]         = $value->getPassword();
-                $parameters["profilePicture"]   = $value->getProfilePicture();
-                $parameters["experience"]       = $value->getExperience();
-                $parameters["servicePrice"]     = $value->getServicePrice();
-                $parameters["serviceStartDate"] = $value->getServiceStartDate();
-                $parameters["serviceEndDate"]   = $value->getServiceEndDate();
-
-                $parameters["dischargeDate"]    = $value->getDischargeDate();
-                $parameters["downDate"]         = $value->getDownDate();                
+                $parameters["state"] = $action;          
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -245,14 +236,9 @@
                 exit();
             }
 
-            if (!is_null($value->getServiceDayList())){
-
-                $this->updateServiceDayListDAO($value->getToken(), $value->getServiceDayList());
-
-            } else {
-
                 return true;
-            }            
-        }*/
+                      
+
+        }
         
     } ?>

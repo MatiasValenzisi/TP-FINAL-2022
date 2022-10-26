@@ -225,6 +225,15 @@
                         }
 
                     break;
+
+                    case 'update':
+                        
+                        if (strcmp($specific, 'booking') == 0){
+
+                            echo "<script>sweet('Error al aceptar la reserva!','Ya tiene reservado uno de los días del servicio para otra raza de mascota.','error')</script>";
+                        }
+
+                    break;
                 }
 
             break;
@@ -255,6 +264,17 @@
                         }
 
                     break;
+
+
+                    case 'update':
+                        
+                        if (strcmp($specific, 'booking') == 0){
+
+                             echo "<script>sweet('Se ha actualizado el estado de la reserva con éxito!','La reserva fue actualizada exitosamente.','success')</script>";
+                        }
+
+                    break;
+
                 }
 
             break;

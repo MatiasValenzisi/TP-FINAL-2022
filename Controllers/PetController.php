@@ -15,17 +15,19 @@
         private $dogList;
         private $catList;
         private $petList;
+        private $petTypeList;
         
         public function __construct(){
           
-            $this->tokenPet = null; 
-            $this->dogDAO   = new DogDAO();           
-            $this->catDAO   = new CatDAO();
-            $this->dog      = null;    
-            $this->cat      = null; 
-            $this->dogList  = array();   
-            $this->catList  = array();   
-            $this->petList  = array();                     
+            $this->tokenPet    = null; 
+            $this->dogDAO      = new DogDAO();           
+            $this->catDAO      = new CatDAO();
+            $this->dog         = null;    
+            $this->cat         = null; 
+            $this->dogList     = array();   
+            $this->catList     = array();   
+            $this->petList     = array();
+            $this->petTypeList = array();                     
         }
 
         public function list(){
@@ -55,11 +57,13 @@
             require_once ROOT_VIEWS."/mainNav.php";
         
             if (strcmp($typePet,"cat") == 0){
-
+                
+                $this->petTypeList = $this->catDAO->getAllRace();
                 require_once ROOT_VIEWS."/catCreateView.php";
 
             } else {
-
+                
+                $this->petTypeList = $this->dogDAO->getAllRace();
                 require_once ROOT_VIEWS."/dogCreateView.php";
             }
             

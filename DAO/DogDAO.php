@@ -5,12 +5,14 @@
     
     use \Exception as Exception;
 
-    use Models\Dog as Dog;    
+    use Models\Dog as Dog; 
+    use Models\Race as Race;    
 
     class DogDAO implements IDAO {
 
         private $connection;
         private $tableName = "dog";
+        private $tableName2 = "race";
 
         public function addDAO($value){   
         
@@ -190,7 +192,36 @@
             }
 
             return $dog;
-        }        
-      
+        } 
+
+        public function getAllRace(){
+
+            $raceList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'dog';";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);  
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $race = new Race();                    
+                   
+                    $race->setPetType($value["petType"]);
+                    $race->setName($value["name"]);
+
+                    array_push($raceList, $race);
+                }
+
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $raceList;    
+        } 
     }
 ?>

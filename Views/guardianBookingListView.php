@@ -16,8 +16,9 @@
                 <th>Raza</th>
                 <th>Desde</th>
                 <th>Hasta</th>
-                <th>Total</th>>
+                <th>Total</th>
                 <th>Estado</th>
+                <th>Accion</th>
             </tr>
     
           </thead>
@@ -43,10 +44,10 @@
 
               <td><?php echo $booking->getDateStart();             ?></td>
               <td><?php echo $booking->getDateEnd();               ?></td>
-              <td><?php echo $booking->getPrice();                 ?></td>
+              <td><?php echo "$".$booking->getPrice();                 ?></td>
               <td><?php echo $booking->getState();                 ?></td>
               <td>
-                    <a class="text-success" href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>"><b>Modificar</b></a>
+                <a class="text-success" href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>"><b>Modificar</b></a>
               </td>
             </tr>
 

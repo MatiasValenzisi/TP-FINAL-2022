@@ -91,7 +91,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Video: &nbsp;</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <video src="<?php echo VIDEO.$this->dog->getVideo() ?>" width=320 height=320 controls poster="">
+                                <video src="<?php echo VIDEO.$this->dog->getVideo() ?>" width=320 height=320 controls
+                                    poster="">
                             </div>
                         </div>
 

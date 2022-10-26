@@ -5,29 +5,40 @@
 
 .title {
     text-align: center;
-    font-size: 50px;
-
+    font-size: 40px;
+    margin-top: 50px;
     font-weight: 800;
     line-height: 50px;
 }
 
 .buttons {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    margin-top: 60px;
+    width: 30%;
+    margin: 50px auto;
 
 }
 
 .buttons button {
-    padding: 20px 50px;
+    padding: 8px 60px;
 }
 
 @media screen and (max-width: 600px) {
     .title {
         font-size: 30px;
 
+
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
 
     }
 
@@ -50,10 +61,11 @@
             <input type="hidden" name="typeUser" value="guardian">
 
 
-            <br>
-            <div class="container-fluid" style="width:90vw">
+
+            <div class="container-fluid" style="width:70%">
+
                 <div class="row sideways">
-                    <div class="col-md-12 col-xs-12 ">
+                    <div class="col-md-6 col-xs-12">
                         <label class="form-label" for="typeUser">Tipo de usuario:</label>
 
                         <select class="form-control" id="typeUser" name="typeUser"
@@ -62,7 +74,20 @@
                             <option value="owner">Dueño</option>
                         </select>
                     </div>
+                    <div class="col-md-6 col-xs-12">
+                        <label class="form-label" for="typeUser">Tamaño de la mascota:</label>
+
+                        <select class="form-control" id="petSize" name="petSize">
+                            <option value="Pequeño" selected>Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
+                        </select>
+                    </div>
+
+
                 </div>
+
+
                 <div class="row sideways">
                     <div class="col-md-6 col-xs-12">
                         <label class="form-label" for="email">Correo electrónico:</label>

@@ -126,5 +126,10 @@
 
             $this->profilePicture = $profilePicture;
         } 
+
+        public function getFullName() {
+            
+            return $this->getFirstName()." ".$this->getLastName();
+        }
     }
 ?>

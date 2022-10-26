@@ -83,6 +83,43 @@
 
         }
 
+        public function getAllByOwnerDAO($token) {
+
+            $dogList = array();
+
+            try {
+                
+                $query = "SELECT * FROM ".$this->tableName."  AS D WHERE D.tokenOwner = ".$token.";";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $key => $value) {
+                 
+                    $dog = new Dog();
+                    
+                    $dog->setToken($value["token"]);
+                    $dog->setTokenOwner($value["tokenOwner"]);
+                    $dog->setName($value["name"]);
+                    $dog->setRace($value["race"]);
+                    $dog->setSize($value["size"]);
+                    $dog->setWeight($value["weight"]);
+                    $dog->setObservations($value["observations"]);
+                    $dog->setVaccinationPlan($value["vaccinationPlan"]);
+                    $dog->setPhoto($value["photo"]);                    
+                    $dog->setVideo($value["video"]);
+
+                    array_push($dogList, $dog);
+                }
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $dogList;
+        }
+
 
         // Metodo que actualiza un perro en base de datos mediante su token. 
 

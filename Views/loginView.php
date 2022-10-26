@@ -4,8 +4,6 @@
     height: 100%;
     background-color: #3e5367;
 
-
-
 }
 
 h1 {
@@ -82,6 +80,11 @@ input {
     margin: 8px 0;
     width: 100%;
     color: #333;
+}
+
+img {
+    width: 100%;
+    height: 100%;
 }
 
 .container {
@@ -214,11 +217,6 @@ input {
         transition: all .5s ease-in-out;
     }
 
-}
-
-img {
-    width: 100%;
-    height: 100%;
 }
 </style>
 

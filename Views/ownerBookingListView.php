@@ -12,6 +12,7 @@
             <tr>
                 <th>Token</th>
                 <th>Dueño</th>
+                <th>Guardian</th>
                 <th>Mascota</th>
                 <th>Raza</th>
                 <th>Desde</th>
@@ -32,9 +33,20 @@
 
               <tr>
                 <td><?php echo $booking->getToken();                 ?></td>
-                <td><?php echo $_SESSION['userPH']->getFullName();   ?></td>
+                <?php 
+                foreach($this->ownerList as $owner) { 
+                  if($owner->getToken() == $booking->getTokenOwner()) {  
+                ?>
+                    <td><?php echo $owner->getFullName();   ?></td>
+                
+                <?php } }
 
-                <?php
+                foreach($this->guardianList as $guardian) { 
+                  if($guardian->getToken() == $booking->getTokenGuardian()) {  
+                ?>
+                    <td><?php echo $guardian->getFullName();   ?></td>
+
+                <?php } }
                 foreach($this->petList as $pet) { 
                   if($pet->getToken() == $booking->getTokenPet()) {  ?>
                   <td><?php echo $pet->getName();                    ?></td>

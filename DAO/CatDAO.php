@@ -83,6 +83,43 @@
 
         }
 
+        public function getAllByOwnerDAO($token) {
+
+            $catList = array();
+
+            try {
+                
+                $query = "SELECT * FROM ".$this->tableName." AS C WHERE C.tokenOwner = ".$token.";";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $key => $value) {
+                 
+                    $cat = new Cat();
+                    
+                    $cat->setToken($value["token"]);
+                    $cat->setTokenOwner($value["tokenOwner"]);
+                    $cat->setName($value["name"]);
+                    $cat->setRace($value["race"]);
+                    $cat->setSize($value["size"]);
+                    $cat->setWeight($value["weight"]);
+                    $cat->setObservations($value["observations"]);
+                    $cat->setVaccinationPlan($value["vaccinationPlan"]);
+                    $cat->setPhoto($value["photo"]);                    
+                    $cat->setVideo($value["video"]);
+
+                    array_push($catList, $cat);
+                }
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $catList;
+        }
+
         // Metodo que actualiza un gatos en base de datos mediante su token. 
 
         public function updateDAO($value){

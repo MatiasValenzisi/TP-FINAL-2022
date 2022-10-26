@@ -14,6 +14,7 @@
 
         private $bookingList;
         private $bookingDAO;
+        private $booking;
         private $guardian;
         private $guardianDAO;
         private $owner;
@@ -23,11 +24,13 @@
         private $petController;
         private $dogDAO;
         private $catDAO;
+        private $ownerList;
 
         public function __construct(){
 
             $this->bookingList   = array();
             $this->bookingDAO    = new BookingDAO();
+            $this->booking       = null;
             $this->guardian      = null;
             $this->guardianDAO   = new GuardianDAO();
             $this->owner         = null;
@@ -37,6 +40,7 @@
             $this->petController = new PetController();
             $this->dogDAO        = new DogDAO();            
             $this->catDAO        = new CatDAO();
+            $this->ownerList     = array();
         }
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
@@ -224,31 +228,51 @@
 
         public function list() { 
 
-            echo "Listar reservas actuales...";
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            
+            $dogList = $this->dogDAO->getAllDAO();
+            $catList = $this->catDAO->getAllDAO();
+            
+            if (!empty($dogList)){
 
-            // El tipo de usuario es igual a la instancia de la session.
+                $this->petList = array_merge($this->petList, $dogList);
+            } 
 
+            if (!empty($catList)){
 
-        /*  require_once ROOT_VIEWS."/mainHeader.php";
+                $this->petList = array_merge($this->petList, $catList);
+            }
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
-                $this->guardian = $this->guardianDAO->getUserNameDAO($_SESSION['userPH']->getToken());
-                $this->bookingList = $this->guardian->getBookingList();
+                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
 
                 require_once ROOT_VIEWS."/guardianBookingListView.php";   
 
             } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                $this->owner = $this->ownerDAO->getUserNameDAO($_SESSION['userPH']->getToken());
-                $this->bookingList = $this->owner->getBookingList();
+                     
+
+                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
 
                 require_once ROOT_VIEWS."/ownerBookingListView.php";   
             }
 
-            require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/mainFooter.php"; */
+            require_once ROOT_VIEWS."/mainFooter.php"; 
         }
+        
+        /*
+        public function update($bookingToken = null) {
+            
+            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+
+                $this->booking = $this->bookingDAO->getUsern
+
+            } else {
+                header("location: ".FRONT_ROOT);
+            }
+        }*/
 
         // pausado hasta definir tipos de estado de la reserva!!
 

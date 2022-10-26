@@ -149,38 +149,21 @@
             }
         }
 
-        public function getUserNameDAO($userName){ 
+        public function getBookingsTokenDAO($token){ 
 
             $this->retrieveData();
 
-            $user = null;
+            $booking = null;
 
-            foreach ($this->guardianList as $value) {
-
-                if(strcmp($value->getUserName(), $userName) == 0){
-
-                    $user = $value;
-                }
-            }
-
-            return $user;
-        }
-
-        public function getUserTokenDAO($token){ 
-
-            $this->retrieveData();
-
-            $guardian = null;
-
-            foreach ($this->guardianList as $value) {
+            foreach ($this->bookingList as $value) {
 
                 if(strcmp($value->getToken(), $token) == 0){
 
-                    $guardian = $value;
+                    $booking = $value;
                 }
             }
 
-            return $guardian;
+            return $booking;
         }    
 
         public function confirmGuardianDAO($token) {

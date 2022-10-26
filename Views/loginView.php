@@ -92,9 +92,9 @@ input {
         0 10px 10px rgba(0, 0, 0, 0.22);
 
     overflow: hidden;
-    width: 800px;
+    width: 60%;
     max-width: 100%;
-    height: 600px;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;

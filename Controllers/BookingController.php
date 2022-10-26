@@ -25,6 +25,7 @@
         private $dogDAO;
         private $catDAO;
         private $ownerList;
+        private $guardianList;
 
         public function __construct(){
 
@@ -41,6 +42,7 @@
             $this->dogDAO        = new DogDAO();            
             $this->catDAO        = new CatDAO();
             $this->ownerList     = array();
+            $this->guardianList     = array();
         }
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
@@ -244,6 +246,9 @@
                 $this->petList = array_merge($this->petList, $catList);
             }
 
+            $this->guardianList = $this->guardianDAO->getAllDAO();
+            $this->ownerList    = $this->ownerDAO->getAllDAO();
+
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
                 $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
@@ -251,8 +256,6 @@
                 require_once ROOT_VIEWS."/guardianBookingListView.php";   
 
             } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-
-                     
 
                 $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
 
@@ -262,8 +265,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         
-        // En produccion
-        
+        /*
         public function update($bookingToken = null) {
             
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
@@ -276,35 +278,45 @@
             } else {
                 header("location: ".FRONT_ROOT);
             }
-        }
+        } */
 
         // pausado hasta definir tipos de estado de la reserva!!
 
         public function history() { 
+            
+            $dogList = $this->dogDAO->getAllDAO();
+            $catList = $this->catDAO->getAllDAO();
+            
+            if (!empty($dogList)){
 
-            echo "Mostrar historial de reservas...";
+                $this->petList = array_merge($this->petList, $dogList);
+            } 
 
-        /*  require_once ROOT_VIEWS."/mainHeader.php";
+            if (!empty($catList)){
+
+                $this->petList = array_merge($this->petList, $catList);
+            }
+
+            $this->guardianList = $this->guardianDAO->getAllDAO();
+            $this->ownerList    = $this->ownerDAO->getAllDAO();
+
+            require_once ROOT_VIEWS."/mainHeader.php";
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
-                $this->guardian = $this->guardianDAO->getUserNameDAO($_SESSION['userPH']->getToken());
-                $this->bookingList = $this->guardian->getBookingHistoryList();
+                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
 
-                require_once ROOT_VIEWS."/guardianBookingList.php";   
 
             } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                $this->owner = $this->ownerDAO->getUserNameDAO($_SESSION['userPH']->getToken());
-                $this->bookingList = $this->owner->getBookingList();
+                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
 
-                require_once ROOT_VIEWS."/ownerBookingList.php";   
             }
 
             require_once ROOT_VIEWS."/mainNav.php";  
+            require_once ROOT_VIEWS."/bookingHistoryListView.php";   
             require_once ROOT_VIEWS."/mainFooter.php";
 
-            */
         }  
 
         public function getTokenBookingList(){ 

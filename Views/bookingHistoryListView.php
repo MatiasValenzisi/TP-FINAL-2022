@@ -2,7 +2,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Listado de reservas</h2>
+        <h2>Historial de reservas</h2>
         </ul>
         <div class="clearfix"></div>
       </div>
@@ -12,13 +12,13 @@
             <tr>
                 <th>Token</th>
                 <th>Dueño</th>
+                <th>Guardian</th>
                 <th>Mascota</th>
                 <th>Raza</th>
                 <th>Desde</th>
                 <th>Hasta</th>
                 <th>Total</th>
                 <th>Estado</th>
-                <?php /* <th>Accion</th> */ ?>
             </tr>
     
           </thead>
@@ -27,11 +27,7 @@
 
           <?php
            if($this->bookingList != null) {
-            foreach($this->bookingList as $booking) { 
-
-            if(strcmp($booking->getState(), "Finalizado") != 0 && strcmp($booking->getState(), "Cancelado") != 0) {
-
-            ?>
+            foreach($this->bookingList as $booking) { ?>
 
             <tr>
               <td><?php echo $booking->getToken();                 ?></td>
@@ -49,8 +45,8 @@
                   <td><?php echo $guardian->getFullName();   ?></td>
 
               <?php } }
-
-              foreach($this->petsList as $pet) { 
+              
+              foreach($this->petList as $pet) { 
                 if($pet->getToken() == $booking->getTokenPet()) {  ?>
                 <td><?php echo $pet->getName();                    ?></td>
                 <td><?php echo $pet->getRace();                    ?></td>
@@ -69,7 +65,7 @@
 
             
 
-            <?php } } } else { ?>
+            <?php } } else { ?>
               <tr>
                 <td>-</td>
                 <td>-</td>

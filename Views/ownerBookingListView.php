@@ -43,7 +43,7 @@
 
                 <td><?php echo $booking->getDateStart();             ?></td>
                 <td><?php echo $booking->getDateEnd();               ?></td>
-                <td><?php echo $booking->getPrice();                 ?></td>
+                <td><?php echo "$".$booking->getPrice();                 ?></td>
                 <td><?php echo $booking->getState();                 ?></td>
               </tr>
 

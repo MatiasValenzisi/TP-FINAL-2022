@@ -262,17 +262,21 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
         
-        /*
+        // En produccion
+        
         public function update($bookingToken = null) {
             
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
-                $this->booking = $this->bookingDAO->getUsern
+                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+
+                require_once ROOT_VIEWS."/bookingUpdateView.php";
+
 
             } else {
                 header("location: ".FRONT_ROOT);
             }
-        }*/
+        }
 
         // pausado hasta definir tipos de estado de la reserva!!
 

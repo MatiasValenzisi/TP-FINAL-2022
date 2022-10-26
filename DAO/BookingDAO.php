@@ -163,6 +163,40 @@
             return $bookingList;
         }
 
+        public function getTokenDAO($token) {
+            $booking = null;
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = ".$token.";";
+
+                $this->connection = Connection::GetInstance();
+                $value = $this->connection->Execute($query);              
+                 
+                $booking = new Booking();
+
+                $booking->setToken($value["token"]);
+                $booking->setTokenPet($value["tokenPet"]);
+                $booking->setDateStart($value["dateStart"]);
+                $booking->setDateEnd($value["dateEnd"]);
+                $booking->setPrice($value["price"]);
+                $booking->setState($value['state']);
+                $booking->setCouponPayment($value["couponPayment"]);
+                $booking->setRemainingPayment($value["remainingPayment"]);
+                $booking->setTokenGuardian($value["tokenGuardian"]);
+                $booking->setTokenOwner($value["tokenOwner"]);
+                $booking->setAcceptanceDate($value["acceptanceDate"]);
+
+                array_push($bookingList, $booking);
+
+            } catch (Exception $e) {
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $booking;
+        }
 
         // Metodo que elimina una reserva.
 
@@ -185,8 +219,8 @@
         }
 
         // Metodo que actualiza estado de la reserva
-
-        /*public function updateDAO($value){
+        /*
+        public function updateDAO($value){
 
             try {
 

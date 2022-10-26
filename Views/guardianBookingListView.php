@@ -24,26 +24,38 @@
 
           <tbody>
 
-            <?php foreach($this->bookingList as $booking) { ?>
+          <?php foreach($this->bookingList as $booking) { 
 
-              <tr>
-                <td><?php echo $booking->getToken();         ?></td>
-                <td><?php echo $booking->getOwnerFullName(); ?></td>
-                <td><?php echo $booking->getPet();           ?></td>
-                <td><?php echo $booking->getRace();          ?></td>
-                <td><?php echo $booking->getInitialDate();   ?></td>
-                <td><?php echo $booking->getFinalDate();     ?></td>
-                <td><?php echo $booking->getPrice();         ?></td>
+            if(strcmp($booking->getState(), "Finalizado") != 0 && strcmp($booking->getState(), "Cancelado") != 0) {
 
-                <td>
+            ?>
+
+            <tr>
+              <td><?php echo $booking->getToken();                 ?></td>
+              <td><?php echo $_SESSION['userPH']->getFullName();   ?></td>
+
+              <?php
+              foreach($this->petList as $pet) { 
+                if($pet->getToken() == $booking->getTokenPet()) {  ?>
+                <td><?php echo $pet->getName();                    ?></td>
+                <td><?php echo $pet->getRace();                    ?></td>
+              <?php } } ?>
+
+              <td><?php echo $booking->getDateStart();             ?></td>
+              <td><?php echo $booking->getDateEnd();               ?></td>
+              <td><?php echo $booking->getPrice();                 ?></td>
+              <td><?php echo $booking->getState();                 ?></td>
+              <td>
                     <a class="text-success" href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>"><b>Modificar</b></a>
-                </td>
+              </td>
+            </tr>
 
-              </tr>
+            
 
-            <?php } ?> 
+            <?php } } ?> 
 
           </tbody>
+          
         </table>
       </div>
     </div>

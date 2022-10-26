@@ -141,15 +141,7 @@ use Controllers\UserController;
 
             $this->acceptanceDate = $acceptanceDate; 
         } 
-
-        public function getOwnerFullName() {
-            $userController = new UserController();
-            $owner = $userController->getUserToken($this->tokenOwner);
-
-            return $owner->getFirstName()." ".$owner->getLastName();
-        }
-
-        
+    
 
     }
 ?>

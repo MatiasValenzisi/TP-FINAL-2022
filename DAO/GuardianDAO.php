@@ -326,7 +326,7 @@
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
 
-            } catch(Exception $ex){
+            } catch(Exception $e){
 
                 echo ($e->getMessage());
                 exit();
@@ -519,7 +519,7 @@
                     $this->addServiceDayListDAO($tokenGuardian, $dayName);
                 }
 
-            } catch(Exception $ex){
+            } catch(Exception $e){
 
                 echo ($e->getMessage());
                 exit();

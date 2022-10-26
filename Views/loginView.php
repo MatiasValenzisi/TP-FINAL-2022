@@ -38,18 +38,12 @@ a {
 
 .btn {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
-    color: #FFFFFF;
     font-size: 15px;
     font-weight: bold;
-
-    line-height: 40px;
+    line-height: 30px;
     width: 100%;
-
-
+    margin-top: 10px;
     text-transform: uppercase;
-
     transition: all .5s ease-in-out;
 }
 
@@ -60,7 +54,6 @@ a {
 .btn:focus {
     outline: none;
 }
-
 
 
 form {
@@ -162,10 +155,6 @@ img {
     opacity: 0.5;
 }
 
-.btn:hover {
-    opacity: 0.5;
-}
-
 @media screen and (max-width: 600px) {
     .container {
 
@@ -206,8 +195,6 @@ img {
     }
 
     .social-container a {
-        color: #3e5367;
-        background-color: wheat;
         border-radius: 50%;
         display: inline-flex;
         justify-content: center;
@@ -218,7 +205,10 @@ img {
         transition: all .5s ease-in-out;
     }
 
+
+
 }
+
 </style>
 
 <body class="login">
@@ -226,34 +216,29 @@ img {
     <div class="container" id="container">
 
         <div class="form-container ">
+
             <form action="<?php echo FRONT_ROOT ?>/sign/login" method="POST">
 
-                <h1>Inicio de sesion</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                <h1><?php echo PROJECT_NAME ?></h1>
 
+                <div class="social-container">
+                    <a href="#" class="social social-facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="social"><i class="fa fa-google"></i></a>
                 </div>
-                <span>O usa tu cuenta</span>
+
                 <input type="text" placeholder="Usuario" name="username" />
                 <input type="password" placeholder="Contraseña" name="password" />
-                <a href="#" class="password">¿Olvidaste la contraseña?</a>
 
-                <button type="submit" class="btn">Iniciar Sesion</button>
+                <button type="submit" class="btn btn-success">Iniciar Sesion</button>
 
-                <a href="<?php echo FRONT_ROOT ?>/sign/register" class="btn">Registrarse en
-                    <?php echo PROJECT_NAME ?>.</a>
+                <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/sign/register'" class="btn btn-primary ">Registrarse</button>
+
+                <a href="" class="password"><b>¿Olvidaste la contraseña?</b></a>
 
             </form>
+
         </div>
         <div class=" overlay-container">
-
-
-
-            <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                alt="dog & cat">
-
-
-
+            <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="dog & cat">
         </div>
     </div>

@@ -42,8 +42,17 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="race">Raza <span
                                     class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" class="form-control col-md-7 col-xs-12" placeholder="Raza"
-                                    name="race" id="race" required />
+                                <select class="form-control" id="race" name="race" required>
+
+                                    <option value="" selected>Seleccionar raza de perro</option>
+                                    
+                                    <?php foreach ($this->petTypeList as $value) { ?>                         
+
+                                       <option value="<?php echo $value->getName() ?>"><?php echo $value->getName() ?></option>
+
+                                    <?php } ?>
+
+                                </select>
                             </div>
                         </div>
 

@@ -6,11 +6,13 @@
     use \Exception as Exception;
 
     use Models\Cat as Cat;
+    use Models\Race as Race; 
 
     class CatDAO implements IDAO {
 
         private $connection;
         private $tableName = "cat";
+        private $tableName2 = "race";
 
         public function addDAO($value){ 
 
@@ -24,7 +26,7 @@
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations();//aca llega bien
+                $parameters["observations"]    = $value->getObservations();
         
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
@@ -189,6 +191,36 @@
             }
 
             return $cat;
+        } 
+
+        public function getAllRace(){
+
+            $raceList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'cat';";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);  
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $race = new Race();                    
+                   
+                    $race->setPetType($value["petType"]);
+                    $race->setName($value["name"]);
+
+                    array_push($raceList, $race);
+                }
+
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $raceList;    
         }        
       
     }

@@ -26,46 +26,48 @@
           <tbody>
 
           <?php
-           if($this->bookingList != null) {
-            foreach($this->bookingList as $booking) { ?>
-
-            <tr>
-              <td><?php echo $booking->getToken();                 ?></td>
-              <?php 
-              foreach($this->ownerList as $owner) { 
-                if($owner->getToken() == $booking->getTokenOwner()) {  
-              ?>
-                  <td><?php echo $owner->getFullName();   ?></td>
+            if($this->bookingList != null) {
+            foreach($this->bookingList as $booking) { 
               
-              <?php } }
+              if(strcmp($booking->getState(), "Finalizado") == 0) {
 
-              foreach($this->guardianList as $guardian) { 
-                if($guardian->getToken() == $booking->getTokenGuardian()) {  
               ?>
-                  <td><?php echo $guardian->getFullName();   ?></td>
 
-              <?php } }
-              
-              foreach($this->petList as $pet) { 
-                if($pet->getToken() == $booking->getTokenPet()) {  ?>
-                <td><?php echo $pet->getName();                    ?></td>
-                <td><?php echo $pet->getRace();                    ?></td>
-              <?php } } ?>
+              <tr>
+                <td><?php echo $booking->getToken();                 ?></td>
+                <?php 
+                foreach($this->ownerList as $owner) { 
+                  if($owner->getToken() == $booking->getTokenOwner()) {  
+                ?>
+                    <td><?php echo $owner->getFullName();   ?></td>
+                
+                <?php } }
 
-              <td><?php echo $booking->getDateStart();             ?></td>
-              <td><?php echo $booking->getDateEnd();               ?></td>
-              <td><?php echo "$".$booking->getPrice();                 ?></td>
-              <td><?php echo $booking->getState();                 ?></td>
-              <?php /*
-              <td>
-                <a class="text-success" href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>"><b>Modificar</b></a>
-              </td>
-              */ ?>
-            </tr>
+                foreach($this->guardianList as $guardian) { 
+                  if($guardian->getToken() == $booking->getTokenGuardian()) {  
+                ?>
+                    <td><?php echo $guardian->getFullName();   ?></td>
 
-            
+                <?php } }
+                
+                foreach($this->petList as $pet) { 
+                  if($pet->getToken() == $booking->getTokenPet()) {  ?>
+                  <td><?php echo $pet->getName();                    ?></td>
+                  <td><?php echo $pet->getRace();                    ?></td>
+                <?php } } ?>
 
-            <?php } } else { ?>
+                <td><?php echo $booking->getDateStart();             ?></td>
+                <td><?php echo $booking->getDateEnd();               ?></td>
+                <td><?php echo "$".$booking->getPrice();                 ?></td>
+                <td><?php echo $booking->getState();                 ?></td>
+                <?php /*
+                <td>
+                  <a class="text-success" href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>"><b>Modificar</b></a>
+                </td>
+                */ ?>
+              </tr>
+
+            <?php } } } else { ?>
               <tr>
                 <td>-</td>
                 <td>-</td>

@@ -43,13 +43,6 @@
               
               <?php } }
 
-              foreach($this->guardianList as $guardian) { 
-                if($guardian->getToken() == $booking->getTokenGuardian()) {  
-              ?>
-                  <td><?php echo $guardian->getFullName();   ?></td>
-
-              <?php } }
-
               foreach($this->petsList as $pet) { 
                 if($pet->getToken() == $booking->getTokenPet()) {  ?>
                 <td><?php echo $pet->getName();                    ?></td>

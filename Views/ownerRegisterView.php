@@ -58,12 +58,12 @@
         <div>
             <h2 class=" title">Registrarse como dueño</h2>
         </div>
-        <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST" class="register-container">
+        <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
             <input type="hidden" name="typeUser" value="owner">
 
 
 
-            <div class="container-fluid" style="width:60vw; height:50%;">
+            <div class="container-fluid" style="width:50vw; height:50%;">
 
                 <div class="row sideways">
                     <div class="col-md-12 col-xs-12">

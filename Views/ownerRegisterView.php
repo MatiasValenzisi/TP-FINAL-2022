@@ -38,7 +38,7 @@
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
-        margin-top: 20px;
+
 
     }
 
@@ -63,7 +63,7 @@
 
 
 
-            <div class="container-fluid" style="width:70%">
+            <div class="container-fluid" style="width:60vw; height:50%;">
 
                 <div class="row sideways">
                     <div class="col-md-12 col-xs-12">
@@ -113,10 +113,7 @@
                     </div>
                 </div>
 
-
-
             </div>
-
 
             <div class="buttons">
                 <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>'"
@@ -124,8 +121,6 @@
 
                 <button type="submit" class="btn btn-success ">Registrarse</button>
             </div>
-
-
 
         </form>
 

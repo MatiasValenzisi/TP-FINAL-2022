@@ -1,18 +1,21 @@
 <style>
+
 .login {
+
     width: 100%;
     height: 100%;
     background: white;
-
-
 }
 
 h1 {
+
     font-weight: bold;
-    margin: 0;
+    font-size: 40px;
+    margin-bottom: 50px;
 }
 
 h2 {
+
     text-align: center;
 }
 
@@ -25,10 +28,12 @@ p {
 }
 
 span {
+
     font-size: 12px;
 }
 
 a {
+
     color: #333;
     font-size: 14px;
     text-decoration: none;
@@ -37,6 +42,7 @@ a {
 }
 
 .btn {
+
     border-radius: 20px;
     font-size: 15px;
     font-weight: bold;
@@ -48,16 +54,17 @@ a {
 }
 
 .btn:active {
+
     transform: scale(0.95);
 }
 
 .btn:focus {
+
     outline: none;
 }
 
-
 form {
-    background: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,26 +75,30 @@ form {
 }
 
 input {
+
     background-color: #eee;
     border: none;
     padding: 12px 15px;
-    margin: 8px 0;
+    margin: 10px 0;
     width: 100%;
     color: #333;
 }
 
 img {
+
     width: 100%;
     height: 100%;
 }
 
 .container {
+
     margin-top: 32px;
-    background-color: #3e5367;
+    background: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
+    /*background: linear-gradient(90deg, rgba(31,99,158,1) 2%, rgba(34,60,79,1) 98%);*/
+    background-color: #20517a;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
-        0 10px 10px rgba(0, 0, 0, 0.42);
-
+    0 10px 10px rgba(0, 0, 0, 0.42);
     overflow: hidden;
     width: 60%;
     max-width: 100%;
@@ -97,18 +108,13 @@ img {
     align-items: center;
 }
 
-
 .form-container {
 
     height: 480px;
     transition: all 0.6s ease-in-out;
     color: white;
-    background: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
     width: 50%;
 }
-
-
-
 
 .overlay-container {
 
@@ -119,59 +125,59 @@ img {
     z-index: 100;
 }
 
-
-
-
-
 .social-container {
-    margin: 20px 0;
 
+    margin: 20px 0;
 }
 
 .social-container a {
-    color: #3e5367;
+
     background-color: wheat;
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     margin: 0 5px;
-    height: 40px;
-    width: 40px;
+    height:48px; 
+    width: 48px;
     transition: all .5s ease-in-out;
 }
 
 .social-container a:hover {
+
     opacity: 0.5;
 }
 
 .password {
+
     color: white;
+    font-size: 18px;
     transition: all .5s ease-in-out;
 }
 
 .password:hover {
+
     color: white;
     opacity: 0.5;
 }
 
 @media screen and (max-width: 600px) {
+
     .container {
 
         height: 600px;
-
     }
-
 }
 
 @media screen and (max-width: 900px) {
+
     .container {
+
         margin: 0;
         position: absolute;
         top: 50%;
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
-
     }
 
     .form-container {
@@ -187,14 +193,15 @@ img {
     }
 
     a {
+
         color: #333;
-        font-size: 17px;
         text-decoration: none;
         margin: 15px 0;
         color: white;
     }
 
     .social-container a {
+
         border-radius: 50%;
         display: inline-flex;
         justify-content: center;
@@ -204,8 +211,6 @@ img {
         width: 60px;
         transition: all .5s ease-in-out;
     }
-
-
 
 }
 
@@ -222,14 +227,15 @@ img {
                 <h1><?php echo PROJECT_NAME ?></h1>
 
                 <div class="social-container">
-                    <a href="#" class="social social-facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="social"><i class="fa fa-google"></i></a>
+                    <a href="" style="background-color: #2374E1; " class="social"><i class="fa fa-facebook"></i></a>
+                    <a href="" style="background-color: #D24736; " class="social"><i class="fa fa-google"></i></a>
                 </div>
 
-                <input type="text" placeholder="Usuario" name="username" />
-                <input type="password" placeholder="Contraseña" name="password" />
+                <input type="text" style="height:50px;" class="form-control" placeholder="Usuario" name="username" required />
 
-                <button type="submit" class="btn btn-success">Iniciar Sesion</button>
+                <input type="password" style="height:50px;" class="form-control" placeholder="Contraseña" name="password" required />
+
+                <button type="submit" class="btn btn-success">Iniciar Sesión</button>
 
                 <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/sign/register'" class="btn btn-primary ">Registrarse</button>
 
@@ -238,7 +244,9 @@ img {
             </form>
 
         </div>
+
         <div class=" overlay-container">
             <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="dog & cat">
         </div>
+
     </div>

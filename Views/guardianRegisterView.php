@@ -62,7 +62,7 @@
 
 
 
-            <div class="container-fluid" style="width:60vw">
+            <div class="container-fluid" style="width:70%">
 
                 <div class="row sideways">
                     <div class="col-md-6 col-xs-12">

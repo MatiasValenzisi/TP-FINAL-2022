@@ -2,7 +2,8 @@
 .login {
     width: 100%;
     height: 100%;
-    background-color: #3e5367;
+    background-color: white;
+
 
 
 
@@ -86,7 +87,7 @@ input {
 
 .container {
     margin-top: 32px;
-
+        background-color: #3e5367;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);

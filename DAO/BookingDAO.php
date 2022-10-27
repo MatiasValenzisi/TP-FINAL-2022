@@ -242,13 +242,13 @@
         }
         
 
-        public function getAllGuardianActiveDAO($token = null){
+        public function getAllGuardianActiveDAO($token, $dateStart, $dateEnd){
 
             $bookingList = array();
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."' AND B.state = 'Aceptado' ;";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."' AND B.state = 'Aceptado' AND B.dateEnd > '".$dateStart."' AND B.dateStart < '".$dateEnd."';" ;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);

@@ -284,10 +284,6 @@
 
                     $this->guardian    = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
 
-                    // Listado de guardianes dados de alta y no dados de baja.
-
-                    $guardianList = $this->guardianDAO->getAllDischargeDateDAO();
-
                     // Se cargan todas las mascotas posibles dentro de una lista de mascotas.
 
                     $dogList = $this->dogDAO->getAllDAO();
@@ -309,7 +305,7 @@
 
                     // Listado de reservas activas de un guardian. (Reservas en estado Aceptado).
 
-                    $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken()); 
+                    $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
 
                     // Fechas de la reserva pendiente.
 
@@ -349,8 +345,7 @@
                                 }
                             }
                         }                        
-                    }
-           
+                    }           
                 }
 
                 if ($control) {

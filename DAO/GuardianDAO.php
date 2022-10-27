@@ -98,13 +98,14 @@
             $guardianList = array();
 
             try {
+
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL;";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
 
                 foreach ($resultSet as $key => $value) {
-                 
+                     
                     $guardian = new Guardian();
 
                     $guardian->setToken($value["token"]);
@@ -260,7 +261,7 @@
                 $resultSet = $this->connection->Execute($query);
 
                 foreach ($resultSet as $key => $value) {
-                 
+                    
                     $guardian = new Guardian();
 
                     $guardian->setToken($value["token"]);

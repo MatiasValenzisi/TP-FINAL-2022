@@ -270,27 +270,98 @@
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
                 
-                $this->booking=$this->bookingDAO->getTokenDAO($bookingToken);
-                $this->pet= $this->petController->getPetToken($this->booking->getTokenPet());
-                $this->guardian=$this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());
-                $race=$this->pet->getRace();
-                
-                $dateListGuardian=$this->getDateListGuardian($this->guardian->getServiceStartDate(),$this->guardian->getServiceEndDate());
-                
-                /*
-                if( )
-                {
+                $control = true;
+
+                // Entra en este control si es un usuario de Tipo Guardian que quiere actualizar el estado de una reserva a "Aceptado".
+
+                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){
+
+                    // Reserva en estado pendiente.
+
+                    $this->booking     = $this->bookingDAO->getTokenDAO($bookingToken);
+
+                    // Guardian de la reserva pendiente.
+
+                    $this->guardian    = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
+
+                    // Listado de guardianes dados de alta y no dados de baja.
+
+                    $guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+
+                    // Se cargan todas las mascotas posibles dentro de una lista de mascotas.
+
+                    $dogList = $this->dogDAO->getAllDAO();
+                    $catList = $this->catDAO->getAllDAO();
                     
+                    if (!empty($dogList)){
+
+                        $this->petList = array_merge($this->petList, $dogList);
+                    } 
+
+                    if (!empty($catList)){
+
+                        $this->petList = array_merge($this->petList, $catList);
+                    }     
+
+                    // Mascota de la reserva pendiente.   
+
+                    $this->pet  = $this->petController->getPetToken($this->booking->getTokenPet());   
+
+                    // Listado de reservas activas de un guardian. (Reservas en estado Aceptado).
+
+                    $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken()); 
+
+                    // Fechas de la reserva pendiente.
+
+                    $dateBookingList = $this->getDateRange($this->booking->getDateStart(), $this->booking->getDateEnd());
+
+                    foreach ($this->bookingList as $key => $bookingAux) {
+
+                        // Fechas de la reserva bookingAux.
+                        
+                        $dateBookingAuxList = $this->getDateRange($bookingAux->getDateStart(), $bookingAux->getDateEnd());
+
+                        // Se verifican todas las fechas de las dos reservas si coinciden en algun caso.              
+
+                        foreach ($dateBookingList as $key => $dateBooking) {
+                            
+                            foreach ($dateBookingAuxList as $key => $dateBookingAux) {
+                             
+                                if ($dateBooking == $dateBookingAux){
+
+                                    $petBookingAux = null;
+
+                                    foreach ($this->petList as $key => $pet) {
+                                        
+                                        // Se carga el objeto mascota de bookingAux.
+
+                                        if (strcmp($pet->getToken(), $bookingAux->getTokenPet()) == 0){
+
+                                            $petBookingAux = $pet;
+                                        }
+                                    }
+
+                                    if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
+
+                                        $control = false;
+
+                                    }
+                                }
+                            }
+                        }                        
+                    }
+           
+                }
+
+                if ($control) {
+
                     $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
                     header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");  
-                }else
-                {
+
+                } else {
+
                     header("Location: ".FRONT_ROOT."/booking/list/error/update/booking");
                 }
-               */ 
-      
-                
-                
 
             } else {
 

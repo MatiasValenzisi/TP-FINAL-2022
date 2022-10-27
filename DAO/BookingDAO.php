@@ -85,13 +85,13 @@
 
         }
 
-        public function getAllGuardianDAO($token = null) {
+        public function getAllGuardianDAO($token = null){
 
             $bookingList = array();
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = ".$token.";";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."';";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
@@ -124,13 +124,13 @@
             return $bookingList;
         }
         
-        public function getAllOwnerDAO($token = null) {
+        public function getAllOwnerDAO($token = null){
 
             $bookingList = array();
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenOwner = ".$token.";";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenOwner = '".$token."';";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
@@ -163,32 +163,34 @@
             return $bookingList;
         }
 
-        public function getTokenDAO($token) {
+        public function getTokenDAO($token){
 
             $booking = null;
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = ".$token.";";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = '".$token."';";
 
                 $this->connection = Connection::GetInstance();
-                $value = $this->connection->Execute($query);              
-                 
-                $booking = new Booking();
+                $resultSet = $this->connection->Execute($query);
 
-                $booking->setToken($value["token"]);
-                $booking->setTokenPet($value["tokenPet"]);
-                $booking->setDateStart($value["dateStart"]);
-                $booking->setDateEnd($value["dateEnd"]);
-                $booking->setPrice($value["price"]);
-                $booking->setState($value['state']);
-                $booking->setCouponPayment($value["couponPayment"]);
-                $booking->setRemainingPayment($value["remainingPayment"]);
-                $booking->setTokenGuardian($value["tokenGuardian"]);
-                $booking->setTokenOwner($value["tokenOwner"]);
-                $booking->setAcceptanceDate($value["acceptanceDate"]);
+                foreach ($resultSet as $key => $value) {
 
-                array_push($bookingList, $booking);
+                    $booking = new Booking();
+
+                    $booking->setToken($value["token"]);
+                    $booking->setTokenPet($value["tokenPet"]);
+                    $booking->setDateStart($value["dateStart"]);
+                    $booking->setDateEnd($value["dateEnd"]);
+                    $booking->setPrice($value["price"]);
+                    $booking->setState($value['state']);
+                    $booking->setCouponPayment($value["couponPayment"]);
+                    $booking->setRemainingPayment($value["remainingPayment"]);
+                    $booking->setTokenGuardian($value["tokenGuardian"]);
+                    $booking->setTokenOwner($value["tokenOwner"]);
+                    $booking->setAcceptanceDate($value["acceptanceDate"]);
+
+                }
 
             } catch (Exception $e) {
 
@@ -236,13 +238,11 @@
                 exit();
             }
 
-                return true;
-                      
-
+                return true;                    
         }
         
 
-        public function getAllGuardianActiveDAO($token = null) {
+        public function getAllGuardianActiveDAO($token = null){
 
             $bookingList = array();
 
@@ -280,4 +280,5 @@
 
             return $bookingList;
         }
+
     } ?>

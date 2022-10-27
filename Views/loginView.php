@@ -1,5 +1,4 @@
 <style>
-
 .login {
 
     width: 100%;
@@ -93,12 +92,14 @@ img {
 .container {
 
     margin-top: 32px;
-    background: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
+
     /*background: linear-gradient(90deg, rgba(31,99,158,1) 2%, rgba(34,60,79,1) 98%);*/
+
+    background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%);
     background-color: #20517a;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
-    0 10px 10px rgba(0, 0, 0, 0.42);
+        0 10px 10px rgba(0, 0, 0, 0.42);
     overflow: hidden;
     width: 60%;
     max-width: 100%;
@@ -106,6 +107,13 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.img-form {
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    background-image: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
 }
 
 .form-container {
@@ -138,7 +146,7 @@ img {
     justify-content: center;
     align-items: center;
     margin: 0 5px;
-    height:48px; 
+    height: 48px;
     width: 48px;
     transition: all .5s ease-in-out;
 }
@@ -213,13 +221,14 @@ img {
     }
 
 }
-
 </style>
 
 <body class="login">
 
     <div class="container" id="container">
+        <span class="img-form">
 
+        </span>
         <div class="form-container ">
 
             <form action="<?php echo FRONT_ROOT ?>/sign/login" method="POST">
@@ -231,13 +240,16 @@ img {
                     <a href="" style="background-color: #D24736; " class="social"><i class="fa fa-google"></i></a>
                 </div>
 
-                <input type="text" style="height:50px;" class="form-control" placeholder="Usuario" name="username" required />
+                <input type="text" style="height:50px;" class="form-control" placeholder="Usuario" name="username"
+                    required />
 
-                <input type="password" style="height:50px;" class="form-control" placeholder="Contraseña" name="password" required />
+                <input type="password" style="height:50px;" class="form-control" placeholder="Contraseña"
+                    name="password" required />
 
                 <button type="submit" class="btn btn-success">Iniciar Sesión</button>
 
-                <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/sign/register'" class="btn btn-primary ">Registrarse</button>
+                <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/sign/register'"
+                    class="btn btn-primary ">Registrarse</button>
 
                 <a href="" class="password"><b>¿Olvidaste la contraseña?</b></a>
 
@@ -246,7 +258,8 @@ img {
         </div>
 
         <div class=" overlay-container">
-            <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="dog & cat">
+            <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                alt="dog & cat">
         </div>
 
     </div>

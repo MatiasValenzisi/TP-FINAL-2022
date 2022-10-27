@@ -19,6 +19,7 @@
                 <th>Hasta</th>
                 <th>Total</th>
                 <th>Estado</th>
+                <th>Acción</th>
             </tr>
     
           </thead>
@@ -57,7 +58,22 @@
                 <td><?php echo $booking->getDateEnd();               ?></td>
                 <td><?php echo "$".$booking->getPrice();                 ?></td>
                 <td><?php echo $booking->getState();                 ?></td>
-              </tr>
+
+                <td>
+
+                <?php if(strcmp($booking->getState(), "Pendiente") == 0){ ?>
+
+                    <a class="text-danger"href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>/Cancelado"><b>Cancelar</b></a>
+
+                <?php } else {
+
+                    echo "No disponible.";
+
+                } ?>
+
+                </td>
+
+                </tr>
 
             <?php } } ?> 
 

@@ -1,4 +1,11 @@
 <style>
+.container-fluid {
+    background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%) !important;
+    padding: 30px;
+    color: white;
+    margin-top: 20px;
+}
+
 .sideways {
     margin-top: 14px;
 }
@@ -19,8 +26,6 @@
     width: 100%;
     margin: 50px auto;
 }
-
-
 
 @media screen and (max-width: 600px) {
 
@@ -49,16 +54,16 @@
 
 
     <section>
-        <div>
-            <h2 class=" title">Registrarse como guardian</h2>
-        </div>
+
         <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
             <input type="hidden" name="typeUser" value="guardian">
 
 
 
             <div class="container-fluid" style="width:50vw; height:50%;">
-
+                <div>
+                    <h2 class=" title">Registrarse como guardian</h2>
+                </div>
                 <div class="row sideways">
                     <div class="col-md-6 col-xs-12">
                         <label class="form-label" for="typeUser">Tipo de usuario:</label>

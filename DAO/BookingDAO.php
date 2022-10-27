@@ -241,4 +241,43 @@
 
         }
         
+
+        public function getAllGuardianActiveDAO($token = null) {
+
+            $bookingList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."' AND B.state = 'Aceptado' ;";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $key => $value) {
+                 
+                    $booking = new Booking();
+
+                    $booking->setToken($value["token"]);
+                    $booking->setTokenPet($value["tokenPet"]);
+                    $booking->setDateStart($value["dateStart"]);
+                    $booking->setDateEnd($value["dateEnd"]);
+                    $booking->setPrice($value["price"]);
+                    $booking->setState($value['state']);
+                    $booking->setCouponPayment($value["couponPayment"]);
+                    $booking->setRemainingPayment($value["remainingPayment"]);
+                    $booking->setTokenGuardian($value["tokenGuardian"]);
+                    $booking->setTokenOwner($value["tokenOwner"]);
+                    $booking->setAcceptanceDate($value["acceptanceDate"]);
+
+                    array_push($bookingList, $booking);
+                }
+
+            } catch (Exception $e) {
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $bookingList;
+        }
     } ?>

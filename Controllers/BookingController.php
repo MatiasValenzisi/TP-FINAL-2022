@@ -269,12 +269,28 @@
         public function update($bookingToken, $action) {
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-
-                $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
-
-                // Control de raza para guardianesa { header("Location: ".FRONT_ROOT."/booking/list/error/update/booking"); }
-
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");  
+                
+                $this->booking=$this->bookingDAO->getTokenDAO($bookingToken);
+                $this->pet= $this->petController->getPetToken($this->booking->getTokenPet());
+                $this->guardian=$this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());
+                $race=$this->pet->getRace();
+                
+                $dateListGuardian=$this->getDateListGuardian($this->guardian->getServiceStartDate(),$this->guardian->getServiceEndDate());
+                
+                /*
+                if( )
+                {
+                    
+                    $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
+                    header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");  
+                }else
+                {
+                    header("Location: ".FRONT_ROOT."/booking/list/error/update/booking");
+                }
+               */ 
+      
+                
+                
 
             } else {
 

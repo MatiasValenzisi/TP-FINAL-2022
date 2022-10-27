@@ -1,5 +1,4 @@
 <style>
-
 .sideways {
     margin-top: 14px;
 }
@@ -17,13 +16,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    width: 30%;
+    width: 100%;
     margin: 50px auto;
 }
 
-.buttons button {
-    padding: 8px 100px;
-}
+
 
 @media screen and (max-width: 600px) {
 
@@ -37,13 +34,15 @@
         flex-wrap: wrap;
         align-items: center;
         width: 100%;
+        flex-direction: row;
+
     }
 
     .buttons button {
-        width: 80%;
+        text-align: center;
+
     }
 }
-
 </style>
 
 
@@ -108,15 +107,15 @@
                         <input type="date" class="form-control" name="birthDate" required />
                     </div>
                 </div>
+                <div class="buttons ">
+                    <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>'"
+                        class="btn btn-primary col-md-5 col-sm-5 col-xs-12">Cancelar</button>
 
+                    <button type="submit" class="btn btn-success col-md-6 col-sm-6 col-xs-12">Registrarse</button>
+                </div>
             </div>
 
-            <div class="buttons">
-                <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>'"
-                    class="btn btn-primary ">Cancelar</button>
 
-                <button type="submit" class="btn btn-success ">Registrarse</button>
-            </div>
 
         </form>
 

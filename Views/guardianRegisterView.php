@@ -37,8 +37,23 @@
 
     .container-fluid {
 
-        margin-top: 10%;
+        margin-top: 7%;
     }
+
+    label {
+        font-size: 25px;
+    }
+
+    select,
+    input {
+        height: 40px !important;
+        font-size: 20px !important;
+    }
+
+    .buttons button {
+        font-size: 25px !important;
+    }
+
 }
 
 @media screen and (max-width: 600px) {

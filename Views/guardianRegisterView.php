@@ -22,8 +22,8 @@ label {
 .title {
     text-align: center;
     font-size: 40px;
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     font-weight: 800;
     line-height: 50px;
 }
@@ -93,7 +93,7 @@ label {
 
         <div class="container-fluid" style="width:70%; height:50%;">
             <div>
-                <h2 class=" title">Registrarse como guardian</h2>
+                <h2 class="title">Registrarse como guardian</h2>
             </div>
             <div class="row sideways">
                 <div class="col-md-6 col-xs-12">

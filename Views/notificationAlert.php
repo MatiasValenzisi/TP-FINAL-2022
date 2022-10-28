@@ -233,11 +233,11 @@
                             switch ($add) {
 
                                 case 'race':
-                                    echo "<script>sweet('Error al aceptar la reserva!','Ya tiene reservado uno de los días del servicio para otra raza de mascota.','error')</script>";
+                                    echo "<script>sweet('Error al aceptar la reserva!','La reserva fue rechazada: ya tiene reservado uno de los días del servicio para otra raza de mascota.','error')</script>";
                                 break;
 
                                 case 'pet':
-                                   echo "<script>sweet('Error al aceptar la reserva!','Ya tiene reservado un servicio con ese guardian y esa mascota en alguna de las fechas solicitadas.','error')</script>";
+                                   echo "<script>sweet('Error al aceptar la reserva!','La reserva fue rechazada: ya tiene reservado un servicio con ese guardian y esa mascota en alguna de las fechas solicitadas.','error')</script>";
                                 break;
                             }
                         }

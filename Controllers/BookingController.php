@@ -55,18 +55,7 @@
             $nameGuardian   = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
             $nameOwner      = $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName();
 
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }     
+            $this->loadPetList();     
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -233,18 +222,7 @@
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }
+            $this->loadPetList();
 
             $this->guardianList = $this->guardianDAO->getAllDAO();
             $this->ownerList    = $this->ownerDAO->getAllDAO();
@@ -268,6 +246,8 @@
         
         public function update($bookingToken, $action) {
 
+            $control = true;
+
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
                 // Entra en este control si es un usuario de Tipo Guardian que quiere actualizar el estado de una reserva a "Aceptado".
@@ -284,18 +264,7 @@
 
                     // Se cargan todas las mascotas posibles dentro de una lista de mascotas.
 
-                    $dogList = $this->dogDAO->getAllDAO();
-                    $catList = $this->catDAO->getAllDAO();
-                    
-                    if (!empty($dogList)){
-
-                        $this->petList = array_merge($this->petList, $dogList);
-                    } 
-
-                    if (!empty($catList)){
-
-                        $this->petList = array_merge($this->petList, $catList);
-                    }     
+                    $this->loadPetList();  
 
                     // Mascota de la reserva pendiente.   
 
@@ -339,8 +308,8 @@
 
                                     if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
 
+                                        $control = false;
                                         header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
-                                        exit();
 
                                     } else {
 
@@ -348,9 +317,9 @@
 
                                         if (strcmp(get_class($this->pet), get_class($petBookingAux)) != 0){
                                             
-                                            $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                            
+                                            $control = false;
                                             header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
-                                            exit();
                                             
                                         } else {
 
@@ -358,10 +327,8 @@
 
                                             if (strcmp($this->pet->getToken(), $petBookingAux->getToken()) == 0){
 
-                                                $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                                $control = false;
                                                 header("Location: ".FRONT_ROOT."/booking/list/error/update/state/pet");
-                                                exit();
-
                                             }
                                         }
                                     }
@@ -371,8 +338,17 @@
                     }           
                 }
 
+                if (!$control){
+
+                    $action = "Rechazado";
+                }
+
                 $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                  
+
+                if ($control){
+                    
+                    header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");
+                }            
 
             } else {
 
@@ -384,21 +360,10 @@
 
         public function history() { 
             
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }
-
             $this->guardianList = $this->guardianDAO->getAllDAO();
             $this->ownerList    = $this->ownerDAO->getAllDAO();
+
+            $this->loadPetList();
 
             require_once ROOT_VIEWS."/mainHeader.php";
 
@@ -417,6 +382,22 @@
             require_once ROOT_VIEWS."/bookingHistoryListView.php";   
             require_once ROOT_VIEWS."/mainFooter.php";
 
+        }
+
+        private function loadPetList(){
+
+            $dogList = $this->dogDAO->getAllDAO();
+            $catList = $this->catDAO->getAllDAO();
+            
+            if (!empty($dogList)){
+
+                $this->petList = array_merge($this->petList, $dogList);
+            } 
+
+            if (!empty($catList)){
+
+                $this->petList = array_merge($this->petList, $catList);
+            }
         }  
 
         public function getTokenBookingList(){ 

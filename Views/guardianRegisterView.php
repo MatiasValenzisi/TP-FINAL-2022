@@ -33,11 +33,11 @@
     margin: 50px auto;
 }
 
-@media screen and (max-width: 1920px) {
+@media screen and (min-width: 1620px) {
 
-    .container {
+    .container-fluid {
 
-        height: 1080px;
+        margin-top: 10%;
     }
 }
 

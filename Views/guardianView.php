@@ -105,6 +105,15 @@ input[type="file"] {
                                         <div class="col-sm-9 text-secondary">
                                             <?php echo $this->guardian->getExperience(). " Año/s"; ?></div>
                                     </div>
+
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-xs-12">
+                                            <h6 class="mb-0">Tamaño mascota &nbsp;</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <?php echo $this->guardian->getPetSize(); ?></div>
+                                    </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">

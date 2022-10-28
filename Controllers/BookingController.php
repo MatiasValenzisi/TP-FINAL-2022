@@ -55,18 +55,7 @@
             $nameGuardian   = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
             $nameOwner      = $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName();
 
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }     
+            $this->loadPetList();     
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -233,18 +222,7 @@
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }
+            $this->loadPetList();
 
             $this->guardianList = $this->guardianDAO->getAllDAO();
             $this->ownerList    = $this->ownerDAO->getAllDAO();
@@ -270,53 +248,24 @@
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                // Entra en este control si es un usuario de Tipo Guardian que quiere actualizar el estado de una reserva a "Aceptado".
-
                 if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){
 
-                    // Reserva en estado pendiente.
+                    $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
 
-                    $this->booking     = $this->bookingDAO->getTokenDAO($bookingToken);
+                    $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
 
-                    // Guardian de la reserva pendiente.
+                    $this->loadPetList();  
 
-                    $this->guardian    = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
-
-                    // Se cargan todas las mascotas posibles dentro de una lista de mascotas.
-
-                    $dogList = $this->dogDAO->getAllDAO();
-                    $catList = $this->catDAO->getAllDAO();
-                    
-                    if (!empty($dogList)){
-
-                        $this->petList = array_merge($this->petList, $dogList);
-                    } 
-
-                    if (!empty($catList)){
-
-                        $this->petList = array_merge($this->petList, $catList);
-                    }     
-
-                    // Mascota de la reserva pendiente.   
-
-                    $this->pet  = $this->petController->getPetToken($this->booking->getTokenPet());   
-
-                    // Listado de reservas activas de un guardian. (Reservas en estado Aceptado).
+                    $this->pet = $this->petController->getPetToken($this->booking->getTokenPet());   
 
                     $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
-
-                    // Fechas de la reserva pendiente.
 
                     $dateBookingList = $this->getDateRange($this->booking->getDateStart(), $this->booking->getDateEnd());
 
                     foreach ($this->bookingList as $key => $bookingAux) {
-
-                        // Fechas de la reserva bookingAux.
-                        
+                
                         $dateBookingAuxList = $this->getDateRange($bookingAux->getDateStart(), $bookingAux->getDateEnd());
-
-                        // Se verifican todas las fechas de las dos reservas si coinciden en algun caso.              
-
+    
                         foreach ($dateBookingList as $key => $dateBooking) {
                             
                             foreach ($dateBookingAuxList as $key => $dateBookingAux) {
@@ -326,42 +275,34 @@
                                     $petBookingAux = null;
 
                                     foreach ($this->petList as $key => $pet) {
-                                        
-                                        // Se carga el objeto mascota de bookingAux.
-
+ 
                                         if (strcmp($pet->getToken(), $bookingAux->getTokenPet()) == 0){
 
                                             $petBookingAux = $pet;
                                         }
                                     }
 
-                                    // Controla que las dos razas no sean iguales.
-
                                     if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
 
+                                        $this->bookingDAO->updateState($bookingToken, "Rechazado");
                                         header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
                                         exit();
 
                                     } else {
 
-                                        // Controla el caso puntual de la raza siberiano que es compartida para gatos y perros.
-
                                         if (strcmp(get_class($this->pet), get_class($petBookingAux)) != 0){
-                                            
-                                            $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                                                                        
+                                            $this->bookingDAO->updateState($bookingToken, "Rechazado");
                                             header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
                                             exit();
                                             
                                         } else {
 
-                                            // Controla que no haya una reserva para la misma mascota el mismo dia con ese guardian.
-
                                             if (strcmp($this->pet->getToken(), $petBookingAux->getToken()) == 0){
 
-                                                $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                                $this->bookingDAO->updateState($bookingToken, "Rechazado");
                                                 header("Location: ".FRONT_ROOT."/booking/list/error/update/state/pet");
                                                 exit();
-
                                             }
                                         }
                                     }
@@ -371,8 +312,8 @@
                     }           
                 }
 
-                $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                  
+                $this->bookingDAO->updateState($bookingToken, $action);                
+                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                           
 
             } else {
 
@@ -380,25 +321,12 @@
             }
         } 
 
-        // pausado hasta definir tipos de estado de la reserva!!
-
         public function history() { 
             
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
-
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
-
-            if (!empty($catList)){
-
-                $this->petList = array_merge($this->petList, $catList);
-            }
-
             $this->guardianList = $this->guardianDAO->getAllDAO();
             $this->ownerList    = $this->ownerDAO->getAllDAO();
+
+            $this->loadPetList();
 
             require_once ROOT_VIEWS."/mainHeader.php";
 
@@ -417,6 +345,24 @@
             require_once ROOT_VIEWS."/bookingHistoryListView.php";   
             require_once ROOT_VIEWS."/mainFooter.php";
 
+        }
+
+        /* Carga la lista de mascotas con todas las disponibles */
+
+        private function loadPetList(){
+
+            $dogList = $this->dogDAO->getAllDAO();
+            $catList = $this->catDAO->getAllDAO();
+            
+            if (!empty($dogList)){
+
+                $this->petList = array_merge($this->petList, $dogList);
+            } 
+
+            if (!empty($catList)){
+
+                $this->petList = array_merge($this->petList, $catList);
+            }
         }  
 
         public function getTokenBookingList(){ 

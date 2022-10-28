@@ -2,57 +2,93 @@
 
     class Payment {
 
-        protected $amount;
-        protected $date;
-        protected $paymentMethod;  // Metodo de pago.
-        protected $booking;        // Reserva.
+        protected $token;
+        protected $tokenBooking;     // Token de la reserva.
+        protected $amount;           // Monto.
+        protected $dateGenerated;    // Fecha de generacion del pago.
+        protected $dateIssued;       // Fecha de emisión del pago. 
+        protected $paymentMethod;    // Metodo de pago.
+        protected $type;             // Cupon de pago o pago final/restante.  
 
-        public function __construct($amount = null, $date = null, $paymentMethod = null, $booking = null) {
+        public function __construct($token = null, $tokenBooking = null, $amount = null, $dateGenerated = null, $dateIssued = null, $paymentMethod = null, $type = null) {
 
-            $this->amount = $amount;
-            $this->date = $date;
-            $this->paymentMethod = $paymentMethod;
-            $this->booking = $booking;
+            $this->token              = $token;
+            $this->tokenBooking       = $tokenBooking;
+            $this->amount             = $amount;
+            $this->dateGenerated      = $dateGenerated;
+            $this->dateIssued         = $dateIssued;
+            $this->paymentMethod      = $paymentMethod;
+            $this->type               = $type;
         }
 
-        public function getAmount(){
+        public function getToken() { 
 
-            return $this->amount;
+            return $this->token; 
+        } 
+
+        public function setToken($token) { 
+
+            $this->token = $token; 
         }
 
-        public function setAmount($amount){
+        public function getTokenBooking() { 
 
-            $this->amount = $amount;
+            return $this->tokenBooking; 
+        } 
+
+        public function setTokenBooking($tokenBooking) { 
+
+            $this->tokenBooking = $tokenBooking;
+        }  
+
+        public function getAmount() { 
+
+            return $this->amount; 
+        } 
+
+        public function setAmount($amount) { 
+
+            $this->amount = $amount; 
+        } 
+
+        public function getDateGenerated() { 
+
+            return $this->dateGenerated; 
+        } 
+
+        public function setDateGenerated($dateGenerated) { 
+
+            $this->dateGenerated = $dateGenerated; 
+        } 
+
+        public function getDateIssued() { 
+
+            return $this->dateIssued; 
+        } 
+
+        public function setDateIssued($dateIssued) {
+
+            $this->dateIssued = $dateIssued; 
         }
 
-        public function getDate(){
+        public function getPaymentMethod() { 
 
-            return $this->date;
-        }
+            return $this->paymentMethod; 
+        } 
 
-        public function setDate($date){
-            
-             $this->date = $date;
-        }
+        public function setPaymentMethod($paymentMethod) { 
 
-        public function getPaymentMethod(){
-            
-            return $this->paymentMethod;
-        }
+            $this->paymentMethod = $paymentMethod; 
+        }  
 
-        public function setPaymentMethod($paymentMethod){
-            
-             $this->paymentMethod = $paymentMethod;
-        }
+        public function getType() { 
 
-        public function getBooking(){
-             
-             return $this->booking;
-        }
+            return $this->type; 
+        } 
 
-        public function setBooking($booking){
-            
-            $this->booking = $booking;
+        public function setType($type) { 
+
+            $this->type = $type;
         }
     }
 ?>

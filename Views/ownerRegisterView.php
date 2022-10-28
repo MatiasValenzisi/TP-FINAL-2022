@@ -90,8 +90,6 @@ label {
     <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
         <input type="hidden" name="typeUser" value="owner">
 
-
-
         <div class="container-fluid" style="width:70%; height:50%;">
             <div>
                 <h2 class="title">Registrarse como dueño</h2>
@@ -106,10 +104,7 @@ label {
                         <option value="owner" selected>Dueño</option>
                     </select>
                 </div>
-
-
             </div>
-
 
             <div class="row sideways">
                 <div class="col-md-6 col-xs-12">
@@ -149,7 +144,4 @@ label {
                 <button type="submit" class="btn btn-success col-md-6 col-sm-6 col-xs-12">Registrarse</button>
             </div>
         </div>
-
-
-
     </form>

@@ -260,5 +260,4 @@ img {
         <div class=" overlay-container">
             <img src="<?php echo VIEWS_PATH ?>/images/fondo.png" alt="dog & cat">
         </div>
-
     </div>

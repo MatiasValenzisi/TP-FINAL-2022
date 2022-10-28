@@ -258,8 +258,7 @@ img {
         </div>
 
         <div class=" overlay-container">
-            <img src="https://images.unsplash.com/photo-1563460716037-460a3ad24ba9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                alt="dog & cat">
+            <img src="<?php echo VIEWS_PATH ?>/images/fondo.png" alt="dog & cat">
         </div>
 
     </div>

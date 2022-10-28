@@ -228,7 +228,7 @@
             header("Location: ".FRONT_ROOT."/booking/list");   
         }
 
-        public function list($type = null, $action = null, $specific = null) { 
+        public function list($type = null, $action = null, $specific = null, $add = null) { 
 
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
@@ -269,8 +269,6 @@
         public function update($bookingToken, $action) {
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-                
-                $control = true;
 
                 // Entra en este control si es un usuario de Tipo Guardian que quiere actualizar el estado de una reserva a "Aceptado".
 
@@ -337,10 +335,35 @@
                                         }
                                     }
 
+                                    // Controla que las dos razas no sean iguales.
+
                                     if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
 
-                                        $control = false;
+                                        header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
+                                        exit();
 
+                                    } else {
+
+                                        // Controla el caso puntual de la raza siberiano que es compartida para gatos y perros.
+
+                                        if (strcmp(get_class($this->pet), get_class($petBookingAux)) != 0){
+                                            
+                                            $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                            header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
+                                            exit();
+                                            
+                                        } else {
+
+                                            // Controla que no haya una reserva para la misma mascota el mismo dia con ese guardian.
+
+                                            if (strcmp($this->pet->getToken(), $petBookingAux->getToken()) == 0){
+
+                                                $this->booking = $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                                header("Location: ".FRONT_ROOT."/booking/list/error/update/state/pet");
+                                                exit();
+
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -348,15 +371,8 @@
                     }           
                 }
 
-                if ($control) {
-
-                    $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
-                    header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");  
-
-                } else {
-
-                    header("Location: ".FRONT_ROOT."/booking/list/error/update/booking");
-                }
+                $this->booking = $this->bookingDAO->updateState($bookingToken, $action);
+                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                  
 
             } else {
 

@@ -1,9 +1,12 @@
 <style>
 .container-fluid {
     background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%) !important;
-    padding: 30px;
+    padding: 14px;
     color: white;
     margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
+        0 10px 10px rgba(0, 0, 0, 0.42);
 }
 
 .sideways {
@@ -13,7 +16,8 @@
 .title {
     text-align: center;
     font-size: 40px;
-    margin-top: 50px;
+    margin-top: 10px;
+    margin-bottom: 40px;
     font-weight: 800;
     line-height: 50px;
 }
@@ -60,7 +64,7 @@
 
 
 
-            <div class="container-fluid" style="width:50vw; height:50%;">
+            <div class="container-fluid" style="width:70%; height:50%;">
                 <div>
                     <h2 class=" title">Registrarse como guardian</h2>
                 </div>

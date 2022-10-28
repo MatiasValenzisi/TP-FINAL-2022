@@ -235,11 +235,6 @@ img {
 
                 <h1><?php echo PROJECT_NAME ?></h1>
 
-                <div class="social-container">
-                    <a href="" style="background-color: #2374E1; " class="social"><i class="fa fa-facebook"></i></a>
-                    <a href="" style="background-color: #D24736; " class="social"><i class="fa fa-google"></i></a>
-                </div>
-
                 <input type="text" style="height:50px;" class="form-control" placeholder="Usuario" name="username"
                     required />
 

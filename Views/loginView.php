@@ -223,7 +223,7 @@ img {
 }
 </style>
 
-<body class="login">
+<body>
 
     <div class="container" id="container">
         <span class="img-form">

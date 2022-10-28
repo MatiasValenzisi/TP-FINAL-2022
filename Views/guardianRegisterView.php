@@ -15,6 +15,10 @@
     margin: 0 auto;
 }
 
+label {
+    margin-top: 15px;
+}
+
 .title {
     text-align: center;
     font-size: 40px;

@@ -55,7 +55,7 @@
                     $payment->setToken($value["token"]);
                     $payment->setTokenBooking($value["tokenBooking"]);
                     $payment->setAmount($value["amount"]);
-                    $payment->setDateGnenerated($value["dateGenerated"]);
+                    $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
                     $payment->setPaymentMethod($value['paymentMethod']);
                     $payment->setType($value["type"]);
@@ -114,7 +114,7 @@
                     $payment->setToken($value["token"]);
                     $payment->setTokenBooking($value["tokenBooking"]);
                     $payment->setAmount($value["amount"]);
-                    $payment->setDateGnenerated($value["dateGenerated"]);
+                    $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
                     $payment->setPaymentMethod($value['paymentMethod']);
                     $payment->setType($value["type"]);
@@ -128,6 +128,40 @@
             }
 
             return $payment;
-        }        
+        }   
+
+        public function getPaymentByBookingTokenDAO($bookingToken){
+
+            $payment = null;
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenBooking ='".$bookingToken."';";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);  
+
+                foreach ($resultSet as $key => $value) {
+                 
+                    $payment = new Payment();
+
+                    $payment->setToken($value["token"]);
+                    $payment->setTokenBooking($value["tokenBooking"]);
+                    $payment->setAmount($value["amount"]);
+                    $payment->setDateGenerated($value["dateGenerated"]);
+                    $payment->setDateIssued($value["dateIssued"]);
+                    $payment->setPaymentMethod($value['paymentMethod']);
+                    $payment->setType($value["type"]);
+
+                }
+
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $payment;
+        }   
         
     } ?>

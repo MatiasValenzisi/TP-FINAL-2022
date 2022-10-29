@@ -459,6 +459,29 @@
                 $key .= rand(0,9);
             }     
             return $key; 
-        } 
+        }
+
+        //* Muestra los pagos pendientes
+        /*
+        public function pendientPayment() {
+
+            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+
+                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
+
+                foreach($this->bookingList as $booking) {
+                    
+                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
+
+                    if($this->payment )
+                    
+                }
+
+            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+
+            
+            }
+
+        }*/
     }
 ?>

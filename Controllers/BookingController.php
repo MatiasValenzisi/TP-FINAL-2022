@@ -329,18 +329,18 @@
                                 }
                             }
                         }                        
-                    }           
+                    }   
+
+                    $token         = $this->createToken($this->getTokenPaymentList());
+                    $tokenBooking  = $this->booking->getToken();
+                    $amount        = $this->booking->getPrice() / 2;
+                    $dateGenerated = date("Y-m-d");
+
+                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
+                    $this->paymentDAO->addDAO($this->payment);           
                 }
 
                 $this->bookingDAO->updateState($bookingToken, $action);
-
-                $token         = $this->createToken($this->getTokenPaymentList());
-                $tokenBooking  = $this->booking->getToken();
-                $amount        = $this->booking->getPrice() / 2;
-                $dateGenerated = date("Y-m-d");
-
-                $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
-                $this->paymentDAO->addDAO($this->payment);   
 
                 header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                           
 

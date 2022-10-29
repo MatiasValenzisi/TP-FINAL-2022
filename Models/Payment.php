@@ -2,13 +2,13 @@
 
     class Payment {
 
-        protected $token;
-        protected $tokenBooking;     // Token de la reserva.
-        protected $amount;           // Monto.
-        protected $dateGenerated;    // Fecha de generacion del pago.
-        protected $dateIssued;       // Fecha de emisión del pago. 
-        protected $paymentMethod;    // Metodo de pago.
-        protected $type;             // Cupon de pago o pago final/restante.  
+        private $token;
+        private $tokenBooking;     // Token de la reserva.
+        private $amount;           // Monto.
+        private $dateGenerated;    // Fecha generación de pago.
+        private $dateIssued;       // Fecha emisión de pago. 
+        private $paymentMethod;    // Metodo de pago.
+        private $type;             // Cupon de pago o pago final/restante.  
 
         public function __construct($token = null, $tokenBooking = null, $amount = null, $dateGenerated = null, $dateIssued = null, $paymentMethod = null, $type = null) {
 

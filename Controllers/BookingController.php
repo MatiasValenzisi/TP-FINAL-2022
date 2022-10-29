@@ -3,46 +3,66 @@
     use Controllers\PetController as PetController;
 
     use Models\Booking as Booking;
+    use Models\Payment as Payment;
 
     use DAO\BookingDAO as BookingDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\DogDAO as DogDAO;
     use DAO\CatDAO as CatDAO;
+    use DAO\PaymentDAO as PaymentDAO;
 
     class BookingController {
 
         private $bookingList;
         private $bookingDAO;
         private $booking;
+
+        private $guardianList;        
         private $guardian;
         private $guardianDAO;
+
         private $owner;
         private $ownerDAO;
-        private $pet;
+
         private $petList;
+        private $pet;
         private $petController;
+
         private $dogDAO;
         private $catDAO;
+
         private $ownerList;
-        private $guardianList;
+
+        private $paymentList;
+        private $payment;
+        private $paymentDAO;
 
         public function __construct(){
 
             $this->bookingList   = array();
             $this->bookingDAO    = new BookingDAO();
             $this->booking       = null;
+
+            $this->guardianList  = array();
             $this->guardian      = null;
             $this->guardianDAO   = new GuardianDAO();
+
             $this->owner         = null;
             $this->ownerDAO      = new OwnerDAO();
-            $this->pet           = null;
+
             $this->petList       = array();
+            $this->pet           = null;
             $this->petController = new PetController();
+
             $this->dogDAO        = new DogDAO();            
             $this->catDAO        = new CatDAO();
+
             $this->ownerList     = array();
-            $this->guardianList     = array();
+
+            $this->paymentList   = array();            
+            $this->payment       = null;
+            $this->paymentDAO    = new PaymentDAO();
         }
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
@@ -312,14 +332,23 @@
                     }           
                 }
 
-                $this->bookingDAO->updateState($bookingToken, $action);                
+                $this->bookingDAO->updateState($bookingToken, $action);
+
+                $token         = $this->createToken($this->getTokenPaymentList());
+                $tokenBooking  = $this->booking->getToken();
+                $amount        = $this->booking->getPrice() / 2;
+                $dateGenerated = date("Y-m-d");
+
+                $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
+                $this->paymentDAO->addDAO($this->payment);   
+
                 header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                           
 
             } else {
 
                 header("location: ".FRONT_ROOT);
             }
-        } 
+        }
 
         public function history() { 
             
@@ -338,13 +367,11 @@
             } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
                 $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
-
             }
 
             require_once ROOT_VIEWS."/mainNav.php";  
             require_once ROOT_VIEWS."/bookingHistoryListView.php";   
             require_once ROOT_VIEWS."/mainFooter.php";
-
         }
 
         /* Carga la lista de mascotas con todas las disponibles */
@@ -379,11 +406,27 @@
                 }
             }
             return $tokenList; 
-        } 
+        }
+
+        public function getTokenPaymentList(){ 
+
+            $tokenList = array();
+
+            $this->paymentList = $this->paymentDAO->getAllDAO();
+            
+            if($this->paymentList != null) {
+
+                foreach($this->paymentList as $current) {
+
+                    array_push($tokenList, $current->getToken());
+                }
+            }
+            return $tokenList; 
+        }
 
         /* Retorna un nuevo número de token que no haya sido utilizado antes */
 
-        public function createToken($bookingListToken){ 
+        public function createToken($listToken){ 
 
             $newToken = null;
 
@@ -392,7 +435,7 @@
                 $controller = false;
                 $newToken = $this->generateNumber(6);
 
-                foreach($bookingListToken  as $key => $value) {
+                foreach($listToken  as $key => $value) {
 
                    if($newToken == $value){
 

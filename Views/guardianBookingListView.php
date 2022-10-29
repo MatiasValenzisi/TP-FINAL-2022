@@ -25,7 +25,7 @@
 
           <tbody>
 
-          <?php foreach($this->bookingList as $booking) { 
+          <?php foreach($this->bookingList as $booking){ 
 
               if(strcmp($booking->getState(), "Pendiente") == 0 || strcmp($booking->getState(), "Aceptado") == 0){ ?>
 
@@ -33,9 +33,9 @@
 
                 <td><?php echo $booking->getToken();?></td>
 
-                <?php foreach($this->ownerList as $owner) { 
+                <?php foreach($this->ownerList as $owner){ 
 
-                  if($owner->getToken() == $booking->getTokenOwner()) { ?>
+                  if($owner->getToken() == $booking->getTokenOwner()){ ?>
 
                     <td><?php echo $owner->getFullName();   ?></td>
                 
@@ -43,7 +43,7 @@
 
                 foreach($this->petList as $pet) { 
 
-                  if($pet->getToken() == $booking->getTokenPet()) { ?>
+                  if($pet->getToken() == $booking->getTokenPet()){ ?>
 
                     <td><?php echo $pet->getName(); ?></td>
                     <td><?php echo $pet->getRace(); ?></td>

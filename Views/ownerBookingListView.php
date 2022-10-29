@@ -26,38 +26,43 @@
 
           <tbody>
 
-            <?php foreach($this->bookingList as $booking) { 
+            <?php foreach($this->bookingList as $booking){ 
 
-              if(strcmp($booking->getState(), "Finalizado") != 0 && strcmp($booking->getState(), "Cancelado") != 0) {
-
-              ?>
+              if(strcmp($booking->getState(), "Pendiente") == 0 || strcmp($booking->getState(), "Aceptado") == 0) { ?>
 
               <tr>
-                <td><?php echo $booking->getToken();                 ?></td>
-                <?php 
-                foreach($this->ownerList as $owner) { 
-                  if($owner->getToken() == $booking->getTokenOwner()) {  
-                ?>
-                    <td><?php echo $owner->getFullName();   ?></td>
+
+                <td><?php echo $booking->getToken(); ?></td>
+
+                <?php foreach($this->ownerList as $owner){ 
+
+                  if($owner->getToken() == $booking->getTokenOwner()){ ?>
+
+                    <td><?php echo $owner->getFullName(); ?></td>
                 
                 <?php } }
 
                 foreach($this->guardianList as $guardian) { 
-                  if($guardian->getToken() == $booking->getTokenGuardian()) {  
-                ?>
-                    <td><?php echo $guardian->getFullName();   ?></td>
+
+                  if($guardian->getToken() == $booking->getTokenGuardian()){ ?>
+                    
+                    <td><?php echo $guardian->getFullName(); ?></td>
 
                 <?php } }
+
                 foreach($this->petList as $pet) { 
-                  if($pet->getToken() == $booking->getTokenPet()) {  ?>
-                  <td><?php echo $pet->getName();                    ?></td>
-                  <td><?php echo $pet->getRace();                    ?></td>
+
+                  if($pet->getToken() == $booking->getTokenPet()){ ?>
+
+                  <td><?php echo $pet->getName(); ?></td>
+                  <td><?php echo $pet->getRace(); ?></td>
+
                 <?php } } ?>
 
-                <td><?php echo $booking->getDateStart();             ?></td>
-                <td><?php echo $booking->getDateEnd();               ?></td>
-                <td><?php echo "$".$booking->getPrice();                 ?></td>
-                <td><?php echo $booking->getState();                 ?></td>
+                <td><?php echo $booking->getDateStart(); ?></td>
+                <td><?php echo $booking->getDateEnd(); ?></td>
+                <td><?php echo "$".$booking->getPrice(); ?></td>
+                <td><?php echo $booking->getState(); ?></td>
 
                 <td>
 
@@ -78,9 +83,7 @@
             <?php } } ?> 
 
           </tbody>
-        </table>
-        
-        
+        </table>   
       </div>
     </div>
   </div>

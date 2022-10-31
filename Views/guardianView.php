@@ -150,13 +150,13 @@ input[type="file"] {
 
                                             <?php if (!is_null($this->guardian->getServiceEndDate()) && !empty($this->guardian->getServiceEndDate())){
 
-echo $this->guardian->getServiceEndDate(); 
+                                                    echo $this->guardian->getServiceEndDate(); 
 
-} else {
+                                                    } else {
 
-echo "No disponible.";
+                                                    echo "No disponible.";
 
-} ?>
+                                                    } ?>
 
 
                                         </div>
@@ -176,13 +176,13 @@ echo "No disponible.";
 
                                             <?php if (!is_null($this->guardian->getServicePrice()) && !empty($this->guardian->getServicePrice())){
 
-echo "$".$this->guardian->getServicePrice(); 
+                                                    echo "$".$this->guardian->getServicePrice(); 
 
-} else {
+                                                    } else {
 
-echo "No disponible.";
+                                                    echo "No disponible.";
 
-} ?>
+                                                    } ?>
 
 
                                         </div>

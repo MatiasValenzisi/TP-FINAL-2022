@@ -144,7 +144,21 @@
                                     </ul>
                                 </li>
 
+                                <li>
+                                    <a><i class="fa fa-solid fa-percent text-center"></i></i> Pagos<span
+                                                class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendiente"> Pagos pendientes</a></li>
+                                            
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pagado"> Historial pagos</a></li>
+
+                                    </ul>
+                                </li>
+
                                     <?php } ?>
+
+                                    
                                 <li>
                                     <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
                                             class="fa fa-sign-out text-center"></i> Cerrar sesión</a>

@@ -461,6 +461,16 @@
             return $key; 
         }
 
+
+        public function payment()
+        {
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/paymentBookingView.php";  
+            require_once ROOT_VIEWS."/notificationAlert.php";      
+            require_once ROOT_VIEWS."/mainFooter.php";             
+       
+        }
         //* Muestra los pagos pendientes
         /*
         public function pendientPayment() {

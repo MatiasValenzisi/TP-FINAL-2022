@@ -4,11 +4,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
 
-                    <?php   
-
-                      // Evita el ingreso sin estar logueado.
-
-                      if (!isset($_SESSION['userPH'])){  
+                    <?php if (!isset($_SESSION['userPH'])){  
                           
                         header("Location: ".FRONT_ROOT);
 
@@ -145,13 +141,13 @@
                                 </li>
 
                                 <li>
-                                    <a><i class="fa fa-solid fa-percent text-center"></i></i> Pagos<span
+                                    <a><i class="fa fa-solid fa-credit-card text-center"></i></i> Pagos<span
                                                 class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
-                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendiente"> Pagos pendientes</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendient"> Pagos pendientes</a></li>
                                             
-                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pagado"> Historial pagos</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/paid"> Historial pagos</a></li>
 
                                     </ul>
                                 </li>

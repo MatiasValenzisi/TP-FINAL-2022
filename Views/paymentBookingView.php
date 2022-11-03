@@ -37,7 +37,6 @@ label {
     margin: 50px auto;
 }
 
-
 @media screen and (min-width: 1620px) {
 
     .container-fluid {
@@ -84,39 +83,32 @@ label {
 }
 </style>
 
-
-<body>
-
-
-    <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
-        <input type="hidden" name="typeUser" value="owner">
+    <form action="<?php echo FRONT_ROOT?>/payment/payAction" method="POST">
 
         <div class="container-fluid" style="width:70%; height:50%;">
+
             <div>
                 <h2 class="title">Ingrese los datos de su tarjeta</h2>
-                <span>por favor</span>
             </div>
+
             <div class="row sideways">
                 <div class="col-md-12 col-xs-12">
                     <label class="form-label" for="text">Nombre Completo:</label>
                     <input type="text" class="form-control" placeholder="nombre completo" name="name" required />
                 </div>
-
             </div>
-
 
             <div class="row sideways">
                 <div class="col-md-12 col-xs-12">
-                    <label class="form-label" for="creditCardNumber">Numero tarjeta credito <i
-                            class="fa fa-credit-card"></i>:</label>
+                    <label class="form-label" for="creditCardNumber"><i
+                            class="fa fa-credit-card"></i> Numero tarjeta credito:</label>
                     <div class="creditcard-number">
                         <input type="number" class="form-control" placeholder="numero tarjeta de credito"
                             name="creditCardNumber" required />
                     </div>
-
                 </div>
-
             </div>
+
             <div class="row sideways">
                 <div class="col-md-4 col-xs-12">
                     <label class="form-label" for="expireDate">Dni:</label>
@@ -128,23 +120,15 @@ label {
                 </div>
                 <div class="col-md-4 col-xs-12">
                     <label class="form-label" for="cvv">Clave de seguridad:</label>
-                    <input type="number" class="form-control" placeholder="CVV" name="cvv" required />
+                    <input type="number" class="form-control" placeholder="CVV" name="cvv" min ="3" max="3" required />
                 </div>
-
             </div>
+
             <div class="buttons ">
-                <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>'"
+                <button type="button" onclick="location.href='<?php echo FRONT_ROOT."/payment/list/pendient"; ?>'"
                     class="btn btn-primary col-md-5 col-sm-5 col-xs-12">Cancelar</button>
 
-                <button type="submit" class="btn btn-success col-md-6 col-sm-6 col-xs-12">Pagar 500$ </button>
+                <button type="submit" class="btn btn-success col-md-6 col-sm-6 col-xs-12">Realizar pago</button>
             </div>
         </div>
-
-        <div class="container-fluid" style="width:70%; height:50%;">
-            <div>
-                <h3>monto: 500 $</h3>
-            </div>
-        </div>
-
-
     </form>

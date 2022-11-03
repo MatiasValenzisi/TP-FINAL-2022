@@ -45,64 +45,46 @@
             $this->payment       = null;
             $this->paymentDAO    = new PaymentDAO();
         }
-
-
         
-        public function list($paymentState = null) {
+        public function list($paymentState) {
             
-            require_once ROOT_VIEWS."/mainHeader.php";  
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
 
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+            $paymentListAux    = $this->paymentDAO->getAllDAO();
+            $this->bookingList = $this->bookingDAO->getAllDAO();
                 
-                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
-                
-                foreach($this->bookingList as $booking) {
+            foreach ($paymentListAux as $key => $payment) {
                     
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
+                if(strcmp($paymentState, "pendient") == 0 && is_null($payment->getDateIssued())) {
 
-                    if(strcmp($paymentState, "pendiente") == 0) {
+                    array_push($this->paymentList, $payment);
 
-                        if($this->payment->getDateIssued() == null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
+                } else if(strcmp($paymentState, "paid") == 0 && !is_null($payment->getDateIssued())) { 
 
-                    } else if(strcmp($paymentState, "pagado") == 0){
-
-                        if($this->payment->getDateIssued() != null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-                    }
-                                   
-                }
-
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
-
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
-            
-                foreach($this->bookingList as $booking) {
-
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
-
-                    if(strcmp($paymentState, "pendiente") == 0) {
-
-                        if($this->payment->getDateIssued() == null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-
-                    } else if(strcmp($paymentState, "pagado") == 0){
-
-                        if($this->payment->getDateIssued() != null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-                    }
-                }
+                    array_push($this->paymentList, $payment);
+                } 
             }
 
-            require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/paymentView.php";
+            if(strcmp($paymentState, "pendient") == 0) {
+
+                require_once ROOT_VIEWS."/paymentListPendientView.php";
+
+            } else if (strcmp($paymentState, "paid") == 0){
+
+                require_once ROOT_VIEWS."/paymentListPaidView.php";
+            }                
+
+            require_once ROOT_VIEWS."/mainFooter.php";
+        }
+
+        public function pay($tokenPayment){
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/paymentBookingView.php";
             require_once ROOT_VIEWS."/mainFooter.php";
 
         }
-
     }
 ?>

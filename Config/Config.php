@@ -3,6 +3,7 @@
 /* Carpeta del proyecto en la computadora (Ruta del servidor) */
 define("ROOT", dirname(__DIR__) . "/");
 define("ROOT_VIEWS", ROOT . "/Views");
+define("ROOT_LIBRARY", ROOT . "/Library");
 
 /* URL del proyecto (Ruta del cliente) */
 define("FRONT_ROOT", "http://localhost/Github/TP-FINAL-2022");

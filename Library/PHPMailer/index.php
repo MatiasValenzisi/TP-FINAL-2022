@@ -1,42 +1,59 @@
 <?php 
 
 	require_once 'PHPMailer.php';
-	require_once '../../Config/Config.php';
 
-    $mail = new PHPMailer();
+    if (isset($email) && isset($subject) && isset($body)){
 
-    $mail->setFrom('petheroveterinary@gmail.com', 'Pet-Hero');
+        $mail = new PHPMailer();
 
-    $mail->addAddress("xxmatias94xx@gmail.com");
+        $mail->setFrom('petheroveterinary@gmail.com', 'Pet-Hero');
 
-    $mail->isHTML(true);
-
-    $mail->CharSet = 'UTF-8';
-
-    $subject = "Subject";
-                    
-    $subject = utf8_decode($subject);
-                    
-    $mail->Subject = $subject;
-
-    $mail->Body.="Body"; 
-
-    $mail->Username = 'petheroveterinary@gmail.com';        
-               
-    $mail->Password = 'nizdjltmpklhyiuh';      
-               
-    $mail->SMTPDebug = 0;
+        // ============== TEMPORAL ================
         
-    $mail->isSMTP();        
-               
-    $mail->Host = 'smtp.gmail.com';
-        
-    $mail->SMTPAuth = true; 
+        $email = "xxmatias94xx@gmail.com";
 
-    $mail->SMTPSecure = 'tls';
+        // ========================================
 
-    $mail->Port = 587;  
+        $mail->addAddress($email);
 
-    $success = $mail->send();
+        $mail->isHTML(true);
+
+        $mail->CharSet = 'UTF-8';
+                        
+        $subject = utf8_decode($subject);
+                        
+        $mail->Subject = $subject;
+
+        $mail->Body.= $body; 
+
+        $mail->Username = 'petheroveterinary@gmail.com';        
+                   
+        $mail->Password = 'nizdjltmpklhyiuh';      
+                   
+        $mail->SMTPDebug = 0;
+            
+        $mail->isSMTP();        
+                   
+        $mail->Host = 'smtp.gmail.com';
+            
+        $mail->SMTPAuth = true; 
+
+        $mail->SMTPSecure = 'tls';
+
+        $mail->Port = 587;  
+
+        $success = $mail->send();
+
+        if ($success != 1){
+
+            echo "Ocurrio un error al enviar el mail.";
+            exit();
+        }
+
+    } else {
+
+        echo "Error faltan variables por declarar.";
+        exit();
+    }
 
 ?>

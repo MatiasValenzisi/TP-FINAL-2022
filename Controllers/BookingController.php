@@ -268,15 +268,15 @@
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){
+                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
 
-                    $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
 
-                    $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
+                $this->loadPetList();  
 
-                    $this->loadPetList();  
+                $this->pet = $this->petController->getPetToken($this->booking->getTokenPet()); 
 
-                    $this->pet = $this->petController->getPetToken($this->booking->getTokenPet());   
+                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){                    
 
                     $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
 
@@ -337,12 +337,33 @@
                     $dateGenerated = date("Y-m-d");
 
                     $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
-                    $this->paymentDAO->addDAO($this->payment);           
+                    $this->paymentDAO->addDAO($this->payment);  
+                          
                 }
 
                 $this->bookingDAO->updateState($bookingToken, $action);
 
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                           
+                if (strcmp($action, "Rechazado") == 0 || strcmp($action, "Aceptado") == 0){
+
+                    $nameGuardian = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
+
+                    $subject = "Solicitud de reserva con el guardian ".$nameGuardian." ha sido: ".$action;
+
+                    $email = $this->guardian->getUserName();
+
+                    $date = "desde el ".$this->booking->getDateStart()." al ".$this->booking->getDateEnd();
+
+                    $body = "Solicitud de reserva con el guardian ".$nameGuardian." con fecha ".$date." ha sido: ".$action."<br>";
+
+                    if (strcmp($action,"Aceptado") == 0){
+
+                        $body.= "Se ha cargado ya un cupón de pagó para la reserva.";
+                    }
+
+                    require_once ROOT_LIBRARY."/PHPMailer/index.php"; 
+                }
+
+                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                                                         
 
             } else {
 

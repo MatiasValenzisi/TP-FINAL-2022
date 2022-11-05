@@ -230,7 +230,7 @@
             $startDate      = date("Y-m-d", strtotime($startDate));
             $endDate        = date("Y-m-d", strtotime($endDate));            
 
-            $this->booking = new Booking ($token, $tokenPet, $startDate, $endDate, $priceTotal, 'Pendiente', null, null, $tokenGuardian, $_SESSION['userPH']->getToken());
+            $this->booking = new Booking ($token, $tokenPet, $startDate, $endDate, $priceTotal, 'Pendiente', $tokenGuardian, $_SESSION['userPH']->getToken());
 
             $this->bookingDAO->addDAO($this->booking);
 
@@ -336,7 +336,7 @@
                     $amount        = $this->booking->getPrice() / 2;
                     $dateGenerated = date("Y-m-d");
 
-                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
+                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, "Cupón de pago");
                     $this->paymentDAO->addDAO($this->payment);  
                           
                 }
@@ -481,38 +481,5 @@
             }     
             return $key; 
         }
-
-
-        public function payment()
-        {
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/paymentBookingView.php";  
-            require_once ROOT_VIEWS."/notificationAlert.php";      
-            require_once ROOT_VIEWS."/mainFooter.php";             
-       
-        }
-        //* Muestra los pagos pendientes
-        /*
-        public function pendientPayment() {
-
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
-
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
-
-                foreach($this->bookingList as $booking) {
-                    
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
-
-                    if($this->payment )
-                    
-                }
-
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-
-            
-            }
-
-        }*/
     }
 ?>

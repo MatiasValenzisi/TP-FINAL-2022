@@ -20,7 +20,6 @@
                                 <th>Mascota</th>
                                 <th>Monto</th>
                                 <th>Fecha de pago</th>                                                    
-                                <th>Metodo de pago</th>
                                 <th>Tipo de pago</th>     
                             </tr>
                         </thead>
@@ -73,7 +72,6 @@
 
                                 <td><?php echo "$ ".$payment->getAmount(); ?></td>
                                 <td><?php echo $payment->getDateIssued(); ?></td>             
-                                <td><?php echo $payment->getPaymentMethod(); ?></td>
                                 <td><?php echo $payment->getType(); ?></td>
                              
                             </tr>

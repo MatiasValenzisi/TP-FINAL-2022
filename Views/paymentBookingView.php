@@ -115,6 +115,13 @@ label {
             </div>
         </div>
 
+        <div class="row sideways">
+            <div class="col-md-12 col-xs-12">
+                <label class="form-label">Monto a pagar: &nbsp; ( Corresponde al 50% del monto final )</label>
+                <input type="text" class="form-control" value="<?php echo $this->booking->getPrice() / 2; ?>" readonly required />
+            </div>
+        </div>
+
         <br><br><br><br>
 
     </div>

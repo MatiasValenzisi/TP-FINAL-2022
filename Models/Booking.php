@@ -10,14 +10,10 @@ use Controllers\UserController;
         private $dateEnd;          // Fecha final.
         private $price;            // Precio total. Dias por precio del guardian.
         private $state;            // Estado de la reserva.
-        private $couponPayment;    // Cupón de pago.
-        private $remainingPayment; // Pago restante.
         private $tokenGuardian;    // Token del guardian asignado a la reserva.
         private $tokenOwner;       // Token del dueño que solicito la reserva.
-        private $acceptanceDate;   // Fecha de aceptación de la reserva por parte del guardian. 
 
-        public function __construct($token = null, $tokenPet = null, $dateStart = null, $dateEnd = null, $price = null, $state = null, 
-        $couponPayment = null, $remainingPayment = null, $tokenGuardian = null, $tokenOwner = null, $acceptanceDate = null){
+        public function __construct($token = null, $tokenPet = null, $dateStart = null, $dateEnd = null, $price = null, $state = null, $tokenGuardian = null, $tokenOwner = null){
 
             $this->token             = $token;
             $this->tokenPet          = $tokenPet;
@@ -92,26 +88,6 @@ use Controllers\UserController;
             $this->state = $state; 
         } 
 
-        public function getCouponPayment() { 
-
-            return $this->couponPayment; 
-        } 
-
-        public function setCouponPayment($couponPayment) { 
-
-            $this->couponPayment = $couponPayment; 
-        } 
-
-        public function getRemainingPayment() { 
-
-            return $this->remainingPayment; 
-        } 
-
-        public function setRemainingPayment($remainingPayment) { 
-
-            $this->remainingPayment = $remainingPayment;
-        }
-
         public function getTokenGuardian() { 
 
             return $this->tokenGuardian; 
@@ -131,17 +107,5 @@ use Controllers\UserController;
 
             $this->tokenOwner = $tokenOwner;
         } 
-
-        public function getAcceptanceDate() { 
-
-            return $this->acceptanceDate; 
-        } 
-
-        public function setAcceptanceDate($acceptanceDate) { 
-
-            $this->acceptanceDate = $acceptanceDate; 
-        } 
-    
-
     }
 ?>

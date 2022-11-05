@@ -7,17 +7,15 @@
         private $amount;           // Monto.
         private $dateGenerated;    // Fecha generación de pago.
         private $dateIssued;       // Fecha emisión de pago. 
-        private $paymentMethod;    // Metodo de pago.
         private $type;             // Cupon de pago o pago final/restante.  
 
-        public function __construct($token = null, $tokenBooking = null, $amount = null, $dateGenerated = null, $dateIssued = null, $paymentMethod = null, $type = null) {
+        public function __construct($token = null, $tokenBooking = null, $amount = null, $dateGenerated = null, $dateIssued = null, $type = null) {
 
             $this->token              = $token;
             $this->tokenBooking       = $tokenBooking;
             $this->amount             = $amount;
             $this->dateGenerated      = $dateGenerated;
             $this->dateIssued         = $dateIssued;
-            $this->paymentMethod      = $paymentMethod;
             $this->type               = $type;
         }
 
@@ -70,16 +68,6 @@
 
             $this->dateIssued = $dateIssued; 
         }
-
-        public function getPaymentMethod() { 
-
-            return $this->paymentMethod; 
-        } 
-
-        public function setPaymentMethod($paymentMethod) { 
-
-            $this->paymentMethod = $paymentMethod; 
-        }  
 
         public function getType() { 
 

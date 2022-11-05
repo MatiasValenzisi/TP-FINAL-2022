@@ -1,9 +1,11 @@
 <?php namespace Controllers;
-
+    
     use Models\Booking as Booking;
     use Models\Payment as Payment;
 
     use DAO\BookingDAO as BookingDAO;
+    use DAO\CatDAO as CatDAO;
+    use DAO\DogDAO as DogDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\PaymentDAO as PaymentDAO;
@@ -28,30 +30,34 @@
         private $payment;
         private $paymentDAO;
 
-        private $pet;
+        private $petList;
+        private $catDAO;
+        private $dogDAO;
         private $petController;
 
         public function __construct(){
 
-            $this->bookingList    = array();
-            $this->bookingDAO     = new BookingDAO();
-            $this->booking        = null;
+            $this->bookingList   = array();
+            $this->bookingDAO    = new BookingDAO();
+            $this->booking       = null;
 
-            $this->guardianList   = array();
-            $this->guardian       = null;
-            $this->guardianDAO    = new GuardianDAO();
+            $this->guardianList  = array();
+            $this->guardian      = null;
+            $this->guardianDAO   = new GuardianDAO();
 
-            $this->owner          = null;
-            $this->ownerDAO       = new OwnerDAO();
+            $this->owner         = null;
+            $this->ownerDAO      = new OwnerDAO();
 
-            $this->ownerList      = array();
+            $this->ownerList     = array();
 
-            $this->paymentList    = array();            
-            $this->payment        = null;
-            $this->paymentDAO     = new PaymentDAO();
+            $this->paymentList   = array();            
+            $this->payment       = null;
+            $this->paymentDAO    = new PaymentDAO();
 
-            $this->pet            = null;
-            $this->petController  = new PetController();
+            $this->petList       = array();       
+            $this->catDAO        = new CatDAO();
+            $this->dogDAO        = new DogDAO();
+            $this->petController = new PetController();
         }
         
         public function list($paymentState) {
@@ -102,7 +108,7 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
 
-        public function pay($tokenPayment){
+        public function pay($tokenPayment, $type = null, $action = null, $specific = null){
 
             $this->payment  = $this->paymentDAO->getPaymentTokenDAO($tokenPayment);
             $this->booking  = $this->bookingDAO->getTokenDAO($this->payment->getTokenBooking());
@@ -117,12 +123,14 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
 
-        public function payAction($tokenPayment, $expireDate, $type = null, $action = null, $specific = null){
+        public function payAction($tokenPayment, $expireDate){
             
             $dateNow = date("Y-m-d");
 
             if ($expireDate > $dateNow){
 
+                $this->paymentDAO->updateDAO($tokenPayment, $dateNow);
+                header("Location: ".FRONT_ROOT."/payment/list/paid");
 
             } else {
 

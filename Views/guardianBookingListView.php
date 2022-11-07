@@ -63,6 +63,10 @@
                        / 
                       <a class="text-danger"href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>/Rechazado"><b>Rechazar</b></a>
 
+                  <?php } else if(strcmp($booking->getState(), "Aceptado") == 0 && $booking->getDateEnd() < date("Y-m-d")){ ?>
+
+                    <a class="text-info"href="<?php echo FRONT_ROOT ?>/booking/update/<?php echo $booking->getToken(); ?>/Finalizado"><b>Finalizado</b></a>
+
                   <?php } else {
 
                       echo "No disponible.";

@@ -19,6 +19,7 @@
                 <th>Hasta</th>
                 <th>Total</th>
                 <th>Estado</th>
+                <th>Acción</th>
             </tr>
     
           </thead>
@@ -63,6 +64,20 @@
                     <td><?php echo $booking->getDateEnd(); ?></td>
                     <td><?php echo "$".$booking->getPrice(); ?></td>
                     <td><?php echo $booking->getState(); ?></td>
+
+                    <td>
+
+                    <?php if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0 && strcmp($booking->getState(), "Finalizado") == 0){ ?>
+
+                        <a class="text-info"href="<?php echo FRONT_ROOT ?>/booking/review/<?php echo $booking->getToken(); ?>"><b>Generar reseña</b></a>
+
+                    <?php } else {
+
+                        echo "No disponible.";
+
+                    } ?>
+
+                    </td>
 
                 </tr>
 

@@ -395,6 +395,10 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
 
+        public function review(){
+            echo "Generar review...";
+        }
+
         /* Carga la lista de mascotas con todas las disponibles */
 
         private function loadPetList(){

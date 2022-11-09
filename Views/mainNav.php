@@ -1,3 +1,11 @@
+<style>
+.nav-md .container.body .col-md-3.left_col {
+
+    position: fixed;
+
+}
+</style>
+
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
@@ -25,8 +33,7 @@
 
                             <?php if (is_null($_SESSION['userPH']->getProfilePicture())) { ?>
 
-                            <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt=""
-                                class="img-circle profile_img">
+                            <img src="<?php echo VIEWS_PATH ?>/images/user.png" alt="" class="img-circle profile_img">
 
                             <?php } else { ?>
 
@@ -127,34 +134,37 @@
                                 </li>
 
                                 <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") != 0){ ?>
-                                            
+
                                 <li>
                                     <a><i class="fa fa-solid fa-book text-center"></i> Reservas<span
-                                                class="fa fa-chevron-down"></span></a>
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
                                         <li><a href="<?php echo FRONT_ROOT?>/booking/list"> Reservas actuales</a></li>
-                                            
-                                        <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a></li>
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/booking/history"> Historial de reservas</a>
+                                        </li>
 
                                     </ul>
                                 </li>
 
                                 <li>
                                     <a><i class="fa fa-solid fa-credit-card text-center"></i></i> Pagos<span
-                                                class="fa fa-chevron-down"></span></a>
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
 
-                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendient"> Pagos pendientes</a></li>
-                                            
-                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/paid"> Historial pagos</a></li>
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendient"> Pagos
+                                                pendientes</a></li>
+
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/paid"> Historial pagos</a>
+                                        </li>
 
                                     </ul>
                                 </li>
 
-                                    <?php } ?>
+                                <?php } ?>
 
-                                    
+
                                 <li>
                                     <a href=" <?php echo FRONT_ROOT ?>/sign/logout"><i
                                             class="fa fa-sign-out text-center"></i> Cerrar sesión</a>

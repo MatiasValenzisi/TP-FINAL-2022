@@ -24,7 +24,9 @@ define("VIDEO", VIEWS_PATH."/video/");
 define("DB_HOST", "localhost:3306"); 
 define("DB_NAME", "pet_hero");
 define("DB_USER", "root");
-define("DB_PASS", "");
+//define("DB_PASS", ""); si no tienen contraseña descomenten esta linea y comenten la de abajo
+//gracias por su atencion fin del espacio publicitario 
+define("DB_PASS", "root");
 
 /* Correo electronico */
 define("EMAIL", "petheroveterinary@gmail.com");

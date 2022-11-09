@@ -1,7 +1,7 @@
 <style>
 h6 {
     font-weight: 800;
-    width: 180px;
+    width: 360px;
 }
 
 .card {
@@ -39,6 +39,10 @@ input[type="file"] {
 
 .rounded-circle {
     border-radius: 50%;
+}
+
+.checkbox {
+    font-size: 10px;
 }
 </style>
 
@@ -121,7 +125,50 @@ input[type="file"] {
                                             <?php echo $_SESSION['userPH']->getBirthDate() ?></div>
                                     </div>
                                     <hr>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12" style="width: 100%;">
+                                            <h6 class="mb-0">Disponibilidad de estadías para servicios <span
+                                                    class="required">*</span></h6>
+                                        </div>
 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+
+                                            <div class="checkbox">
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Monday'])){ echo "checked"; } ?>
+                                                        value="Monday">&nbsp; Lunes</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Tuesday'])){ echo "checked"; } ?>
+                                                        value="Tuesday">&nbsp; Martes</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Wednesday'])){ echo "checked"; } ?>
+                                                        value="Wednesday">&nbsp; Miércoles</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Thursday'])){ echo "checked"; } ?>
+                                                        value="Thursday">&nbsp; Jueves</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Friday'])){ echo "checked"; } ?>
+                                                        value="Friday">&nbsp; Viernes</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Saturday'])){ echo "checked"; } ?>
+                                                        value="Saturday">&nbsp; Sábado</label>
+
+                                                <label><input type="checkbox" class="flat" name="disp[]"
+                                                        <?php if (isset($serviceArray['Sunday'])){ echo "checked"; } ?>
+                                                        value="Sunday">&nbsp; Domingo</label>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
                                     <hr>
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12 ">

@@ -58,7 +58,7 @@ input[type="file"] {
                 <div class="x_content"><br>
 
 
-                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/owner/profileEdit"
+                    <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit"
                         method="POST">
                         <div class="col-md-4 mb-3 col-sm-3 col-xs-12">
                             <div class="card profile">

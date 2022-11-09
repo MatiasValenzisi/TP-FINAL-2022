@@ -43,6 +43,8 @@
         private $observations;
         private $tokenGuardian;
 
+        private $reviewList;
+
         public function __construct(){
 
             $this->bookingList   = array();
@@ -73,6 +75,8 @@
             $this->date          = null;
             $this->observations  = null;
             $this->tokenGuardian = null;
+
+            $this->reviewList    = array();
         }
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
@@ -347,8 +351,7 @@
                     $dateGenerated = date("Y-m-d");
 
                     $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, "Cupón de pago");
-                    $this->paymentDAO->addDAO($this->payment);  
-                          
+                    $this->paymentDAO->addDAO($this->payment);                            
                 }
 
                 $this->bookingDAO->updateState($bookingToken, $action);
@@ -386,6 +389,8 @@
             $this->guardianList = $this->guardianDAO->getAllDAO();
             $this->ownerList    = $this->ownerDAO->getAllDAO();
 
+            $this->reviewList   = $this->bookingDAO->getAllReviewDAO();
+
             $this->loadPetList();
 
             require_once ROOT_VIEWS."/mainHeader.php";
@@ -405,8 +410,22 @@
             require_once ROOT_VIEWS."/mainFooter.php";
         }
 
-        public function review(){
-            echo "Generar review...";
+        public function review($bookingToken){
+
+            $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+            $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";  
+            require_once ROOT_VIEWS."/reviewBookingView.php";   
+            require_once ROOT_VIEWS."/mainFooter.php";
+        }
+
+        public function reviewAction($guardianToken, $score, $observations = ''){
+
+            $this->bookingDAO->addReviewDAO($guardianToken, $score, $observations);  
+
+            header("Location: ".FRONT_ROOT."/booking/history");
         }
 
         /* Carga la lista de mascotas con todas las disponibles */

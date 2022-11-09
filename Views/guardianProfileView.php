@@ -12,11 +12,11 @@ h6 {
     margin-bottom: 50px;
 }
 
-.profile {
+.profile-section {
     line-height: 70px;
 }
 
-.profile img {
+.profile-section img {
     margin-top: 25%;
 }
 
@@ -61,7 +61,7 @@ input[type="file"] {
                     <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit"
                         method="POST">
                         <div class="col-md-4 mb-3 col-sm-3 col-xs-12">
-                            <div class="card profile">
+                            <div class="card profile-section">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center"> <img
                                             src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getProfilePicture() ?>"

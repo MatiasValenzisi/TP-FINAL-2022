@@ -67,11 +67,30 @@
 
                     <td>
 
-                    <?php if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0 && strcmp($booking->getState(), "Finalizado") == 0){ ?>
+                    <?php if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0 && strcmp($booking->getState(), "Finalizado") == 0){ 
 
-                        <a class="text-info"href="<?php echo FRONT_ROOT ?>/booking/review/<?php echo $booking->getToken(); ?>"><b>Generar reseña</b></a>
+                        $control = true;
 
-                    <?php } else {
+                        foreach ($this->reviewList as $key => $review) { 
+                          
+                            if (strcmp($review->getTokenGuardian(), $booking->getTokenGuardian()) == 0){
+
+                                $control = false;
+                            }
+
+                        } 
+
+                        if ($control) { ?>
+
+                              <a class="text-info"href="<?php echo FRONT_ROOT ?>/booking/review/<?php echo $booking->getToken(); ?>"><b>Generar reseña</b></a>
+
+                          <?php } else {
+
+                             echo "Reseña realizada.";
+
+                          }                       
+
+                        } else {
 
                         echo "No disponible.";
 

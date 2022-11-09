@@ -5,11 +5,13 @@
     use \Exception as Exception;
 
     use Models\Booking as Booking;
+    use Models\Review as Review;
 
     class BookingDAO implements IDAO{
         
         private $connection;
         private $tableName = "booking";
+        private $tableName2 = "review";
 
         // Metodo que genera un nuevo usuario de tipo Guardian a la base de datos.
 
@@ -260,6 +262,60 @@
             }
 
             return $bookingList;
+        }
+
+        public function addReviewDAO($tokenGuardian, $score, $observations){
+
+            try {
+
+                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, score, observations) VALUES (:tokenGuardian, :score, :observations);";
+
+                $parameters["tokenGuardian"] = $tokenGuardian;
+                $parameters["score"]         = $score;
+                $parameters["observations"]  = $observations;
+
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+            } catch (Exception $e){
+
+                echo ($e->getMessage());
+                exit();
+            }  
+
+            return true;
+        }
+
+        public function getAllReviewDAO(){
+
+            $reviewList = array();
+
+            try {
+
+                $query = "SELECT * FROM ".$this->tableName2.";";
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+
+                foreach ($resultSet as $key => $value) {
+
+                    $review = new Review();
+
+                    $review->setTokenGuardian($value["tokenGuardian"]);
+                    $review->setScore($value["score"]);
+                    $review->setDate($value["date"]);
+                    $review->setObservations($value["observations"]);  
+
+                    array_push($reviewList, $review);
+                }
+
+            } catch (Exception $e) {
+
+                echo ($e->getMessage());
+                exit();
+            }
+
+            return $reviewList;            
         }
 
     } ?>

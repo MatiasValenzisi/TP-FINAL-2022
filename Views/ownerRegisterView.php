@@ -94,6 +94,8 @@ label {
             <div>
                 <h2 class="title">Registrarse como dueño</h2>
             </div>
+
+
             <div class="row sideways">
                 <div class="col-md-12 col-xs-12">
                     <label class="form-label" for="typeUser">Tipo de usuario:</label>

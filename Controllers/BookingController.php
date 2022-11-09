@@ -38,6 +38,11 @@
         private $payment;
         private $paymentDAO;
 
+        private $score;
+        private $date;
+        private $observations;
+        private $tokenGuardian;
+
         public function __construct(){
 
             $this->bookingList   = array();
@@ -63,6 +68,11 @@
             $this->paymentList   = array();            
             $this->payment       = null;
             $this->paymentDAO    = new PaymentDAO();
+
+            $this->score         = null;
+            $this->date          = null;
+            $this->observations  = null;
+            $this->tokenGuardian = null;
         }
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
@@ -467,6 +477,17 @@
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";
             require_once ROOT_VIEWS."/paymentBookingView.php";  
+            require_once ROOT_VIEWS."/notificationAlert.php";      
+            require_once ROOT_VIEWS."/mainFooter.php";             
+       
+        }
+
+        public function rating()
+        {
+            $this->guardian = $this->guardianDAO->getUserTokenDAO(873501);
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/reviewBookingView.php";  
             require_once ROOT_VIEWS."/notificationAlert.php";      
             require_once ROOT_VIEWS."/mainFooter.php";             
        

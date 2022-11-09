@@ -82,6 +82,60 @@
         height: 150px;
         border-radius: 50%;
     }
+
+    .contact-form {
+
+        margin-top: 10%;
+        margin-bottom: 5%;
+        width: 70%;
+        background-color: #1b2a3a;
+        color: white;
+
+    }
+
+
+    .contact-image {
+        background-color: #1b2a3a;
+        text-align: center;
+    }
+
+    .contact-image img {
+        border-radius: 6rem;
+        width: 11%;
+        margin-top: -3%;
+        transform: rotate(29deg);
+    }
+
+    .contact-form form {
+        padding: 14%;
+    }
+
+    .contact-form form .row {
+        margin-bottom: -7%;
+    }
+
+    .contact-form h3 {
+        margin-bottom: 8%;
+        margin-top: -10%;
+        text-align: center;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: 800;
+    }
+
+    .contact-form .btnContact {
+        margin-top: 34px;
+        line-height: 50px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .row {
+        margin-top: 64px;
+
+
+    }
     </style>
 </head>
 
@@ -128,7 +182,47 @@
 
 
         <h4 class="title">Contactanos!</h4>
-        <p>insertar form aqui</p>
+        <div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+            </div>
+            <form method="post">
+                <h3>Drop Us a Message</h3>
+
+                <div class="row sideways">
+                    <div class="col-md-6 col-xs-12">
+                        <label class="form-label" for="email">Correo electrónico:</label>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" name="email"
+                            required />
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <label class="form-label" for="password">Contraseña:</label>
+                        <input type="password" class="form-control" placeholder="Contraseña" name="password" required />
+                    </div>
+                </div>
+
+                <div class="row sideways">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="form_message">Message *</label>
+                            <textarea id="form_message" name="message" class="form-control"
+                                placeholder="Write your message here." rows="4" required="required"
+                                data-error="Please, leave us a message."></textarea>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-12 col-xs-12">
+
+                        <input type="submit" class="btn btn-success btn-send  btnContact btn-block
+                            " value="Send Message">
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

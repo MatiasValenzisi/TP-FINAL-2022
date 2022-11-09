@@ -240,7 +240,7 @@
             $startDate      = date("Y-m-d", strtotime($startDate));
             $endDate        = date("Y-m-d", strtotime($endDate));            
 
-            $this->booking = new Booking ($token, $tokenPet, $startDate, $endDate, $priceTotal, 'Pendiente', null, null, $tokenGuardian, $_SESSION['userPH']->getToken());
+            $this->booking = new Booking ($token, $tokenPet, $startDate, $endDate, $priceTotal, 'Pendiente', $tokenGuardian, $_SESSION['userPH']->getToken());
 
             $this->bookingDAO->addDAO($this->booking);
 
@@ -278,15 +278,15 @@
 
             if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){
+                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
 
-                    $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
 
-                    $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());                    
+                $this->loadPetList();  
 
-                    $this->loadPetList();  
+                $this->pet = $this->petController->getPetToken($this->booking->getTokenPet()); 
 
-                    $this->pet = $this->petController->getPetToken($this->booking->getTokenPet());   
+                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){                    
 
                     $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
 
@@ -346,13 +346,34 @@
                     $amount        = $this->booking->getPrice() / 2;
                     $dateGenerated = date("Y-m-d");
 
-                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, null, "Cupón de pago");
-                    $this->paymentDAO->addDAO($this->payment);           
+                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, "Cupón de pago");
+                    $this->paymentDAO->addDAO($this->payment);  
+                          
                 }
 
                 $this->bookingDAO->updateState($bookingToken, $action);
 
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                           
+                if (strcmp($action, "Rechazado") == 0 || strcmp($action, "Aceptado") == 0){
+
+                    $nameGuardian = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
+
+                    $subject = "Solicitud de reserva con el guardian ".$nameGuardian." ha sido: ".$action;
+
+                    $email = $this->guardian->getUserName();
+
+                    $date = "desde el ".$this->booking->getDateStart()." al ".$this->booking->getDateEnd();
+
+                    $body = "Solicitud de reserva con el guardian ".$nameGuardian." con fecha ".$date." ha sido: ".$action."<br>";
+
+                    if (strcmp($action,"Aceptado") == 0){
+
+                        $body.= "Se ha cargado ya un cupón de pagó para la reserva.";
+                    }
+
+                    require_once ROOT_LIBRARY."/PHPMailer/index.php"; 
+                }
+
+                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                                                         
 
             } else {
 
@@ -382,6 +403,10 @@
             require_once ROOT_VIEWS."/mainNav.php";  
             require_once ROOT_VIEWS."/bookingHistoryListView.php";   
             require_once ROOT_VIEWS."/mainFooter.php";
+        }
+
+        public function review(){
+            echo "Generar review...";
         }
 
         /* Carga la lista de mascotas con todas las disponibles */
@@ -470,49 +495,5 @@
             }     
             return $key; 
         }
-
-
-        public function payment()
-        {
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/paymentBookingView.php";  
-            require_once ROOT_VIEWS."/notificationAlert.php";      
-            require_once ROOT_VIEWS."/mainFooter.php";             
-       
-        }
-
-        public function rating()
-        {
-            $this->guardian = $this->guardianDAO->getUserTokenDAO(873501);
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/reviewBookingView.php";  
-            require_once ROOT_VIEWS."/notificationAlert.php";      
-            require_once ROOT_VIEWS."/mainFooter.php";             
-       
-        }
-        //* Muestra los pagos pendientes
-        /*
-        public function pendientPayment() {
-
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
-
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
-
-                foreach($this->bookingList as $booking) {
-                    
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
-
-                    if($this->payment )
-                    
-                }
-
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-
-            
-            }
-
-        }*/
     }
 ?>

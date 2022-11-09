@@ -15,14 +15,13 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenBooking, amount, dateGenerated, dateIssued, paymentMethod, type) VALUES (:token, :tokenBooking, :amount, :dateGenerated, :dateIssued, :paymentMethod, :type);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenBooking, amount, dateGenerated, dateIssued, type) VALUES (:token, :tokenBooking, :amount, :dateGenerated, :dateIssued, :type);";
 
                 $parameters["token"]         = $value->getToken();
                 $parameters["tokenBooking"]  = $value->getTokenBooking();
                 $parameters["amount"]        = $value->getAmount();
                 $parameters["dateGenerated"] = $value->getDateGenerated();
                 $parameters["dateIssued"]    = $value->getDateIssued();
-                $parameters["paymentMethod"] = $value->getPaymentMethod();
                 $parameters["type"]          = $value->getType();
 
                 $this->connection = Connection::GetInstance();
@@ -57,7 +56,6 @@
                     $payment->setAmount($value["amount"]);
                     $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
-                    $payment->setPaymentMethod($value['paymentMethod']);
                     $payment->setType($value["type"]);
 
                     array_push($paymentList, $payment);
@@ -74,15 +72,14 @@
 
         }
 
-        public function updateDAO($value){
+        public function updateDAO($token, $dateIssued){
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET dateIssued = :dateIssued, paymentMethod = :paymentMethod 
-                WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET dateIssued = :dateIssued
+                WHERE ".$this->tableName.".token ='".$token."';";
 
-                $parameters["dateIssued"]    = $value->getDateIssued();
-                $parameters["paymentMethod"] = $value->getPaymentMethod();
+                $parameters["dateIssued"] = $dateIssued;
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -116,7 +113,6 @@
                     $payment->setAmount($value["amount"]);
                     $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
-                    $payment->setPaymentMethod($value['paymentMethod']);
                     $payment->setType($value["type"]);
 
                 }
@@ -150,7 +146,6 @@
                     $payment->setAmount($value["amount"]);
                     $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
-                    $payment->setPaymentMethod($value['paymentMethod']);
                     $payment->setType($value["type"]);
 
                 }

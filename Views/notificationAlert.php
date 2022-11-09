@@ -243,6 +243,15 @@
                         }
 
                     break;
+
+                    case 'pay':
+                        
+                        if (strcmp($specific, 'date') == 0){
+
+                             echo "<script>sweet('Error al realizar el pago!','La tarjeta de credito utilizada se encuentra vencida.','error')</script>";
+                        }
+
+                    break;
                 }
 
             break;

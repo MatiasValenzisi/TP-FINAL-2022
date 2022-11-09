@@ -71,7 +71,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function createPet($typePet, $name, $race, $size, $weight, $vaccinationPlan = null, $photo = null, $video = null, $observations = ''){
+        public function createPet($typePet, $name, $race, $size, $weight, $observations = '', $vaccinationPlan = null, $photo = null, $video = null){
                         
             $ownerToken = $_SESSION['userPH']->getToken();
 

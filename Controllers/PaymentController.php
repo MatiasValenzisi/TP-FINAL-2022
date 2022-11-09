@@ -1,12 +1,16 @@
 <?php namespace Controllers;
-
+    
     use Models\Booking as Booking;
     use Models\Payment as Payment;
 
     use DAO\BookingDAO as BookingDAO;
+    use DAO\CatDAO as CatDAO;
+    use DAO\DogDAO as DogDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\PaymentDAO as PaymentDAO;
+
+    use Controllers\PetController as PetController;
 
     class PaymentController {
 
@@ -26,6 +30,11 @@
         private $payment;
         private $paymentDAO;
 
+        private $petList;
+        private $catDAO;
+        private $dogDAO;
+        private $petController;
+
         public function __construct(){
 
             $this->bookingList   = array();
@@ -44,65 +53,89 @@
             $this->paymentList   = array();            
             $this->payment       = null;
             $this->paymentDAO    = new PaymentDAO();
+
+            $this->petList       = array();       
+            $this->catDAO        = new CatDAO();
+            $this->dogDAO        = new DogDAO();
+            $this->petController = new PetController();
         }
-
-
         
-        public function list($paymentState = null) {
+        public function list($paymentState) {
             
-            require_once ROOT_VIEWS."/mainHeader.php";  
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
 
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
-                
-                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
-                
-                foreach($this->bookingList as $booking) {
-                    
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
+            $paymentListAux     = $this->paymentDAO->getAllDAO();
 
-                    if(strcmp($paymentState, "pendiente") == 0) {
+            $this->bookingList  = $this->bookingDAO->getAllDAO();
+            $this->guardianList = $this->guardianDAO->getAllDAO();
+            $this->ownerList    = $this->ownerDAO->getAllDAO();
 
-                        if($this->payment->getDateIssued() == null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
+            $dogList            = $this->dogDAO->getAllDAO();
+            $catList            = $this->catDAO->getAllDAO();
 
-                    } else if(strcmp($paymentState, "pagado") == 0){
+            if (!empty($dogList)){
 
-                        if($this->payment->getDateIssued() != null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-                    }
-                                   
-                }
+                $this->petList = array_merge($this->petList, $dogList);
+            } 
 
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+            if (!empty($catList)){
 
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
-            
-                foreach($this->bookingList as $booking) {
-
-                    $this->payment = $this->paymentDAO->getPaymentByBookingTokenDAO($booking->getToken());
-
-                    if(strcmp($paymentState, "pendiente") == 0) {
-
-                        if($this->payment->getDateIssued() == null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-
-                    } else if(strcmp($paymentState, "pagado") == 0){
-
-                        if($this->payment->getDateIssued() != null) {
-                            array_push($this->paymentList, $this->payment);
-                        }  
-                    }
-                }
+                $this->petList = array_merge($this->petList, $catList);
             }
 
-            require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/paymentView.php";
-            require_once ROOT_VIEWS."/mainFooter.php";
+            foreach ($paymentListAux as $key => $payment) {
+                    
+                if(strcmp($paymentState, "pendient") == 0 && is_null($payment->getDateIssued())) {
 
+                    array_push($this->paymentList, $payment);
+
+                } else if(strcmp($paymentState, "paid") == 0 && !is_null($payment->getDateIssued())) { 
+
+                    array_push($this->paymentList, $payment);
+                } 
+            }
+
+            if(strcmp($paymentState, "pendient") == 0) {
+
+                require_once ROOT_VIEWS."/paymentListPendientView.php";
+
+            } else if (strcmp($paymentState, "paid") == 0){
+
+                require_once ROOT_VIEWS."/paymentListPaidView.php";
+            }                
+
+            require_once ROOT_VIEWS."/mainFooter.php";
         }
 
+        public function pay($tokenPayment, $type = null, $action = null, $specific = null){
+
+            $this->payment  = $this->paymentDAO->getPaymentTokenDAO($tokenPayment);
+            $this->booking  = $this->bookingDAO->getTokenDAO($this->payment->getTokenBooking());
+            $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());
+            $this->owner    = $this->ownerDAO->getUserTokenDAO($this->booking->getTokenOwner());
+            $this->pet      = $this->petController->getPetToken($this->booking->getTokenPet());
+
+            require_once ROOT_VIEWS."/mainHeader.php";
+            require_once ROOT_VIEWS."/mainNav.php";
+            require_once ROOT_VIEWS."/paymentBookingView.php";
+            require_once ROOT_VIEWS."/notificationAlert.php";
+            require_once ROOT_VIEWS."/mainFooter.php";
+        }
+
+        public function payAction($tokenPayment, $expireDate){
+            
+            $dateNow = date("Y-m-d");
+
+            if ($expireDate > $dateNow){
+
+                $this->paymentDAO->updateDAO($tokenPayment, $dateNow);
+                header("Location: ".FRONT_ROOT."/payment/list/paid");
+
+            } else {
+
+                header("Location: ".FRONT_ROOT."/payment/pay/".$tokenPayment."/error/pay/date");
+            }
+        }
     }
 ?>

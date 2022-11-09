@@ -17,7 +17,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenPet, dateStart, dateEnd, price, state, couponPayment, remainingPayment, tokenGuardian, tokenOwner, acceptanceDate) VALUES (:token, :tokenPet, :dateStart, :dateEnd, :price, :state, :couponPayment, :remainingPayment, :tokenGuardian, :tokenOwner, :acceptanceDate);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenPet, dateStart, dateEnd, price, state, tokenGuardian, tokenOwner) VALUES (:token, :tokenPet, :dateStart, :dateEnd, :price, :state, :tokenGuardian, :tokenOwner);";
 
                 $parameters["token"]            = $value->getToken();
                 $parameters["tokenPet"]         = $value->getTokenPet();
@@ -25,11 +25,8 @@
                 $parameters["dateEnd"]          = $value->getDateEnd();
                 $parameters["price"]            = $value->getPrice();
                 $parameters["state"]            = $value->getState();
-                $parameters["couponPayment"]    = $value->getCouponPayment();
-                $parameters["remainingPayment"] = $value->getRemainingPayment();
                 $parameters["tokenGuardian"]    = $value->getTokenGuardian();
                 $parameters["tokenOwner"]       = $value->getTokenOwner();
-                $parameters["acceptanceDate"]   = $value->getAcceptanceDate();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -66,11 +63,8 @@
                     $booking->setDateEnd($value["dateEnd"]);
                     $booking->setPrice($value["price"]);
                     $booking->setState($value['state']);
-                    $booking->setCouponPayment($value["couponPayment"]);
-                    $booking->setRemainingPayment($value["remainingPayment"]);
                     $booking->setTokenGuardian($value["tokenGuardian"]);
                     $booking->setTokenOwner($value["tokenOwner"]);
-                    $booking->setAcceptanceDate($value["acceptanceDate"]);
 
                     array_push($bookingList, $booking);
                 }
@@ -106,11 +100,8 @@
                     $booking->setDateEnd($value["dateEnd"]);
                     $booking->setPrice($value["price"]);
                     $booking->setState($value['state']);
-                    $booking->setCouponPayment($value["couponPayment"]);
-                    $booking->setRemainingPayment($value["remainingPayment"]);
                     $booking->setTokenGuardian($value["tokenGuardian"]);
                     $booking->setTokenOwner($value["tokenOwner"]);
-                    $booking->setAcceptanceDate($value["acceptanceDate"]);
 
                     array_push($bookingList, $booking);
                 }
@@ -145,11 +136,8 @@
                     $booking->setDateEnd($value["dateEnd"]);
                     $booking->setPrice($value["price"]);
                     $booking->setState($value['state']);
-                    $booking->setCouponPayment($value["couponPayment"]);
-                    $booking->setRemainingPayment($value["remainingPayment"]);
                     $booking->setTokenGuardian($value["tokenGuardian"]);
                     $booking->setTokenOwner($value["tokenOwner"]);
-                    $booking->setAcceptanceDate($value["acceptanceDate"]);
 
                     array_push($bookingList, $booking);
                 }
@@ -184,12 +172,8 @@
                     $booking->setDateEnd($value["dateEnd"]);
                     $booking->setPrice($value["price"]);
                     $booking->setState($value['state']);
-                    $booking->setCouponPayment($value["couponPayment"]);
-                    $booking->setRemainingPayment($value["remainingPayment"]);
                     $booking->setTokenGuardian($value["tokenGuardian"]);
                     $booking->setTokenOwner($value["tokenOwner"]);
-                    $booking->setAcceptanceDate($value["acceptanceDate"]);
-
                 }
 
             } catch (Exception $e) {
@@ -263,11 +247,8 @@
                     $booking->setDateEnd($value["dateEnd"]);
                     $booking->setPrice($value["price"]);
                     $booking->setState($value['state']);
-                    $booking->setCouponPayment($value["couponPayment"]);
-                    $booking->setRemainingPayment($value["remainingPayment"]);
                     $booking->setTokenGuardian($value["tokenGuardian"]);
                     $booking->setTokenOwner($value["tokenOwner"]);
-                    $booking->setAcceptanceDate($value["acceptanceDate"]);
 
                     array_push($bookingList, $booking);
                 }

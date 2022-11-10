@@ -101,9 +101,43 @@
             require_once ROOT_VIEWS."/loginFooter.php";
         }
 
-        /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
+        public function createUserOwner($typeUser, $email, $password, $firstName, $lastName, $dni, $birthDate){
 
-        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate=null, $experience = null, $petSize=null, $servicePrice = null){
+            $token          = $this->userController->createToken($this->userController->getTokenUserList());
+            $firstName      = $this->userController->textNameFormat($firstName);
+            $lastName       = $this->userController->textNameFormat($lastName);
+            $dischargeDate  = date("Y-m-d");
+            $downDate       = null;
+
+            if($this->userController->checkPassword($password)){
+    
+                if($this->userController->controllerDNI($dni, $typeUser)){
+
+                    if($this->userController->birthDateCheck($birthDate)){
+                            
+                        $newOwner = new Owner($token, $email, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
+                            
+                        $this->userController->getOwnerDAO()->addDAO($newOwner);
+
+                        header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
+
+                    } else {
+
+                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
+                    }
+
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
+                }
+                
+            } else {
+
+                header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
+            }
+        } 
+
+        public function createUserGuardian($typeUser, $petSize, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience, $servicePrice){
 
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
             $firstName      = $this->userController->textNameFormat($firstName);
@@ -111,79 +145,40 @@
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
-            var_dump($dni);
-            if(strcmp($typeUser, "guardian") == 0) { 
-
-                if($this->userController->checkPassword($password)){
+            if($this->userController->checkPassword($password)){
                     
-                    if(is_null($this->userController->getUserName($email))){
+                if(is_null($this->userController->getUserName($email))){
                        
-                        if($this->userController->controllerDNI($dni, $typeUser)){
-
-                            if($this->userController->birthDateCheck($birthDate)){
-    
-                                $newGuardian = new Guardian(
-                                    $token, $email, $password, null, $downDate, $firstName,
-                                    $lastName, $birthDate, $dni, null, $experience, $petSize, $servicePrice
-                                );
-                                
-                                $this->userController->getGuardianDAO()->addDAO($newGuardian);
-        
-                                header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
-    
-                            } else {
-    
-                                header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
-                            }
-                            
-                        } else {
-    
-                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
-                        }
-                    } else {
-
-                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/email");
-                    }
-    
-                } else {
-
-                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
-                }
-    
-            } else {
-    
-                if($this->userController->checkPassword($password)){
-    
                     if($this->userController->controllerDNI($dni, $typeUser)){
 
                         if($this->userController->birthDateCheck($birthDate)){
-                            
-                            $newOwner = new Owner(
-                                $token, $email, $password, $dischargeDate, $downDate, $firstName,
-                                $lastName, $birthDate, $dni
-                            );
-                            
-                            $this->userController->getOwnerDAO()->addDAO($newOwner);
-
-                            header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
-
+    
+                            $newGuardian = new Guardian($token, $email, $password, null, $downDate, $firstName, $lastName, $birthDate, $dni, null, $experience, $petSize, $servicePrice);
+                                
+                            $this->userController->getGuardianDAO()->addDAO($newGuardian);
+        
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
+    
                         } else {
-
-                            header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
+    
+                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
                         }
-
+                            
                     } else {
-
-                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
+    
+                         header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                     }
-                
+
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
+                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/email");
                 }
+    
+            } else {
+
+                header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
             }
         }
-
 
         /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
 

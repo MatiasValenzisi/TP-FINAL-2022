@@ -96,7 +96,7 @@
                 
                 if (strcmp($user->getDni(), $dni) == 0) {
                     
-                    $controllerDNI = false;
+                    $controllerDNI = false;;
                 }
             }
 

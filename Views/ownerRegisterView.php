@@ -83,18 +83,12 @@ label {
 }
 </style>
 
-
-<body>
-
-
-    <form action="<?php echo FRONT_ROOT?>/sign/createUser" method="POST">
-        <input type="hidden" name="typeUser" value="owner">
+    <form action="<?php echo FRONT_ROOT?>/sign/createUserOwner" method="POST">
 
         <div class="container-fluid" style="width:70%; height:50%;">
             <div>
                 <h2 class="title">Registrarse como dueño</h2>
             </div>
-
 
             <div class="row sideways">
                 <div class="col-md-12 col-xs-12">

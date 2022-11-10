@@ -19,7 +19,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenPet, dateStart, dateEnd, price, state, tokenGuardian, tokenOwner) VALUES (:token, :tokenPet, :dateStart, :dateEnd, :price, :state, :tokenGuardian, :tokenOwner);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenPet, dateStart, dateEnd, price, state, tokenGuardian, tokenOwner) VALUES (:token, :tokenPet, :dateStart, :dateEnd, :price, :state, :tokenGuardian, :tokenOwner)";
 
                 $parameters["token"]            = $value->getToken();
                 $parameters["tokenPet"]         = $value->getTokenPet();
@@ -50,7 +50,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -81,16 +81,18 @@
 
         }
 
-        public function getAllGuardianDAO($token = null){
+        public function getAllGuardianDAO($token){
 
             $bookingList = array();
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
                 
                 foreach ($resultSet as $key => $value) {
                  
@@ -117,16 +119,18 @@
             return $bookingList;
         }
         
-        public function getAllOwnerDAO($token = null){
+        public function getAllOwnerDAO($token){
 
             $bookingList = array();
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenOwner = '".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenOwner = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
                 
                 foreach ($resultSet as $key => $value) {
                  
@@ -159,10 +163,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = '".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
 
                 foreach ($resultSet as $key => $value) {
 
@@ -193,10 +199,12 @@
 
             try {
 
-                $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = '".$value."';";
+                $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
                 
+                $parameters["token"] = $token;
+
                 $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
+                $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch(Exception $e){
 
@@ -207,13 +215,14 @@
             return true;
         }
 
-        public function updateState($bookingToken, $action){
+        public function updateState($token, $state){
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET state = :state WHERE ".$this->tableName.".token ='".$bookingToken."';";
+                $query = "UPDATE ".$this->tableName." SET state = :state WHERE ".$this->tableName.".token = :token";
 
-                $parameters["state"] = $action;          
+                $parameters["state"] = $state;   
+                $parameters["token"] = $token;          
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -225,8 +234,7 @@
             }
 
                 return true;                    
-        }
-        
+        }        
 
         public function getAllGuardianActiveDAO($token, $dateStart, $dateEnd){
 
@@ -234,10 +242,14 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = '".$token."' AND B.state = 'Aceptado' AND B.dateEnd > '".$dateStart."' AND B.dateStart < '".$dateEnd."';" ;
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token AND B.state = 'Aceptado' AND B.dateEnd > :dateStart AND B.dateStart < $dateEnd";
+
+                $parameters["token"]      = $token;
+                $parameters["dateStart"]  = $dateStart;
+                $parameters["dateEnd"]    = $dateEnd;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
                 
                 foreach ($resultSet as $key => $value) {
                  
@@ -292,7 +304,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName2.";";
+                $query = "SELECT * FROM ".$this->tableName2;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);

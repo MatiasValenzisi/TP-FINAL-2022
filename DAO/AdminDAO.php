@@ -17,7 +17,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture);";
+                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture)";
 
                 $parameters["userName"]       = $value->getUserName();
                 $parameters["token"]          = $value->getToken();
@@ -48,7 +48,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -69,7 +69,6 @@
                     $admin->setDownDate($value["downDate"]);
 
                     array_push($adminList, $admin);
-
                 }
 
             } catch (Exception $e){
@@ -89,8 +88,9 @@
             try {
 
                 $query = "UPDATE ".$this->tableName." SET password = :password, firstName = :firstName, lastName = :lastName, birthDate = :birthDate, dni = :dni, profilePicture = :profilePicture, dischargeDate = :dischargeDate, downDate = :downDate 
-                WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                WHERE ".$this->tableName.".token = :token";
 
+                $parameters["token"]          = $value->getToken();
                 $parameters["password"]       = $value->getPassword();
                 $parameters["firstName"]      = $value->getFirstName();
                 $parameters["lastName"]       = $value->getLastName();
@@ -120,10 +120,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName ='".$username."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName = :userName";
+
+                $parameters["userName"] = $username;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  
@@ -158,10 +160,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token ='".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  

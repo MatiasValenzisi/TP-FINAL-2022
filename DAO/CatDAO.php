@@ -18,7 +18,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan,photo,video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan,:photo,:video);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan,photo,video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan,:photo,:video)";
 
                 $parameters["token"]           = $value->getToken();
                 $parameters["tokenOwner"]      = $value->getTokenOwner();
@@ -52,7 +52,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -91,10 +91,12 @@
 
             try {
                 
-                $query = "SELECT * FROM ".$this->tableName." AS C WHERE C.tokenOwner = ".$token.";";
+                $query = "SELECT * FROM ".$this->tableName." AS C WHERE C.tokenOwner = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
                 
                 foreach ($resultSet as $key => $value) {
                  
@@ -128,8 +130,7 @@
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET name = :name, race= :race, size= :size, weight= :weight, observations = :observations, vaccinationPlan = :vaccinationPlan, photo = :photo, video= :video
-                WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET name = :name, race= :race, size= :size, weight= :weight, observations = :observations, vaccinationPlan = :vaccinationPlan, photo = :photo, video= :video WHERE ".$this->tableName.".token = :token";
 
                 $parameters["token"]           = $value->getToken();
                 $parameters["tokenOwner"]      = $value->getTokenOwner();
@@ -163,10 +164,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token ='".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  
@@ -199,7 +202,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'cat';";
+                $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'cat'";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  

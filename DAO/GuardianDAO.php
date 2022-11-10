@@ -18,7 +18,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience, petSize, servicePrice) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience, :petSize, :servicePrice);";
+                $query = "INSERT INTO ".$this->tableName." (userName, token, password, firstName, lastName, birthDate, dni, profilePicture, experience, petSize, servicePrice) VALUES (:userName, :token, :password, :firstName, :lastName, :birthDate, :dni, :profilePicture, :experience, :petSize, :servicePrice)";
 
                 $parameters["userName"]       = $value->getUserName();
                 $parameters["token"]          = $value->getToken();
@@ -52,7 +52,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -99,7 +99,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL;";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
@@ -146,7 +146,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL;";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
@@ -296,11 +296,13 @@
             return $pendientList;
         }
 
-        public function confirmGuardianDAO($value) {
+        public function confirmGuardianDAO($token) {
 
             try {
-                $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token ='".$value."';";
 
+                $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token = :token";
+
+                $parameters["token"] = $token;
                 $parameters["dischargeDate"] = date("Y-m-d");
 
                 $this->connection = Connection::GetInstance();
@@ -315,17 +317,18 @@
             return true;
         }
 
-
         // Metodo que elimina un guardian.
 
-        public function deleteDAO($value){ 
+        public function deleteDAO($token){ 
 
             try {
 
-                $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = '".$value."';";
+                $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
                 
+                $parameters["token"] = $token;
+
                 $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
+                $this->connection->ExecuteNonQuery($query, $parameters);
 
             } catch(Exception $e){
 
@@ -342,8 +345,9 @@
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, petSize = :petSize, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token ='".$value->getToken()."';";
+                $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, petSize = :petSize, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token = :token";
 
+                $parameters["token"]            = $value->getToken();
                 $parameters["password"]         = $value->getPassword();
                 $parameters["profilePicture"]   = $value->getProfilePicture();
                 $parameters["experience"]       = $value->getExperience();
@@ -382,10 +386,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName ='".$username."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName = :userName";
+
+                $parameters["userName"] = $username;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  
@@ -431,10 +437,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token ='".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  
@@ -479,10 +487,12 @@
 
             try {
 
-                $query = "SELECT GD.dayName FROM ".$this->tableName2." AS GD WHERE GD.tokenGuardian = '".$token."'";
+                $query = "SELECT GD.dayName FROM ".$this->tableName2." AS GD WHERE GD.tokenGuardian = :token";
+
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query, $parameters);
 
                 if (!empty($resultSet)){
 
@@ -509,10 +519,12 @@
 
                 // Eliminar dias asignados anteriormente al token del guardian en guardian_x_day.
 
-                $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = '".$tokenGuardian."';";
+                $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = :tokenGuardian";
                 
+                $parameters["tokenGuardian"];
+
                 $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
+                $this->connection->ExecuteNonQuery($query, $parameters);
 
                 // Asignar dias al token del guardian en guardian_x_day.
 
@@ -534,7 +546,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, dayName) VALUES (:tokenGuardian, :dayName);";
+                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, dayName) VALUES (:tokenGuardian, :dayName)";
 
                 $parameters["tokenGuardian"]  = $tokenGuardian;
                 $parameters["dayName"]        = $dayName;

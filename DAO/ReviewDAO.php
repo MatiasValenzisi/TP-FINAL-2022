@@ -16,7 +16,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (score, date, observations, tokenGuardian) VALUES (:score, :date, :observations, :tokenGuardian);";
+                $query = "INSERT INTO ".$this->tableName." (score, date, observations, tokenGuardian) VALUES (:score, :date, :observations, :tokenGuardian)";
 
                 $parameters["score"]         = $value->getScore();
                 $parameters["date"]          = $value->getDate();
@@ -41,7 +41,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -73,10 +73,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenGuardian = '".$tokenGuardian."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenGuardian = :tokenGuardian";
+
+                $parameters["tokenGuardian"] = $tokenGuardian;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  

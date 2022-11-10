@@ -15,7 +15,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenBooking, amount, dateGenerated, dateIssued, type) VALUES (:token, :tokenBooking, :amount, :dateGenerated, :dateIssued, :type);";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenBooking, amount, dateGenerated, dateIssued, type) VALUES (:token, :tokenBooking, :amount, :dateGenerated, :dateIssued, :type)";
 
                 $parameters["token"]         = $value->getToken();
                 $parameters["tokenBooking"]  = $value->getTokenBooking();
@@ -42,7 +42,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName.";";
+                $query = "SELECT * FROM ".$this->tableName;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
@@ -69,16 +69,15 @@
             }
 
             return $paymentList;
-
         }
 
         public function updateDAO($token, $dateIssued){
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET dateIssued = :dateIssued
-                WHERE ".$this->tableName.".token ='".$token."';";
+                $query = "UPDATE ".$this->tableName." SET dateIssued = :dateIssued WHERE ".$this->tableName.".token = :token";
 
+                $parameters["token"]      = $token;
                 $parameters["dateIssued"] = $dateIssued;
 
                 $this->connection = Connection::GetInstance();
@@ -99,10 +98,12 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token ='".$token."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
+
+                $parameters["token"]  = $token;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  
@@ -126,16 +127,18 @@
             return $payment;
         }   
 
-        public function getPaymentByBookingTokenDAO($bookingToken){
+        public function getPaymentByBookingTokenDAO($tokenBooking){
 
             $payment = null;
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenBooking ='".$bookingToken."';";
+                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenBooking = :tokenBooking";
+
+                $parameters["tokenBooking"] = $tokenBooking;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
+                $resultSet = $this->connection->Execute($query, $parameters);  
 
                 foreach ($resultSet as $key => $value) {
                  

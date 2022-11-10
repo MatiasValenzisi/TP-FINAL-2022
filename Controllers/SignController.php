@@ -103,7 +103,7 @@
 
         /* Metodo que realiza la accion de guardar un nuevo usuario si es posible en la bdd o json */
 
-        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience = null, $petSize, $servicePrice = null){
+        public function createUser($typeUser = null, $email, $password, $firstName, $lastName, $dni, $birthDate=null, $experience = null, $petSize=null, $servicePrice = null){
 
             $token          = $this->userController->createToken($this->userController->getTokenUserList());
             $firstName      = $this->userController->textNameFormat($firstName);
@@ -111,6 +111,7 @@
             $dischargeDate  = date("Y-m-d");
             $downDate       = null;
  
+            var_dump($dni);
             if(strcmp($typeUser, "guardian") == 0) { 
 
                 if($this->userController->checkPassword($password)){

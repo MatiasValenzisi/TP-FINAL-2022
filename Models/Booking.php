@@ -12,6 +12,7 @@ use Controllers\UserController;
         private $state;            // Estado de la reserva.
         private $tokenGuardian;    // Token del guardian asignado a la reserva.
         private $tokenOwner;       // Token del dueño que solicito la reserva.
+ 
 
         public function __construct($token = null, $tokenPet = null, $dateStart = null, $dateEnd = null, $price = null, $state = null, $tokenGuardian = null, $tokenOwner = null){
 
@@ -21,11 +22,11 @@ use Controllers\UserController;
             $this->dateEnd           = $dateEnd;
             $this->price             = $price;
             $this->state             = $state;
-            $this->couponPayment     = $couponPayment;
-            $this->remainingPayment  = $remainingPayment;
+            //$this->couponPayment     = $couponPayment;
+            //$this->remainingPayment  = $remainingPayment;
             $this->tokenGuardian     = $tokenGuardian;
             $this->tokenOwner        = $tokenOwner;
-            $this->acceptanceDate    = $acceptanceDate;
+            //$this->acceptanceDate    = $acceptanceDate;
         }  
 
         public function getToken() { 

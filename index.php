@@ -9,6 +9,8 @@
 	use Config\Autoload as Autoload;
 	use Config\Router as Router;
 	use Config\Request as Request;
+
+	use \Exception as Exception;
 	
 	use Controllers\SignController as SignController;
 	

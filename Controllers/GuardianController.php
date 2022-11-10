@@ -97,74 +97,82 @@
         // Muestra un listado de guardianes.
 
         public function list($dateType = null, $data = null){
-          
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
 
-            if(strcmp($dateType, "downdate") == 0) { 
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
 
-                $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
+                if(strcmp($dateType, "downdate") == 0) { 
 
-                require_once ROOT_VIEWS."/guardianListDowndateView.php";
+                    try {
 
-            } else if(strcmp($dateType, "pendient") == 0) {
+                        $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
 
-                $this->guardianList = $this->guardianDAO->getAllPendientDateDAO();
+                    } catch (Exception $e) {
 
-                require_once ROOT_VIEWS."/guardianListPendientView.php";
+                        echo 'algo';
+                        //exit();
+                    } 
 
-            } else {                
+                    require_once ROOT_VIEWS."/guardianListDowndateView.php";
 
-                if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){
+                } else if(strcmp($dateType, "pendient") == 0) {
 
-                    $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
+                    $this->guardianList = $this->guardianDAO->getAllPendientDateDAO();
 
-                    require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
+                    require_once ROOT_VIEWS."/guardianListPendientView.php";
 
-                } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+                } else {                
 
-                    $type     = null;
-                    $action   = null;
-                    $specific = null;
+                    if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){
 
-                    $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
+                        $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
 
-                    if (strcmp($dateType, "price") == 0 && !is_null($data)){
+                        require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
 
-                        $this->guardianList = $this->filterPrice($this->guardianList, $data);     
+                    } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                    } else if (strcmp($dateType, "rating") == 0 && !is_null($data)){
+                        $type     = null;
+                        $action   = null;
+                        $specific = null;
 
-                        $this->guardianList = $this->filterRating($this->guardianList, $data);       
+                        $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
 
-                    } else if (strcmp($dateType, "date") == 0 && !is_null($data)){     
+                        if (strcmp($dateType, "price") == 0 && !is_null($data)){
 
-                        $dataNew = explode(" - ", $data);
+                            $this->guardianList = $this->filterPrice($this->guardianList, $data);     
 
-                        $startDate = date("m/d/Y", strtotime($dataNew["0"]));
-                        $startDate = date("Y-m-d", strtotime($startDate));
+                        } else if (strcmp($dateType, "rating") == 0 && !is_null($data)){
 
-                        $endDate = date("m/d/Y", strtotime($dataNew["1"]));
-                        $endDate = date("Y-m-d", strtotime($endDate));
+                            $this->guardianList = $this->filterRating($this->guardianList, $data);       
 
-                        if ($startDate >= date("Y-m-d")){
+                        } else if (strcmp($dateType, "date") == 0 && !is_null($data)){     
 
-                            $this->guardianList = $this->filterDate($this->guardianList, $startDate, $endDate);
+                            $dataNew = explode(" - ", $data);
 
-                        } else {
+                            $startDate = date("m/d/Y", strtotime($dataNew["0"]));
+                            $startDate = date("Y-m-d", strtotime($startDate));
 
-                            $type     = "error";
-                            $action   = "filter";
-                            $specific = "guardian";
-                        }                         
-                    }                      
+                            $endDate = date("m/d/Y", strtotime($dataNew["1"]));
+                            $endDate = date("Y-m-d", strtotime($endDate));
 
-                    require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";
-                    require_once ROOT_VIEWS."/notificationAlert.php";    
-                }            
-            }
-            
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+                            if ($startDate >= date("Y-m-d")){
+
+                                $this->guardianList = $this->filterDate($this->guardianList, $startDate, $endDate);
+
+                            } else {
+
+                                $type     = "error";
+                                $action   = "filter";
+                                $specific = "guardian";
+                            }                         
+                        }                      
+
+                        require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";
+                        require_once ROOT_VIEWS."/notificationAlert.php";    
+                    }            
+                }
+                
+                require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
         // Retorna todos los guardianes con un precio igual o menor al enviado.

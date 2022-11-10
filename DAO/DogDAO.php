@@ -84,7 +84,7 @@
 
         }
 
-        public function getAllByOwnerDAO($tokenOwner) {
+        public function getAllByOwnerDAO($tokenOwner){
 
             $dogList = array();
 

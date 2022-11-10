@@ -86,8 +86,11 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                //throw $e;
+                throw new Exception("Error Processing Request", 1);
+                
+               // echo ($e->getMessage());
+               //  exit();
             }
 
             return $guardianList;
@@ -99,7 +102,7 @@
 
             try {
 
-                $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
+                $query = "SELECFGHFGHFT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
@@ -133,8 +136,12 @@
 
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                //throw new Exception("Error Processing Request", 1);
+                
+                throw $e;
+
+                //echo ($e->getMessage());
+                //exit();
             }
 
             return $guardianList;

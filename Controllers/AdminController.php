@@ -2,6 +2,7 @@
 
     use DAO\AdminDAO as AdminDAO;
     use Models\Admin as Admin; 
+    use \Exception as Exception;
 
     class AdminController {  
 
@@ -20,8 +21,6 @@
             $this->userController = new UserController();
         }
 
-        // Muestra el perfil del admin en sessión.
-
         public function profile($type = null, $action = null, $specific = null){
 
             require_once ROOT_VIEWS."/mainHeader.php";
@@ -33,22 +32,29 @@
 
         public function profileEdit($password){
 
-            $admin = $this->adminDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+            try {
 
-            $admin->setPassword($password);
+                $admin = $this->adminDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            if($this->userController->checkPassword($admin->getPassword())){
+                $admin->setPassword($password);
 
-                $this->adminDAO->updateDAO($admin);
+                if($this->userController->checkPassword($admin->getPassword())){
 
-                $_SESSION['userPH'] = $admin;
+                    $this->adminDAO->updateDAO($admin);
 
-                header("Location: ".FRONT_ROOT."/admin/profile/success/edit/save");
+                    $_SESSION['userPH'] = $admin;
 
-            } else {
+                    header("Location: ".FRONT_ROOT."/admin/profile/success/edit/save");
 
-                header("Location: ".FRONT_ROOT."/admin/profile/error/edit/save");
-            }            
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/admin/profile/error/edit/save");
+                } 
+                
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");                
+            }       
         }
     } 
 ?>

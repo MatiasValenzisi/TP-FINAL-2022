@@ -3,7 +3,6 @@
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
     use \Exception as Exception;
-
     use Models\Payment as Payment;
 
     class PaymentDAO implements IDAO{
@@ -29,18 +28,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        public function getAllDAO(){
-
-            $paymentList = array();
+        public function getAllDAO(){            
 
             try {
+
+                $paymentList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -59,16 +55,14 @@
                     $payment->setType($value["type"]);
 
                     array_push($paymentList, $payment);
-
                 }
+
+                return $paymentList;
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $paymentList;
+                throw $e;
+            }            
         }
 
         public function updateDAO($token, $dateIssued){
@@ -85,18 +79,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        public function getPaymentTokenDAO($token){
-
-            $payment = null;
+        public function getPaymentTokenDAO($token){            
 
             try {
+
+                $payment = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -115,23 +106,22 @@
                     $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
                     $payment->setType($value["type"]);
-
                 }
+
+                return $payment;
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $payment;
+            
         }   
 
-        public function getPaymentByBookingTokenDAO($tokenBooking){
-
-            $payment = null;
+        public function getPaymentByBookingTokenDAO($tokenBooking){            
 
             try {
+
+                $payment = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenBooking = :tokenBooking";
 
@@ -150,16 +140,14 @@
                     $payment->setDateGenerated($value["dateGenerated"]);
                     $payment->setDateIssued($value["dateIssued"]);
                     $payment->setType($value["type"]);
-
                 }
+
+                return $payment;
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $payment;
+                throw $e;
+            }            
         }   
         
     } ?>

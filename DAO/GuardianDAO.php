@@ -3,7 +3,6 @@
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
     use \Exception as Exception;
-
     use Models\Guardian as Guardian;
 
     class GuardianDAO implements IDAO{
@@ -11,8 +10,6 @@
         private $connection;
         private $tableName  = "guardian";
         private $tableName2 = "guardian_x_day";
-
-        // Metodo que genera un nuevo usuario de tipo Guardian a la base de datos.
 
         public function addDAO($value){   
 
@@ -37,20 +34,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
-
-        // Metodo que retorna todos los usuarios Guardian de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
-            $guardianList = array();
-
             try {
+
+                $guardianList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -84,19 +76,19 @@
                     array_push($guardianList, $guardian);
                 }
 
+                return $guardianList;
+
             } catch (Exception $e){
 
                 throw $e;
-            }
-
-            return $guardianList;
+            }            
         }
 
-        public function getAllDownDateDAO() {
-
-            $guardianList = array();
+        public function getAllDownDateDAO(){            
 
             try {
+
+                $guardianList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
 
@@ -130,19 +122,19 @@
                     array_push($guardianList, $guardian);
                 }
 
+                return $guardianList;
+
             } catch (Exception $e) {
             
                 throw $e;
             }
-
-            return $guardianList;
         }
 
-        public function getAllDischargeDateDAO() {
-
-            $dischargeList = array();
+        public function getAllDischargeDateDAO(){
 
             try {
+
+                $dischargeList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL";
 
@@ -176,22 +168,21 @@
                     array_push($dischargeList, $guardian);
                 }
 
+                return $dischargeList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $dischargeList;
         }
 
         // Retorna únicamente los usuarios de tipo guardian que tengan todos sus datos cargados.
 
-        public function getAllDischargeDateCompleteDAO(){
-
-            $dischargeCompleteList = array();
+        public function getAllDischargeDateCompleteDAO(){            
 
             try {
+
+                $dischargeCompleteList = array();
 
                 $query = "SELECT * FROM ".$this->tableName."
 
@@ -238,20 +229,19 @@
                     } 
                 }
 
+                return $dischargeCompleteList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $dischargeCompleteList;
+                throw $e;
+            }            
         }
 
-        public function getAllPendientDateDAO() {
-            
-            $pendientList = array();
+        public function getAllPendientDateDAO(){    
 
             try {
+
+                $pendientList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NULL;";
 
@@ -285,16 +275,15 @@
                     array_push($pendientList, $guardian);
                 }
 
+                return $pendientList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $pendientList;
         }
 
-        public function confirmGuardianDAO($token) {
+        public function confirmGuardianDAO($token){
 
             try {
 
@@ -308,11 +297,8 @@
 
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return true;
         }
 
         // Metodo que elimina un guardian.
@@ -330,11 +316,8 @@
 
             } catch(Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return true;
         }
 
         // Metodo que actualiza un usuario de tipo Guardian en base de datos mediante su token. 
@@ -360,29 +343,23 @@
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
+                if (!is_null($value->getServiceDayList())){
+
+                    $this->updateServiceDayListDAO($value->getToken(), $value->getServiceDayList());
+
+                }  
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            if (!is_null($value->getServiceDayList())){
-
-                $this->updateServiceDayListDAO($value->getToken(), $value->getServiceDayList());
-
-            } else {
-                
-                return true;
-            }            
         }
 
-        // Metodo que retorna un usuario de tipo Guardian de la base de datos a partir de su nombre de usuario.
-
-        public function getUserNameDAO($username) {
-
-            $guardian = null;
+        public function getUserNameDAO($username){
 
             try {
+
+                $guardian = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName = :userName";
 
@@ -418,22 +395,19 @@
                     $guardian->setDownDate($value["downDate"]);
                 }
 
+                return $guardian;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $guardian;
+                throw $e;
+            }            
         }
-
-        // Metodo que retorna un usuario de tipo Guardian de la base de datos a partir de su token.
 
         public function getUserTokenDAO($token){
 
-            $guardian = null;
-
             try {
+
+                $guardian = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -470,20 +444,19 @@
 
                 }
 
+                return $guardian;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $guardian;
         }
 
-        private function getServiceDayListDAO($token){
-            
-            $dayList = null;
+        private function getServiceDayListDAO($token){ 
 
             try {
+
+                $dayList = null;
 
                 $query = "SELECT GD.dayName FROM ".$this->tableName2." AS GD WHERE GD.tokenGuardian = :token";
 
@@ -502,13 +475,12 @@
                     }
                 }
 
+                return $dayList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $dayList; 
+                throw $e;
+            }             
         }
 
         private function updateServiceDayListDAO($tokenGuardian, $dayList){
@@ -533,11 +505,8 @@
 
             } catch(Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return true;
         }
 
         private function addServiceDayListDAO($tokenGuardian, $dayName){
@@ -554,11 +523,9 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
 
-            return true;
         }         
         
     } ?>

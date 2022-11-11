@@ -1,10 +1,10 @@
 <?php namespace Controllers;
 
     use Controllers\UserController as UserController;
-
     use Models\Admin as Admin;
     use Models\Guardian as Guardian; 
     use Models\Owner as Owner;
+    use \Exception as Exception;
 
     class SignController {  
 
@@ -14,72 +14,84 @@
           
             $this->userController = new UserController();
         }
-
-        /* Metodo que controla la sesión del usuario en caso que hayan modificaciones en la base de datos o el json */
-        
+    
         public function checkSession(){
 
-            $user = $_SESSION['userPH'];
+            try {
 
-            $userLogin = $this->userController->getUserName($user->getUserName());
+                $user = $_SESSION['userPH'];
 
-            if ($user->getPassword() != $userLogin->getPassword()){
+                $userLogin = $this->userController->getUserName($user->getUserName());
 
-                unset($_SESSION['userPH']);
-                 
-                header("Location: ".FRONT_ROOT."/home/index/error/check/user");                
+                if ($user->getPassword() != $userLogin->getPassword()){
 
-            } else {
+                    unset($_SESSION['userPH']);
+                     
+                    header("Location: ".FRONT_ROOT."/home/index/error/check/user");                
 
-                if ($_SESSION['userPH'] != $userLogin){
+                } else {
 
-                    $_SESSION['userPH'] = $userLogin;
-                }
-            }            
+                    if ($_SESSION['userPH'] != $userLogin){
+
+                        $_SESSION['userPH'] = $userLogin;
+                    }
+                }   
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/index/error/dao/unknown"); 
+            }           
         }
 
         /* Metodo que verifica si el usuario inicio sesión o si los datos que utilizo pertenecen a un usuario */
 
-        public function login($username = null, $password = null){  
+        public function login($username = null, $password = null){
 
-            if ($username != null && $password != null){
+            try {
 
-                $userLogin = $this->userController->getUserName($username);
+                if ($username != null && $password != null){
 
-                if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && !is_null($userLogin->getDischargeDate())  && strcmp($userLogin->getPassword(), $password) == 0){
+                    $userLogin = $this->userController->getUserName($username);
 
-                    $_SESSION["userPH"] = $userLogin;
+                    if (!is_null($userLogin) && is_null($userLogin->getDownDate()) && !is_null($userLogin->getDischargeDate())  && strcmp($userLogin->getPassword(), $password) == 0){
 
-                    header("Location: ".FRONT_ROOT."/home/administration");
+                        $_SESSION["userPH"] = $userLogin;
 
-                } else {
+                        header("Location: ".FRONT_ROOT."/home/administration");
 
-                    if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ 
+                    } else {
 
-                        header("Location: ".FRONT_ROOT."/home/index/error/login/user");
+                        if (is_null($userLogin) || !is_null($userLogin->getDownDate()) || is_null($userLogin->getDischargeDate())){ 
 
-                    } else if (strcmp($userLogin->getPassword(), $password) != 0) { 
+                            header("Location: ".FRONT_ROOT."/home/index/error/login/user");
 
-                        header("Location: ".FRONT_ROOT."/home/index/error/login/password");
+                        } else if (strcmp($userLogin->getPassword(), $password) != 0) { 
 
-                    } else { // Error desconocido.
+                            header("Location: ".FRONT_ROOT."/home/index/error/login/password");
 
-                        header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
-                    }                   
-                }
+                        } else { // Error desconocido.
 
-            } else {
-
-                if (!isset($_SESSION['userPH'])){
-
-                    header("Location: ".FRONT_ROOT);
+                            header("Location: ".FRONT_ROOT."/home/index/error/login/unknown");
+                        }                   
+                    }
 
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/home/administration");
+                    if (!isset($_SESSION['userPH'])){
 
-                }               
-            }           
+                        header("Location: ".FRONT_ROOT);
+
+                    } else {
+
+                        header("Location: ".FRONT_ROOT."/home/administration");
+
+                    }               
+                }  
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/index/error/dao/unknown"); 
+            }          
         }
 
         /* Metodo que llama al formulario para crear un usuario */ 
@@ -103,84 +115,96 @@
 
         public function createUserOwner($typeUser, $email, $password, $firstName, $lastName, $dni, $birthDate){
 
-            $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($firstName);
-            $lastName       = $this->userController->textNameFormat($lastName);
-            $dischargeDate  = date("Y-m-d");
-            $downDate       = null;
+            try {
 
-            if($this->userController->checkPassword($password)){
-    
-                if($this->userController->controllerDNI($dni, $typeUser)){
+                $token          = $this->userController->createToken($this->userController->getTokenUserList());
+                $firstName      = $this->userController->textNameFormat($firstName);
+                $lastName       = $this->userController->textNameFormat($lastName);
+                $dischargeDate  = date("Y-m-d");
+                $downDate       = null;
 
-                    if($this->userController->birthDateCheck($birthDate)){
-                            
-                        $newOwner = new Owner($token, $email, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
-                            
-                        $this->userController->getOwnerDAO()->addDAO($newOwner);
+                if($this->userController->checkPassword($password)){
+        
+                    if($this->userController->controllerDNI($dni, $typeUser)){
 
-                        header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
+                        if($this->userController->birthDateCheck($birthDate)){
+                                
+                            $newOwner = new Owner($token, $email, $password, $dischargeDate, $downDate, $firstName, $lastName, $birthDate, $dni);
+                                
+                            $this->userController->getOwnerDAO()->addDAO($newOwner);
+
+                            header("Location: ".FRONT_ROOT."/home/index/success/register/owner");
+
+                        } else {
+
+                            header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
+                        }
 
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/birthday");
+                        header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
                     }
-
+                    
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/dni");
-                }
-                
-            } else {
+                    header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
+                } 
 
-                header("Location: ".FRONT_ROOT."/sign/register/owner/error/create/password");
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/index/error/dao/unknown");
             }
         } 
 
         public function createUserGuardian($typeUser, $petSize, $email, $password, $firstName, $lastName, $dni, $birthDate, $experience, $servicePrice){
 
-            $token          = $this->userController->createToken($this->userController->getTokenUserList());
-            $firstName      = $this->userController->textNameFormat($firstName);
-            $lastName       = $this->userController->textNameFormat($lastName);
-            $dischargeDate  = date("Y-m-d");
-            $downDate       = null;
- 
-            if($this->userController->checkPassword($password)){
-                    
-                if(is_null($this->userController->getUserName($email))){
-                       
-                    if($this->userController->controllerDNI($dni, $typeUser)){
+            try {
 
-                        if($this->userController->birthDateCheck($birthDate)){
-    
-                            $newGuardian = new Guardian($token, $email, $password, null, $downDate, $firstName, $lastName, $birthDate, $dni, null, $experience, $petSize, $servicePrice);
-                                
-                            $this->userController->getGuardianDAO()->addDAO($newGuardian);
+                $token          = $this->userController->createToken($this->userController->getTokenUserList());
+                $firstName      = $this->userController->textNameFormat($firstName);
+                $lastName       = $this->userController->textNameFormat($lastName);
+                $dischargeDate  = date("Y-m-d");
+                $downDate       = null;
+     
+                if($this->userController->checkPassword($password)){
+                        
+                    if(is_null($this->userController->getUserName($email))){
+                           
+                        if($this->userController->controllerDNI($dni, $typeUser)){
+
+                            if($this->userController->birthDateCheck($birthDate)){
         
-                            header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
-    
+                                $newGuardian = new Guardian($token, $email, $password, null, $downDate, $firstName, $lastName, $birthDate, $dni, null, $experience, $petSize, $servicePrice);
+                                    
+                                $this->userController->getGuardianDAO()->addDAO($newGuardian);
+            
+                                header("Location: ".FRONT_ROOT."/home/index/success/register/guardian");
+        
+                            } else {
+        
+                                header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
+                            }
+                                
                         } else {
-    
-                            header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/birthday");
+        
+                             header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
                         }
-                            
-                    } else {
-    
-                         header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/dni");
-                    }
 
+                    } else {
+
+                        header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/email");
+                    }
+        
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/email");
-                }
-    
-            } else {
+                    header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
+                }  
 
-                header("Location: ".FRONT_ROOT."/sign/register/guardian/error/create/password");
+            } catch (Exception $e) {
+                
+                header("Location: ".FRONT_ROOT."/home/index/error/dao/unknown");
             }
         }
-
-        /* Metodo que cierra una sesión y te redirecciona al inicio de sesión */
 
         public function logout(){
 

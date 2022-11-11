@@ -4,6 +4,7 @@
     use DAO\CatDAO as CatDAO;
     use Models\Cat as Cat;
     use Models\Dog as Dog; 
+    use \Exception as Exception;
 
     class PetController {  
 
@@ -32,168 +33,189 @@
 
         public function list(){
 
-            $this->dogList = $this->dogDAO->getAllDAO();
-            $this->catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($this->dogList)){
+            try {
 
-                $this->petList = array_merge($this->petList, $this->dogList);
-            } 
+                $this->dogList = $this->dogDAO->getAllDAO();
+                $this->catList = $this->catDAO->getAllDAO();
+                
+                if (!empty($this->dogList)){
 
-            if (!empty($this->catList)){
+                    $this->petList = array_merge($this->petList, $this->dogList);
+                } 
 
-                $this->petList = array_merge($this->petList, $this->catList);
-            }            
+                if (!empty($this->catList)){
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/petListView.php"; 
-            require_once ROOT_VIEWS."/mainFooter.php";           
+                    $this->petList = array_merge($this->petList, $this->catList);
+                }            
+
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/petListView.php"; 
+                require_once ROOT_VIEWS."/mainFooter.php";
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }          
         }
 
         public function add($typePet = null, $type = null, $action = null, $specific = null){
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
+            try {
         
-            if (strcmp($typePet,"cat") == 0){
-                
-                $this->petTypeList = $this->catDAO->getAllRace();
-                require_once ROOT_VIEWS."/catCreateView.php";
+                if (strcmp($typePet,"cat") == 0){
+                    
+                    $this->petTypeList = $this->catDAO->getAllRaceDAO();
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/catCreateView.php";
 
-            } else {
+                } else {
+                    
+                    $this->petTypeList = $this->dogDAO->getAllRaceDAO();
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/dogCreateView.php";
+                }
                 
-                $this->petTypeList = $this->dogDAO->getAllRace();
-                require_once ROOT_VIEWS."/dogCreateView.php";
+                require_once ROOT_VIEWS."/notificationAlert.php";     
+                require_once ROOT_VIEWS."/mainFooter.php"; 
+                
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
             }
-            
-            require_once ROOT_VIEWS."/notificationAlert.php";     
-            require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
         public function createPet($typePet, $name, $race, $size, $weight, $observations = '', $vaccinationPlan = null, $photo = null, $video = null){
-                        
-            $ownerToken = $_SESSION['userPH']->getToken();
 
-            $token = $this->createToken($this->getTokenPetList());  
+            try {
 
-            $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
+                $ownerToken = $_SESSION['userPH']->getToken();
 
-            $extension = $this->getExtension($fileName);   
+                $token = $this->createToken($this->getTokenPetList());  
 
-            if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
+                $fileName = ROOT_VIEWS."/vaccination/".$token."-".basename($_FILES['vaccinationPlan']['name']);
 
-                $sizeVP = $_FILES['vaccinationPlan']['size'];
-
-                if ($sizeVP > 1000000){ // 1 mb.
-                    
-                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size"); 
-                    exit(); 
-
-                } else {                
-                    
-                    if (move_uploaded_file($_FILES['vaccinationPlan']['tmp_name'], $fileName)){
-
-                       $vaccinationPlan = $token."-".basename($_FILES['vaccinationPlan']['name']);
-
-                    } else {
-
-                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/unknown");  
-                        exit();                      
-                    }             
-                }
-                
-            } else {
-
-                header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/format");
-                exit();
-            }
-
-            if (file_exists($_FILES['photo']['tmp_name'])) {
-
-                $fileName = ROOT_VIEWS."/photo/".$token."-".basename($_FILES['photo']['name']);
-
-                $extension = $this->getExtension($fileName);
+                $extension = $this->getExtension($fileName);   
 
                 if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                    $sizeP = $_FILES['photo']['size'];
+                    $sizeVP = $_FILES['vaccinationPlan']['size'];
 
-                    if ($sizeP > 1000000){ // 1 mb.
+                    if ($sizeVP > 1000000){ // 1 mb.
                         
-                         header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/size");
-                         exit();
+                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/size"); 
+                        exit(); 
 
-                    } else {                        
+                    } else {                
                         
-                        if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+                        if (move_uploaded_file($_FILES['vaccinationPlan']['tmp_name'], $fileName)){
 
-                            $photo = $token."-".basename($_FILES['photo']['name']);
+                           $vaccinationPlan = $token."-".basename($_FILES['vaccinationPlan']['name']);
 
-                        }  else {
+                        } else {
 
-                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/unknown");
-                            exit();
-                        }            
+                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/unknown");  
+                            exit();                      
+                        }             
                     }
-                
+                    
                 } else {
 
-                     header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/format");
-                     exit();
+                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/vaccination/format");
+                    exit();
                 }
-               
-            } if (file_exists($_FILES['video']['tmp_name'])) {
 
-                $fileName = ROOT_VIEWS."/video/".$token."-".basename($_FILES['video']['name']);
-                $extension = $this->getExtension($fileName);
+                if (file_exists($_FILES['photo']['tmp_name'])) {
 
-                if (strcmp($extension, 'mp4') == 0){
+                    $fileName = ROOT_VIEWS."/photo/".$token."-".basename($_FILES['photo']['name']);
 
-                    $sizeV = $_FILES['video']['size'];
+                    $extension = $this->getExtension($fileName);
 
-                    if ($sizeV > 10000000){ // 10 mb.
+                    if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/size");
-                        exit();
+                        $sizeP = $_FILES['photo']['size'];
+
+                        if ($sizeP > 1000000){ // 1 mb.
+                            
+                             header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/size");
+                             exit();
+
+                        } else {                        
+                            
+                            if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+
+                                $photo = $token."-".basename($_FILES['photo']['name']);
+
+                            }  else {
+
+                                header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/unknown");
+                                exit();
+                            }            
+                        }
+                    
+                    } else {
+
+                         header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/photo/format");
+                         exit();
+                    }
+                   
+                } if (file_exists($_FILES['video']['tmp_name'])) {
+
+                    $fileName = ROOT_VIEWS."/video/".$token."-".basename($_FILES['video']['name']);
+                    $extension = $this->getExtension($fileName);
+
+                    if (strcmp($extension, 'mp4') == 0){
+
+                        $sizeV = $_FILES['video']['size'];
+
+                        if ($sizeV > 10000000){ // 10 mb.
+
+                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/size");
+                            exit();
+
+                        } else {
+                            
+                            if (move_uploaded_file($_FILES['video']['tmp_name'], $fileName)){
+
+                                $video = $token."-".basename($_FILES['video']['name']);
+
+                            }  else {
+
+                                header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/unknown");
+                                exit();
+                            }   
+                        }
 
                     } else {
-                        
-                        if (move_uploaded_file($_FILES['video']['tmp_name'], $fileName)){
 
-                            $video = $token."-".basename($_FILES['video']['name']);
+                        header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/format");
+                        exit();
+                    }                
+                } 
 
-                        }  else {
+                if (strcmp($typePet,"dog") == 0) {
+                   
+                    $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
 
-                            header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/unknown");
-                            exit();
-                        }   
-                    }
+                    $this->dogDAO->addDAO($this->dog);
 
-                } else {
+                } else if (strcmp($typePet,"cat") == 0){
+                       
+                    $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+                               
+                    $this->catDAO->addDAO($this->cat);
+                }
 
-                    header("Location: ".FRONT_ROOT."/pet/add/".$typePet."/error/video/format");
-                    exit();
-                }                
-            } 
-
-            if (strcmp($typePet,"dog") == 0) {
-               
-                $this->dog = new Dog($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
-
-                $this->dogDAO->addDAO($this->dog);
-
-            } else if (strcmp($typePet,"cat") == 0){
+                header("Location: ".FRONT_ROOT."/pet/list");
                 
-   
-                $this->cat = new Cat($token, $ownerToken, $name, $race, $size, $weight, $observations, $vaccinationPlan, $photo, $video);
+            } catch (Exception $e) {
 
-                
-           
-                $this->catDAO->addDAO($this->cat);
-            }
-
-            header("Location: ".FRONT_ROOT."/pet/list");
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }  
         }
 
         private function getExtension($str){
@@ -241,68 +263,88 @@
    	    }
 
         public function getPetToken($token){ 
-        
-            $this->pet = $this->dogDAO->getDogTokenDAO($token);
 
-            if (is_null($this->pet)){
+            try {
 
-                $this->pet = $this->catDAO->getCatTokenDAO($token);
-            }
-        
-            return $this->pet;
-        
+                $this->pet = $this->dogDAO->getDogTokenDAO($token);
+
+                if (is_null($this->pet)){
+
+                    $this->pet = $this->catDAO->getCatTokenDAO($token);
+                }
+            
+                return $this->pet;
+                
+            } catch (Exception $e) {
+
+                throw $e;
+            } 
         }
 
         public function getTokenPetList(){ 
 
-            $tokenList = array();
+            try {
 
-            $this->dogList = $this->dogDAO->getAllDAO();
-            $this->catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($this->dogList)){
+                $tokenList = array();
 
-                $this->petList = array_merge($this->petList, $this->dogList);
-            } 
+                $this->dogList = $this->dogDAO->getAllDAO();
+                $this->catList = $this->catDAO->getAllDAO();
+                
+                if (!empty($this->dogList)){
 
-            if (!empty($this->catList)){
+                    $this->petList = array_merge($this->petList, $this->dogList);
+                } 
 
-                $this->petList = array_merge($this->petList, $this->catList);
-            }  
+                if (!empty($this->catList)){
 
-            if($this->petList != null) {
+                    $this->petList = array_merge($this->petList, $this->catList);
+                }  
 
-                foreach($this->petList as $current) {
+                if($this->petList != null) {
 
-                    array_push($tokenList, $current->getToken());
+                    foreach($this->petList as $current) {
+
+                        array_push($tokenList, $current->getToken());
+                    }
                 }
+                return $tokenList; 
+
+            } catch (Exception $e) {
+
+                throw $e;
             }
-            return $tokenList; 
         }
 
-        public function view($typePet, $token){   
+        public function view($typePet, $token){  
 
-            if (strcmp($typePet,"dog") == 0) {
-                
-                $this->dog = $this->dogDAO->getDogTokenDAO($token);
-                
-                require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/mainNav.php";  
-                require_once ROOT_VIEWS."/dogView.php";
-                require_once ROOT_VIEWS."/mainFooter.php"; 
-                
-            } elseif (strcmp($typePet,"cat") == 0) {
+            try {
 
-                $this->cat = $this->catDAO->getCatTokenDAO($token);
-                require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/mainNav.php";  
-                require_once ROOT_VIEWS."/catView.php";
-                require_once ROOT_VIEWS."/mainFooter.php"; 
+                if (strcmp($typePet,"dog") == 0) {
+                    
+                    $this->dog = $this->dogDAO->getDogTokenDAO($token);
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";  
+                    require_once ROOT_VIEWS."/dogView.php";
+                    require_once ROOT_VIEWS."/mainFooter.php"; 
+                    
+                } elseif (strcmp($typePet,"cat") == 0) {
 
-            } else {
-                
-                header("Location: ".FRONT_ROOT."/pet/list");
-            }            
+                    $this->cat = $this->catDAO->getCatTokenDAO($token);
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";  
+                    require_once ROOT_VIEWS."/catView.php";
+                    require_once ROOT_VIEWS."/mainFooter.php"; 
+
+                } else {
+                    
+                    header("Location: ".FRONT_ROOT."/pet/list");
+                }    
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }           
         } 
     } 
 ?>

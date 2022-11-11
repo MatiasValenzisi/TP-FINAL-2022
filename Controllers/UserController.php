@@ -1,195 +1,223 @@
 <?php namespace Controllers;
 
-    use DateTime;
-    
+    use DateTime;    
     use DAO\AdminDAO as AdminDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
-
     use Models\Admin as Admin;
     use Models\Guardian as Guardian; 
     use Models\Owner as Owner;
+    use \Exception as Exception;
 
     class UserController{
 
-      private $adminDAO;
-      private $guardianDAO;
-      private $ownerDAO;
-      private $user;
-      private $token;
-      private $userList;
+        private $adminDAO;
+        private $guardianDAO;
+        private $ownerDAO;
+        private $user;
+        private $token;
+        private $userList;
 
-      public function __construct(){
+        public function __construct(){
           
-          $this->adminDAO    = new AdminDAO();
-          $this->guardianDAO = new GuardianDAO();
-          $this->ownerDAO    = new OwnerDAO();
-          $this->user        = null;
-          $this->token       = null;
-          $this->userList    = array();
-      }
-
-      // Controla que la password tengo al menos 1 letra y 1 numero.
-
-      public function checkPassword($password) {
-
-        if($this->controllerLetters($password) && $this->controllerNumber($password)) {
-            
-            return true;
+            $this->adminDAO    = new AdminDAO();
+            $this->guardianDAO = new GuardianDAO();
+            $this->ownerDAO    = new OwnerDAO();
+            $this->user        = null;
+            $this->token       = null;
+            $this->userList    = array();
         }
 
-        return false;
-      }
+        // Controla que la password tengo al menos 1 letra y 1 numero.
 
-      // Controlar si hay aunque sea una letra. 
+        public function checkPassword($password) {
 
-      private function controllerLetters($string){
+            $check = false;
 
-          $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-          for ($i=0; $i < strlen($string); $i++){
-
-              if (strstr($letters, $string[$i]) != false){
-
-                return true;
-              }
-          }
-          
-          return false;
-      }
-
-      // Controlar si hay aunque sea un número. 
-
-      private function controllerNumber($string){
-
-          for ($i=0; $i < strlen($string); $i++) { 
-              
-              if (is_numeric($string[$i])) {
-                
-                  return true;
-              }
-          }
-
-          return false; 
-      }
-
-      // Controlar que no haya letras en el DNI
-
-      public function controllerDNI($dni, $typeUser){
-
-        $controllerDNI = true;
-
-        if (!$this->controllerLetters($dni) && strlen($dni) == 8){
-
-            $temporalList = null;
-
-            if (strcmp($typeUser,"guardian") == 0) {
-
-                $temporalList = $this->guardianDAO->getAllDAO();
-                
-            } elseif (strcmp($typeUser,"owner") == 0){
-
-                $temporalList = $this->ownerDAO->getAllDAO();
-            } 
-
-            foreach ($temporalList as $key => $user) {
-                
-                if (strcmp($user->getDni(), $dni) == 0) {
-                    
-                    $controllerDNI = false;;
-                }
+            if($this->controllerLetters($password) && $this->controllerNumber($password)) {
+            
+                $check = true;
             }
 
-        } else {
+            return $check;
+        }
 
-            $controllerDNI = false;            
-        } 
+        // Controlar si hay aunque sea una letra. 
 
-        return $controllerDNI;
-      }
+        private function controllerLetters($string){
 
-      // Emprolija el nombre/apellido
+            $letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      public function textNameFormat($aCambiar) {
+            $check = false;
 
-        return ucwords(strtolower($aCambiar));
-      }
+            for ($i=0; $i < strlen($string); $i++){
 
-      // Revisa que la fecha de nacimiento no sea mayor a la actual
+                if (strstr($letters, $string[$i]) != false){
 
-      public function birthDateCheck($birthDate){
+                    $check = true;
+                }
+            }
+          
+            return $check;
+        }
 
-        $now  = date("Y-m-d");
+        // Controlar si hay aunque sea un número. 
 
-        if($birthDate <= $now) {
-            return true;
-        } 
+        private function controllerNumber($string){
+
+            $check = false;
+
+            for ($i=0; $i < strlen($string); $i++) { 
+              
+                if (is_numeric($string[$i])) {
+                
+                    $check = true;
+                }
+            } 
+
+            return $check; 
+        }
+
+        // Controlar que no haya letras en el DNI
+
+        public function controllerDNI($dni, $typeUser){
+
+            try {
+
+                $controllerDNI = true;
+
+                if (!$this->controllerLetters($dni) && strlen($dni) == 8){
+
+                    $temporalList = null;
+
+                    if (strcmp($typeUser,"guardian") == 0) {
+
+                        $temporalList = $this->guardianDAO->getAllDAO();
+                    
+                    } elseif (strcmp($typeUser,"owner") == 0){
+
+                        $temporalList = $this->ownerDAO->getAllDAO();
+                    } 
+
+                    foreach ($temporalList as $key => $user) {
+                    
+                        if (strcmp($user->getDni(), $dni) == 0) {
+                        
+                            $controllerDNI = false;;
+                        }
+                    }
+
+                } else {
+
+                    $controllerDNI = false;            
+                } 
+
+                return $controllerDNI;
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+
+        // Genera un formato para el String
+
+        public function textNameFormat($aCambiar) {
+
+            return ucwords(strtolower($aCambiar));
+        }
+
+        // Revisa que la fecha de nacimiento no sea mayor a la actual
+
+        public function birthDateCheck($birthDate){
+
+            $now  = date("Y-m-d");
+
+            $check = false;
+
+            if($birthDate <= $now) {
+
+                $check = true;
+            } 
         
-        return false;
-      }
+            return $check;
+        }
 
 
-      /* Busca un usuario por su userName entre los diferentes tipos y lo retorna si existe */
+        // Busca un usuario por su userName entre los diferentes tipos y lo retorna si existe 
 
-      public function getUserName($userName){ 
+        public function getUserName($userName){ 
 
-          $this->user = $this->adminDAO->getUserNameDAO($userName);
+            try {
 
-          if ($this->user != null){
+                $this->user = $this->adminDAO->getUserNameDAO($userName);
 
-              return $this->user; 
+                if ($this->user != null){
 
-          } else {
+                    return $this->user; 
 
-              $this->user = $this->guardianDAO->getUserNameDAO($userName);
+                } else {
 
-              if ($this->user != null) {
+                    $this->user = $this->guardianDAO->getUserNameDAO($userName);
 
-                 return $this->user;
+                    if ($this->user != null) {
 
-              } else {
+                        return $this->user;
 
-                $this->user = $this->ownerDAO->getUserNameDAO($userName);
+                    } else {
 
-                return $this->user;
+                        $this->user = $this->ownerDAO->getUserNameDAO($userName);
 
-              }
-          }
-      }
+                    return $this->user;
 
-      /* Busca un usuario por su token entre los diferentes tipos y lo retorna si existe */
+                    }
+                }  
 
-      public function getUserToken($token){ 
+            } catch (Exception $e) {
 
-          $this->user = $this->adminDAO->getAllDAO($token);
+                throw $e;
+            }
+        }
 
-          if ($this->user != null){
+        // Busca un usuario por su token entre los diferentes tipos y lo retorna si existe 
 
-              return $this->user; 
+        public function getUserToken($token){ 
 
-          } else {
+            try {
 
-              $this->user = $this->guardianDAO->getUserTokenDAO($token);
+                $this->user = $this->adminDAO->getAllDAO($token);
 
-              if ($this->user != null) {
+                if ($this->user != null){
 
-                 return $this->user;
+                    return $this->user; 
 
-              } else {
+                } else {
 
-                $this->user = $this->ownerDAO->getUserTokenDAO($token);
+                    $this->user = $this->guardianDAO->getUserTokenDAO($token);
 
-                return $this->user;
+                    if ($this->user != null) {
 
-              }
-          }
-      }
+                        return $this->user;
 
-      /* Retorna un nuevo número de token que no haya sido utilizado antes */
+                    } else {
 
-      public function createToken($userListToken){ 
+                        $this->user = $this->ownerDAO->getUserTokenDAO($token);
 
-   		 $newToken = null;
+                        return $this->user;
+                    }
+                } 
+
+            } catch (Exception $e) {
+
+                throw $e;
+            }
+        }
+
+        // Retorna un nuevo número de token que no haya sido utilizado antes 
+
+        public function createToken($userListToken){ 
+
+   		   $newToken = null;
 
    			do {
 
@@ -206,139 +234,152 @@
                 
             } while($controller);
 
-   	   	   return $newToken; 
-   	   }
+   	   	    return $newToken; 
+   	    }    
 
-       /* Retorna un número aleatorio de una cantidad dada */
+        // Retorna un número aleatorio de una cantidad dada 
    		
-   	  public function generateNumber($cant){ 
+   	    public function generateNumber($cant){ 
 
-        $key = '';
+            $key = '';
 
-        for($i=0; $i<$cant; $i++) {
+            for($i=0; $i<$cant; $i++) {
             
-            $key .= rand(0,9);
-        } 		
+                $key .= rand(0,9);
+            } 		
           	     
- 		return $key; 
-   	  }
+ 		    return $key; 
+   	    }
 
-      /* Retorna el AdminDAO cargado en la controladora */
+        // Retorna el AdminDAO cargado en la controladora 
      
-      public function getAdminDAO(){ 
+        public function getAdminDAO(){ 
 
-          return $this->adminDAO; 
-      } 
+            return $this->adminDAO; 
+        } 
 
-      /* Retorna el GuardianDAO cargado en la controladora */
+        // Retorna el GuardianDAO cargado en la controladora 
      
-      public function getGuardianDAO(){ 
+        public function getGuardianDAO(){ 
 
-          return $this->guardianDAO; 
-      } 
+            return $this->guardianDAO; 
+        } 
 
-      /* Retorna el OwnerDAO cargado en la controladora */
+        // Retorna el OwnerDAO cargado en la controladora 
      
-      public function getOwnerDAO(){ 
+        public function getOwnerDAO(){ 
 
-          return $this->ownerDAO; 
-      } 
+            return $this->ownerDAO; 
+        } 
 
-      /* Retorna el usuario cargado en la controladora */
+        // Retorna el usuario cargado en la controladora 
 
-      public function getUser(){ 
+        public function getUser(){ 
 
-          return $this->user; 
-      }
+            return $this->user; 
+        }
 
-      /* Retorna el token cargado en la controladora */
+        // Retorna el token cargado en la controladora 
 
-      public function getToken(){ 
+        public function getToken(){ 
 
-          return $this->token; 
-      }
+            return $this->token; 
+        }
 
-      /* Retorna la lista de usuarios cargada en la controladora */
+        // Retorna la lista de usuarios cargada en la controladora 
       
-      public function getUserList(){ 
+        public function getUserList(){ 
 
-        $adminDao = $this->getAdminDAO();
-        $adminList = $adminDao->getAllDAO();
+            try {
 
-        if($adminList != null) {
+                $adminDao = $this->getAdminDAO();
+                $adminList = $adminDao->getAllDAO();
 
-            foreach($adminList as $admin) {
+                if($adminList != null) {
 
-                array_push($this->userList, $admin);
+                    foreach($adminList as $admin) {
+
+                        array_push($this->userList, $admin);
+                    }
+                }
+
+                $guardianDao = $this->getGuardianDAO();
+                $guardianList = $guardianDao->getAllDAO();
+
+                if($guardianList != null) {
+
+                    foreach($guardianList as $guardian) {
+
+                        array_push($this->userList, $guardian);
+                    }
+                }
+
+                $ownerDao = $this->getOwnerDAO();
+                $ownerList = $ownerDao->getAllDAO();
+
+                if($ownerList != null) {
+
+                    foreach($ownerList as $owner) {
+
+                        array_push($this->userList, $owner);
+                    }
+                }
+
+                return $this->userList; 
+                
+            } catch (Exception $e) {
+
+                throw $e;
             }
         }
 
-        $guardianDao = $this->getGuardianDAO();
-        $guardianList = $guardianDao->getAllDAO();
-
-        if($guardianList != null) {
-
-            foreach($guardianList as $guardian) {
-
-                array_push($this->userList, $guardian);
-            }
-        }
-
-        $ownerDao = $this->getOwnerDAO();
-        $ownerList = $ownerDao->getAllDAO();
-
-        if($ownerList != null) {
-
-            foreach($ownerList as $owner) {
-
-                array_push($this->userList, $owner);
-            }
-        }
-        
-        return $this->userList; 
-    }
-
-    /* Retorna la lista de token de usuarios cargada en la controladora */
+        // Retorna la lista de token de usuarios cargada en la controladora 
        
-      public function getTokenUserList(){ 
+        public function getTokenUserList(){
 
-        $tokenList = array();
+            try {
+ 
+                $tokenList = array();
 
-        $adminDao = $this->getAdminDAO();
-        $adminList = $adminDao->getAllDAO();
+                $adminDao = $this->getAdminDAO();
+                $adminList = $adminDao->getAllDAO();
 
-        if($adminList != null) {
+                if($adminList != null) {
 
-            foreach($adminList as $admin) {
+                    foreach($adminList as $admin) {
 
-                array_push($tokenList, $admin->getToken());
-            }
-        }
+                        array_push($tokenList, $admin->getToken());
+                    }
+                }
 
-        $guardianDao = $this->getGuardianDAO();
-        $guardianList = $guardianDao->getAllDAO();
+                $guardianDao = $this->getGuardianDAO();
+                $guardianList = $guardianDao->getAllDAO();
 
-        if($guardianList != null) {
+                if($guardianList != null) {
 
-            foreach($guardianList as $guardian) {
+                    foreach($guardianList as $guardian) {
 
-                array_push($tokenList, $guardian->getToken());
-            }
-        }
+                        array_push($tokenList, $guardian->getToken());
+                    }
+                }
 
-        $ownerDao = $this->getOwnerDAO();
-        $ownerList = $ownerDao->getAllDAO();
+                $ownerDao = $this->getOwnerDAO();
+                $ownerList = $ownerDao->getAllDAO();
 
-        if($ownerList != null) {
+                if($ownerList != null) {
 
-            foreach($ownerList as $owner) {
+                    foreach($ownerList as $owner) {
 
-                array_push($tokenList, $owner->getToken());
-            }
-        }
-        
-        return $tokenList; 
-    }
-   		 
-  } 
+                        array_push($tokenList, $owner->getToken());
+                    }
+                }
+            
+                return $tokenList; 
+
+            } catch (Exception $e) {
+
+                throw $e;
+            } 
+        }   		 
+    } 
 ?>

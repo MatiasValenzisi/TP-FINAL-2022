@@ -3,15 +3,12 @@
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
     use \Exception as Exception;
-
     use Models\Owner as Owner;
 
     class OwnerDAO implements IDAO{
         
         private $connection;
         private $tableName = "owner";
-
-        // Metodo que genera un nuevo usuario de tipo Owner a la base de datos.
 
         public function addDAO($value){   
 
@@ -33,20 +30,15 @@
 
             } catch (Exception $e){
                 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        // Metodo que retorna todos los usuarios Owner de la base de datos en forma de lista.
-
-        public function getAllDAO(){
-
-            $ownerList = array();
+        public function getAllDAO(){            
 
             try {
+
+                $ownerList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -72,17 +64,13 @@
 
                 }
 
+                return $ownerList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $ownerList;
-
+                throw $e;
+            }  
         }
-
-        // Metodo que actualiza un usuario de tipo Owner en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -106,20 +94,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        // Metodo que retorna un usuario de tipo Owner de la base de datos a partir de su nombre de usuario.
-
-        public function getUserNameDAO($username) {
-
-            $owner = null;
+        public function getUserNameDAO($username){            
 
             try {
+
+                $owner = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName = :userName";
 
@@ -144,22 +127,19 @@
                     $owner->setDownDate($value["downDate"]);
                 }
 
+                return $owner;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $owner;
+                throw $e;
+            }            
         }
-
-        // Metodo que retorna un usuario de tipo Owner de la base de datos a partir de su token.
 
         public function getUserTokenDAO($token){
 
-            $owner = null;
-
             try {
+
+                $owner = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -184,20 +164,20 @@
                     $owner->setDownDate($value["downDate"]);
                 }
 
+                return $owner;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $owner;
+                throw $e;
+            }            
         } 
 
-         public function getAllDownDateDAO() {
-
-            $ownerList = array();
+         public function getAllDownDateDAO(){
 
             try {
+
+                $ownerList = array();
+
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL;";
 
                 $this->connection = Connection::GetInstance();
@@ -221,20 +201,19 @@
                     array_push($ownerList, $owner);
                 }
 
+                return $ownerList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $ownerList;
+                throw $e;
+            }            
         }
 
-        public function getAllDischargeDateDAO() {
-
-            $dischargeList = array();
+        public function getAllDischargeDateDAO(){            
 
             try {
+
+                $dischargeList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL;";
 
@@ -259,13 +238,12 @@
                     array_push($dischargeList, $owner);
                 }
 
+                return $dischargeList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $dischargeList;
         }           
         
     } ?>

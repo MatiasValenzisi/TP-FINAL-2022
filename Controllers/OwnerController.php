@@ -1,7 +1,8 @@
 <?php namespace Controllers;
 
     use DAO\OwnerDAO as OwnerDAO;
-    use Models\Owner as Owner; 
+    use Models\Owner as Owner;
+    use \Exception as Exception; 
 
     class OwnerController {  
 
@@ -20,8 +21,6 @@
             $this->userController = new UserController();
         }
 
-        // Muestra el perfil del dueño en sessión.
-
         public function profile($type = null, $action = null, $specific = null){
 
             require_once ROOT_VIEWS."/mainHeader.php";
@@ -33,50 +32,60 @@
 
         public function profileEdit($password){
 
-            $owner = $this->ownerDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+            try {
 
-            $owner->setPassword($password);
+                $owner = $this->ownerDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            if($this->userController->checkPassword($owner->getPassword())){
+                $owner->setPassword($password);
 
-                $this->ownerDAO->updateDAO($owner);
+                if($this->userController->checkPassword($owner->getPassword())){
 
-                $_SESSION['userPH'] = $owner;
+                    $this->ownerDAO->updateDAO($owner);
 
-                header("Location: ".FRONT_ROOT."/owner/profile/success/edit/save");
+                    $_SESSION['userPH'] = $owner;
 
-            } else {
+                    header("Location: ".FRONT_ROOT."/owner/profile/success/edit/save");
 
-                header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
-            }            
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
+                }    
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }         
         }
-        
-        // Muestra un listado de dueños.
 
-        
-        // Muestra un listado de dueños.
+        // Muestra un listado de dueños que varia entre dados de baja o no.
 
         public function list($dateType = null){
-          
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
 
-            //Selecciona el tipo de lista que vas a mostrar
+            try {
 
-            if(strcmp($dateType, "downdate") == 0) {
+                if(strcmp($dateType, "downdate") == 0) {
 
-                $this->ownerList = $this->ownerDAO->getAllDownDateDAO();
+                    $this->ownerList = $this->ownerDAO->getAllDownDateDAO();
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/ownerListDowndateView.php";
 
-                require_once ROOT_VIEWS."/ownerListDowndateView.php";
+                } else {
 
-            } else {
+                    $this->ownerList = $this->ownerDAO->getAllDischargeDateDAO();
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/ownerListDischargedateView.php";                 
+                }        
 
-                $this->ownerList = $this->ownerDAO->getAllDischargeDateDAO();
+                require_once ROOT_VIEWS."/mainFooter.php";
+
+            } catch (Exception $e) {
                 
-                require_once ROOT_VIEWS."/ownerListDischargedateView.php";                 
-            }        
-
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }    
         }
     } 
 ?>

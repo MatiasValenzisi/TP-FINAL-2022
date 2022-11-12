@@ -4,7 +4,7 @@
     use DAO\ReviewDAO as ReviewDAO;
     use Models\Guardian as Guardian;
     use Models\Review as Review; 
-
+    use \Exception as Exception;
     class GuardianController {  
 
         private $token;

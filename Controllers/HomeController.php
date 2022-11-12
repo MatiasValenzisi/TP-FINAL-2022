@@ -3,6 +3,7 @@
     use Models\Admin as Admin;
     use Models\Guardian as Guardian;
     use Models\Owner as Owner;
+    use \Exception as Exception;
 
     class HomeController {
 
@@ -25,11 +26,12 @@
 
         /* Metodo que muestra la vista home de la pagina */ 
 
-        public function administration(){ 
+        public function administration($type = null, $action = null, $specific = null){ 
             
             require_once ROOT_VIEWS."/mainHeader.php";
             require_once ROOT_VIEWS."/mainNav.php";     
-            require_once ROOT_VIEWS."/homeView.php";    
+            require_once ROOT_VIEWS."/homeView.php";  
+            require_once ROOT_VIEWS."/notificationAlert.php";  
             require_once ROOT_VIEWS."/mainFooter.php";                 
         } 
     }

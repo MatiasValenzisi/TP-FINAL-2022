@@ -1,10 +1,8 @@
 <?php namespace DAO;
 
     use DAO\IDAO as IDAO; 
-    use DAO\Connection as Connection;
-    
+    use DAO\Connection as Connection;    
     use \Exception as Exception;
-
     use Models\Dog as Dog; 
     use Models\Race as Race;    
 
@@ -36,20 +34,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }   
-
-            return true;
+                throw $e;
+            }               
         }
 
-        // Metodo que retorna todos los perros de la base de datos en forma de lista.
-
-        public function getAllDAO(){
-
-            $dogList = array();
+        public function getAllDAO(){            
 
             try {
+
+                $dogList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -74,21 +67,19 @@
                     array_push($dogList, $dog);
                 }
 
+                return $dogList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $dogList;
-
         }
 
-        public function getAllByOwnerDAO($tokenOwner){
-
-            $dogList = array();
+        public function getAllByOwnerDAO($tokenOwner){            
 
             try {
+
+                $dogList = array();
                 
                 $query = "SELECT * FROM ".$this->tableName." AS D WHERE D.tokenOwner = :tokenOwner";
 
@@ -114,17 +105,14 @@
 
                     array_push($dogList, $dog);
                 }
+
+                return $dogList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $dogList;
         }
-
-
-        // Metodo que actualiza un perro en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -149,20 +137,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }  
-                 
-            return true;
+                throw $e;
+            }                   
         }      
-    
-        // Metodo que retorna un perro de la base de datos a partir de su token.
 
-        public function getDogTokenDAO($token){
-
-            $dog = null;
+        public function getDogTokenDAO($token){            
 
             try {
+
+                $dog = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -187,20 +170,19 @@
                     $dog->setVideo($value["video"]);
                 }
 
+                return $dog;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $dog;
+                throw $e;
+            }            
         } 
 
-        public function getAllRace(){
-
-            $raceList = array();
+        public function getAllRaceDAO(){
 
             try {
+
+                $raceList = array();
 
                 $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'dog';";
 
@@ -217,13 +199,12 @@
                     array_push($raceList, $race);
                 }
 
+                return $raceList; 
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $raceList;    
+                throw $e;
+            }               
         } 
     }
 ?>

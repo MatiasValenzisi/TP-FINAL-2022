@@ -5,6 +5,7 @@
     use Models\Guardian as Guardian;
     use Models\Review as Review; 
     use \Exception as Exception;
+       
     class GuardianController {  
 
         private $token;
@@ -25,8 +26,6 @@
             $this->reviewDAO      = new ReviewDAO();            
             $this->reviewList     = array();
         }
-
-        // Muestra el perfil del guardian en sessión.
 
         public function profile($type = null, $action = null, $specific = null){
 
@@ -62,63 +61,63 @@
 
         public function profileEdit($password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null){
 
-            $serviceDate = explode(" - ", $serviceDate);
+            try {
 
-            $serviceStartDate = date("m/d/Y", strtotime($serviceDate["0"]));
-            $serviceStartDate = date("Y-m-d", strtotime($serviceStartDate));
+                $serviceDate = explode(" - ", $serviceDate);
 
-            $serviceEndDate = date("m/d/Y", strtotime($serviceDate["1"]));
-            $serviceEndDate = date("Y-m-d", strtotime($serviceEndDate));
+                $serviceStartDate = date("m/d/Y", strtotime($serviceDate["0"]));
+                $serviceStartDate = date("Y-m-d", strtotime($serviceStartDate));
 
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+                $serviceEndDate = date("m/d/Y", strtotime($serviceDate["1"]));
+                $serviceEndDate = date("Y-m-d", strtotime($serviceEndDate));
 
-            $this->guardian->setPassword($password);
-            $this->guardian->setExperience($experience);
-            $this->guardian->setPetSize($petSize);
-            $this->guardian->setServicePrice($servicePrice);
-            $this->guardian->setServiceStartDate($serviceStartDate);
-            $this->guardian->setServiceEndDate($serviceEndDate);
-            $this->guardian->setServiceDayList($disp);
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-            if($this->userController->checkPassword($this->guardian->getPassword())){
+                $this->guardian->setPassword($password);
+                $this->guardian->setExperience($experience);
+                $this->guardian->setPetSize($petSize);
+                $this->guardian->setServicePrice($servicePrice);
+                $this->guardian->setServiceStartDate($serviceStartDate);
+                $this->guardian->setServiceEndDate($serviceEndDate);
+                $this->guardian->setServiceDayList($disp);
 
-                $this->guardianDAO->updateDAO($this->guardian);
+                if($this->userController->checkPassword($this->guardian->getPassword())){
 
-                $_SESSION['userPH'] = $this->guardian;
+                    $this->guardianDAO->updateDAO($this->guardian);
 
-                header("Location: ".FRONT_ROOT."/guardian/profile/success/edit/save");
+                    $_SESSION['userPH'] = $this->guardian;
 
-            } else {
+                    header("Location: ".FRONT_ROOT."/guardian/profile/success/edit/save");
 
-                header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
-            }          
+                } else {
+
+                    header("Location: ".FRONT_ROOT."/guardian/profile/error/edit/save");
+                } 
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }         
         }
         
-        // Muestra un listado de guardianes.
-
         public function list($dateType = null, $data = null){
 
-                require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/mainNav.php";
+            try {
 
                 if(strcmp($dateType, "downdate") == 0) { 
 
-                    try {
-
-                        $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
-
-                    } catch (Exception $e) {
-
-                        echo 'algo';
-                        //exit();
-                    } 
-
+                    $this->guardianList = $this->guardianDAO->getAllDownDateDAO();
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
                     require_once ROOT_VIEWS."/guardianListDowndateView.php";
 
                 } else if(strcmp($dateType, "pendient") == 0) {
 
                     $this->guardianList = $this->guardianDAO->getAllPendientDateDAO();
 
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
                     require_once ROOT_VIEWS."/guardianListPendientView.php";
 
                 } else {                
@@ -126,7 +125,9 @@
                     if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0){
 
                         $this->guardianList = $this->guardianDAO->getAllDischargeDateDAO();
-
+                        
+                        require_once ROOT_VIEWS."/mainHeader.php";
+                        require_once ROOT_VIEWS."/mainNav.php";
                         require_once ROOT_VIEWS."/guardianListDischargedateAdminView.php";    
 
                     } else if (strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
@@ -166,13 +167,19 @@
                                 $specific = "guardian";
                             }                         
                         }                      
-
-                        require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";
-                        require_once ROOT_VIEWS."/notificationAlert.php";    
+                        require_once ROOT_VIEWS."/mainHeader.php";
+                        require_once ROOT_VIEWS."/mainNav.php";
+                        require_once ROOT_VIEWS."/guardianListDischargedateOwnerView.php";                            
                     }            
                 }
                 
+                require_once ROOT_VIEWS."/notificationAlert.php";
                 require_once ROOT_VIEWS."/mainFooter.php"; 
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }
         }
 
         // Retorna todos los guardianes con un precio igual o menor al enviado.
@@ -196,33 +203,40 @@
 
         private function filterRating($guardianList, $rating){
 
-            $guardianFilterList = array();
+            try {
 
-            foreach ($guardianList as $key => $guardian) {
+                $guardianFilterList = array();
 
-                $reviewList = $this->reviewDAO->getReviewListTokenGuardianDAO($guardian->getToken());
+                foreach ($guardianList as $key => $guardian) {
 
-                if (!empty($reviewList)){
+                    $reviewList = $this->reviewDAO->getReviewListTokenGuardianDAO($guardian->getToken());
 
-                    $cont = 0;
-                    $scoreTotal = 0;
+                    if (!empty($reviewList)){
 
-                    foreach ($reviewList as $key => $review) {
+                        $cont = 0;
+                        $scoreTotal = 0;
 
-                        $scoreTotal = $scoreTotal + $review->getScore();
-                        $cont++;                        
-                    }
+                        foreach ($reviewList as $key => $review) {
 
-                    $ratingTotal = $scoreTotal / $cont;
+                            $scoreTotal = $scoreTotal + $review->getScore();
+                            $cont++;                        
+                        }
 
-                    if ($ratingTotal >= $rating){
+                        $ratingTotal = $scoreTotal / $cont;
 
-                        array_push($guardianFilterList, $guardian);
-                    }                    
-                }                
+                        if ($ratingTotal >= $rating){
+
+                            array_push($guardianFilterList, $guardian);
+                        }                    
+                    }                
+                }
+
+                return $guardianFilterList;
+
+            } catch (Exception $e) {
+                
+                throw $e;                
             }
-
-            return $guardianFilterList;
         }
 
         // Retorna todos los guardianes que trabajen ese rango de dias.
@@ -237,6 +251,7 @@
                 $guardianDateList = $this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList());
 
                 if ($this->getCompareDateList($dateRangeList, $guardianDateList)){
+
                     array_push($guardianFilterList, $guardian);
                 }
             }
@@ -318,38 +333,58 @@
         }
 
         public function view($token) {
-            
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($token);
 
-            $serviceArray = array();
+            try {
 
-            if (!is_null($this->guardian->getServiceDayList())){
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($token);
 
-                foreach ($this->guardian->getServiceDayList() as $key => $value) {
-               
-                    $serviceArray[$value] = $value;
+                $serviceArray = array();
+
+                if (!is_null($this->guardian->getServiceDayList())){
+
+                    foreach ($this->guardian->getServiceDayList() as $key => $value) {
+                   
+                        $serviceArray[$value] = $value;
+                    }
                 }
-            }
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/guardianView.php";
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/guardianView.php";
+                require_once ROOT_VIEWS."/mainFooter.php";  
+                
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }   
         }
 
         public function confirmGuardian($token) {
-            
-            $this->guardianDAO->confirmGuardianDAO($token);
-            
-            
-            header("Location: ".FRONT_ROOT."/guardian/list/pendient");
+
+            try {
+
+                $this->guardianDAO->confirmGuardianDAO($token);          
+                
+                header("Location: ".FRONT_ROOT."/guardian/list/pendient");   
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }  
         }
 
         public function declineGuardian($token) {
+
+            try {
+
+                $this->guardianDAO->deleteDAO($token);           
             
-            $this->guardianDAO->deleteDAO($token);            
-            
-            header("Location: ".FRONT_ROOT."/guardian/list/pendient");
+                header("Location: ".FRONT_ROOT."/guardian/list/pendient"); 
+
+            } catch (Exception $e) {
+                
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
+            } 
         }
     } 
 ?>

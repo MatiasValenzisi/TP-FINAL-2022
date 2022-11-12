@@ -3,15 +3,12 @@
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
     use \Exception as Exception;
-
     use Models\Admin as Admin;
 
     class AdminDAO implements IDAO{
         
         private $connection;
         private $tableName = "admin";
-
-        // Metodo que genera un nuevo usuario de tipo Admin a la base de datos.
 
         public function addDAO($value){   
 
@@ -33,20 +30,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
-
-        // Metodo que retorna todos los usuarios Admin de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
-            $adminList = array();
-
             try {
+
+                $adminList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -71,17 +63,13 @@
                     array_push($adminList, $admin);
                 }
 
+                return $adminList;
+
             } catch (Exception $e){   
                 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $adminList;
-
         }
-
-        // Metodo que actualiza un usuario de tipo Admin en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -105,20 +93,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        // Metodo que retorna un usuario de tipo Admin de la base de datos a partir de su nombre de usuario.
-
-        public function getUserNameDAO($username) {
-
-            $admin = null;
+        public function getUserNameDAO($username) {           
 
             try {
+
+                $admin = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".userName = :userName";
 
@@ -143,22 +126,19 @@
                     $admin->setDownDate($value["downDate"]);
                 }
 
+                return $admin;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $admin;
+                throw $e;
+            }            
         }
 
-        // Metodo que retorna un usuario de tipo Admin de la base de datos a partir de su token.
-
-        public function getUserTokenDAO($token){
-
-            $admin = null;
+        public function getUserTokenDAO($token){            
 
             try {
+
+                $admin = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -183,13 +163,12 @@
                     $admin->setDownDate($value["downDate"]);
                 }
 
+                return $admin;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $admin;
-        }        
-        
-    } ?>
+                throw $e;
+            }            
+        }
+    } 
+?>

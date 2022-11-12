@@ -37,20 +37,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
-
-        // Metodo que retorna todos los gatos de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
-            $catList = array();
-
             try {
+
+                $catList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -75,21 +70,19 @@
                     array_push($catList, $cat);
                 }
 
+                return $catList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $catList;
-
+                throw $e;
+            } 
         }
 
-        public function getAllByOwnerDAO($token) {
-
-            $catList = array();
+        public function getAllByOwnerDAO($token){
 
             try {
+
+                $catList = array();
                 
                 $query = "SELECT * FROM ".$this->tableName." AS C WHERE C.tokenOwner = :token";
 
@@ -115,16 +108,14 @@
 
                     array_push($catList, $cat);
                 }
+
+                return $catList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $catList;
         }
-
-        // Metodo que actualiza un gatos en base de datos mediante su token. 
 
         public function updateDAO($value){
 
@@ -149,20 +140,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
-    
-        // Metodo que retorna un gato de la base de datos a partir de su token.
 
         public function getCatTokenDAO($token){
 
-            $cat = null;
-
             try {
+
+                $cat = null;
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
 
@@ -187,20 +173,19 @@
                     $cat->setVideo($value["video"]);
                 }
 
+                return $cat;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $cat;
+                throw $e;
+            }            
         } 
 
-        public function getAllRace(){
-
-            $raceList = array();
+        public function getAllRaceDAO(){
 
             try {
+
+                $raceList = array();
 
                 $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'cat'";
 
@@ -217,14 +202,12 @@
                     array_push($raceList, $race);
                 }
 
+                return $raceList;  
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $raceList;    
-        }        
-      
+                throw $e;
+            }              
+        }   
     }
 ?>

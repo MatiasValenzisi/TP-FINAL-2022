@@ -252,6 +252,15 @@
                         }
 
                     break;
+
+                    case 'dao':
+                        
+                        if (strcmp($specific, 'unknown') == 0){
+
+                             echo "<script>sweet('Error de sistema','Error al conectarse al sistema. Inténtelo más tarde. Si el error sigue, notifíquelo a la pagina.','error')</script>";
+                        }
+
+                    break;
                 }
 
             break;

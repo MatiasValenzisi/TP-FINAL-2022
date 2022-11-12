@@ -3,7 +3,6 @@
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
     use \Exception as Exception;
-
     use Models\Booking as Booking;
     use Models\Review as Review;
 
@@ -12,8 +11,6 @@
         private $connection;
         private $tableName = "booking";
         private $tableName2 = "review";
-
-        // Metodo que genera un nuevo usuario de tipo Guardian a la base de datos.
 
         public function addDAO($value){   
 
@@ -35,20 +32,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }  
-
-            return true;
+                throw $e;
+            }
         }
-
-        // Metodo que retorna todos los usuarios Guardian de la base de datos en forma de lista.
 
         public function getAllDAO(){
 
-            $bookingList = array();
-
             try {
+
+                $bookingList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -71,21 +63,19 @@
                     array_push($bookingList, $booking);
                 }
 
+                return $bookingList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $bookingList;
-
         }
 
         public function getAllGuardianDAO($token){
 
-            $bookingList = array();
-
             try {
+
+                $bookingList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token";
 
@@ -110,20 +100,19 @@
                     array_push($bookingList, $booking);
                 }
 
+                return $bookingList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $bookingList;
+                throw $e;
+            }            
         }
         
         public function getAllOwnerDAO($token){
 
-            $bookingList = array();
-
             try {
+
+                $bookingList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenOwner = :token";
 
@@ -148,20 +137,19 @@
                     array_push($bookingList, $booking);
                 }
 
+                return $bookingList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return $bookingList;
         }
 
         public function getTokenDAO($token){
 
-            $booking = null;
-
             try {
+
+                $booking = null;
 
                 $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.token = :token";
 
@@ -184,16 +172,13 @@
                     $booking->setTokenOwner($value["tokenOwner"]);
                 }
 
+                return $booking;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $booking;
+                throw $e;
+            }            
         }
-
-        // Metodo que elimina una reserva.
 
         public function deleteDAO($value){ 
 
@@ -208,11 +193,8 @@
 
             } catch(Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }
-
-            return true;
         }
 
         public function updateState($token, $state){
@@ -229,18 +211,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-                return true;                    
+                throw $e;
+            }                 
         }        
 
-        public function getAllGuardianActiveDAO($token, $dateStart, $dateEnd){
-
-            $bookingList = array();
+        public function getAllGuardianActiveDAO($token, $dateStart, $dateEnd){           
 
             try {
+
+                $bookingList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token AND B.state = 'Aceptado' AND B.dateEnd > :dateStart AND B.dateStart < $dateEnd";
 
@@ -267,13 +246,12 @@
                     array_push($bookingList, $booking);
                 }
 
+                return $bookingList;
+
             } catch (Exception $e) {
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $bookingList;
+                throw $e;
+            }            
         }
 
         public function addReviewDAO($tokenGuardian, $score, $observations){
@@ -291,18 +269,15 @@
 
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
+                throw $e;
             }  
-
-            return true;
         }
 
-        public function getAllReviewDAO(){
-
-            $reviewList = array();
+        public function getAllReviewDAO(){           
 
             try {
+
+                $reviewList = array();
 
                 $query = "SELECT * FROM ".$this->tableName2;
 
@@ -321,13 +296,12 @@
                     array_push($reviewList, $review);
                 }
 
-            } catch (Exception $e) {
+                return $reviewList;  
 
-                echo ($e->getMessage());
-                exit();
-            }
+            } catch (Exception $e){
 
-            return $reviewList;            
+                throw $e;
+            }                      
         }
 
     } ?>

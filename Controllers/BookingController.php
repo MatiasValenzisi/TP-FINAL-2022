@@ -1,16 +1,15 @@
 <?php namespace Controllers;
 
     use Controllers\PetController as PetController;
-
     use Models\Booking as Booking;
     use Models\Payment as Payment;
-
     use DAO\BookingDAO as BookingDAO;
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\OwnerDAO as OwnerDAO;
     use DAO\DogDAO as DogDAO;
     use DAO\CatDAO as CatDAO;
     use DAO\PaymentDAO as PaymentDAO;
+    use \Exception as Exception;
 
     class BookingController {
 
@@ -81,60 +80,74 @@
 
         public function consult($tokenGuardian = null, $type = null, $action = null, $specific = null){
 
-            $date = array();
-            $date = date("m-d-Y").' - '.date("m-d-Y");
+            try {
 
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
+                $date = array();
+                $date = date("m-d-Y").' - '.date("m-d-Y");
 
-            $nameGuardian   = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
-            $nameOwner      = $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName();
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
 
-            $this->loadPetList();     
+                $nameGuardian   = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
+                $nameOwner      = $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName();
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/ownerBookingConsultView.php";    
-            require_once ROOT_VIEWS."/notificationAlert.php"; 
-            require_once ROOT_VIEWS."/mainFooter.php";
+                $this->loadPetList();     
+
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/ownerBookingConsultView.php";    
+                require_once ROOT_VIEWS."/notificationAlert.php"; 
+                require_once ROOT_VIEWS."/mainFooter.php";
+                
+            } catch (Exception $e) {
+                
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            }
         }
 
         public function consultAction($tokenGuardian, $tokenPet, $serviceDate){
 
-            $dataNew   = explode(" - ", $serviceDate);
+            try {
 
-            $startDate = date("m/d/Y", strtotime($dataNew["0"]));
-            $startDate = date("Y-m-d", strtotime($startDate));
+                $dataNew   = explode(" - ", $serviceDate);
 
-            $endDate   = date("m/d/Y", strtotime($dataNew["1"]));
-            $endDate   = date("Y-m-d", strtotime($endDate));
+                $startDate = date("m/d/Y", strtotime($dataNew["0"]));
+                $startDate = date("Y-m-d", strtotime($startDate));
 
-            $this->pet = $this->petController->getPetToken($tokenPet);
+                $endDate   = date("m/d/Y", strtotime($dataNew["1"]));
+                $endDate   = date("Y-m-d", strtotime($endDate));
 
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
+                $this->pet = $this->petController->getPetToken($tokenPet);
 
-            if (strcmp($this->pet->getSize(), $this->guardian->getPetSize()) == 0) {
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
 
-                if ($this->verifyDate($this->guardian, $startDate, $endDate)){
+                if (strcmp($this->pet->getSize(), $this->guardian->getPetSize()) == 0) {
 
-                    $dateMin = date("Y-m-d", strtotime("+ 7 days")); 
+                    if ($this->verifyDate($this->guardian, $startDate, $endDate)){
 
-                    if ($startDate >= $dateMin){
+                        $dateMin = date("Y-m-d", strtotime("+ 7 days")); 
 
-                        header("Location: ".FRONT_ROOT."/booking/generate/".$tokenGuardian."/".$tokenPet."/".$startDate."/".$endDate);                
+                        if ($startDate >= $dateMin){
+
+                            header("Location: ".FRONT_ROOT."/booking/generate/".$tokenGuardian."/".$tokenPet."/".$startDate."/".$endDate);                
+
+                        } else {
+
+                            header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/date");
+                        } 
 
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/date");
+                        header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/guardian");
                     } 
 
                 } else {
 
-                    header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/guardian");
-                } 
+                    header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/pet");
+                }
+                
+            } catch (Exception $e) {
 
-            } else {
-
-                header("Location: ".FRONT_ROOT."/booking/consult/".$tokenGuardian."/error/consult/pet");
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
             }
          }
 
@@ -142,10 +155,17 @@
 
         private function verifyDate($guardian, $startDate, $endDate){
 
-            $dateRangeList = $this->getDateRange($startDate, $endDate);
-            $guardianDateList = $this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList());
+            try {
 
-            return $this->getCompareDateList($dateRangeList, $guardianDateList);
+                $dateRangeList = $this->getDateRange($startDate, $endDate);
+                $guardianDateList = $this->getDateListGuardian($guardian->getServiceStartDate(), $guardian->getServiceEndDate(), $guardian->getServiceDayList());
+
+                return $this->getCompareDateList($dateRangeList, $guardianDateList);
+                
+            } catch (Exception $e) {
+
+                throw $e;                
+            }
         }
 
         // Retorna el arreglo de fechas que trabaja el guardian.
@@ -221,20 +241,27 @@
 
         public function generate($tokenGuardian, $tokenPet, $startDate, $endDate){
 
-            $this->pet      = $this->petController->getPetToken($tokenPet);
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
+            try {
 
-            $cant           = count($this->getDateRange($startDate, $endDate));
-            $startDate      = date("Y/m/d", strtotime($startDate));
-            $endDate        = date("Y/m/d", strtotime($endDate));
-            $priceService   = $this->guardian->getServicePrice();
-            $priceTotal     = $priceService * $cant;
-           
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
-            require_once ROOT_VIEWS."/ownerBookingGenerateView.php";    
-            require_once ROOT_VIEWS."/notificationAlert.php"; 
-            require_once ROOT_VIEWS."/mainFooter.php";
+                $this->pet      = $this->petController->getPetToken($tokenPet);
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($tokenGuardian);
+
+                $cant           = count($this->getDateRange($startDate, $endDate));
+                $startDate      = date("Y/m/d", strtotime($startDate));
+                $endDate        = date("Y/m/d", strtotime($endDate));
+                $priceService   = $this->guardian->getServicePrice();
+                $priceTotal     = $priceService * $cant;
+               
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/ownerBookingGenerateView.php";    
+                require_once ROOT_VIEWS."/notificationAlert.php"; 
+                require_once ROOT_VIEWS."/mainFooter.php";
+                
+            } catch (Exception $e) {
+                
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");                 
+            }
         }
 
         public function generateAction($tokenGuardian, $tokenPet, $startDate, $endDate, $priceTotal){
@@ -251,231 +278,293 @@
             header("Location: ".FRONT_ROOT."/booking/list");   
         }
 
-        public function list($type = null, $action = null, $specific = null, $add = null) { 
+        public function list($type = null, $action = null, $specific = null, $add = null) {
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";
+            try {
             
-            $this->loadPetList();
+                $this->loadPetList();
 
-            $this->guardianList = $this->guardianDAO->getAllDAO();
-            $this->ownerList    = $this->ownerDAO->getAllDAO();
+                $this->guardianList = $this->guardianDAO->getAllDAO();
+                $this->ownerList    = $this->ownerDAO->getAllDAO();
 
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+                if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
 
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
+                    $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/guardianBookingListView.php";
 
-                require_once ROOT_VIEWS."/guardianBookingListView.php";   
+                } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+                    $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
+                    
+                    require_once ROOT_VIEWS."/mainHeader.php";
+                    require_once ROOT_VIEWS."/mainNav.php";
+                    require_once ROOT_VIEWS."/ownerBookingListView.php"; 
 
-                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
+                } else {
 
-                require_once ROOT_VIEWS."/ownerBookingListView.php";   
-            }
+                    header("Location: ".FRONT_ROOT);
+                    exit();   
+                }
 
-            require_once ROOT_VIEWS."/notificationAlert.php"; 
-            require_once ROOT_VIEWS."/mainFooter.php"; 
+                require_once ROOT_VIEWS."/notificationAlert.php"; 
+                require_once ROOT_VIEWS."/mainFooter.php";  
+
+             } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");                  
+             } 
         }
         
         public function update($bookingToken, $action) {
 
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+            try {
 
-                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+                if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
+                    $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
 
-                $this->loadPetList();  
+                    $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
 
-                $this->pet = $this->petController->getPetToken($this->booking->getTokenPet()); 
+                    $this->loadPetList();  
 
-                if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){                    
+                    $this->pet = $this->petController->getPetToken($this->booking->getTokenPet()); 
 
-                    $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
+                    if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 && strcmp($action, "Aceptado") == 0){                    
 
-                    $dateBookingList = $this->getDateRange($this->booking->getDateStart(), $this->booking->getDateEnd());
+                        $this->bookingList = $this->bookingDAO->getAllGuardianActiveDAO($this->guardian->getToken(), $this->booking->getDateStart(), $this->booking->getDateEnd()); 
 
-                    foreach ($this->bookingList as $key => $bookingAux) {
-                
-                        $dateBookingAuxList = $this->getDateRange($bookingAux->getDateStart(), $bookingAux->getDateEnd());
-    
-                        foreach ($dateBookingList as $key => $dateBooking) {
-                            
-                            foreach ($dateBookingAuxList as $key => $dateBookingAux) {
-                             
-                                if ($dateBooking == $dateBookingAux){
+                        $dateBookingList = $this->getDateRange($this->booking->getDateStart(), $this->booking->getDateEnd());
 
-                                    $petBookingAux = null;
+                        foreach ($this->bookingList as $key => $bookingAux) {
+                    
+                            $dateBookingAuxList = $this->getDateRange($bookingAux->getDateStart(), $bookingAux->getDateEnd());
+        
+                            foreach ($dateBookingList as $key => $dateBooking) {
+                                
+                                foreach ($dateBookingAuxList as $key => $dateBookingAux) {
+                                 
+                                    if ($dateBooking == $dateBookingAux){
 
-                                    foreach ($this->petList as $key => $pet) {
- 
-                                        if (strcmp($pet->getToken(), $bookingAux->getTokenPet()) == 0){
+                                        $petBookingAux = null;
 
-                                            $petBookingAux = $pet;
+                                        foreach ($this->petList as $key => $pet) {
+     
+                                            if (strcmp($pet->getToken(), $bookingAux->getTokenPet()) == 0){
+
+                                                $petBookingAux = $pet;
+                                            }
                                         }
-                                    }
 
-                                    if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
+                                        if (strcmp($this->pet->getRace(), $petBookingAux->getRace()) != 0){
 
-                                        $this->bookingDAO->updateState($bookingToken, "Rechazado");
-                                        header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
-                                        exit();
-
-                                    } else {
-
-                                        if (strcmp(get_class($this->pet), get_class($petBookingAux)) != 0){
-                                                                                        
                                             $this->bookingDAO->updateState($bookingToken, "Rechazado");
                                             header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
                                             exit();
-                                            
+
                                         } else {
 
-                                            if (strcmp($this->pet->getToken(), $petBookingAux->getToken()) == 0){
-
+                                            if (strcmp(get_class($this->pet), get_class($petBookingAux)) != 0){
+                                                                                            
                                                 $this->bookingDAO->updateState($bookingToken, "Rechazado");
-                                                header("Location: ".FRONT_ROOT."/booking/list/error/update/state/pet");
+                                                header("Location: ".FRONT_ROOT."/booking/list/error/update/state/race");
                                                 exit();
+                                                
+                                            } else {
+
+                                                if (strcmp($this->pet->getToken(), $petBookingAux->getToken()) == 0){
+
+                                                    $this->bookingDAO->updateState($bookingToken, "Rechazado");
+                                                    header("Location: ".FRONT_ROOT."/booking/list/error/update/state/pet");
+                                                    exit();
+                                                }
                                             }
                                         }
                                     }
                                 }
-                            }
-                        }                        
-                    }   
+                            }                        
+                        }   
 
-                    $token         = $this->createToken($this->getTokenPaymentList());
-                    $tokenBooking  = $this->booking->getToken();
-                    $amount        = $this->booking->getPrice() / 2;
-                    $dateGenerated = date("Y-m-d");
+                        $token         = $this->createToken($this->getTokenPaymentList());
+                        $tokenBooking  = $this->booking->getToken();
+                        $amount        = $this->booking->getPrice() / 2;
+                        $dateGenerated = date("Y-m-d");
 
-                    $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, "Cupón de pago");
-                    $this->paymentDAO->addDAO($this->payment);                            
-                }
-
-                $this->bookingDAO->updateState($bookingToken, $action);
-
-                if (strcmp($action, "Rechazado") == 0 || strcmp($action, "Aceptado") == 0){
-
-                    $nameGuardian = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
-
-                    $subject = "Solicitud de reserva con el guardian ".$nameGuardian." ha sido: ".$action;
-
-                    $email = $this->guardian->getUserName();
-
-                    $date = "desde el ".$this->booking->getDateStart()." al ".$this->booking->getDateEnd();
-
-                    $body = "Solicitud de reserva con el guardian ".$nameGuardian." con fecha ".$date." ha sido: ".$action."<br>";
-
-                    if (strcmp($action,"Aceptado") == 0){
-
-                        $body.= "Se ha cargado ya un cupón de pagó para la reserva.";
+                        $this->payment = new Payment ($token, $tokenBooking, $amount, $dateGenerated, null, "Cupón de pago");
+                        $this->paymentDAO->addDAO($this->payment);                            
                     }
 
-                    require_once ROOT_LIBRARY."/PHPMailer/index.php"; 
-                }
+                    $this->bookingDAO->updateState($bookingToken, $action);
 
-                header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                                                         
+                    if (strcmp($action, "Rechazado") == 0 || strcmp($action, "Aceptado") == 0){
 
-            } else {
+                        $nameGuardian = $this->guardian->getFirstName()." ".$this->guardian->getLastName();
 
-                header("location: ".FRONT_ROOT);
+                        $subject = "Solicitud de reserva con el guardian ".$nameGuardian." ha sido: ".$action;
+
+                        $email = $this->guardian->getUserName();
+
+                        $date = "desde el ".$this->booking->getDateStart()." al ".$this->booking->getDateEnd();
+
+                        $body = "Solicitud de reserva con el guardian ".$nameGuardian." con fecha ".$date." ha sido: ".$action."<br>";
+
+                        if (strcmp($action,"Aceptado") == 0){
+
+                            $body.= "Se ha cargado ya un cupón de pagó para la reserva.";
+                        }
+
+                        require_once ROOT_LIBRARY."/PHPMailer/index.php"; 
+                    }
+
+                    header("Location: ".FRONT_ROOT."/booking/list/success/update/booking");                                                         
+
+                } else {
+
+                    header("location: ".FRONT_ROOT);
+                }     
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");  
             }
         }
 
         public function history() { 
-            
-            $this->guardianList = $this->guardianDAO->getAllDAO();
-            $this->ownerList    = $this->ownerDAO->getAllDAO();
 
-            $this->reviewList   = $this->bookingDAO->getAllReviewDAO();
+            try {
 
-            $this->loadPetList();
+                $this->guardianList = $this->guardianDAO->getAllDAO();
+                $this->ownerList    = $this->ownerDAO->getAllDAO();
 
-            require_once ROOT_VIEWS."/mainHeader.php";
+                $this->reviewList   = $this->bookingDAO->getAllReviewDAO();
 
-            if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+                $this->loadPetList();                
 
-                $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
+                if(strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0) {
+
+                    $this->bookingList = $this->bookingDAO->getAllGuardianDAO($_SESSION['userPH']->getToken());
 
 
-            } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
+                } else if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0) {
 
-                $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
-            }
+                    $this->bookingList = $this->bookingDAO->getAllOwnerDAO($_SESSION['userPH']->getToken());
+                }
+                
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";  
+                require_once ROOT_VIEWS."/bookingHistoryListView.php";   
+                require_once ROOT_VIEWS."/mainFooter.php";  
 
-            require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/bookingHistoryListView.php";   
-            require_once ROOT_VIEWS."/mainFooter.php";
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+            } 
         }
 
         public function review($bookingToken){
 
-            $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
-            $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
+            try {
 
-            require_once ROOT_VIEWS."/mainHeader.php";
-            require_once ROOT_VIEWS."/mainNav.php";  
-            require_once ROOT_VIEWS."/reviewBookingView.php";   
-            require_once ROOT_VIEWS."/mainFooter.php";
+                $this->booking = $this->bookingDAO->getTokenDAO($bookingToken);
+                $this->guardian = $this->guardianDAO->getUserTokenDAO($this->booking->getTokenGuardian());  
+
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";  
+                require_once ROOT_VIEWS."/reviewBookingView.php";   
+                require_once ROOT_VIEWS."/mainFooter.php"; 
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
+            }
         }
 
         public function reviewAction($guardianToken, $score, $observations = ''){
 
-            $this->bookingDAO->addReviewDAO($guardianToken, $score, $observations);  
+            try {
 
-            header("Location: ".FRONT_ROOT."/booking/history");
+                $this->bookingDAO->addReviewDAO($guardianToken, $score, $observations);  
+
+                header("Location: ".FRONT_ROOT."/booking/history");
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
+            }
         }
 
         /* Carga la lista de mascotas con todas las disponibles */
 
         private function loadPetList(){
 
-            $dogList = $this->dogDAO->getAllDAO();
-            $catList = $this->catDAO->getAllDAO();
-            
-            if (!empty($dogList)){
+            try {
 
-                $this->petList = array_merge($this->petList, $dogList);
-            } 
+                $dogList = $this->dogDAO->getAllDAO();
+                $catList = $this->catDAO->getAllDAO();
+                
+                if (!empty($dogList)){
 
-            if (!empty($catList)){
+                    $this->petList = array_merge($this->petList, $dogList);
+                } 
 
-                $this->petList = array_merge($this->petList, $catList);
+                if (!empty($catList)){
+
+                    $this->petList = array_merge($this->petList, $catList);
+                }
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
             }
         }  
 
         public function getTokenBookingList(){ 
 
-            $tokenList = array();
+            try {
 
-            $this->bookingList = $this->bookingDAO->getAllDAO();
-            
-            if($this->bookingList != null) {
+                $tokenList = array();
 
-                foreach($this->bookingList as $current) {
+                $this->bookingList = $this->bookingDAO->getAllDAO();
+                
+                if($this->bookingList != null) {
 
-                    array_push($tokenList, $current->getToken());
+                    foreach($this->bookingList as $current) {
+
+                        array_push($tokenList, $current->getToken());
+                    }
                 }
+
+                return $tokenList; 
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
             }
-            return $tokenList; 
         }
 
         public function getTokenPaymentList(){ 
 
-            $tokenList = array();
+            try {
 
-            $this->paymentList = $this->paymentDAO->getAllDAO();
-            
-            if($this->paymentList != null) {
+                $tokenList = array();
 
-                foreach($this->paymentList as $current) {
+                $this->paymentList = $this->paymentDAO->getAllDAO();
+                
+                if($this->paymentList != null) {
 
-                    array_push($tokenList, $current->getToken());
+                    foreach($this->paymentList as $current) {
+
+                        array_push($tokenList, $current->getToken());
+                    }
                 }
-            }
-            return $tokenList; 
+                return $tokenList; 
+
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
+            } 
         }
 
         /* Retorna un nuevo número de token que no haya sido utilizado antes */

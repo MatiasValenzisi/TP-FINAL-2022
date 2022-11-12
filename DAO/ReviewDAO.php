@@ -2,9 +2,7 @@
 
     use DAO\IDAO as IDAO; 
     use DAO\Connection as Connection;
-
     use \Exception as Exception;
-
     use Models\Review as Review;
 
     class ReviewDAO implements IDAO {
@@ -28,18 +26,15 @@
 
             } catch (Exception $e){
                 
-                echo ($e->getMessage());
-                exit();
-            }  
-
-            return true;
+                throw $e;
+            }             
         }
         
-        public function getAllDAO(){
-
-            $reviewList = array();
+        public function getAllDAO(){            
 
             try {
+
+                $reviewList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -58,20 +53,19 @@
                     array_push($reviewList, $review);
                 }
 
+                return $reviewList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $reviewList;
+                throw $e;
+            }            
         } 
 
-        public function getReviewListTokenGuardianDAO($tokenGuardian){
-
-            $reviewList = array();
+        public function getReviewListTokenGuardianDAO($tokenGuardian){            
 
             try {
+
+                $reviewList = array();
 
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".tokenGuardian = :tokenGuardian";
 
@@ -92,15 +86,12 @@
                     array_push($reviewList, $review);
                 }
 
+                return $reviewList;
+
             } catch (Exception $e){
 
-                echo ($e->getMessage());
-                exit();
-            }
-
-            return $reviewList;
-
-        }
-      
+                throw $e;
+            } 
+        }      
     }
 ?>

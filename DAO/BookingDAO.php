@@ -221,7 +221,7 @@
 
                 $bookingList = array();
 
-                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token AND B.state = 'Aceptado' AND B.dateEnd > :dateStart AND B.dateStart < $dateEnd";
+                $query = "SELECT * FROM ".$this->tableName." AS B WHERE B.tokenGuardian = :token AND B.state = 'Aceptado' AND B.dateEnd > :dateStart AND B.dateStart < :dateEnd";
 
                 $parameters["token"]      = $token;
                 $parameters["dateStart"]  = $dateStart;

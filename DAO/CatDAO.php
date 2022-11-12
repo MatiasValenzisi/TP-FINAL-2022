@@ -18,7 +18,7 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan,photo,video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan,:photo,:video)";
+                $query = "INSERT INTO ".$this->tableName." (token, tokenOwner, name, race, size, weight, observations, vaccinationPlan, photo, video) VALUES (:token,:tokenOwner, :name, :race, :size, :weight, :observations, :vaccinationPlan, :photo, :video)";
 
                 $parameters["token"]           = $value->getToken();
                 $parameters["tokenOwner"]      = $value->getTokenOwner();
@@ -121,7 +121,7 @@
 
             try {
 
-                $query = "UPDATE ".$this->tableName." SET name = :name, race= :race, size= :size, weight= :weight, observations = :observations, vaccinationPlan = :vaccinationPlan, photo = :photo, video= :video WHERE ".$this->tableName.".token = :token";
+                $query = "UPDATE ".$this->tableName." SET name = :name, race= :race, size= :size, weight= :weight, observations = :observations, vaccinationPlan = :vaccinationPlan, photo = :photo, video = :video WHERE ".$this->tableName.".token = :token";
 
                 $parameters["token"]           = $value->getToken();
                 $parameters["tokenOwner"]      = $value->getTokenOwner();

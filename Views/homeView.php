@@ -143,7 +143,7 @@
 
     <div class="home-container x_panel">
 
-        <img src="../Temporal-pruebas/utn.png" alt="utn" class="utn-logo">
+
 
         <div>
             <h1 class="title x_title">Pet Hero</h1>

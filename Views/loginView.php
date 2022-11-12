@@ -246,7 +246,8 @@ img {
                 <button type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/sign/register'"
                     class="btn btn-primary ">Registrarse</button>
 
-                <a href="" class="password"><b>¿Olvidaste la contraseña?</b></a>
+                <!--<a href="" class="password"><b>¿Olvidaste la contraseña?</b></a> -->
+
 
             </form>
 

@@ -180,7 +180,7 @@
             }            
         }
 
-        public function deleteDAO($value){ 
+        public function deleteDAO($token){ 
 
             try {
 

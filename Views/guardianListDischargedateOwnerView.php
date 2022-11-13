@@ -112,12 +112,61 @@
 
                                 <div class="col-xs-12 col-sm-6 emphasis">
                                     <p class="ratings">
-                                        <a>4.0</a>
-                                        <a><span class="fa fa-star"></span></a>
-                                        <a><span class="fa fa-star"></span></a>
-                                        <a><span class="fa fa-star"></span></a>
-                                        <a><span class="fa fa-star"></span></a>
-                                        <a><span class="fa fa-star-o"></span></a>
+                                        <?php
+                                            if($this->getReviewAverage($guardian->getToken()) != 0) { ?>
+                                                <a><?php echo $this->getReviewAverage($guardian->getToken()); ?></a>
+                                            <?php
+                                            } ?>
+
+                                        <?php 
+                                        switch($this->getReviewAverage($guardian->getToken())) {
+                                            case 1: ?>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <?php
+                                                break;
+                                            case 2: ?>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <?php
+                                                break;
+                                            case 3: ?>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <?php
+                                                break;
+                                            case 4: ?>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star-o"></span></a>
+                                                <?php
+                                                break;
+                                            case 5: ?>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <a><span class="fa fa-star"></span></a>
+                                                <?php
+                                                break;
+                                            default:?>
+                                                No disponible
+                                                <?php
+                                                break;
+                                            
+                                        }
+                                        ?>
 
                                     </p>
                                 </div>

@@ -138,6 +138,8 @@
 
                         $this->guardianList = $this->guardianDAO->getAllDischargeDateCompleteDAO();
 
+                        $this->reviewList = $this->reviewDAO->getAllDAO();
+
                         if (strcmp($dateType, "price") == 0 && !is_null($data)){
 
                             $this->guardianList = $this->filterPrice($this->guardianList, $data);     
@@ -385,6 +387,25 @@
                 
                 header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown");
             } 
+        }
+
+        public function getReviewAverage($tokenGuardian) {
+
+            $total = 0;
+            $i = 0;
+
+            foreach($this->reviewList as $review) {
+                if($review->getTokenGuardian() == $tokenGuardian) {
+                    $i++;
+                    $total = $total + $review->getScore();
+                }
+            }
+            if($i == 0) {
+                $average = 0;
+            } else {
+                $average = (int)($total / $i);
+            }
+            return $average;
         }
     } 
 ?>

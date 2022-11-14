@@ -30,9 +30,6 @@ h6 {
     align-items: center;
 }
 
-input[type="file"] {
-    display: none;
-}
 
 .custom-file-upload {
     border: 1px solid #ccc;
@@ -91,13 +88,6 @@ input[type="file"] {
                                                 <b><?php echo "$ ".$priceService ?></b>
                                             </h4>
 
-
-
-
-
-
-
-                                            <input id="file-upload" type="file" />
                                         </div>
                                     </div>
                                 </div>

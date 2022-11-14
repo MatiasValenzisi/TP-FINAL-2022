@@ -9,6 +9,26 @@
         0 10px 10px rgba(0, 0, 0, 0.42);
 }
 
+.payment-card-size {
+    height: 600px;
+}
+
+.payment-card-size img {
+    margin-bottom: 30px;
+}
+
+.payment-card-size .left-card {
+    line-height: 30vh;
+}
+
+.card {
+    background-color: #f7f7f7;
+    padding: 40px;
+
+    height: 490px;
+    margin-bottom: 50px;
+}
+
 .sideways {
     margin-top: 14px;
     width: 90%;
@@ -79,107 +99,151 @@ label {
         text-align: center;
     }
 }
+
+@media screen and (min-width: 1900px) {
+    .payment-card-size {
+        margin-top: 0 !important;
+        height: 650px !important;
+
+    }
+
+    .booking-card h4 {
+        font-size: 30px !important;
+    }
+}
 </style>
 
-<div class="container-fluid" style="width:70%; height:50%;">
 
-    <div>
-        <h2 class="title">Datos de la reserva</h2>
-    </div>
 
-    <div class="row sideways">
-        <div class="col-md-4 col-xs-12">
-            <label class="form-label">Guardian:</label>
-            <input type="text" class="form-control"
-                value="<?php echo $this->guardian->getFirstName()." ".$this->guardian->getLastName(); ?>" readonly
-                required />
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <label class="form-label">Dueño:</label>
-            <input type="text" class="form-control"
-                value="<?php echo $this->owner->getFirstName()." ".$this->owner->getLastName(); ?>" readonly required />
-        </div>
-        <div class="col-md-4 col-xs-12">
-            <label class="form-label">Mascota:</label>
-            <input type="text" class="form-control" value="<?php echo $this->pet->getName(); ?>" readonly required />
-        </div>
-    </div>
+<div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Datos de la reserva</h2>
+                    <div class="clearfix"></div>
+                </div>
 
-    <div class="row sideways">
-        <div class="col-md-6 col-xs-12">
-            <label class="form-label">Fecha de inicio:</label>
-            <input type="text" class="form-control" value="<?php echo $this->booking->getDateStart(); ?>" readonly
-                required />
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <label class="form-label">Fecha final:</label>
-            <input type="text" class="form-control" value="<?php echo $this->booking->getDateEnd(); ?>" readonly
-                required />
-        </div>
-    </div>
+                <div class="x_content"><br>
 
-    <div class="row sideways">
-        <div class="col-md-12 col-xs-12">
-            <label class="form-label">Monto a pagar: &nbsp; ( Corresponde al 50% del monto final )</label>
-            <input type="text" class="form-control" value="<?php echo $this->booking->getPrice() / 2; ?>" readonly
-                required />
-        </div>
-    </div>
 
-    <br><br><br><br>
 
-</div>
 
-<form action="<?php echo FRONT_ROOT?>/payment/payAction" method="POST">
+                    <div class="col-md-5 mb-3 col-sm-5 col-xs-12">
+                        <div class="container-fluid payment-card-size left-card profile-section">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center"> <img
+                                        src="<?php echo VIEWS_PATH ?>/profile/<?php echo $this->guardian->getProfilePicture() ?>"
+                                        alt="user" class="rounded-circle" width="150">
+                                    <div class="mt-3 booking-card ">
+                                        <h4>Nombre guardian:
+                                            <b><?php echo $this->guardian->getFirstName()." ".$this->guardian->getLastName(); ?></b>
+                                        </h4>
+                                        <hr>
+                                        <h4>Nombre dueño:
+                                            <b><?php echo $this->owner->getFirstName()." ".$this->owner->getLastName(); ?></b>
+                                        </h4>
+                                        <hr>
+                                        <h4>Nombre mascota:
+                                            <b><?php echo $this->pet->getName(); ?></b>
+                                        </h4>
+                                        <hr>
+                                        <h4>Fecha de inicio:
+                                            <b><?php echo $this->booking->getDateStart(); ?></b>
+                                        </h4>
+                                        <hr>
+                                        <h4>Fecha de final:
+                                            <b><?php echo $this->booking->getDateEnd(); ?></b>
+                                        </h4>
+                                        <hr>
+                                        <h4>Monto a pagar: &nbsp;<br>( Corresponde al 50% del monto final )
+                                            <br><br>
+                                            <span style="font-size:2rem;"><b><?php echo $this->booking->getPrice() / 2; ?>
+                                                    $</b></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <input type="hidden" name="tokenPayment" value="<?php echo $tokenPayment ?>">
+                    </div>
 
-    <div class="container-fluid" style="width:70%; height:50%;">
+                    <div class="col-md-7 col-xs-12">
+                        <div class="container-fluid payment-card-size mb-3 ">
+                            <div class="card-body">
 
-        <div>
-            <h2 class="title">Ingrese los datos de su tarjeta</h2>
-        </div>
 
-        <div class="row sideways">
-            <div class="col-md-12 col-xs-12">
-                <label class="form-label" for="text">Nombre Completo:</label>
-                <input type="text" class="form-control" placeholder="nombre completo" required />
-            </div>
-        </div>
+                                <form action="<?php echo FRONT_ROOT?>/payment/payAction" method="POST">
 
-        <div class="row sideways">
-            <div class="col-md-12 col-xs-12">
-                <label class="form-label" for="creditCardNumber"><i class="fa fa-credit-card"></i> Numero de tarjeta
-                    credito:</label>
-                <div class="creditcard-number">
-                    <input type="number" class="form-control" placeholder="numero tarjeta de credito" required />
+                                    <input type="hidden" name="tokenPayment" value="<?php echo $tokenPayment ?>">
+
+                                    <div>
+
+                                        <div>
+                                            <h2 class="title">Ingrese los datos de su tarjeta</h2>
+                                        </div>
+
+                                        <div class="row sideways">
+                                            <div class="col-md-12 col-xs-12">
+                                                <label class="form-label" for="text">Nombre Completo:</label>
+                                                <input type="text" class="form-control" placeholder="nombre completo"
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <div class="row sideways">
+                                            <div class="col-md-12 col-xs-12">
+                                                <label class="form-label" for="creditCardNumber"><i
+                                                        class="fa fa-credit-card"></i> Numero de tarjeta
+                                                    credito:</label>
+                                                <div class="creditcard-number">
+                                                    <input type="number" class="form-control"
+                                                        placeholder="numero tarjeta de credito" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row sideways">
+
+                                            <div class="col-md-12 col-xs-12">
+                                                <label class="form-label" for="expireDate">Dni:</label>
+                                                <input type="number" class="form-control" placeholder="Dni" required />
+                                            </div>
+                                        </div>
+                                        <div class="row sideways">
+
+                                            <div class="col-md-6 col-xs-12">
+                                                <label class="form-label" for="expireDate">Fecha Expiración:</label>
+                                                <input type="date" class="form-control" placeholder="Fecha expiracion"
+                                                    name="expireDate" required />
+                                            </div>
+                                            <div class="col-md-6 col-xs-12">
+                                                <label class="form-label" for="cvv">Clave de seguridad:</label>
+                                                <input type="number" style="color:black;" class="form-control"
+                                                    placeholder="CVV" name="cvv" maxlength="3" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons ">
+                                            <button type="button"
+                                                onclick="location.href='<?php echo FRONT_ROOT."/payment/list/pendient"; ?>'"
+                                                class="btn btn-primary col-md-5 col-sm-5 col-xs-12">Cancelar</button>
+                                            <button type="submit"
+                                                class="btn btn-success col-md-6 col-sm-6 col-xs-12">Realizar
+                                                pago</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
-
-        <div class="row sideways">
-            <div class="col-md-4 col-xs-12">
-                <label class="form-label" for="expireDate">Dni:</label>
-                <input type="number" class="form-control" placeholder="Dni" required />
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <label class="form-label" for="expireDate">Fecha Expiración:</label>
-                <input type="date" class="form-control" placeholder="Fecha expiracion" name="expireDate" required />
-            </div>
-            <div class="col-md-4 col-xs-12">
-                <label class="form-label" for="cvv">Clave de seguridad:</label>
-                <input type="number" style="color:black;" class="form-control" placeholder="CVV" name="cvv"
-                    maxlength="3" required />
-            </div>
-        </div>
-
-        <div class="buttons ">
-            <button type="button" onclick="location.href='<?php echo FRONT_ROOT."/payment/list/pendient"; ?>'"
-                class="btn btn-primary col-md-5 col-sm-5 col-xs-12">Cancelar</button>
-            <button type="submit" class="btn btn-success col-md-6 col-sm-6 col-xs-12">Realizar pago</button>
-        </div>
     </div>
-</form>
+</div>
 
 
 <br><br><br>

@@ -168,7 +168,7 @@ label {
 
 .title {
   text-align: center;
-  font-size: 50px;
+  font-size: 45px;
   margin-bottom: 20px;
   font-weight: 800;
   line-height: 150px;
@@ -321,13 +321,13 @@ p {
   }
 
   label {
-    font-size: 25px;
+    font-size: 15px;
   }
 
   select,
   input {
     height: 40px !important;
-    font-size: 20px !important;
+    font-size: 15px !important;
   }
   textarea {
     font-size: 20px !important;
@@ -363,6 +363,6 @@ p {
   }
 
   .booking-card h4 {
-    font-size: 30px !important;
+    font-size: 20px !important;
   }
 }

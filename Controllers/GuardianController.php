@@ -96,7 +96,7 @@
 
             } catch (Exception $e) {
 
-                var_dump($e->getMessage());//header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
+                header("Location: ".FRONT_ROOT."/home/administration/error/dao/unknown"); 
             }         
         }
         

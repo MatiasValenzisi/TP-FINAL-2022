@@ -1,3 +1,47 @@
+<style>
+h6 {
+    font-weight: 800;
+    width: 180px;
+}
+
+.card {
+    background-color: #f7f7f7;
+    padding: 40px;
+
+    height: 490px;
+    margin-bottom: 50px;
+}
+
+.profile-section {
+    line-height: 70px;
+}
+
+.profile-section img {
+    margin-top: 25%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 0.5px 43px;
+    cursor: pointer;
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
+</style>
+
 <div>
 
     <div class="row">

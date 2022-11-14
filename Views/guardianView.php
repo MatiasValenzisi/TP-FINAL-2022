@@ -1,3 +1,58 @@
+<style>
+h6 {
+    font-weight: 800;
+    width: 150px;
+}
+
+
+.card {
+    background-color: #f7f7f7;
+    padding: 40px;
+
+    height: 50%;
+    margin-bottom: 50px;
+}
+
+.profile {
+    line-height: 70px;
+}
+
+.profile img {
+    margin-top: 25%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 0.5px 43px;
+    cursor: pointer;
+}
+
+.rounded-circle {
+    border-radius: 50%;
+}
+
+.days {
+
+
+    font-size: 14px;
+}
+
+.form-group {
+    margin-top: 50px;
+}
+</style>
+
 <div>
 
     <div class="row">
@@ -44,29 +99,29 @@
                                 <div class="card-body">
 
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Experiencia &nbsp;</h6>
                                         </div>
-                                        <div class="col-sm-6 text-secondary">
+                                        <div class="col-sm-9 text-secondary">
                                             <?php echo $this->guardian->getExperience(). " Año/s"; ?></div>
                                     </div>
 
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Tamaño mascota &nbsp;</h6>
                                         </div>
-                                        <div class="col-sm-6 text-secondary">
+                                        <div class="col-sm-9 text-secondary">
                                             <?php echo $this->guardian->getPetSize(); ?></div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Inicio del servicio
                                                 &nbsp;</h6>
                                         </div>
 
-                                        <div class="col-sm-6 text-secondary">
+                                        <div class="col-sm-9 text-secondary">
 
 
                                             <?php if (!is_null($this->guardian->getServiceStartDate()) && !empty($this->guardian->getServiceStartDate())){
@@ -85,12 +140,12 @@
 
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Finalización del servicio
                                                 &nbsp;</h6>
                                         </div>
 
-                                        <div class="col-sm-6 text-secondary">
+                                        <div class="col-sm-9 text-secondary">
 
 
                                             <?php if (!is_null($this->guardian->getServiceEndDate()) && !empty($this->guardian->getServiceEndDate())){
@@ -110,13 +165,13 @@
 
                                     <hr>
                                     <div class="row">
-                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Precio diario por
                                                 servicio
                                                 &nbsp;</h6>
                                         </div>
 
-                                        <div class="col-sm-6 text-secondary">
+                                        <div class="col-sm-9 text-secondary">
 
 
                                             <?php if (!is_null($this->guardian->getServicePrice()) && !empty($this->guardian->getServicePrice())){

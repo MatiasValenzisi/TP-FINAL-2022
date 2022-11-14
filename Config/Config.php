@@ -21,10 +21,10 @@ define("VIDEO", VIEWS_PATH."/video/");
 //define("DB_PASS", "123456@m");
 
 /* Constantes para la conexion de la base de datos local */ 
-define("DB_HOST", "localhost:3307"); 
+define("DB_HOST", "localhost:3306"); 
 define("DB_NAME", "pet_hero");
 define("DB_USER", "root");
-define("DB_PASS", "root"); 
+define("DB_PASS", ""); 
 
 /* Correo electronico */
 define("EMAIL", "petheroveterinary@gmail.com");

@@ -350,7 +350,7 @@
                 }  
 
             } catch (Exception $e){
-
+                
                 throw $e;
             }
         }
@@ -491,7 +491,7 @@
 
                 $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = :tokenGuardian";
                 
-                $parameters["tokenGuardian"];
+                $parameters["tokenGuardian"] = $tokenGuardian;
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);

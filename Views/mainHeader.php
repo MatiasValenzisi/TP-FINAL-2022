@@ -46,4 +46,7 @@
     <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet"/>
     
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+
+    <link rel="icon" type="image/png" href="<?php echo VIEWS_PATH ?>/images/logoWhite.png">
+    
 </head>

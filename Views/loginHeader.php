@@ -31,4 +31,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
+    <link rel="icon" type="image/png" href="<?php echo VIEWS_PATH ?>/images/logoWhite.png">
+
 </head>

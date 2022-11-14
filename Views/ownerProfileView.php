@@ -23,7 +23,7 @@
                                             <h4>Hola <b><?php echo $_SESSION['userPH']->getFirstName() ?></b> !</h4>
                                             <h3 class="text-secondary mb-1">
                                                 Token: <?php echo $_SESSION['userPH']->getToken() ?></h3>
-                                            <input id="file-upload" type="file" />
+                                            <!--<input id="file-upload" type="file" />-->
                                         </div>
                                     </div>
                                 </div>

@@ -41,7 +41,10 @@
 
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet"/>
+    
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
 </head>

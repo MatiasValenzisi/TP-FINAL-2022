@@ -1,6 +1,6 @@
 <form action="<?php echo FRONT_ROOT?>/sign/createUserOwner" method="POST">
 
-    <div class="container-fluid owner" style="width:70%; height:50%;">
+    <div class="container-fluid" style="width:70%; height:50%;">
         <div>
             <h2 class=" title">Registrarse como dueño</h2>
         </div>

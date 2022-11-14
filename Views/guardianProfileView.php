@@ -89,8 +89,6 @@ input[type="file"] {
                             <div class="card mb-3 ">
                                 <div class="card-body">
 
-
-
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
                                             <h6 class="mb-0">Contraseña <span class="required">*</span></h6>
@@ -216,6 +214,7 @@ input[type="file"] {
 
 
                                 </div>
+                                <hr>
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
 

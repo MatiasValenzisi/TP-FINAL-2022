@@ -1,120 +1,3 @@
-<style>
-.container-fluid {
-    background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%) !important;
-    padding: 14px;
-    color: white;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
-        0 10px 10px rgba(0, 0, 0, 0.42);
-}
-
-.payment-card-size {
-    height: 600px;
-}
-
-.payment-card-size img {
-    margin-bottom: 30px;
-}
-
-.payment-card-size .left-card {
-    line-height: 30vh;
-}
-
-.card {
-    background-color: #f7f7f7;
-    padding: 40px;
-
-    height: 490px;
-    margin-bottom: 50px;
-}
-
-.sideways {
-    margin-top: 14px;
-    width: 90%;
-    margin: 0 auto;
-}
-
-label {
-    margin-top: 15px;
-}
-
-.title {
-    text-align: center;
-    font-size: 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-weight: 800;
-    line-height: 50px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 80%;
-    margin: 50px auto;
-}
-
-@media screen and (min-width: 1620px) {
-
-    .container-fluid {
-
-        margin-top: 7%;
-    }
-
-    label {
-        font-size: 25px;
-    }
-
-    select,
-    input {
-        height: 40px !important;
-        font-size: 20px !important;
-    }
-
-    .buttons button {
-        font-size: 25px !important;
-    }
-
-}
-
-@media screen and (max-width: 600px) {
-
-    .title {
-        font-size: 30px;
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-        width: 100%;
-        flex-direction: row;
-    }
-
-    .buttons button {
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 1900px) {
-    .payment-card-size {
-        margin-top: 0 !important;
-        height: 650px !important;
-
-    }
-
-    .booking-card h4 {
-        font-size: 30px !important;
-    }
-}
-</style>
-
-
-
 <div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -130,9 +13,9 @@ label {
 
 
                     <div class="col-md-5 mb-3 col-sm-5 col-xs-12">
-                        <div class="container-fluid payment-card-size left-card profile-section">
+                        <div class="container-fluid payment-card-size left-card profile-section payment-img">
                             <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center"> <img
+                                <div class="d-flex flex-column align-items-center text-center "> <img
                                         src="<?php echo VIEWS_PATH ?>/profile/<?php echo $this->guardian->getProfilePicture() ?>"
                                         alt="user" class="rounded-circle" width="150">
                                     <div class="mt-3 booking-card ">

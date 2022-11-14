@@ -1,52 +1,4 @@
-<style>
-.guardianownerview {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.guardiandisplay {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-
-    width: 100%;
-    height: 100%;
-
-}
-
-.profile_view {
-    margin: 20px;
-}
-
-.daterangepicker.dropdown-menu {
-    z-index: 3001;
-    top: 135px;
-    left: 427px !important;
-    right: 0;
-    width: 500px;
-
-}
-
-@media screen and (max-width: 600px) {
-
-    .daterangepicker.dropdown-menu {
-
-        top: 135px;
-        left: 35px !important;
-        right: 0;
-        width: 300px;
-
-    }
-
-}
-</style>
-
-<div class="">
+<div>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12">
@@ -114,55 +66,55 @@
                                     <p class="ratings">
                                         <?php
                                             if($this->getReviewAverage($guardian->getToken()) != 0) { ?>
-                                                <a><?php echo $this->getReviewAverage($guardian->getToken()); ?></a>
-                                            <?php
+                                        <a><?php echo $this->getReviewAverage($guardian->getToken()); ?></a>
+                                        <?php
                                             } ?>
 
                                         <?php 
                                         switch($this->getReviewAverage($guardian->getToken())) {
                                             case 1: ?>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <?php
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <?php
                                                 break;
                                             case 2: ?>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <?php
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <?php
                                                 break;
                                             case 3: ?>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <?php
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <?php
                                                 break;
                                             case 4: ?>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star-o"></span></a>
-                                                <?php
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star-o"></span></a>
+                                        <?php
                                                 break;
                                             case 5: ?>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <a><span class="fa fa-star"></span></a>
-                                                <?php
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <a><span class="fa fa-star"></span></a>
+                                        <?php
                                                 break;
                                             default:?>
-                                                No disponible
-                                                <?php
+                                        No disponible
+                                        <?php
                                                 break;
                                             
                                         }

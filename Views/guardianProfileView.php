@@ -1,51 +1,3 @@
-<style>
-h6 {
-    font-weight: 800;
-    width: 360px;
-}
-
-.card {
-    background-color: #f7f7f7;
-    padding: 40px;
-
-    height: 490px;
-    margin-bottom: 50px;
-}
-
-.profile-section {
-    line-height: 70px;
-}
-
-.profile-section img {
-    margin-top: 25%;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 0.5px 43px;
-    cursor: pointer;
-}
-
-.rounded-circle {
-    border-radius: 50%;
-}
-
-.checkbox {
-    font-size: 10px;
-}
-</style>
-
 <div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -61,7 +13,7 @@ input[type="file"] {
                     <form class="form-horizontal form-label-left" action="<?php echo FRONT_ROOT?>/guardian/profileEdit"
                         method="POST">
                         <div class="col-md-4 mb-3 col-sm-3 col-xs-12">
-                            <div class="card profile-section">
+                            <div class="card profile-section" style="height:550px !important">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center"> <img
                                             src="<?php echo VIEWS_PATH ?>/profile/<?php echo $_SESSION['userPH']->getProfilePicture() ?>"
@@ -86,7 +38,7 @@ input[type="file"] {
                         </div>
 
                         <div class="col-md-8">
-                            <div class="card mb-3 ">
+                            <div class="card mb-3 " style="height:550px !important">
                                 <div class="card-body">
 
                                     <div class="row">
@@ -210,11 +162,8 @@ input[type="file"] {
                                         <h6 class="mb-0">Disponibilidad de
                                             estadías para servicios</h6>
                                     </div>
-
-
-
                                 </div>
-                                <hr>
+
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
 

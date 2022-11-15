@@ -157,7 +157,7 @@
                                         <li><a href="<?php echo FRONT_ROOT?>/payment/list/pendient"> Pagos
                                                 pendientes</a></li>
 
-                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/paid"> Historial pagos</a>
+                                        <li><a href="<?php echo FRONT_ROOT?>/payment/list/paid"> Historial de pagos</a>
                                         </li>
 
                                     </ul>

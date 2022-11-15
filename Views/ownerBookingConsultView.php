@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">                                          
                                     <button class="btn btn-primary" type="button" onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/view/<?php echo $tokenGuardian; ?>'" style="width:40%;">Cancelar reserva</button>
-                                    <button type="submit" class="btn btn-success" style="width:40%;">Realizar consulta</button>
+                                    <button type="submit" class="btn btn-success" style="width:40%;">Realizar reserva</button>
                                 </div>
                             </div>
 

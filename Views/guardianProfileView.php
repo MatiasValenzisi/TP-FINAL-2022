@@ -8,7 +8,7 @@ h6 {
     background-color: #f7f7f7;
     padding: 40px;
 
-    height: 490px;
+    height: 500px;
     margin-bottom: 50px;
 }
 
@@ -16,8 +16,8 @@ h6 {
     line-height: 70px;
 }
 
-.profile-section img {
-    margin-top: 25%;
+.profile-section card-body {
+    margin-bottom: 200px;
 }
 
 .row {
@@ -41,8 +41,25 @@ input[type="file"] {
     border-radius: 50%;
 }
 
-.checkbox {
+.checkbox label,
+.radio label {
+    min-height: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
     font-size: 10px;
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 1620px) {
+    .card {
+        background-color: #f7f7f7;
+        padding: 40px;
+
+        height: 700px;
+        margin-bottom: 50px;
+    }
 }
 </style>
 
@@ -77,7 +94,10 @@ input[type="file"] {
                                             <h3 class="text-secondary mb-1">
                                                 Token: <?php echo $_SESSION['userPH']->getToken() ?></h3>
 
-                                            <!--<input id="file-upload" type="file" />-->
+                                            <label class="custom-file-upload">
+                                                <input type="file" id="newPhoto" name="newPhoto" />
+                                                Custom Upload
+                                            </label>
                                         </div>
                                     </div>
                                 </div>

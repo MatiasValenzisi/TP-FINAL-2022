@@ -35,9 +35,7 @@ h6 {
   line-height: 70px;
 }
 
-.profile-section img {
-  margin-top: 25%;
-}
+
 
 .rounded-circle {
   border-radius: 50%;
@@ -47,20 +45,15 @@ h6 {
   font-size: 10px;
 }
 
-.checkbox label,
-.radio label {
-  min-height: 20px;
-  padding-left: 20px;
-  margin-bottom: 0;
-  font-weight: 400;
-  cursor: pointer;
-  font-size: 12px;
-  margin-bottom: 20px;
-}
+
 .row {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .custom-file-upload {
@@ -68,6 +61,11 @@ h6 {
   display: inline-block;
   padding: 0.5px 43px;
   cursor: pointer;
+  transition: 0.5s all ease-in-out;
+}
+
+.custom-file-upload:hover {
+  transform: scale(0.9, 0.9);
 }
 
 .rounded-circle {

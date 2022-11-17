@@ -1,5 +1,3 @@
-
-
 <div>
 
     <div class="row">
@@ -145,7 +143,7 @@
 
 
                                     </div>
-                                    <div class="checkbox col-sm-12 col-xs-12 days">
+                                    <div class="checkbox col-sm-12 col-xs-12 days guardian-label-view ">
 
                                         <label
                                             class="text-<?php if (!isset($serviceArray['Monday'])){ ?>danger"><?php } else{ ?>success"><?php } ?><strong>Lunes

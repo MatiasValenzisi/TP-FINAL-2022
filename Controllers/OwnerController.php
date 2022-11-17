@@ -7,6 +7,7 @@
     class OwnerController {  
 
         private $ownerDAO;
+
         private $userController;
         
         public function __construct(){
@@ -25,7 +26,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($password,$newPhoto){
+        public function profileEdit($newPhoto,$password){
 
             try {
 

@@ -68,6 +68,9 @@ h6 {
   align-items: center;
 }
 
+.guardian-label-view label {
+  font-size: 15px;
+}
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;
@@ -283,6 +286,10 @@ p {
 .form-group {
   margin-top: 25px;
 }
+
+.login-input {
+  height: 25px !important;
+}
 @media screen and (min-width: 1620px) {
   .container-fluid.owner {
     margin-top: 7%;
@@ -292,8 +299,11 @@ p {
     margin-top: 5%;
   }
 
+  .card {
+    height: 600px;
+  }
   label {
-    font-size: 25px;
+    font-size: 15px;
   }
 
   select,

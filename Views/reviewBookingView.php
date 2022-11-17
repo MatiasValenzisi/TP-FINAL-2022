@@ -4,7 +4,7 @@
         <input type="hidden" name="guardianToken" value="<?php echo $this->guardian->getToken(); ?>">
 
         <div>
-            <h2 class="title-booking">¿Qué te pareció el servicio?</h2>
+            <h2 class="title">¿Qué te pareció el servicio?</h2>
         </div>
 
         <div class="row sideways">

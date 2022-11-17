@@ -7,9 +7,6 @@
     class AdminController {  
 
         private $adminDAO;
-        private $admin;
-        private $token;
-        private $adminList;
         private $userController;
         
         public function __construct(){

@@ -1,52 +1,4 @@
-<style>
-.guardianownerview {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.guardiandisplay {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-
-    width: 100%;
-    height: 100%;
-
-}
-
-.profile_view {
-    margin: 20px;
-}
-
-.daterangepicker.dropdown-menu {
-    z-index: 3001;
-    top: 135px;
-    left: 427px !important;
-    right: 0;
-    width: 500px;
-
-}
-
-@media screen and (max-width: 600px) {
-
-    .daterangepicker.dropdown-menu {
-
-        top: 135px;
-        left: 35px !important;
-        right: 0;
-        width: 300px;
-
-    }
-
-}
-</style>
-
-<div class="">
+<div>
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12">
@@ -116,7 +68,7 @@
                                         $average = $this->getReviewAverage($guardian->getToken());
 
                                         if($average != 0) { ?>
-                                            <a><?php echo $average; ?></a>
+                                        <a><?php echo $average; ?></a>
                                         <?php
                                         } 
 
@@ -125,9 +77,9 @@
                                         } else {
                                             for($i = 0; $i < 5; $i++) {
                                                 if($i < ($average)) { ?>
-                                                    <a><span class="fa fa-star"></span></a> <?php 
+                                        <a><span class="fa fa-star"></span></a> <?php 
                                                 } else { ?>
-                                                    <a><span class="fa fa-star-o"></span></a> <?php
+                                        <a><span class="fa fa-star-o"></span></a> <?php
                                                 }
                                             }
                                         }

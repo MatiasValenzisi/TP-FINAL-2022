@@ -7,17 +7,12 @@
     class OwnerController {  
 
         private $ownerDAO;
-        private $owner;
-        private $token;
-        private $ownerList;
         private $userController;
         
         public function __construct(){
           
             $this->ownerDAO  = new OwnerDAO();
-            $this->owner     = null;
-            $this->token     = null;
-            $this->ownerList = array();
+ 
             $this->userController = new UserController();
         }
 

@@ -1,68 +1,3 @@
-<style>
-h6 {
-    font-weight: 800;
-    width: 360px;
-}
-
-.card {
-    background-color: #f7f7f7;
-    padding: 40px;
-
-    height: 500px;
-    margin-bottom: 50px;
-}
-
-.profile-section {
-    line-height: 70px;
-}
-
-.profile-section card-body {
-    margin-bottom: 200px;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 0.5px 43px;
-    cursor: pointer;
-}
-
-.rounded-circle {
-    border-radius: 50%;
-}
-
-.checkbox label,
-.radio label {
-    min-height: 20px;
-    padding-left: 20px;
-    margin-bottom: 0;
-    font-weight: 400;
-    cursor: pointer;
-    font-size: 10px;
-    margin-bottom: 20px;
-}
-
-@media screen and (min-width: 1620px) {
-    .card {
-        background-color: #f7f7f7;
-        padding: 40px;
-
-        height: 700px;
-        margin-bottom: 50px;
-    }
-}
-</style>
-
 <div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -95,8 +30,8 @@ input[type="file"] {
                                                 Token: <?php echo $_SESSION['userPH']->getToken() ?></h3>
 
                                             <label class="custom-file-upload">
-                                                <input type="file" id="newPhoto" name="newPhoto" />
-                                                Custom Upload
+                                                <input class="upload" type="file" id="newPhoto" name="newPhoto" />
+                                                Cambiar Foto
                                             </label>
                                         </div>
                                     </div>
@@ -113,7 +48,8 @@ input[type="file"] {
 
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Contraseña <span class="required">*</span></h6>
+                                            <h6 class="guardian-titles required">Contraseña <span>*</span>
+                                            </h6 class="guardian-titles required">
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="password" class="form-control col-md-7 col-xs-12"
@@ -127,7 +63,8 @@ input[type="file"] {
 
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Años de experiencia &nbsp;</h6>
+                                            <h6 class="guardian-titles required">Años de experiencia &nbsp;
+                                            </h6 class="guardian-titles required">
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="number" class="form-control col-md-7 col-xs-12"
@@ -141,7 +78,8 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Tamaño de mascotas &nbsp;</h6>
+                                            <h6 class="guardian-titles required">Tamaño de mascotas &nbsp;
+                                            </h6 class="guardian-titles required">
 
                                         </div>
 
@@ -187,7 +125,8 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Precio base por dia &nbsp;</h6>
+                                            <h6 class="guardian-titles required">Precio base por dia &nbsp;
+                                            </h6 class="guardian-titles required">
                                         </div>
 
                                         <div class="col-sm-9 text-secondary">
@@ -202,7 +141,8 @@ input[type="file"] {
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
 
-                                            <h6 class="mb-0">Fecha rango de servicios</h6>
+                                            <h6 class="guardian-titles required">Fecha rango de servicios
+                                            </h6 class="guardian-titles required">
 
 
 
@@ -229,8 +169,8 @@ input[type="file"] {
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
-                                        <h6 class="mb-0">Disponibilidad de
-                                            estadías para servicios</h6>
+                                        <h6 class="guardian-titles required">Disponibilidad de
+                                            estadías para servicios</h6 class="guardian-titles required">
                                     </div>
 
 

@@ -8,7 +8,6 @@
 
     class PetController {  
 
-        private $tokenPet;
         private $dogDAO;
         private $catDAO;
         private $dog;
@@ -20,7 +19,7 @@
         
         public function __construct(){
           
-            $this->tokenPet    = null; 
+
             $this->dogDAO      = new DogDAO();           
             $this->catDAO      = new CatDAO();
             $this->dog         = null;    

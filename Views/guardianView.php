@@ -1,57 +1,4 @@
-<style>
-h6 {
-    font-weight: 800;
-    width: 150px;
-}
 
-
-.card {
-    background-color: #f7f7f7;
-    padding: 40px;
-
-    height: 50%;
-    margin-bottom: 50px;
-}
-
-.profile {
-    line-height: 70px;
-}
-
-.profile img {
-    margin-top: 25%;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-input[type="file"] {
-    display: none;
-}
-
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 0.5px 43px;
-    cursor: pointer;
-}
-
-.rounded-circle {
-    border-radius: 50%;
-}
-
-.days {
-
-
-    font-size: 14px;
-}
-
-.form-group {
-    margin-top: 50px;
-}
-</style>
 
 <div>
 
@@ -68,7 +15,7 @@ input[type="file"] {
 
                     <form class="form-horizontal form-label-left">
                         <div class="col-md-4 mb-3 col-sm-3 col-xs-12">
-                            <div class="card profile">
+                            <div class="card profile profile-guardian">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center"> <img
                                             src="<?php echo VIEWS_PATH ?>/profile/<?php echo $this->guardian->getProfilePicture() ?>"
@@ -100,7 +47,7 @@ input[type="file"] {
 
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Experiencia &nbsp;</h6>
+                                            <h6 class="guardian-titles">Experiencia &nbsp;</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <?php echo $this->guardian->getExperience(). " Año/s"; ?></div>
@@ -109,7 +56,7 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Tamaño mascota &nbsp;</h6>
+                                            <h6 class="guardian-titles">Tamaño mascota &nbsp;</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <?php echo $this->guardian->getPetSize(); ?></div>
@@ -117,7 +64,7 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Inicio del servicio
+                                            <h6 class="guardian-titles">Inicio del servicio
                                                 &nbsp;</h6>
                                         </div>
 
@@ -141,7 +88,7 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Finalización del servicio
+                                            <h6 class="guardian-titles">Finalización del servicio
                                                 &nbsp;</h6>
                                         </div>
 
@@ -166,7 +113,7 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
-                                            <h6 class="mb-0">Precio diario por
+                                            <h6 class="guardian-titles">Precio diario por
                                                 servicio
                                                 &nbsp;</h6>
                                         </div>
@@ -192,7 +139,7 @@ input[type="file"] {
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12 col-xs-12">
-                                            <h6 class="mb-0">Estadias del servicio</h6>
+                                            <h6 class="guardian-titles">Estadias del servicio</h6>
                                         </div>
 
 

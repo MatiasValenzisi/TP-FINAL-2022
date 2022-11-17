@@ -21,7 +21,6 @@
         private $guardian;
         private $guardianDAO;
 
-        private $owner;
         private $ownerDAO;
 
         private $petList;
@@ -37,11 +36,6 @@
         private $payment;
         private $paymentDAO;
 
-        private $score;
-        private $date;
-        private $observations;
-        private $tokenGuardian;
-
         private $reviewList;
 
         public function __construct(){
@@ -54,7 +48,6 @@
             $this->guardian      = null;
             $this->guardianDAO   = new GuardianDAO();
 
-            $this->owner         = null;
             $this->ownerDAO      = new OwnerDAO();
 
             $this->petList       = array();
@@ -69,11 +62,6 @@
             $this->paymentList   = array();            
             $this->payment       = null;
             $this->paymentDAO    = new PaymentDAO();
-
-            $this->score         = null;
-            $this->date          = null;
-            $this->observations  = null;
-            $this->tokenGuardian = null;
 
             $this->reviewList    = array();
         }

@@ -8,7 +8,6 @@
        
     class GuardianController {  
 
-        private $token;
         private $guardian;
         private $guardianDAO;
         private $guardianList;
@@ -18,7 +17,6 @@
         
         public function __construct(){
             
-            $this->token          = null;
             $this->guardian       = null;
             $this->guardianDAO    = new GuardianDAO();
             $this->guardianList   = array();

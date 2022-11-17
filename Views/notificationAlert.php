@@ -1,12 +1,10 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js'></script>
 
 <script type='text/javascript'>
+function sweet(title, description, type) {
 
-    function sweet(title, description, type) {
-
-        swal(title, description, type);
-    }   
-
+    swal(title, description, type);
+}
 </script>
 
 <?php  
@@ -259,6 +257,20 @@
 
                              echo "<script>sweet('Error de sistema','Error al conectarse al sistema. Inténtelo más tarde. Si el error sigue, notifíquelo a la pagina.','error')</script>";
                         }
+
+                    break;
+
+                    
+                    case 'profile':
+                        
+                        if (strcmp($specific, 'size') == 0){
+
+                            echo "<script>sweet('Error al cargar la foto de perfil','El archivo es muy grande.','error')</script>";
+                        } elseif (strcmp($specific, 'format') == 0){
+                            
+                            echo "<script>sweet('Error al cargar la foto de la mascota!','Solo se admiten formato JPG y PNG.','error')</script>";
+                        }
+                        
 
                     break;
                 }

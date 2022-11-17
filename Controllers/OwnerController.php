@@ -47,7 +47,7 @@
                         if ($sizeP > 1000000){ // 1 mb.
                             
                             //cambiar dsp agregando la ruta 
-                            header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
+                            header("Location: ".FRONT_ROOT."/admin/profile/error/profile/size");
                              exit();
 
                         } else {                        
@@ -65,7 +65,7 @@
                     
                     } else {
 
-                        header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
+                        header("Location: ".FRONT_ROOT."/admin/profile/error/profile/format");
                          exit();
                     }
                 }

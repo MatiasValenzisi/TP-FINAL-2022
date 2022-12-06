@@ -247,8 +247,7 @@ img {
                     class="btn btn-primary ">Registrarse</button>
 
                 <!--<a href="" class="password"><b>¿Olvidaste la contraseña?</b></a> -->
-
-
+                
             </form>
 
         </div>

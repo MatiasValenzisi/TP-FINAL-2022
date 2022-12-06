@@ -24,6 +24,13 @@ define("DB_PASS", "");
 define("EMAIL", "petheroveterinary@gmail.com");
 define("EMAIL_PASS", "123456@m");
 
+/* Configuración PHPMailer */
+define("PHP_MAILER_USERNAME", "petheroveterinary@gmail.com");
+define("PHP_MAILER_PASSWORD", "nizdjltmpklhyiuh");
+define("PHP_MAILER_HOST", "smtp.gmail.com");
+define("PHP_MAILER_SMTP_SECURE", "tls");
+define("PHP_MAILER_PORT", "587");
+
 /* Constantes adicionales */
 define("PROJECT_NAME", "Pet Hero");
 define("PROJECT_DESCRIPTION", "Pet Hero Todos los derechos reservados © 2022");

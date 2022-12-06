@@ -1,6 +1,4 @@
-<?php 
-
-	require_once 'PHPMailer.php';
+<?php require_once 'PHPMailer.php';
 
     if (isset($email) && isset($subject) && isset($body)){
 
@@ -26,21 +24,21 @@
 
         $mail->Body.= $body; 
 
-        $mail->Username = 'petheroveterinary@gmail.com';        
+        $mail->Username = PHP_MAILER_USERNAME;        
                    
-        $mail->Password = 'nizdjltmpklhyiuh';      
+        $mail->Password = PHP_MAILER_PASSWORD;      
                    
         $mail->SMTPDebug = 0;
             
         $mail->isSMTP();        
                    
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = PHP_MAILER_HOST;
             
         $mail->SMTPAuth = true; 
 
-        $mail->SMTPSecure = 'tls';
+        $mail->SMTPSecure = PHP_MAILER_SMTP_SECURE;
 
-        $mail->Port = 587;  
+        $mail->Port = PHP_MAILER_PORT;  
 
         $success = $mail->send();
 

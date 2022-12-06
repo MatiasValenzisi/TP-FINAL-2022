@@ -41,33 +41,12 @@
         public function getAllDAO(){            
 
             try {
-
-                $dogList = array();
-
+                
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $dog = new Dog();                    
-                   
-                    $dog->setToken($value["token"]);
-                    $dog->setTokenOwner($value["tokenOwner"]);
-                    $dog->setName($value["name"]);
-                    $dog->setRace($value["race"]);
-                    $dog->setSize($value["size"]);
-                    $dog->setWeight($value["weight"]);
-                    $dog->setObservations($value["observations"]);
-                    $dog->setVaccinationPlan($value["vaccinationPlan"]);
-                    $dog->setPhoto($value["photo"]);                    
-                    $dog->setVideo($value["video"]);
-
-                    array_push($dogList, $dog);
-                }
-
-                return $dogList;
+                $resultSet = $this->connection->Execute($query);
+                $resulArrayObject = $this->getArrayDogDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -79,34 +58,12 @@
 
             try {
 
-                $dogList = array();
-                
                 $query = "SELECT * FROM ".$this->tableName." AS D WHERE D.tokenOwner = :tokenOwner";
-
                 $parameters["tokenOwner"] = $tokenOwner;
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
-                
-                foreach ($resultSet as $key => $value) {
-                 
-                    $dog = new Dog();
-                    
-                    $dog->setToken($value["token"]);
-                    $dog->setTokenOwner($value["tokenOwner"]);
-                    $dog->setName($value["name"]);
-                    $dog->setRace($value["race"]);
-                    $dog->setSize($value["size"]);
-                    $dog->setWeight($value["weight"]);
-                    $dog->setObservations($value["observations"]);
-                    $dog->setVaccinationPlan($value["vaccinationPlan"]);
-                    $dog->setPhoto($value["photo"]);                    
-                    $dog->setVideo($value["video"]);
-
-                    array_push($dogList, $dog);
-                }
-
-                return $dogList;
+                $resulArrayObject = $this->getArrayDogDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -126,8 +83,7 @@
                 $parameters["race"]            = $value->getRace();
                 $parameters["size"]            = $value->getSize();
                 $parameters["weight"]          = $value->getWeight();
-                $parameters["observations"]    = $value->getObservations();
-        
+                $parameters["observations"]    = $value->getObservations();        
                 $parameters["vaccinationPlan"] = $value->getVaccinationPlan();
                 $parameters["photo"]           = $value->getPhoto();                
                 $parameters["video"]           = $value->getVideo();
@@ -182,29 +138,54 @@
 
             try {
 
-                $raceList = array();
-
                 $query = "SELECT * FROM ".$this->tableName2." AS P WHERE P.petType = 'dog'";
-
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $race = new Race();                    
-                   
-                    $race->setPetType($value["petType"]);
-                    $race->setName($value["name"]);
-
-                    array_push($raceList, $race);
-                }
-
-                return $raceList; 
+                $resultSet = $this->connection->Execute($query);
+                $resulArrayObject = $this->getArrayRaceDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
                 throw $e;
             }               
         } 
+
+        private function getArrayDogDAO($array){
+
+            $dogList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $dog = new Dog();                    
+                $dog->setToken($value["token"]);
+                $dog->setTokenOwner($value["tokenOwner"]);
+                $dog->setName($value["name"]);
+                $dog->setRace($value["race"]);
+                $dog->setSize($value["size"]);
+                $dog->setWeight($value["weight"]);
+                $dog->setObservations($value["observations"]);
+                $dog->setVaccinationPlan($value["vaccinationPlan"]);
+                $dog->setPhoto($value["photo"]);                    
+                $dog->setVideo($value["video"]);
+                array_push($dogList, $dog);
+            }
+
+            return $dogList;
+        }
+
+        private function getArrayRaceDAO($array){
+
+            $raceList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $race = new Race();    
+                $race->setPetType($value["petType"]);
+                $race->setName($value["name"]);
+                array_push($raceList, $race);
+            }
+
+            return $raceList;
+        }
     }
 ?>

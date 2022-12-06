@@ -15,14 +15,12 @@
             try {
 
                 $query = "INSERT INTO ".$this->tableName." (token, tokenBooking, amount, dateGenerated, dateIssued, type) VALUES (:token, :tokenBooking, :amount, :dateGenerated, :dateIssued, :type)";
-
                 $parameters["token"]         = $value->getToken();
                 $parameters["tokenBooking"]  = $value->getTokenBooking();
                 $parameters["amount"]        = $value->getAmount();
                 $parameters["dateGenerated"] = $value->getDateGenerated();
                 $parameters["dateIssued"]    = $value->getDateIssued();
                 $parameters["type"]          = $value->getType();
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -36,28 +34,11 @@
 
             try {
 
-                $paymentList = array();
-
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $payment = new Payment();
-
-                    $payment->setToken($value["token"]);
-                    $payment->setTokenBooking($value["tokenBooking"]);
-                    $payment->setAmount($value["amount"]);
-                    $payment->setDateGenerated($value["dateGenerated"]);
-                    $payment->setDateIssued($value["dateIssued"]);
-                    $payment->setType($value["type"]);
-
-                    array_push($paymentList, $payment);
-                }
-
-                return $paymentList;
+                $resulArrayObject = $this->getArrayPaymentDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -70,10 +51,8 @@
             try {
 
                 $query = "UPDATE ".$this->tableName." SET dateIssued = :dateIssued WHERE ".$this->tableName.".token = :token";
-
                 $parameters["token"]      = $token;
                 $parameters["dateIssued"] = $dateIssued;
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -148,6 +127,25 @@
 
                 throw $e;
             }            
-        }   
+        }
+        
+        private function getArrayPaymentDAO($array){
+
+            $paymentList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $payment = new Payment();
+                $payment->setToken($value["token"]);
+                $payment->setTokenBooking($value["tokenBooking"]);
+                $payment->setAmount($value["amount"]);
+                $payment->setDateGenerated($value["dateGenerated"]);
+                $payment->setDateIssued($value["dateIssued"]);
+                $payment->setType($value["type"]);
+                array_push($paymentList, $payment);
+            }
+
+            return $paymentList;
+        }
         
     } ?>

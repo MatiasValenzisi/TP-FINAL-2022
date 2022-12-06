@@ -38,32 +38,11 @@
 
             try {
 
-                $adminList = array();
-
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $admin = new Admin();
-
-                    $admin->setToken($value["token"]);
-                    $admin->setUserName($value["userName"]);
-                    $admin->setPassword($value["password"]);
-                    $admin->setFirstName($value["firstName"]);
-                    $admin->setLastName($value["lastName"]);
-                    $admin->setBirthDate($value['birthDate']);
-                    $admin->setDni($value["dni"]);
-                    $admin->setProfilePicture($value["profilePicture"]);
-                    $admin->setDischargeDate($value["dischargeDate"]);
-                    $admin->setDownDate($value["downDate"]);
-
-                    array_push($adminList, $admin);
-                }
-
-                return $adminList;
+                $resultSet = $this->connection->Execute($query);                
+                $resulArrayObject = $this->getArrayAdminDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){   
                 
@@ -168,7 +147,30 @@
             } catch (Exception $e){
 
                 throw $e;
-            }            
+            }                       
+        }
+
+        private function getArrayAdminDAO($array){
+
+            $adminList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $admin = new Admin();
+                $admin->setToken($value["token"]);
+                $admin->setUserName($value["userName"]);
+                $admin->setPassword($value["password"]);
+                $admin->setFirstName($value["firstName"]);
+                $admin->setLastName($value["lastName"]);
+                $admin->setBirthDate($value['birthDate']);
+                $admin->setDni($value["dni"]);
+                $admin->setProfilePicture($value["profilePicture"]);
+                $admin->setDischargeDate($value["dischargeDate"]);
+                $admin->setDownDate($value["downDate"]);
+                array_push($adminList, $admin);
+            }
+
+            return $adminList;
         }
     } 
 ?>

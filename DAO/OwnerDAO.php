@@ -38,33 +38,11 @@
 
             try {
 
-                $ownerList = array();
-
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $owner = new Owner();
-
-                    $owner->setToken($value["token"]);
-                    $owner->setUserName($value["userName"]);
-                    $owner->setPassword($value["password"]);
-                    $owner->setFirstName($value["firstName"]);
-                    $owner->setLastName($value["lastName"]);
-                    $owner->setBirthDate($value['birthDate']);
-                    $owner->setDni($value["dni"]);
-                    $owner->setProfilePicture($value["profilePicture"]);
-                    $owner->setDischargeDate($value["dischargeDate"]);
-                    $owner->setDownDate($value["downDate"]);
-
-                    array_push($ownerList, $owner);
-
-                }
-
-                return $ownerList;
+                $resulArrayObject = $this->getArrayOwnerDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -176,32 +154,11 @@
 
             try {
 
-                $ownerList = array();
-
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $owner = new Owner();
-
-                    $owner->setToken($value["token"]);
-                    $owner->setUserName($value["userName"]);
-                    $owner->setPassword($value["password"]);
-                    $owner->setFirstName($value["firstName"]);
-                    $owner->setLastName($value["lastName"]);
-                    $owner->setBirthDate($value['birthDate']);
-                    $owner->setDni($value["dni"]);
-                    $owner->setProfilePicture($value["profilePicture"]);
-                    $owner->setDischargeDate($value["dischargeDate"]);
-                    $owner->setDownDate($value["downDate"]);
-
-                    array_push($ownerList, $owner);
-                }
-
-                return $ownerList;
+                $resulArrayObject = $this->getArrayOwnerDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
 
@@ -213,37 +170,39 @@
 
             try {
 
-                $dischargeList = array();
-
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL";
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $owner = new Owner();
-
-                    $owner->setToken($value["token"]);
-                    $owner->setUserName($value["userName"]);
-                    $owner->setPassword($value["password"]);
-                    $owner->setFirstName($value["firstName"]);
-                    $owner->setLastName($value["lastName"]);
-                    $owner->setBirthDate($value['birthDate']);
-                    $owner->setDni($value["dni"]);
-                    $owner->setProfilePicture($value["profilePicture"]);
-                    $owner->setDischargeDate($value["dischargeDate"]);
-                    $owner->setDownDate($value["downDate"]);
-
-                    array_push($dischargeList, $owner);
-                }
-
-                return $dischargeList;
+                $resulArrayObject = $this->getArrayOwnerDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
 
                 throw $e;
             }
-        }           
+        }  
+        
+        private function getArrayOwnerDAO($array){
+
+            $ownerList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $owner = new Owner();
+                $owner->setToken($value["token"]);
+                $owner->setUserName($value["userName"]);
+                $owner->setPassword($value["password"]);
+                $owner->setFirstName($value["firstName"]);
+                $owner->setLastName($value["lastName"]);
+                $owner->setBirthDate($value['birthDate']);
+                $owner->setDni($value["dni"]);
+                $owner->setProfilePicture($value["profilePicture"]);
+                $owner->setDischargeDate($value["dischargeDate"]);
+                $owner->setDownDate($value["downDate"]);
+                array_push($ownerList, $owner);
+            }
+
+            return $ownerList;
+        }
         
     } ?>

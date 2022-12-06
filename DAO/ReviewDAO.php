@@ -34,26 +34,11 @@
 
             try {
 
-                $reviewList = array();
-
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $review = new Review();
-                                       
-                    $review->setScore($value["score"]);
-                    $review->setDate($value["date"]);
-                    $review->setObservations($value["observations"]);
-                    $review->setTokenGuardian($value["tokenGuardian"]);
-
-                    array_push($reviewList, $review);
-                }
-
-                return $reviewList;
+                $resulArrayObject = $this->getArrayReviewDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -92,6 +77,23 @@
 
                 throw $e;
             } 
-        }      
+        }
+        
+        private function getArrayReviewDAO($array){
+
+            $reviewList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $review = new Review();                                       
+                $review->setScore($value["score"]);
+                $review->setDate($value["date"]);
+                $review->setObservations($value["observations"]);
+                $review->setTokenGuardian($value["tokenGuardian"]);
+                array_push($reviewList, $review);
+            }
+
+            return $reviewList;
+        }
     }
 ?>

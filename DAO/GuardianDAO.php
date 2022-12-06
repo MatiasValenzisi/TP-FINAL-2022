@@ -42,41 +42,11 @@
 
             try {
 
-                $guardianList = array();
-
                 $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $guardian = new Guardian();
-
-                    $guardian->setToken($value["token"]);
-                    $guardian->setUserName($value["userName"]);
-                    $guardian->setPassword($value["password"]);
-                    $guardian->setFirstName($value["firstName"]);
-                    $guardian->setLastName($value["lastName"]);
-                    $guardian->setBirthDate($value['birthDate']);
-                    $guardian->setDni($value["dni"]);
-                    $guardian->setProfilePicture($value["profilePicture"]);
-
-                    $guardian->setExperience($value["experience"]);
-                    $guardian->setPetSize($value["petSize"]);
-                    $guardian->setServicePrice($value["servicePrice"]);
-                    $guardian->setServiceStartDate($value["serviceStartDate"]);
-                    $guardian->setServiceEndDate($value["serviceEndDate"]);
-
-                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
-
-                    $guardian->setDischargeDate($value["dischargeDate"]);
-                    $guardian->setDownDate($value["downDate"]);
-
-                    array_push($guardianList, $guardian);
-                }
-
-                return $guardianList;
+                $resultSet = $this->connection->Execute($query);
+                $resulArrayObject = $this->getArrayGuardianDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -88,41 +58,11 @@
 
             try {
 
-                $guardianList = array();
-
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".downDate IS NOT NULL";
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                     
-                    $guardian = new Guardian();
-
-                    $guardian->setToken($value["token"]);
-                    $guardian->setUserName($value["userName"]);
-                    $guardian->setPassword($value["password"]);
-                    $guardian->setFirstName($value["firstName"]);
-                    $guardian->setLastName($value["lastName"]);
-                    $guardian->setBirthDate($value['birthDate']);
-                    $guardian->setDni($value["dni"]);
-                    $guardian->setProfilePicture($value["profilePicture"]);
-
-                    $guardian->setExperience($value["experience"]);
-                    $guardian->setPetSize($value["petSize"]);
-                    $guardian->setServicePrice($value["servicePrice"]);
-                    $guardian->setServiceStartDate($value["serviceStartDate"]);
-                    $guardian->setServiceEndDate($value["serviceEndDate"]);
-                    
-                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
-
-                    $guardian->setDischargeDate($value["dischargeDate"]);
-                    $guardian->setDownDate($value["downDate"]);
-
-                    array_push($guardianList, $guardian);
-                }
-
-                return $guardianList;
+                $resulArrayObject = $this->getArrayGuardianDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
             
@@ -134,41 +74,11 @@
 
             try {
 
-                $dischargeList = array();
-
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NOT NULL AND ".$this->tableName.".downDate IS NULL";
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $guardian = new Guardian();
-
-                    $guardian->setToken($value["token"]);
-                    $guardian->setUserName($value["userName"]);
-                    $guardian->setPassword($value["password"]);
-                    $guardian->setFirstName($value["firstName"]);
-                    $guardian->setLastName($value["lastName"]);
-                    $guardian->setBirthDate($value['birthDate']);
-                    $guardian->setDni($value["dni"]);
-                    $guardian->setProfilePicture($value["profilePicture"]);
-
-                    $guardian->setExperience($value["experience"]);                    
-                    $guardian->setPetSize($value["petSize"]);
-                    $guardian->setServicePrice($value["servicePrice"]);
-                    $guardian->setServiceStartDate($value["serviceStartDate"]);
-                    $guardian->setServiceEndDate($value["serviceEndDate"]);
-                    
-                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
-
-                    $guardian->setDischargeDate($value["dischargeDate"]);
-                    $guardian->setDownDate($value["downDate"]);
-
-                    array_push($dischargeList, $guardian);
-                }
-
-                return $dischargeList;
+                $resulArrayObject = $this->getArrayGuardianDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
 
@@ -181,8 +91,6 @@
         public function getAllDischargeDateCompleteDAO(){            
 
             try {
-
-                $dischargeCompleteList = array();
 
                 $query = "SELECT * FROM ".$this->tableName."
 
@@ -198,38 +106,8 @@
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $guardian = new Guardian();
-
-                    $guardian->setToken($value["token"]);
-                    $guardian->setUserName($value["userName"]);
-                    $guardian->setPassword($value["password"]);
-                    $guardian->setFirstName($value["firstName"]);
-                    $guardian->setLastName($value["lastName"]);
-                    $guardian->setBirthDate($value['birthDate']);
-                    $guardian->setDni($value["dni"]);
-                    $guardian->setProfilePicture($value["profilePicture"]);
-
-                    $guardian->setExperience($value["experience"]);                    
-                    $guardian->setPetSize($value["petSize"]);
-                    $guardian->setServicePrice($value["servicePrice"]);
-                    $guardian->setServiceStartDate($value["serviceStartDate"]);
-                    $guardian->setServiceEndDate($value["serviceEndDate"]);
-                    
-                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
-
-                    $guardian->setDischargeDate($value["dischargeDate"]);
-                    $guardian->setDownDate($value["downDate"]);
-
-                    if (!empty($guardian->getServiceDayList()) && !is_null($guardian->getServiceDayList())){
-                        
-                        array_push($dischargeCompleteList, $guardian);
-                    } 
-                }
-
-                return $dischargeCompleteList;
+                $resulArrayObject = $this->getArrayRaceDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
 
@@ -241,41 +119,11 @@
 
             try {
 
-                $pendientList = array();
-
                 $query = "SELECT * FROM ".$this->tableName." WHERE ".$this->tableName.".dischargeDate IS NULL;";
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-
-                foreach ($resultSet as $key => $value) {
-                    
-                    $guardian = new Guardian();
-
-                    $guardian->setToken($value["token"]);
-                    $guardian->setUserName($value["userName"]);
-                    $guardian->setPassword($value["password"]);
-                    $guardian->setFirstName($value["firstName"]);
-                    $guardian->setLastName($value["lastName"]);
-                    $guardian->setBirthDate($value['birthDate']);
-                    $guardian->setDni($value["dni"]);
-                    $guardian->setProfilePicture($value["profilePicture"]);
-
-                    $guardian->setExperience($value["experience"]);                    
-                    $guardian->setPetSize($value["petSize"]);
-                    $guardian->setServicePrice($value["servicePrice"]);
-                    $guardian->setServiceStartDate($value["serviceStartDate"]);
-                    $guardian->setServiceEndDate($value["serviceEndDate"]);
-
-                    $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
-
-                    $guardian->setDischargeDate($value["dischargeDate"]);
-                    $guardian->setDownDate($value["downDate"]);
-
-                    array_push($pendientList, $guardian);
-                }
-
-                return $pendientList;
+                $resulArrayObject = $this->getArrayGuardianDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e) {
 
@@ -288,10 +136,8 @@
             try {
 
                 $query = "UPDATE ".$this->tableName." SET dischargeDate = :dischargeDate WHERE ".$this->tableName.".token = :token";
-
                 $parameters["token"] = $token;
                 $parameters["dischargeDate"] = date("Y-m-d");
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -301,16 +147,12 @@
             }
         }
 
-        // Metodo que elimina un guardian.
-
         public function deleteDAO($token){ 
 
             try {
 
                 $query = "DELETE FROM ".$this->tableName." WHERE ".$this->tableName.".token = :token";
-                
                 $parameters["token"] = $token;
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -320,14 +162,11 @@
             }
         }
 
-        // Metodo que actualiza un usuario de tipo Guardian en base de datos mediante su token. 
-
         public function updateDAO($value){
 
             try {
 
                 $query = "UPDATE ".$this->tableName." SET password = :password, profilePicture = :profilePicture, experience = :experience, petSize = :petSize, servicePrice = :servicePrice, serviceStartDate = :serviceStartDate, serviceEndDate = :serviceEndDate, dischargeDate = :dischargeDate, downDate = :downDate WHERE ".$this->tableName.".token = :token";
-
                 $parameters["token"]            = $value->getToken();
                 $parameters["password"]         = $value->getPassword();
                 $parameters["profilePicture"]   = $value->getProfilePicture();
@@ -336,10 +175,8 @@
                 $parameters["servicePrice"]     = $value->getServicePrice();
                 $parameters["serviceStartDate"] = $value->getServiceStartDate();
                 $parameters["serviceEndDate"]   = $value->getServiceEndDate();
-
                 $parameters["dischargeDate"]    = $value->getDischargeDate();
-                $parameters["downDate"]         = $value->getDownDate();                
-
+                $parameters["downDate"]         = $value->getDownDate();        
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -457,11 +294,8 @@
             try {
 
                 $dayList = null;
-
                 $query = "SELECT GD.dayName FROM ".$this->tableName2." AS GD WHERE GD.tokenGuardian = :token";
-
                 $parameters["token"] = $token;
-
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
 
@@ -489,10 +323,8 @@
 
                 // Eliminar dias asignados anteriormente al token del guardian en guardian_x_day.
 
-                $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = :tokenGuardian";
-                
+                $query = "DELETE FROM ".$this->tableName2." WHERE ".$this->tableName2.".tokenGuardian = :tokenGuardian";                
                 $parameters["tokenGuardian"] = $tokenGuardian;
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -514,10 +346,8 @@
             try {
 
                 $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, dayName) VALUES (:tokenGuardian, :dayName)";
-
                 $parameters["tokenGuardian"]  = $tokenGuardian;
                 $parameters["dayName"]        = $dayName;
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -525,7 +355,35 @@
 
                 throw $e;
             }  
+        }   
+        
+        private function getArrayGuardianDAO($array){
 
-        }         
+            $guardianList = array();
+
+            foreach ($array as $key => $value) {
+                 
+                $guardian = new Guardian();
+                $guardian->setToken($value["token"]);
+                $guardian->setUserName($value["userName"]);
+                $guardian->setPassword($value["password"]);
+                $guardian->setFirstName($value["firstName"]);
+                $guardian->setLastName($value["lastName"]);
+                $guardian->setBirthDate($value['birthDate']);
+                $guardian->setDni($value["dni"]);
+                $guardian->setProfilePicture($value["profilePicture"]);
+                $guardian->setExperience($value["experience"]);                    
+                $guardian->setPetSize($value["petSize"]);
+                $guardian->setServicePrice($value["servicePrice"]);
+                $guardian->setServiceStartDate($value["serviceStartDate"]);
+                $guardian->setServiceEndDate($value["serviceEndDate"]);
+                $guardian->setServiceDayList($this->getServiceDayListDAO($value["token"]));
+                $guardian->setDischargeDate($value["dischargeDate"]);
+                $guardian->setDownDate($value["downDate"]);
+                array_push($guardianList, $guardian);
+            }
+
+            return $guardianList;
+        }
         
     } ?>

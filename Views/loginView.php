@@ -5,7 +5,7 @@
         <span class="img-form">
 
         </span>
-        <div class="form-container ">
+        <div class="form-container">
 
             <form action="<?php echo FRONT_ROOT ?>/sign/login" method="POST">
 

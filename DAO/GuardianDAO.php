@@ -106,7 +106,7 @@
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-                $resulArrayObject = $this->getArrayRaceDAO($resultSet);
+                $resulArrayObject = $this->getArrayGuardianDAO($resultSet);
                 return $resulArrayObject;
 
             } catch (Exception $e) {

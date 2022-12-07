@@ -290,6 +290,7 @@ p {
 .login-input {
   height: 25px !important;
 }
+
 @media screen and (min-width: 1620px) {
   .container-fluid.owner {
     margin-top: 7%;
@@ -356,19 +357,13 @@ p {
   }
 }
 
-
-
 .login-container {
 
-  margin-top: 32px;
-  
-  /*background: linear-gradient(90deg, rgba(31,99,158,1) 2%, rgba(34,60,79,1) 98%);*/
-  
+  margin-top: 32px;  
   background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%);
   background-color: #20517a;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
-      0 10px 10px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 10px 10px rgba(0, 0, 0, 0.42);
   overflow: hidden;
   width: 60%;
   max-width: 100%;
@@ -377,21 +372,20 @@ p {
   justify-content: center;
   align-items: center;
   }
-  
-  
-  .login-container h1 {
+    
+  .login-container .form-container h1 {
   
       font-weight: bold;
       font-size: 40px;
       margin-bottom: 50px;
   }
   
-  .login-container h2 {
+  .login-container .form-container h2 {
   
       text-align: center;
   }
   
-  .login-container p {
+  .login-container .form-container p {
       font-size: 14px;
       font-weight: 100;
       line-height: 20px;
@@ -399,7 +393,7 @@ p {
       margin: 20px 0 30px;
   }
   
-  .login-container span {
+  .login-container .form-container span {
   
       font-size: 12px;
   }

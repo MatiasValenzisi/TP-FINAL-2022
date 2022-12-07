@@ -1,10 +1,4 @@
-<style>
-select,
-input {
-    height: 30px !important;
-    font-size: 12px !important;
-}
-</style>
+
 <div class="clearfix">
 </div>
 <div class="row">

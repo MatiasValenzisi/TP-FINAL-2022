@@ -1,5 +1,3 @@
-    
-
     <div>
         <h1 class="title x_title">Pet Hero</h1>
         <div class="clearfix"></div>

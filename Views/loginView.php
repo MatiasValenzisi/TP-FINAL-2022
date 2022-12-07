@@ -1,24 +1,39 @@
 <style>
-.login {
 
-    width: 100%;
-    height: 100%;
-    background: white;
+.login-container {
+
+margin-top: 32px;
+
+/*background: linear-gradient(90deg, rgba(31,99,158,1) 2%, rgba(34,60,79,1) 98%);*/
+
+background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%);
+background-color: #20517a;
+border-radius: 10px;
+box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
+    0 10px 10px rgba(0, 0, 0, 0.42);
+overflow: hidden;
+width: 60%;
+max-width: 100%;
+height: 40%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-h1 {
+
+.login-container h1 {
 
     font-weight: bold;
     font-size: 40px;
     margin-bottom: 50px;
 }
 
-h2 {
+.login-container h2 {
 
     text-align: center;
 }
 
-p {
+.login-container p {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
@@ -26,12 +41,12 @@ p {
     margin: 20px 0 30px;
 }
 
-span {
+.login-container span {
 
     font-size: 12px;
 }
 
-a {
+.login-container a {
 
     color: #333;
     font-size: 14px;
@@ -40,7 +55,7 @@ a {
     color: white;
 }
 
-.btn {
+.login-container .btn {
 
     border-radius: 20px;
     font-size: 15px;
@@ -52,17 +67,17 @@ a {
     transition: all .5s ease-in-out;
 }
 
-.btn:active {
+.login-container .btn:active {
 
     transform: scale(0.95);
 }
 
-.btn:focus {
+.login-container.btn:focus {
 
     outline: none;
 }
 
-form {
+.login-container form {
 
     display: flex;
     align-items: center;
@@ -73,7 +88,7 @@ form {
     text-align: center;
 }
 
-input {
+.login-container input {
 
     background-color: #eee;
     border: none;
@@ -83,40 +98,21 @@ input {
     color: #333;
 }
 
-img {
+.login-container img {
 
     width: 100%;
     height: 100%;
 }
 
-.container {
 
-    margin-top: 32px;
-
-    /*background: linear-gradient(90deg, rgba(31,99,158,1) 2%, rgba(34,60,79,1) 98%);*/
-
-    background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%);
-    background-color: #20517a;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45),
-        0 10px 10px rgba(0, 0, 0, 0.42);
-    overflow: hidden;
-    width: 60%;
-    max-width: 100%;
-    height: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.img-form {
+.login-container .img-form {
     position: absolute;
     z-index: 100;
     height: 100%;
     background-image: url("https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png");
 }
 
-.form-container {
+.login-container .form-container {
 
     height: 480px;
     transition: all 0.6s ease-in-out;
@@ -124,7 +120,7 @@ img {
     width: 50%;
 }
 
-.overlay-container {
+.login-container .overlay-container {
 
     width: 50%;
     height: 100%;
@@ -133,12 +129,12 @@ img {
     z-index: 100;
 }
 
-.social-container {
+.login-container .social-container {
 
     margin: 20px 0;
 }
 
-.social-container a {
+.login-container .social-container a {
 
     background-color: wheat;
     border-radius: 50%;
@@ -151,19 +147,19 @@ img {
     transition: all .5s ease-in-out;
 }
 
-.social-container a:hover {
+.login-container .social-container a:hover {
 
     opacity: 0.5;
 }
 
-.password {
+.login-container .password {
 
     color: white;
     font-size: 18px;
     transition: all .5s ease-in-out;
 }
 
-.password:hover {
+.login-container .password:hover {
 
     color: white;
     opacity: 0.5;
@@ -171,7 +167,7 @@ img {
 
 @media screen and (max-width: 600px) {
 
-    .container {
+    .login-container {
 
         height: 600px;
     }
@@ -179,7 +175,7 @@ img {
 
 @media screen and (max-width: 900px) {
 
-    .container {
+    .login-container {
 
         margin: 0;
         position: absolute;
@@ -188,19 +184,19 @@ img {
         transform: translateY(-50%);
     }
 
-    .form-container {
+    .login-container.form-container {
 
         height: 100%;
         color: white;
         width: 100%;
     }
 
-    .overlay-container {
+    .login-container.overlay-container {
 
         display: none;
     }
 
-    a {
+    .login-container a {
 
         color: #333;
         text-decoration: none;
@@ -208,7 +204,7 @@ img {
         color: white;
     }
 
-    .social-container a {
+    .login-container .social-container a {
 
         border-radius: 50%;
         display: inline-flex;
@@ -225,7 +221,7 @@ img {
 
 <body>
 
-    <div class="container" id="container">
+    <div class=".login-container" id=".login-container">
         <span class="img-form">
 
         </span>

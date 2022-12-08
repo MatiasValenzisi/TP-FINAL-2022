@@ -23,6 +23,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre: &nbsp;</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="form-control col-md-7 col-xs-12" style="font-weight: normal;">
+                                    <?php echo $_SESSION['userPH']->getFirstName()." ".$_SESSION['userPH']->getLastName() ?>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Email: &nbsp;</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <label class="form-control col-md-7 col-xs-12" style="font-weight: normal;">

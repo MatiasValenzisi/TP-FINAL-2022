@@ -57,8 +57,8 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($newPhoto, $password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null){
-
+        public function profileEdit($password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null, $profile = ''){
+           
             try {
 
                 $serviceDate = explode(" - ", $serviceDate);
@@ -79,15 +79,15 @@
                 $guardian->setServiceEndDate($serviceEndDate);
                 $guardian->setServiceDayList($disp);
 
-                if (file_exists($_FILES['photo']['tmp_name'])) {
+                if (file_exists($_FILES['profile']['tmp_name'])) {
 
-                    $fileName = ROOT_VIEWS."/photo/". $guardian->getToken()."-".basename($_FILES['photo']['name']);
+                    $fileName = ROOT_VIEWS."/profile/". $guardian->getToken()."-".basename($_FILES['profile']['name']);
 
                     $extension = $this->getExtension($fileName);
 
                     if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                        $sizeP = $_FILES['photo']['size'];
+                        $sizeP = $_FILES['profile']['size'];
 
                         if ($sizeP > 1000000){ 
 
@@ -96,9 +96,9 @@
 
                         } else {                        
                             
-                            if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+                            if (move_uploaded_file($_FILES['profile']['tmp_name'], $fileName)){
 
-                                $newPhoto =  $guardian->getToken()."-".basename($_FILES['photo']['name']);
+                                $profile =  $guardian->getToken()."-".basename($_FILES['profile']['name']);
                              
                             }  else {
                                 
@@ -114,9 +114,9 @@
                     }
                 }   
 
-                if (!empty($newPhoto)) {
+                if (!empty($profile)) {
 
-                    $guardian->setProfilePicture($newPhoto);
+                    $guardian->setProfilePicture($profile);
                 }
                                                
                 if($this->userController->checkPassword($guardian->getPassword())){

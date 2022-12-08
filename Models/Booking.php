@@ -4,14 +4,14 @@ use Controllers\UserController;
 
     class Booking {
 
-        private $token;            // Token o número de reserva.
-        private $tokenPet;         // Token de la mascota a cuidar.  
-        private $dateStart;        // Fecha inicial.
-        private $dateEnd;          // Fecha final.
-        private $price;            // Precio total. Dias por precio del guardian.
-        private $state;            // Estado de la reserva.
-        private $tokenGuardian;    // Token del guardian asignado a la reserva.
-        private $tokenOwner;       // Token del dueño que solicito la reserva.
+        private $token;           
+        private $tokenPet;         
+        private $dateStart;        
+        private $dateEnd;          
+        private $price;            
+        private $state;            
+        private $tokenGuardian;    
+        private $tokenOwner;       
  
 
         public function __construct($token = null, $tokenPet = null, $dateStart = null, $dateEnd = null, $price = null, $state = null, $tokenGuardian = null, $tokenOwner = null){
@@ -22,11 +22,8 @@ use Controllers\UserController;
             $this->dateEnd           = $dateEnd;
             $this->price             = $price;
             $this->state             = $state;
-            //$this->couponPayment     = $couponPayment;
-            //$this->remainingPayment  = $remainingPayment;
             $this->tokenGuardian     = $tokenGuardian;
             $this->tokenOwner        = $tokenOwner;
-            //$this->acceptanceDate    = $acceptanceDate;
         }  
 
         public function getToken() { 

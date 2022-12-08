@@ -2,14 +2,14 @@
 
     class Guardian extends User {
 
-        private $experience;         // Años de experiencia.
-        private $petSize;            // Tamaño de mascota que cuida.
-        private $servicePrice;       // Precio del servicio por día.
-        private $serviceStartDate;   // Fecha de inicio del servicio.
-        private $serviceEndDate;     // Fecha de finalización del servicio.
-        private $serviceDayList;     // Días de la semana en que trabaja dentro del rango de inicio y finalización del servicio.
-        private $bookingList;        // Listado de reservas asociadas al guardian. 
-        private $reviewList;         // Listado de reseñas del guardian.
+        private $experience;     
+        private $petSize;          
+        private $servicePrice;  
+        private $serviceStartDate; 
+        private $serviceEndDate;    
+        private $serviceDayList;     
+        private $bookingList;         
+        private $reviewList;         
 
         public function __construct(
 

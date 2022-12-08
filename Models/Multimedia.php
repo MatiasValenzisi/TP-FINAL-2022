@@ -3,7 +3,7 @@
     abstract class Multimedia {
 
         protected $format;
-        protected $size;        // Peso.
+        protected $size;        
         protected $extension;
         protected $url;
 

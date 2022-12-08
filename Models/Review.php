@@ -6,13 +6,15 @@
         private $date;
         private $observations;
         private $tokenGuardian;
+        private $tokenBooking;
 
-        public function __construct($score = null, $date = null, $observations = null, $tokenGuardian = null){
+        public function __construct($score = null, $date = null, $observations = null, $tokenGuardian = null, $tokenBooking = null){
             
             $this->score         = $score;
             $this->date          = $date;
             $this->observations  = $observations;
             $this->tokenGuardian = $tokenGuardian;
+            $this->tokenBooking  = $tokenBooking;
         }
 
         public function getScore(){
@@ -53,6 +55,16 @@
         public function setTokenGuardian($tokenGuardian) { 
 
             $this->tokenGuardian = $tokenGuardian; 
+        } 
+
+        public function getTokenBooking() { 
+
+            return $this->tokenBooking; 
+        } 
+
+        public function setTokenBooking($tokenBooking) { 
+
+            $this->tokenBooking = $tokenBooking; 
         } 
     }
 ?>

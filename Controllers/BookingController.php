@@ -469,11 +469,11 @@
             }
         }
 
-        public function reviewAction($guardianToken, $score, $observations = ''){
+        public function reviewAction($guardianToken, $bookingToken, $score, $observations = ''){
 
             try {
 
-                $this->bookingDAO->addReviewDAO($guardianToken, $score, $observations);  
+                $this->bookingDAO->addReviewDAO($guardianToken, $bookingToken, $score, $observations);  
 
                 header("Location: ".FRONT_ROOT."/booking/history");
 

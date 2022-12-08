@@ -3,10 +3,10 @@
     abstract class User {
 
         protected $token;
-        protected $userName;      // Correo electronico.
+        protected $userName;     
         protected $password;
-        protected $dischargeDate; // Fecha de alta.
-        protected $downDate;      // Fecha de baja.
+        protected $dischargeDate; 
+        protected $downDate;     
         protected $firstName;
         protected $lastName;
         protected $birthDate;

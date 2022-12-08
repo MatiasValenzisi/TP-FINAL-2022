@@ -2,6 +2,7 @@
     <div class="container-fluid" style="width:70%; height:50%;">
 
         <input type="hidden" name="guardianToken" value="<?php echo $this->guardian->getToken(); ?>">
+        <input type="hidden" name="bookingToken" value="<?php echo $this->booking->getToken(); ?>">
 
         <div>
             <h2 class="title">¿Qué te pareció el servicio?</h2>

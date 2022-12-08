@@ -24,7 +24,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($newPhoto,$password){
+        public function profileEdit($password, $profile = ''){
 
             try {
 
@@ -32,15 +32,15 @@
 
                 $owner->setPassword($password);
 
-                if (!empty($newPhoto) && file_exists($_FILES['photo']['tmp_name'])) {
+                if (!empty($profile) && file_exists($_FILES['profile']['tmp_name'])) {
 
-                    $fileName = ROOT_VIEWS."/photo/".$owner->getToken()."-".basename($_FILES['photo']['name']);
+                    $fileName = ROOT_VIEWS."/profile/".$owner->getToken()."-".basename($_FILES['profile']['name']);
 
                     $extension = $this->getExtension($fileName);
 
                     if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                        $sizeP = $_FILES['photo']['size'];
+                        $sizeP = $_FILES['profile']['size'];
 
                         if ($sizeP > 1000000){ 
 
@@ -49,9 +49,9 @@
 
                         } else {                        
                             
-                            if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+                            if (move_uploaded_file($_FILES['profile']['tmp_name'], $fileName)){
 
-                                $newPhoto = $owner->getToken()."-".basename($_FILES['photo']['name']);
+                                $profile = $owner->getToken()."-".basename($_FILES['profile']['name']);
                              
                             }  else {
                                 
@@ -67,9 +67,9 @@
                     }
                 }   
                 
-                if (!empty($newPhoto)) {
+                if (!empty($profile)) {
 
-                    $owner->setProfilePicture($newPhoto);
+                    $owner->setProfilePicture($profile);
                 }
                 
                 if($this->userController->checkPassword($owner->getPassword())){

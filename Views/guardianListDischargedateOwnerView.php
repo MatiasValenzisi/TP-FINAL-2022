@@ -73,7 +73,7 @@
                                         } 
 
                                         if($average == 0) {
-                                            echo "No disponible";
+                                            echo "Puntuación no disponible";
                                         } else {
                                             for($i = 0; $i < 5; $i++) {
                                                 if($i < ($average)) { ?>

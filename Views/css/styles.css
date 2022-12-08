@@ -358,7 +358,7 @@ p {
 }
 
 .login-container {
-
+  margin:auto;
   margin-top: 32px;  
   background: linear-gradient(90deg, rgba(36, 91, 136, 1) 0%, rgba(32, 81, 122, 1), rgba(35, 87, 130, 1) 25%, rgba(46, 118, 179, 1) 50%, rgba(32, 81, 122, 1) 100%);
   background-color: #20517a;

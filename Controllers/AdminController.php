@@ -27,7 +27,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($password,$newPhoto){
+        public function profileEdit($newPhoto, $password){
 
             try {
 
@@ -45,11 +45,9 @@
 
                         $sizeP = $_FILES['photo']['size'];
 
-                        if ($sizeP > 1000000){ // 1 mb.
-                            
-                            //cambiar dsp agregando la ruta 
+                        if ($sizeP > 1000000){ 
                             header("Location: ".FRONT_ROOT."/admin/profile/error/profile/size");
-                             exit();
+                            exit();
 
                         } else {                        
                             
@@ -69,11 +67,13 @@
                         header("Location: ".FRONT_ROOT."/admin/profile/error/profile/format");
                          exit();
                     }
+                }  
+
+                if (!empty($newPhoto)) {
+
+                    $admin->setProfilePicture($newPhoto);
                 }
-              
-                
-                $admin->setProfilePicture($newPhoto);
-                
+            
                 if($this->userController->checkPassword($admin->getPassword())){
 
                     $this->adminDAO->updateDAO($admin);

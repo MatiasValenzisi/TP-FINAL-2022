@@ -7,13 +7,11 @@
     class OwnerController {  
 
         private $ownerDAO;
-
         private $userController;
         
         public function __construct(){
           
-            $this->ownerDAO  = new OwnerDAO();
- 
+            $this->ownerDAO  = new OwnerDAO(); 
             $this->userController = new UserController();
         }
 
@@ -34,7 +32,7 @@
 
                 $owner->setPassword($password);
 
-                if (file_exists($_FILES['photo']['tmp_name'])) {
+                if (!empty($newPhoto) && file_exists($_FILES['photo']['tmp_name'])) {
 
                     $fileName = ROOT_VIEWS."/photo/".$owner->getToken()."-".basename($_FILES['photo']['name']);
 
@@ -44,11 +42,10 @@
 
                         $sizeP = $_FILES['photo']['size'];
 
-                        if ($sizeP > 1000000){ // 1 mb.
-                            
-                            //cambiar dsp agregando la ruta 
+                        if ($sizeP > 1000000){ 
+
                             header("Location: ".FRONT_ROOT."/admin/profile/error/profile/size");
-                             exit();
+                            exit();
 
                         } else {                        
                             
@@ -68,10 +65,12 @@
                         header("Location: ".FRONT_ROOT."/admin/profile/error/profile/format");
                          exit();
                     }
-                }
-              
+                }   
                 
-                $owner->setProfilePicture($newPhoto);
+                if (!empty($newPhoto)) {
+
+                    $owner->setProfilePicture($newPhoto);
+                }
                 
                 if($this->userController->checkPassword($owner->getPassword())){
 
@@ -84,9 +83,7 @@
                 } else {
 
                     header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
-                }    
-
-             
+                }                 
 
             } catch (Exception $e) {
 

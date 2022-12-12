@@ -1,18 +1,24 @@
 <?php namespace Controllers;
 
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\ChatDAO as ChatDAO;
     use Models\Owner as Owner;
+    use Models\Chat as Chat;
     use \Exception as Exception; 
 
     class OwnerController {  
 
         private $ownerDAO;
         private $userController;
+        private $chat;
+        private $chatDAO;
         
         public function __construct(){
           
-            $this->ownerDAO  = new OwnerDAO(); 
+            $this->ownerDAO       = new OwnerDAO(); 
             $this->userController = new UserController();
+            $this->chat           = new Chat();
+            $this->chatDAO        = new ChatDAO();
         }
 
         public function profile($type = null, $action = null, $specific = null){

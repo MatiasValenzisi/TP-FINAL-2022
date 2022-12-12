@@ -2,8 +2,10 @@
 
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\ReviewDAO as ReviewDAO;
+    use DAO\ChatDAO as ChatDAO;
     use Models\Guardian as Guardian;
     use Models\Review as Review; 
+    use Models\Chat as Chat;
     use \Exception as Exception;
        
     class GuardianController {  
@@ -14,6 +16,8 @@
         private $userController;
         private $reviewDAO;
         private $reviewList;
+        private $chat;
+        private $chatDAO;
         
         public function __construct(){
             
@@ -23,6 +27,8 @@
             $this->userController = new UserController();
             $this->reviewDAO      = new ReviewDAO();            
             $this->reviewList     = array();
+            $this->chat           = new Chat();
+            $this->chatDAO        = new ChatDAO();
         }
 
         public function profile($type = null, $action = null, $specific = null){
@@ -452,6 +458,21 @@
             $indice = count($array)-1;
             $extension = $array[$indice];
             return $extension;
+        }
+
+        public function chat($tokenGuardian){
+
+            try {
+                
+                require_once ROOT_VIEWS."/mainHeader.php";
+                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/chatView.php";
+                require_once ROOT_VIEWS."/mainFooter.php";  
+                
+            } catch (Exception $e) {
+
+                header("Location: ".FRONT_ROOT."/home/administration/error/chat/unknown"); 
+            }               
         }
     } 
 ?>

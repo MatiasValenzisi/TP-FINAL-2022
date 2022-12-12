@@ -1,7 +1,5 @@
 <?php namespace Models;
 
-use Controllers\UserController;
-
     class Booking {
 
         private $token;           

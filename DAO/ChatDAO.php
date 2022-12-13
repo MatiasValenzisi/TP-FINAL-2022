@@ -13,10 +13,10 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (date, transmitter, receiver, message) VALUES (:date, :transmitter, :receiver, :message)";
+                $query = "INSERT INTO ".$this->tableName." (date, tranmitter, receiver, message) VALUES (:date, :trasmitter, :receiver, :message)";
 
                 $parameters["date"]         = $value->getDate();
-                $parameters["transmitter"]  = $value->getTransmitter();
+                $parameters["trasmitter"]  = $value->getTrasmitter();
                 $parameters["receiver"]     = $value->getReceiver();
                 $parameters["message"]      = $value->getMessage();
 
@@ -30,9 +30,6 @@
         }
 
         public function getAllDAO($user1, $user2){
-
-            var_dump($user1);
-            var_dump($user2);
 
             try {
 
@@ -58,6 +55,40 @@
             }
         }
 
+        public function getAllUserList($user){
+
+            try {
+
+                $query = "SELECT userToken FROM (
+                   
+                    SELECT id, receiver AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".trasmitter  = :user
+
+                    UNION 
+
+                    SELECT id, trasmitter AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".receiver = :user
+
+                ) AS R GROUP BY userToken ORDER BY id;";
+
+                $parameters["user"] = $user;
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query, $parameters);    
+
+                $chatUserList = array();
+
+                foreach ($resultSet as $key => $token) {                
+
+                    array_push($chatUserList, $token);
+                }
+                
+                return $chatUserList;
+
+            } catch (Exception $e){   
+                
+                throw $e;
+            }
+        }
+
         private function getArrayChatDAO($array){
 
             $chatList = array();
@@ -66,7 +97,7 @@
 
                 $chat = new Chat();
                 $chat->setDate($value["date"]);
-                $chat->setTransmitter($value["trasmitter"]);
+                $chat->setTrasmitter($value["trasmitter"]);
                 $chat->setReceiver($value["receiver"]);
                 $chat->setMessage($value["message"]);
 
@@ -74,7 +105,6 @@
             }
 
             return $chatList;
-        }
-
+        } 
     } 
 ?>

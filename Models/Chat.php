@@ -3,14 +3,14 @@
     class Chat {
 
         private $date;
-        private $transmitter;
+        private $trasmitter;
         private $receiver;
         private $message;
 
-        public function __construct($date = null, $transmitter = null, $receiver = null, $message = null){
+        public function __construct($date = null, $trasmitter = null, $receiver = null, $message = null){
 
             $this->date = $date;
-            $this->transmitter = $transmitter;
+            $this->trasmitter = $trasmitter;
             $this->receiver = $receiver;
             $this->message = $message;
         }  
@@ -23,12 +23,12 @@
             $this->date = $date; 
         } 
 
-        public function getTransmitter() { 
-            return $this->transmitter; 
+        public function getTrasmitter() { 
+            return $this->trasmitter; 
         } 
 
-        public function setTransmitter($transmitter) { 
-            $this->transmitter = $transmitter; 
+        public function setTrasmitter($trasmitter) { 
+            $this->trasmitter = $trasmitter; 
         } 
 
         public function getReceiver() { 

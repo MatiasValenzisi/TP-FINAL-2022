@@ -460,33 +460,5 @@
             return $extension;
         }
 
-        public function chat($tokenGuardian, $tokenOwner){
-
-            try {
-                
-                require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/chatNav.php";
-                require_once ROOT_VIEWS."/chatView.php";
-                require_once ROOT_VIEWS."/mainFooter.php";  
-                
-            } catch (Exception $e) {
-
-                header("Location: ".FRONT_ROOT."/home/administration/error/chat/unknown"); 
-            }               
-        }
-
-        public function chatAPP($tokenGuardian, $tokenOwner){
-
-            $time = time();
-            echo date("d-m-Y (H:i:s)", $time)." <br><br>";
-
-            $array = $this->chatDAO->getAllDAO($tokenGuardian, $tokenOwner);
-
-            foreach ($array as $key => $value) {
-                var_dump($value);
-                echo "<br><br>";
-            }
-
-        }
     } 
 ?>

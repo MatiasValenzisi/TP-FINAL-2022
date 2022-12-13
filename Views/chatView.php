@@ -8,7 +8,7 @@
                 }
             }
 
-            req.open('GET', '<?php echo FRONT_ROOT ?>/guardian/chatAPP/<?php echo $tokenGuardian."/".$tokenOwner ?>', true);
+            req.open('GET', '<?php echo FRONT_ROOT ?>/chat/AppAction/<?php echo $tokenGuardian."/".$tokenOwner ?>', true);
             req.send();
         }
 

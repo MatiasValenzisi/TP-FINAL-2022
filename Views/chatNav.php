@@ -72,10 +72,22 @@
                                     <a href=" <?php echo FRONT_ROOT ?>/owner/profile"><i
                                             class="fa fa-user-secret text-center"></i> Mi perfil</a>
 
+                                    <?php } ?>
+
                                 </li>
 
+                                <li>
 
-                                <?php } if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+                                    <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
+
+                                    <a href=" <?php echo FRONT_ROOT ?>/chat/list"><i
+                                            class="fa fa-comment text-center"></i> Chat</a>
+
+                                    <?php } ?>
+
+                                </li>
+
+                                <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 
                                 <li>
                                     <a><i class="fa fa-briefcase text-center"></i> Guardianes<span

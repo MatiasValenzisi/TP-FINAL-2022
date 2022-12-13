@@ -31,13 +31,16 @@
 
         public function getAllDAO($user1, $user2){
 
+            var_dump($user1);
+            var_dump($user2);
+
             try {
 
                 $query = "SELECT * FROM (
                    
-                    SELECT * FROM " . $this->tableName. " WHERE " . $this->tableName. ".transmitter  = :user1 AND " . $this->tableName. " receiver = :user2 
+                    SELECT * FROM " . $this->tableName. " WHERE " . $this->tableName. ".trasmitter  = :user1 AND " . $this->tableName. ".receiver = :user2 
                     UNION 
-                    SELECT * FROM " . $this->tableName. " WHERE " . $this->tableName. ".transmitter  = :user2 AND " . $this->tableName. " receiver = :user1
+                    SELECT * FROM " . $this->tableName. " WHERE " . $this->tableName. ".trasmitter  = :user2 AND " . $this->tableName. ".receiver = :user1
 
                 ) AS R ORDER BY id;";
 
@@ -45,7 +48,7 @@
                 $parameters["user2"] = $user2;
 
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query, $parameters);              
+                $resultSet = $this->connection->Execute($query, $parameters);                          
                 $resulArrayObject = $this->getArrayChatDAO($resultSet);
                 return $resulArrayObject;
 
@@ -60,17 +63,17 @@
             $chatList = array();
 
             foreach ($array as $key => $value) {
-                 
+
                 $chat = new Chat();
                 $chat->setDate($value["date"]);
-                $chat->setTransmitter($value["transmitter"]);
+                $chat->setTransmitter($value["trasmitter"]);
                 $chat->setReceiver($value["receiver"]);
                 $chat->setMessage($value["message"]);
 
-                array_push($adminList, $admin);
+                array_push($chatList, $chat);
             }
 
-            return $adminList;
+            return $chatList;
         }
 
     } 

@@ -478,7 +478,15 @@
         public function chatAPP($tokenGuardian, $tokenOwner){
 
             $time = time();
-            echo date("d-m-Y (H:i:s)", $time);
+            echo date("d-m-Y (H:i:s)", $time)." <br><br>";
+
+            $array = $this->chatDAO->getAllDAO($tokenGuardian, $tokenOwner);
+
+            foreach ($array as $key => $value) {
+                var_dump($value);
+                echo "<br><br>";
+            }
+
         }
     } 
 ?>

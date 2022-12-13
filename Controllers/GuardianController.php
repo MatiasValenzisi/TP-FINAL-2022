@@ -460,12 +460,12 @@
             return $extension;
         }
 
-        public function chat($tokenGuardian){
+        public function chat($tokenGuardian, $tokenOwner){
 
             try {
                 
                 require_once ROOT_VIEWS."/mainHeader.php";
-                require_once ROOT_VIEWS."/mainNav.php";
+                require_once ROOT_VIEWS."/chatNav.php";
                 require_once ROOT_VIEWS."/chatView.php";
                 require_once ROOT_VIEWS."/mainFooter.php";  
                 
@@ -473,6 +473,12 @@
 
                 header("Location: ".FRONT_ROOT."/home/administration/error/chat/unknown"); 
             }               
+        }
+
+        public function chatAPP($tokenGuardian, $tokenOwner){
+
+            $time = time();
+            echo date("d-m-Y (H:i:s)", $time);
         }
     } 
 ?>

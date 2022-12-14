@@ -9,16 +9,15 @@
         private $connection;
         private $tableName = "chat";
 
-        public function addDAO($value){
+        public function addDAO($trasmitter, $receiver, $message){
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (date, tranmitter, receiver, message) VALUES (:date, :trasmitter, :receiver, :message)";
+                $query = "INSERT INTO ".$this->tableName." (trasmitter, receiver, message) VALUES (:trasmitter, :receiver, :message)";
 
-                $parameters["date"]         = $value->getDate();
-                $parameters["trasmitter"]  = $value->getTrasmitter();
-                $parameters["receiver"]     = $value->getReceiver();
-                $parameters["message"]      = $value->getMessage();
+                $parameters["trasmitter"]   = $trasmitter;
+                $parameters["receiver"]     = $receiver;
+                $parameters["message"]      = $message;
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -55,30 +54,30 @@
             }
         }
 
-        public function getAllUserList($user){
+        public function getContactList($token){
 
             try {
 
                 $query = "SELECT userToken FROM (
                    
-                    SELECT id, receiver AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".trasmitter  = :user
+                    SELECT id, receiver AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".trasmitter  = :token
 
                     UNION 
 
-                    SELECT id, trasmitter AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".receiver = :user
+                    SELECT id, trasmitter AS userToken FROM " . $this->tableName. " WHERE " . $this->tableName. ".receiver = :token
 
                 ) AS R GROUP BY userToken ORDER BY id;";
 
-                $parameters["user"] = $user;
+                $parameters["token"] = $token;
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);    
 
                 $chatUserList = array();
 
-                foreach ($resultSet as $key => $token) {                
+                foreach ($resultSet as $key => $tokenUser) {                
 
-                    array_push($chatUserList, $token);
+                    array_push($chatUserList, $tokenUser);
                 }
                 
                 return $chatUserList;

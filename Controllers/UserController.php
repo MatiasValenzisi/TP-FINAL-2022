@@ -185,7 +185,7 @@
 
             try {
 
-                $this->user = $this->adminDAO->getAllDAO($token);
+                $this->user = $this->adminDAO->getUserTokenDAO($token);
 
                 if ($this->user != null){
 

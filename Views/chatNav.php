@@ -80,7 +80,7 @@
 
                                     <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 
-                                    <a href=" <?php echo FRONT_ROOT ?>/chat/list"><i
+                                    <a href=" <?php echo FRONT_ROOT ?>/chat/contact"><i
                                             class="fa fa-comment text-center"></i> Chat</a>
 
                                     <?php } ?>

@@ -73,7 +73,7 @@
                                         } 
 
                                         if($average == 0) {
-                                            echo "No disponible";
+                                            echo "Puntuación no disponible";
                                         } else {
                                             for($i = 0; $i < 5; $i++) {
                                                 if($i < ($average)) { ?>
@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 emphasis">
-                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                    <button type="button" class="btn btn-success btn-xs" onclick="location.href='<?php echo FRONT_ROOT ?>/chat/app/<?php echo $guardian->getToken()."/".$_SESSION['userPH']->getToken(); ?>';"> <i class="fa fa-user">
                                         </i> <i class="fa fa-comments-o"></i> </button>
                                     <button type="button" class="btn btn-primary btn-xs"
                                         onclick="location.href='<?php echo FRONT_ROOT ?>/guardian/view/<?php echo $guardian->getToken(); ?>';">

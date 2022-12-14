@@ -14,12 +14,13 @@
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName." (score, date, observations, tokenGuardian) VALUES (:score, :date, :observations, :tokenGuardian)";
+                $query = "INSERT INTO ".$this->tableName." (score, date, observations, tokenGuardian, tokenBooking) VALUES (:score, :date, :observations, :tokenGuardian, :tokenBooking)";
 
                 $parameters["score"]         = $value->getScore();
                 $parameters["date"]          = $value->getDate();
                 $parameters["observations"]  = $value->getObservations();
-                $parameters["tokenGuardian"] = $value->getTokenGuardian();
+                $parameters["tokenGuardian"] = $value->getTokenGuardian();                
+                $parameters["tokenBooking"] = $value->getTokenBooking();
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -58,20 +59,8 @@
 
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);  
-
-                foreach ($resultSet as $key => $value) {
-                 
-                    $review = new Review();
-                                       
-                    $review->setScore($value["score"]);
-                    $review->setDate($value["date"]);
-                    $review->setObservations($value["observations"]);
-                    $review->setTokenGuardian($value["tokenGuardian"]);
-
-                    array_push($reviewList, $review);
-                }
-
-                return $reviewList;
+                $resulArrayObject = $this->getArrayReviewDAO($resultSet);
+                return $resulArrayObject;
 
             } catch (Exception $e){
 
@@ -90,6 +79,7 @@
                 $review->setDate($value["date"]);
                 $review->setObservations($value["observations"]);
                 $review->setTokenGuardian($value["tokenGuardian"]);
+                $review->setTokenBooking($value["tokenBooking"]);
                 array_push($reviewList, $review);
             }
 

@@ -1,20 +1,24 @@
 <?php namespace Controllers;
 
     use DAO\OwnerDAO as OwnerDAO;
+    use DAO\ChatDAO as ChatDAO;
     use Models\Owner as Owner;
+    use Models\Chat as Chat;
     use \Exception as Exception; 
 
     class OwnerController {  
 
         private $ownerDAO;
-
         private $userController;
+        private $chat;
+        private $chatDAO;
         
         public function __construct(){
           
-            $this->ownerDAO  = new OwnerDAO();
- 
+            $this->ownerDAO       = new OwnerDAO(); 
             $this->userController = new UserController();
+            $this->chat           = new Chat();
+            $this->chatDAO        = new ChatDAO();
         }
 
         public function profile($type = null, $action = null, $specific = null){
@@ -26,7 +30,7 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($newPhoto,$password){
+        public function profileEdit($password, $profile = ''){
 
             try {
 
@@ -34,27 +38,26 @@
 
                 $owner->setPassword($password);
 
-                if (file_exists($_FILES['photo']['tmp_name'])) {
+                if (!empty($profile) && file_exists($_FILES['profile']['tmp_name'])) {
 
-                    $fileName = ROOT_VIEWS."/photo/".$owner->getToken()."-".basename($_FILES['photo']['name']);
+                    $fileName = ROOT_VIEWS."/profile/".$owner->getToken()."-".basename($_FILES['profile']['name']);
 
                     $extension = $this->getExtension($fileName);
 
                     if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                        $sizeP = $_FILES['photo']['size'];
+                        $sizeP = $_FILES['profile']['size'];
 
-                        if ($sizeP > 1000000){ // 1 mb.
-                            
-                            //cambiar dsp agregando la ruta 
+                        if ($sizeP > 1000000){ 
+
                             header("Location: ".FRONT_ROOT."/admin/profile/error/profile/size");
-                             exit();
+                            exit();
 
                         } else {                        
                             
-                            if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+                            if (move_uploaded_file($_FILES['profile']['tmp_name'], $fileName)){
 
-                                $newPhoto = $owner->getToken()."-".basename($_FILES['photo']['name']);
+                                $profile = $owner->getToken()."-".basename($_FILES['profile']['name']);
                              
                             }  else {
                                 
@@ -68,10 +71,12 @@
                         header("Location: ".FRONT_ROOT."/admin/profile/error/profile/format");
                          exit();
                     }
-                }
-              
+                }   
                 
-                $owner->setProfilePicture($newPhoto);
+                if (!empty($profile)) {
+
+                    $owner->setProfilePicture($profile);
+                }
                 
                 if($this->userController->checkPassword($owner->getPassword())){
 
@@ -84,9 +89,7 @@
                 } else {
 
                     header("Location: ".FRONT_ROOT."/owner/profile/error/edit/save");
-                }    
-
-             
+                }                 
 
             } catch (Exception $e) {
 

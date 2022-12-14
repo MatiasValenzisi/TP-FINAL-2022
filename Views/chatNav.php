@@ -1,4 +1,4 @@
-<body class="nav-md">
+<body class="nav-md" onload="ajax();">
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
@@ -76,7 +76,6 @@
 
                                 </li>
 
-                                
                                 <li>
 
                                     <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Guardian") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
@@ -87,7 +86,6 @@
                                     <?php } ?>
 
                                 </li>
-
 
                                 <?php if (strcmp(get_class($_SESSION['userPH']), "Models\Admin") == 0 || strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0){ ?>
 

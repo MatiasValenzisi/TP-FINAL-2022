@@ -22,89 +22,86 @@
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
-
                     </thead>
 
                     <tbody>
 
                         <?php foreach($this->bookingList as $booking) { 
               
-              if(strcmp($booking->getState(), "Finalizado") == 0 || strcmp($booking->getState(), "Cancelado") == 0 ||
-                strcmp($booking->getState(), "Rechazado") == 0) { ?>
+                            if(strcmp($booking->getState(), "Finalizado") == 0 || strcmp($booking->getState(), "Cancelado") == 0 || 
+                            strcmp($booking->getState(), "Rechazado") == 0) { ?>
 
-                        <tr>
+                                <tr>
 
-                            <td><?php echo $booking->getToken(); ?></td>
+                                    <td><?php echo $booking->getToken(); ?></td>
 
-                            <?php foreach($this->ownerList as $owner) { 
+                                    <?php foreach($this->ownerList as $owner) { 
 
-                    if($owner->getToken() == $booking->getTokenOwner()) { ?>
+                                        if($owner->getToken() == $booking->getTokenOwner()) { ?>
 
-                            <td><?php echo $owner->getFullName(); ?></td>
+                                            <td><?php echo $owner->getFullName(); ?></td>
 
-                            <?php } }
+                                        <?php } 
 
-                  foreach($this->guardianList as $guardian) { 
+                                    } foreach($this->guardianList as $guardian) { 
 
-                    if($guardian->getToken() == $booking->getTokenGuardian()) { ?>
+                                        if($guardian->getToken() == $booking->getTokenGuardian()) { ?>
 
-                            <td><?php echo $guardian->getFullName(); ?></td>
+                                            <td><?php echo $guardian->getFullName(); ?></td>
 
-                            <?php } }
-                  
-                  foreach($this->petList as $pet) {
+                                        <?php } 
 
-                    if($pet->getToken() == $booking->getTokenPet()) { ?>
+                                    } foreach($this->petList as $pet) {
 
-                            <td><?php echo $pet->getName(); ?></td>
-                            <td><?php echo $pet->getRace(); ?></td>
+                                        if($pet->getToken() == $booking->getTokenPet()) { ?>
 
-                            <?php } } ?>
+                                            <td><?php echo $pet->getName(); ?></td>
+                                            <td><?php echo $pet->getRace(); ?></td>
 
-                            <td><?php echo $booking->getDateStart(); ?></td>
-                            <td><?php echo $booking->getDateEnd(); ?></td>
-                            <td><?php echo "$".$booking->getPrice(); ?></td>
-                            <td><?php echo $booking->getState(); ?></td>
+                                        <?php } 
 
-                            <td>
+                                    } ?>
 
-                                <?php if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0 && strcmp($booking->getState(), "Finalizado") == 0){ 
+                                    <td><?php echo $booking->getDateStart(); ?></td>
+                                    <td><?php echo $booking->getDateEnd(); ?></td>
+                                    <td><?php echo "$".$booking->getPrice(); ?></td>
+                                    <td><?php echo $booking->getState(); ?></td>
 
-                        $control = true;
+                                    <td>
 
-                        foreach ($this->reviewList as $key => $review) { 
-                          
-                            if (strcmp($review->getTokenGuardian(), $booking->getTokenGuardian()) == 0){
+                                        <?php if(strcmp(get_class($_SESSION['userPH']), "Models\Owner") == 0 && 
+                                        strcmp($booking->getState(), "Finalizado") == 0){ 
 
-                                $control = false;
-                            }
+                                            $control = false;
 
-                        } 
+                                                foreach ($this->reviewList as $key => $review) { 
+                                      
+                                                    if (strcmp($review->getTokenGuardian(), $booking->getTokenGuardian()) == 0 && 
+                                                    strcmp($review->getTokenBooking(), $booking->getToken()) == 0){
 
-                        if ($control) { ?>
+                                                        $control = true;
+                                                    }
 
-                                <a class="text-info"
-                                    href="<?php echo FRONT_ROOT ?>/booking/review/<?php echo $booking->getToken(); ?>"><b>Generar
-                                        reseña</b></a>
+                                        } if (!$control) { ?>
 
-                                <?php } else {
+                                            <a class="text-info"
+                                                href="<?php echo FRONT_ROOT ?>/booking/review/<?php echo $booking->getToken(); ?>">
+                                                <b>Generar reseña</b></a>
 
-                             echo "Reseña realizada.";
+                                            <?php } else {
 
-                          }                       
+                                                echo "Reseña realizada.";
+                                            }                       
 
-                        } else {
+                                        } else {
 
-                        echo "No disponible.";
+                                            echo "No disponible.";
+                                        } ?>
 
-                    } ?>
-
-                            </td>
-
-                        </tr>
-
-                        <?php } } ?>
-
+                                    </td>
+                                </tr>
+                            <?php } 
+                        } ?>
                     </tbody>
                 </table>
             </div>

@@ -2,8 +2,10 @@
 
     use DAO\GuardianDAO as GuardianDAO;
     use DAO\ReviewDAO as ReviewDAO;
+    use DAO\ChatDAO as ChatDAO;
     use Models\Guardian as Guardian;
     use Models\Review as Review; 
+    use Models\Chat as Chat;
     use \Exception as Exception;
        
     class GuardianController {  
@@ -14,6 +16,8 @@
         private $userController;
         private $reviewDAO;
         private $reviewList;
+        private $chat;
+        private $chatDAO;
         
         public function __construct(){
             
@@ -23,6 +27,8 @@
             $this->userController = new UserController();
             $this->reviewDAO      = new ReviewDAO();            
             $this->reviewList     = array();
+            $this->chat           = new Chat();
+            $this->chatDAO        = new ChatDAO();
         }
 
         public function profile($type = null, $action = null, $specific = null){
@@ -57,8 +63,8 @@
             require_once ROOT_VIEWS."/mainFooter.php"; 
         }
 
-        public function profileEdit($newPhoto,$password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null){
-
+        public function profileEdit($password, $experience, $petSize, $servicePrice = null, $serviceDate = null, $disp = null, $profile = ''){
+           
             try {
 
                 $serviceDate = explode(" - ", $serviceDate);
@@ -69,38 +75,36 @@
                 $serviceEndDate = date("m/d/Y", strtotime($serviceDate["1"]));
                 $serviceEndDate = date("Y-m-d", strtotime($serviceEndDate));
 
-                $this->guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
+                $guardian = $this->guardianDAO->getUserTokenDAO($_SESSION['userPH']->getToken());
 
-                $this->guardian->setPassword($password);
-                $this->guardian->setExperience($experience);
-                $this->guardian->setPetSize($petSize);
-                $this->guardian->setServicePrice($servicePrice);
-                $this->guardian->setServiceStartDate($serviceStartDate);
-                $this->guardian->setServiceEndDate($serviceEndDate);
-                $this->guardian->setServiceDayList($disp);
+                $guardian->setPassword($password);
+                $guardian->setExperience($experience);
+                $guardian->setPetSize($petSize);
+                $guardian->setServicePrice($servicePrice);
+                $guardian->setServiceStartDate($serviceStartDate);
+                $guardian->setServiceEndDate($serviceEndDate);
+                $guardian->setServiceDayList($disp);
 
+                if (file_exists($_FILES['profile']['tmp_name'])) {
 
-                if (file_exists($_FILES['photo']['tmp_name'])) {
-
-                    $fileName = ROOT_VIEWS."/photo/". $this->guardian->getToken()."-".basename($_FILES['photo']['name']);
+                    $fileName = ROOT_VIEWS."/profile/". $guardian->getToken()."-".basename($_FILES['profile']['name']);
 
                     $extension = $this->getExtension($fileName);
 
                     if (strcmp($extension, 'jpg') == 0 || strcmp($extension, 'png') == 0) {
 
-                        $sizeP = $_FILES['photo']['size'];
+                        $sizeP = $_FILES['profile']['size'];
 
-                        if ($sizeP > 1000000){ // 1 mb.
-                            
-                            //cambiar dsp agregando la ruta 
+                        if ($sizeP > 1000000){ 
+
                             header("Location: ".FRONT_ROOT."/admin/profile/error/profile/size");
-                             exit();
+                            exit();
 
                         } else {                        
                             
-                            if (move_uploaded_file($_FILES['photo']['tmp_name'], $fileName)){
+                            if (move_uploaded_file($_FILES['profile']['tmp_name'], $fileName)){
 
-                                $newPhoto =  $this->guardian->getToken()."-".basename($_FILES['photo']['name']);
+                                $profile =  $guardian->getToken()."-".basename($_FILES['profile']['name']);
                              
                             }  else {
                                 
@@ -114,16 +118,18 @@
                         header("Location: ".FRONT_ROOT."/admin/profile/error/profile/format");
                          exit();
                     }
+                }   
+
+                if (!empty($profile)) {
+
+                    $guardian->setProfilePicture($profile);
                 }
-              
-                
-                $this->guardian->setProfilePicture($newPhoto);
-                
-                if($this->userController->checkPassword($this->guardian->getPassword())){
+                                               
+                if($this->userController->checkPassword($guardian->getPassword())){
 
-                    $this->guardianDAO->updateDAO($this->guardian);
+                    $this->guardianDAO->updateDAO($guardian);
 
-                    $_SESSION['userPH'] = $this->guardian;
+                    $_SESSION['userPH'] = $guardian;
 
                     header("Location: ".FRONT_ROOT."/guardian/profile/success/edit/save");
 
@@ -453,5 +459,6 @@
             $extension = $array[$indice];
             return $extension;
         }
+
     } 
 ?>

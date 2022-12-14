@@ -169,12 +169,13 @@
             }            
         }
 
-        public function addReviewDAO($tokenGuardian, $score, $observations){
+        public function addReviewDAO($tokenGuardian, $tokenBooking, $score, $observations){
 
             try {
 
-                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, score, observations) VALUES (:tokenGuardian, :score, :observations);";
+                $query = "INSERT INTO ".$this->tableName2." (tokenGuardian, tokenBooking, score, observations) VALUES (:tokenGuardian, :tokenBooking, :score, :observations);";
                 $parameters["tokenGuardian"] = $tokenGuardian;
+                $parameters["tokenBooking"]  = $tokenBooking;
                 $parameters["score"]         = $score;
                 $parameters["observations"]  = $observations;
                 $this->connection = Connection::GetInstance();
@@ -231,6 +232,7 @@
                  
                 $review = new Review();
                 $review->setTokenGuardian($value["tokenGuardian"]);
+                $review->setTokenBooking($value["tokenBooking"]);
                 $review->setScore($value["score"]);
                 $review->setDate($value["date"]);
                 $review->setObservations($value["observations"]);  

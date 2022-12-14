@@ -567,4 +567,21 @@ p {
           width: 60px;
           transition: all .5s ease-in-out;
       }
+  
+  }
+
+  .gallery-home
+  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .gallery-home img
+  {
+    object-fit: cover;
+    object-position: center;
+    width: 350px;
+    height: 350px;
   }

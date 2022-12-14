@@ -5,3 +5,13 @@
     </div>
         
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, autem quidem quam atque sint assumenda Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit, voluptatum laudantium? Esse suscipit, dicta quibusdam blanditiis vel debitis omnis, ad reprehenderit quas rerum, in quis odio aut numquam. Praesentium, eveniet? repudiandae dolorem reiciendis sapiente, veritatis asperiores doloribus ducimus optio dolorum saepe qui eius eaque id!</p>
+
+
+    <div class="gallery-home">
+        <img src="" alt="test">
+        <img src="" alt="test">
+        <img src="" alt="test">
+        <img src="" alt="test">
+        <img src="" alt="test">
+        <img src="" alt="test">
+    </div>

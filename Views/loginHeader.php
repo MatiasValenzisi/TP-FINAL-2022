@@ -25,6 +25,7 @@
     <link href="<?php echo VIEWS_PATH ?>/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?php echo VIEWS_PATH ?>/build/css/custom.min.css" rel="stylesheet">
+    
     <link href="<?php echo VIEWS_PATH ?>/css/styles.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">

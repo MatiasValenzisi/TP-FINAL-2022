@@ -8,10 +8,10 @@
 
 
     <div class="gallery-home">
-        <img src="" alt="test">
-        <img src="" alt="test">
-        <img src="" alt="test">
-        <img src="" alt="test">
-        <img src="" alt="test">
-        <img src="" alt="test">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/chihuahua.jpeg" alt="dog">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/cat-dog.jpeg" alt="dog">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/dep.jpeg" alt="dog">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/dog1.jpeg" alt="dog">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/nefhdjk.jpeg" alt="dog">
+        <img src="<?php echo FRONT_ROOT ?>/Temporal-pruebas/Home/perros.jpeg" alt="dog">
     </div>

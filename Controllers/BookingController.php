@@ -400,7 +400,7 @@
 
                         if (strcmp($action,"Aceptado") == 0){
 
-                            $body.= "Se ha cargado ya un cupón de pagó para la reserva.";
+                            $body.= "Se ha cargado ya un cupón de pagó para la reserva. Puede visualizarlo desde nuestra pagina.";
                         }
 
                         require_once ROOT_LIBRARY."/PHPMailer/index.php"; 
